@@ -1,0 +1,174 @@
+\documentclass[twoside]{Beautybook/Beautybook}
+\overfullrule=1pt
+%******************************************************************************%
+%%=================================================%%
+%%-------------------------- 彩虹书边垂直位置调节 --------------------------------%%
+%%=================================================%%
+\setlength{\outermarginwidth}{2cm}
+\setlength\baryshift{-2.5\outermarginwidth} %彩虹书边垂直位置调节
+\setlength\chapterNameheight{2.6\outermarginwidth} %章节名称高度调节 #\outermarginwidth
+\setlength\hdheight{50pt} %页眉高度
+\setlength\TitleWidth{2cm}
+\setlength\ChapterBackGroundHeight{4\outermarginwidth}
+\setlength\CoverLogoyshift{\footheight}
+\FootName{ 陆~世~龙}
+%%=================================================%%
+%%-------------------------- 彩虹书边垂直位置调节 --------------------------------%%
+%%=================================================%%
+%******************************************************************************%
+%\setlist{itemsep=-2pt} % Reducing white space in lists slightly
+%%====================== 颜色设置 =========================%%
+\colorlet{outermarginbgcolor}{cyan4!30}
+\colorlet{outermarginfgcolor}{cyan4}
+\colorlet{ocre}{outermarginbgcolor} %Part TOC background color
+\addtokomafont{outermargin}{\color{cyan4}}
+%\colorlet{outermarginfontcolor}{brown6}
+%%====================== 颜色设置 =========================%%
+\renewcommand{\deg}{\si{\degree}\xspace} % Use \deg easily, everywhere
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator\Char{Char}
+\DeclareMathOperator\diag{diag}
+\DeclareMathOperator\Arg{Arg}%辐角
+\DeclareMathOperator\im{Im}
+\DeclareMathOperator{\End}{End}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Diff}[2][]{\frac{\partial #1}{\partial #2}}
+\newcommand{\Dif}[2]{\frac{\dd #1}{\dd #2}}
+%poisoning库用于绘制和定位nodes
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Begin of document %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeindex[intoc,title=关键词索引,columnseprule]%columnsep=2pt
+% \newcommand\Figure[4]{%
+%     \begin{center}
+%     \captionsetup{type=figure} %消除 Package caption Warning: The option `hypcap=true' will be ignored for this
+% %(caption)                particular \caption on input line XX.警告信息
+%         \includegraphics[#1]{#2}
+%         \captionof{figure}{#3}\label{#4}
+%     \end{center}
+% }%用法 : 用于tcolorbox中插入图片
+% \newcommand\Tikz[3]{%
+%     \begin{center}
+%     \captionsetup{type=figure} %消除 Package caption Warning: The option `hypcap=true' will be ignored for this(caption)                particular \caption on input line XX.警告信息
+%         #3 %最后一个参数为Tikz画图代码窗口
+%         \captionof{figure}{#1}\label{#2} %第一与第二个参数是Tikz画图的名称与标签
+%     \end{center}
+% } %用法 : 用于tcolorbox中插入Tikz绘图
+% \graphicspath{{figures/}{Beautybook/images/}} %图片相对路径
+% %%===================================================%%
+% %                                                          公式标注                                                               %%
+% %%===================================================%%
+% %%标记内容的命令 (作用是创建标记点的标签名称与要编辑内容间的链接,以便于在Tikz中引用该标签时相当于引用要标记内容所处位置)
+% % Commands for Highlighting text -- non tikz method
+% \newcommand{\highlight}[2]{\colorbox{#1!17}{$\displaystyle #2$}}
+% %\newcommand{\highlight}[2]{\colorbox{#1!17}{$#2$}}
+% \newcommand{\highlightdark}[2]{\colorbox{#1!47}{$\displaystyle #2$}}
+% % Commands for Highlighting text -- non tikz method
+% \renewcommand{\highlight}[2]{\colorbox{#1!17}{#2}}
+% \renewcommand{\highlightdark}[2]{\colorbox{#1!47}{#2}}
+% %%%综合标记命令为一条
+% \newcommand\Tikzmark[3]{
+%     \tikzmarknode{#1}{\highlight{#2}{$#3$}} %% #1-- Tikzmarknode (即标记点的标签名称设置) ; #2 -- 标记颜色 ; #3 -- 要标记的内容
+% }
+% %%===================================================%%
+% %                                                          公式标注                                                               %%
+% %%===================================================%%
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
+\begin{document}
+%******************************************************************************%
+%%=================================================%%
+%%----------------------------------------封面------------------------------------------%%
+%%=================================================%%
+%% Defining the main parameters
+\title{微分几何笔记}
+\subtitle{微分几何与代数几何}
+\author{陆世龙}
+\press{广西民族大学自然科学出版社}
+\editor{陆世龙主编}
+\version{第四版}
+\motto{路就在我们的脚下,如果都不愿意去动身出发,那么谁也无法挽救自己!记住,懒惰是所有人的公敌,只有克服懒惰,才有可能成功!\hfill --陆世龙言}
+\coverequation{Stokes公式 : $\iint\limits_{S}\kuohao{\Diff[R]{y}-\Diff[Q]{z}}\dd y\dd z+\kuohao{\Diff[P]{z}-\Diff[R]{x}}\dd z\dd x+\kuohao{\Diff[Q]{x}-\Diff[P]{y}}\dd x\dd y=\oint_{L}P\dd x+Q\dd y+R\dd z$.}
+\coverimage{figures/draw-3d-intersecting-surfaces.pdf} % Aspect ratio of 2:3 (portrait) recommended
+\covertikz{figures/Nine-pointCircle.pdf}
+\coverlogo{Beautybook/images/Guangximinzu.png}
+\colorlet{coverfgcolor}{purple5}
+\colorlet{coverbgcolor}{purple5!30}
+\makecover
+%******************************************************************************%
+%%=================================================%%
+%%----------------------------------------封面------------------------------------------%%
+%%=================================================%%
+
+
+%% Roman page numbering
+\frontmatter %前言
+%% Roman page numbering
+\setcounter{page}{1}
+\pagenumbering{Roman}
+\input{frontmatter/titlepage_chinese_version} %标题页
+\renewcommand{\contentsname}{\bf 目\quad 录}
+\renewcommand\listfigurename{\bf 插\ 图\ 目\ 录}
+\renewcommand\listtablename{\bf 表\ 格\ 目\ 录}
+\tableofcontents\let\cleardoublepage\clearpage
+\listoffigures\let\cleardoublepage\clearpage
+\listoftables\let\cleardoublepage\clearpage
+\newpage %防止页码错误
+
+%% Arabic page numbering
+\mainmatter % 正文
+\setcounter{page}{1}
+\pagenumbering{arabic}
+%\colorlet{outermarginbgcolor}{orange!30}
+%\colorlet{outermarginfgcolor}{orange}
+%\addtokomafont{outermargin}{\color{orange}}
+\evenoutermargin{微分几何笔记} %偶数页页边内容
+\partimage{figures/draw-3d-intersecting-surfaces.pdf}
+\partabstract{微分流形是代数几何与微分几何领域的必学知识} % Part简介
+\part{流形上的微积分}
+\setlength\ChapterBackGroundHeight{4.1\outermarginwidth}
+    \input{mainmatter/chapter1_differential_flow}
+\evenoutermargin{复几何 Complex Geometry} %偶数页页边内容
+\setlength\ChapterBackGroundHeight{4\outermarginwidth}
+    \input{mainmatter/Complex_Geometry}
+    \input{mainmatter/chapter3_AlgebraicGeometry}
+%\clearpage
+%% change some settings
+%\colorlet{outermarginbgcolor}{orange!30}
+%\colorlet{outermarginfgcolor}{orange}
+%\addtokomafont{outermargin}{\color{blue!50!green}}
+%\evenoutermargin{}
+%\partabstract{} % Part简介
+
+\partabstract{}
+\part*{附录}
+%%---------------------------------------  APPENDIX  START  -------------------------------------%%
+%% Letters for chapters
+    \appendix
+%\clearpage
+%\colorlet{outermarginbgcolor}{teal!30}
+%\colorlet{outermarginfgcolor}{teal}
+%\addtokomafont{outermargin}{\color{teal!50!red}}
+%\evenoutermargin{}
+%\partabstract{} % Part简介
+
+%%----------------------------------------  APPENDIX  END  ---------------------------------------%%
+
+
+%%---------------------------------------  BIBLIOGRAPHY  START  -------------------------------------%%
+%% Prevent urls running into margins in bibliography
+\setcounter{biburlnumpenalty}{7000}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{7000}
+
+%% Add bibliography
+\printbibliography[heading=bibintoc,title= 参考文献]
+
+%%-----------------------------------------  BIBLIOGRAPHY  END  ---------------------------------------%%
+
+
+%%------------------------------------------  INDEX  START  ----------------------------------------%%
+    \printindex
+%%-------------------------------------------  INDEX  END  ------------------------------------------%%
+\end{document}

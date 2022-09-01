@@ -1,0 +1,384 @@
+\chapter{向量函数}
+\begin{introduction}
+\item 向量函数
+\item 微分流形
+\end{introduction}
+\section{基本概念}
+\begin{definition}[向量函数][def:向量函数]
+    设$D$是一个集合,若给定一映射$\mathbf{r}$将$D$中的每一元素都映射为$\mathbb{R}^3$中的一个位置向量,则称$\mathbf{r}$为一个向量函数.
+
+    特别地,当$D$为一开区间$(a,b)$时,向量函数$\mathbf{r}$为一元向量函数,记为$\mathbf{r}=\mathbf{r}(t),t\in D$.
+
+    当$D$为一开区域$(a,b)\times (c,d)$时,向量函数$\mathbf{r}$称为二元向量函数,记为$\mathbf{r}=\mathbf{r}(u,v),u\in (a,b),v\in (c,d)$.
+\end{definition}
+\begin{definition}[$m$维流形][def:流形]
+  设$M$是Hausdorff Space. 若对任意的$x\in M$,均有在$M$中包含$x$的一个邻域$U$, 使得$U$\textbf{同胚(homeomorphic)}\index{同胚映射}于$m$维Euclidian Space $\R^m$的的一个开集. 则称$M$为一个$m$维\textbf{流形(也称为拓扑流形)}\index{流形}\cite{陈省身，陈维桓2001.10}
+\end{definition}
+\subsection{流形上的双全纯映射(即同胚映射)}
+\indent\textbf{流形$M$的两个非空开集之间同样可以建立同胚映射}.
+
+设$\kuohao{U,\varphi_U}$和$\kuohao{V,\varphi_V}$是流形$M$的两个\textbf{坐标卡}\index{坐标卡},如果$U\bigcap V\neq \emptyset$,则$\varphi_U \kuohao{U\bigcap V}$和$\varphi_V \kuohao{U\bigcap V}$是$\R^m$上的两个非空开集,且映射:
+\begin{equation}\label{eq:流形上的同胚}
+  \varphi_V\circ \varphi_U^{-1} \big|_{\varphi_U \kuohao{U\bigcap V}}\colon \varphi_U \kuohao{U\bigcap V}\to \varphi_V \kuohao{U\bigcap V}.
+\end{equation}
+建立起了这两个开集间的同胚,其逆映射就是$\varphi_U\circ \varphi_V^{-1}\big|_{\varphi_V \kuohao{U\bigcap V}}$.
+
+\paragraph{光滑函数}
+设$f$是定义在$m$维光滑流形$M$上的实函数.若$p\in M,(U,\varphi_U)$是包含$p$点的容许坐标卡,那么$f\circ \varphi_U^{-1}$是定义在欧式空间$\R^m$的开集$\varphi_U (U)$上的实函数.如果$f\circ \varphi_U^{-1}$在点$\varphi_U (p)\in \R^m$是$C^\infty$的\footnote{即$f\circ \varphi_U^{-1}$在点$\varphi_U (p)$的一个邻域内有任意多次连续偏导数},则称函数$f$在点$p\in M$是$C^\infty$的.
+
+
+{\bf 函数$f$在点$p$的可微性与包含$p$的容许坐标卡的选取是无关的}.实际上,若还有另一个包含$p$点的容许坐标卡$(V,\varphi_V)$,则$U\bigcap V\neq \emptyset$,且
+\[f\circ\varphi_V^{-1}=\kuohao{f\circ\varphi_U^{-1}}\circ\kuohao{\varphi_U\circ\varphi_V^{-1}}\]
+从而因$\varphi_U\circ\varphi_V^{-1}$是光滑的,故$f\circ\varphi_V^{-1}$与$f\circ\varphi_U^{-1}$在相应点都是可微的.
+
+如果实函数$f$在$M$上处处是$C^\infty$的,则称$f$是$M$上的 $C^\infty$--函数,或称为$f$是 $M$上的\textbf{光滑函数}. $M$上光滑函数全集为 $C^\infty (M)$.光滑函数是光滑流形之间的光滑映射的重要特例.
+
+\begin{definition}[][def:光滑映射]
+设 $f\colon M\to N$是光滑流形 $M$到 $N$的一个连续映射,且 $\dim M=m,\dim N=n$.若在一点 $p\in M$,存在点 $p$的容许坐标卡 $(U,\varphi_U)$和点 $f(p)$的容许坐标卡 $(V,\psi_V)$,使得映射
+\[
+  \psi_V \circ f\circ \varphi_U^{-1}\colon \varphi_U (U)\to \psi_V (V)
+\]
+在点 $\varphi_U (p)$上是 $C^\infty$的,则称映射 $f$在点 $p$是 $C^\infty$的.若映射 $f$在 $M$的每一点 $p$都是 $C^\infty$的,则称 $f$是从 $M$到 $N$的\textbf{光滑映射}.
+\end{definition}
+\section{形式与函数芽}
+\subsection{微分形式}\index{微分形式}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[>=stealth,spy using overlays= {rectangle, magnification=5, connect spies}] %spy using outlines= {circle, magnification=6, connect spies} %圆形放大镜
+        \draw[gray!30,very thin] (-5,-1) grid (5,9);
+        \draw[->,thin] (-5,0) -- (5,0) node[right] {$x$};
+        \draw[->,thin] (0,-1) -- (0,9) node[left] {$y$};
+        \foreach \x in {-5,...,5}{
+            \node[below,gray,font=\small] at (\x,-1) {$\x$};
+        }
+        \foreach \y in {-1,...,9}{
+            \node[left,gray,font=\small] at (-5,\y) {$\y$};
+        }
+        \draw[thick,blue,domain=-5:2.2,smooth] plot (\x,{e^\x}) node[right] {$f(x)=e^x$};
+        \draw[thick,black,domain=-2:5] plot (\x,{\x+1}) node[above] {$f(x)=x+1$};
+        \coordinate (intersection) at (0,1);
+        \node[red,left] at (intersection) {$(0,1)$};
+        \node[black] at (1,e) {$(1,e)$};
+        \draw[very thick,cyan,->] (2,-0.5) -- (0.1,0.95);
+        \draw[shift={(0,-2)},thick,teal,domain=0:5] plot (\x,{\x+1}) node[above] {$f_1(x)=x-1$};
+        \draw[rotate=30,shift={(0,-0.64)},magenta,domain=-0.95:6.4,thick] plot (\x,{\x+1}) node[above] {$g_1(x)$};
+        \shade[ball color=gray] (intersection) circle [radius=2pt];%(2pt)也行
+        \coordinate (spypoint) at (0,1);% The point to be magnified
+        \coordinate (magnifyglass) at (-3,5);% The point where to see
+        \spy [gray!50, size=2.5cm] on (spypoint) in node[fill=white] at (magnifyglass);
+    \end{tikzpicture}
+    \label{fig:微分形式解说}
+    \caption{微分形式解说}
+\end{figure}
+在$(0,1)$附近,两函数靠得很近,而在$(0,1)$该点上,两函数的变化完全一样,或者说\textbf{二者在该点的局部具有相似性}!而在实数的整体上,$f$和$g$是完全不同的.但是
+这里的函数$f$和$g$有着同样的微分形式,因为局部放大图中看到,它们在$(0,1)$的附近几乎无法区分.
+
+形象地说,假如在$(0,1)$上放置一个人,不管他踩在哪一条曲线上,他都感觉是站在$45^\circ$的斜坡上.而如果向下平移函数$g$,如图中青色直线所示,依然不会改变$g$在点$(0,1)$的斜率,感觉一模一样,所以微分形式不变.
+不过,如果我们旋转函数$g$的图像,如图中粉色直线所示,则在点$(0,1)$的坡度就变陡峭了,这时斜率发生了变化,我们放置在该点处的人可能就站不稳了,那么新函数$g_1(x)$在$(0,1)$点的微分形式发生了变化.其根本原因在于局部的导数值发生了变化.
+至此,我们对微分形式有了一个大致的感觉: 与\textbf{导数}相关.接下来说明如何定义微分形式.
+\begin{center}
+    \begin{tikzcd}
+    \text{实数域上的一元光滑函数}\ar[->,>=stealth,d]\\
+    \text{一元光滑函数芽}\ar[->,>=stealth,d]\\
+    \text{一元函数的$1$--形式}
+    \end{tikzcd}
+\end{center}
+现在只看微分形式中的$1$--形式,分三步理解.首先,光滑实值函数在任意一点处都有无穷阶连续导函数.在这里,我们只考虑定义域为全体实数的函数. 如一次函数,二次函数,指数函数等等,都是定义在
+全体实数上的一元光滑函数.不过光滑函数依然是一个整体的概念.微分形式是局部的观点,因此我们要想办法看一点的附近.遵循着这种局部化的思想,就有了" 芽"
+这一充满了局部风格的概念.
+
+\textbf{芽的思想,本质上是根据函数在一点附近的局部表现,对这些函数进行分类,即所谓的等价关系}
+\begin{definition}[芽][def:芽]
+    芽是定义在拓扑空间上函数集合的一种等价关系.
+    定义在拓扑空间上的两个函数$f$和$g$,在点$x$处属于同一支芽,当且仅当存在一个开集$S$,使得$S$包含点$x$,且在$S$上$f$和$g$的函数值处处相等.
+\end{definition}
+这里的 拓扑空间可以选择实数集,开集就是开区间之并,而点$x$就是定义函数芽和微分形式的地方.
+
+\subsection{向量空间与对偶空间}
+\renewcommand{\introductionname}{小~节~提~要}
+\begin{introduction}
+    \item 引子:光滑运动
+    \item 向量与方向导数
+    \item 向量与$1$--形式
+    \item 向量空间与对偶空间的形式化定义
+    \item 对偶空间的对偶
+\end{introduction}
+\renewcommand{\introductionname}{章~节~摘~要}
+在光滑曲线所处的三维空间定义一光滑的多元(此处为三元)函数 $f$,这里$f$是三元实值函数,而曲线函数就是将某个实数区间$I$里的数\textbf{映射为}曲线上的点. 而如此复合后的函数就是一个一元实值函数 $g$.它们之间的关系如下交换图所示:
+\begin{center}
+    \begin{tikzcd}
+    I\ar[->,>=stealth,r,"\gamma"] \ar[->,>=stealth,rd,"g=f\circ \gamma"swap]& \mathbb{R}^3 \ar[->,>=stealth,d,"f"]\\
+    & \mathbb{R}
+\end{tikzcd}
+\end{center}
+现设
+\[\begin{split}
+    \gamma(t)&=(x(t),y(t),z(t))\\
+    \Dif{(f\circ \gamma)}{t}&=\Diff[f]{x}\Dif{x}{t}+\Diff[f]{y}\Dif{y}{t}+\Diff[f]{z}\Dif{z}{t}\\
+&=(\Diff[f]{x},\Diff[f]{y},\Diff[f]{z})\cdot \begin{pmatrix}
+    \Dif{x}{t}\\ \Dif{y}{t}\\ \Dif{z}{t}
+\end{pmatrix}
+\end{split}\]
+,并引入表达式
+\begin{equation}
+    \label{eq:change}
+        \begin{array}{c}
+                \dd x^i \cdot \vec{e}_{x_j}=\delta_j^i=
+                \begin{cases}
+                    0,&i\neq j,\\
+                    1,&i=j.
+                \end{cases}\hfill\text{($f$沿$x^i$轴对$\vec{e}_{x_j}$方向的导数)}\\
+                \dd f =\Diff[f]{x}\dd \vec{x}+\Diff[f]{y}\dd \vec{y}+\Diff[f]{z}\dd \vec{z}.\hfill\text{($f$的$1$--形式坐标表示)}
+            \end{array}
+\end{equation}
+,此复合函数的导数是关于坐标分量的表达式,叫沿光滑曲线的方向导数.将其带入运算得
+\[\Dif{(f\circ \gamma)}{t}=\dd f\cdot\left(\Dif{x}{t}\vec{e}_x+\Dif{y}{t}\vec{e}_y+\Dif{z}{t}\vec{e}_z\right)\]
+$1$--形式定义为光滑函数芽的等价类,与坐标系无关.从而由于$1$--形式与方向导数均独立于任何人为的坐标系,故切矢的定义也与坐标系无关.
+其中切矢即$\gamma(t)$,$1$--形式指的是$\dd f$.
+
+\section{向量空间与对偶空间}
+\begin{definition}[向量空间][def:向量空间]
+    域$F$上的向量空间$V$是一个{\color{magenta}\textbf{集合}},在其上定义了两种运算:
+    \begin{enumerate}
+        \item 向量加法: $V\times V\to V$,把$V$中的两个元素$u$和$v$映射到$V$中另一个元素,记作$u+v$;
+        \item 标量乘法: $F\times V\to V$,把$F$中的一个元素$a$和$V$中的一个元素$u$变为$V$中的另一个元素,记作$a\cdot u$.
+    \end{enumerate}
+    并且向量空间还需在上述两种运算基础上满足以下性质:
+    \begin{enumerate}
+        \item 向量加法
+        \begin{description}
+            \item[结合律:] $u+(v+w)=(u+v)+w$,
+            \item[交换律:] $u+v=v+u$,
+            \item[向量加法单位元:] 在$V$中存在一个叫做"零向量"的元素 ,记作$\bm{0}$,使得对于$V$中的任意的向量$u$,都有$u+0=u$,
+            \item[向量加法逆元:] 对$V$中的任意向量$u$,都存在$v\in V$,使得$u+v=\bm{0}$,并称向量$v$为向量$u$在$V$中的逆元,
+        \end{description}
+        \item 标量乘法
+        \begin{enumerate}
+            \item 标量乘法对向量加法满足分配律: $a\cdot (v+w)=a\cdot v+a\cdot w$,
+            \item 标量乘法对域的加法满足分配律: $(a+b)\cdot u=a\cdot u+b\cdot u$,
+            \item 标量乘法对标量域的乘法相容: $(ab)u=a(bu)$,
+            \item 标量乘法有单位元: 域$F$的乘法单位元"$1$" 满足: 对任意的$v\in V$,都有$1\cdot v=v$.
+        \end{enumerate}
+    \end{enumerate}
+\end{definition}
+上述向量空间的定义采用了"\textbf{协变构造}" (即无需人为干预的,不是生拉硬拽的,自然的构造方式)的定义方式,从而摆脱了坐标系的束缚.
+
+由此,我们想到,如果之前的$1$--形式能构成一个向量空间,则就是一个协变构造.基于此思想,接下来我们证明$1$--形式确实可以构造出一个向量空间.
+
+\begin{proposition}[][prop:1.2.1]
+  $\mathbb{R}^n$中一点处的全体光滑函数芽构成一个向量空间$\mathcal{F}_p$.
+\end{proposition}
+现用$[f]$表示在同一光滑函数芽里的全体光滑函数,即$f$所代表的函数芽.
+\begin{remark}
+  若规定此处代表函数$f$只能是线性函数,则这些线性函数对加法与数乘封闭,从而构成一个向量子空间.
+\end{remark}
+\begin{corollary}[$1$--形式全体构成一个向量空间][cor:1.2.1]
+  $\mathbb{R}^n$中任一点$p$处的全体$1$--形式构成一个向量空间.
+\end{corollary}
+\begin{remark}
+  $1$--形式是光滑函数芽的其中一种类别.
+\end{remark}
+\begin{definition}[对偶空间][def:对偶空间]
+  设$V$为域$F$上的向量空间.定义其对偶空间为 $V^*$.
+  \[V^*=\{f(u),u\in V\mid \text{$f\colon V\to F$是{\bf\color{magenta} 线性映射}}\}\]
+  即$V^*$是从$V$到$F$的所有\textbf{线性函数}的集合,其中$F$称为向量空间$V$的{\bf\color{magenta} 标量域}. $V^*$本身是域$F$上的向量空间,且
+  满足域$F$的加法和标量乘法(以域$F$为标量域).
+
+  定义$V$上一点$p$处的切矢空间为$1$--形式向量空间的对偶空间.
+\end{definition}
+\begin{remark}
+  切矢的对偶是$1$--形式,即对偶的对偶又回到了原向量空间.
+\end{remark}
+\begin{proposition}[][prop:1.2.2]
+  \textbf{有限维}向量空间$V$与$V^{**}$自然同构.
+\end{proposition}
+\begin{proof}
+  首先,经分析知,证明两空间同构的要点在于: 存在两空间之间的一一映射保持运算.故设$\eta\colon V\to V^{**}$,
+  有
+\begin{figure}[h]
+  \vspace{\baselineskip}
+  \begin{equation}
+    \label{eq:homeomophic}
+    \left(\tikzmarknode{a}{\highlight{purple}{\color{black}$\eta$}}(\tikzmarknode{u}{\highlight{blue}{\color{black}$u$}})\right)(\tikzmarknode{p}{\highlight{magenta}{\color{black}$\phi$}})=\tikzmarknode{ph}{\highlight{magenta}{\color{black}$\phi$}}(u).
+\end{equation}
+\vspace*{0.5\baselineskip}
+\begin{tikzpicture}[overlay,remember picture,>=stealth,nodes={align=left,inner ysep=1pt},<-]
+        % For "mu"
+        \path (a.north) ++ (0,2em) node[anchor=south east,color=purple!67] (scalep){\textbf{同构映射}};
+        \draw [color=purple!57](a.north) |- ([xshift=-0.3ex,color=red]scalep.south west);
+        % For "b"
+        \path (u.south) ++ (0,-1.5em) node[anchor=north west,color=blue!67] (mean){\textbf{向量}};
+        \draw [color=blue!57](u.south) |- ([xshift=-0.3ex,color=blue]mean.south east);
+        % Ts to Td
+        \path (p.north) ++ (-1.5em,2em) node[anchor=south west,color=DeepPink!67] (scalep){\textbf{对偶线性函数}};
+        \draw[<->,color=magenta!57] (p.north) -- ++(0,0.67)  -| node[] {} (ph.north);
+    \end{tikzpicture}
+  \caption{同构映射}\label{fig:同构映射}
+\end{figure}
+$\eta$把$V$中向量$u$映射到$V^{**}$里的一个向量$\phi(u)$,即对偶的对偶.\textbf{映射作用于对偶总是等价于对偶作用于原向量}.
+这就形成了从$V$到$V^{**}$的一个{\color{purple}\textbf{正规嵌入}}$\lambda$.
+以下证明该正规嵌入$\lambda$是单射,又由于$V$与$V^{**}$均是有限维的,这可以保证该嵌入是一个满射,从而该嵌入是双射,且其保持了$V$中的运算,故而是一个同构映射.
+
+单射性. 设$u,v\in V$,有
+\begin{equation*}
+\begin{split}
+  \eta(u)&=\eta(v)\\
+    &\Rightarrow \forall\phi\in V^{*},\phi(u)=\phi(v)\\
+    &\Rightarrow\phi\in V^{*},\phi(u-v)=0\\
+    &\xLongrightarrow[]{\text{非零向量的线性函数值不恒等于$0$}} u=v.
+\end{split}
+\end{equation*}
+从而$\eta$是单射.
+
+满射性. 由于$V$与$V^{**}$的基底间是一一对应的,即$V^{**}$中的每一个向量$\eta(u)$,都存在$u\in V$映射到它,故而$\eta$是满射.
+\begin{equation*}
+  \begin{split}
+    u&=\sum u^i \vec{e}_i\\
+    \eta(u)&=\sum u^i \vec{e}_{i**}.
+  \end{split}
+\end{equation*}
+\end{proof}
+\begin{remark}
+  $\mathbb{R}^n$中的切矢空间与$1$--形式空间互为对偶.
+\end{remark}
+\section{基底与ZFC公理系统}
+\renewcommand{\introductionname}{小~节~提~要}
+\begin{introduction}
+  \item 向量空间的例子
+  \item 向量空间的基底
+  \item 协变构造与逆变构造
+  \item 基底的存在性与ZFC公理系统
+\end{introduction}
+\renewcommand{\introductionname}{章~节~摘~要}
+标量乘法是函数与函数间的一个映射,而向量的加法则是两函数作用效果的叠加,故向量空间中的向量都是函数.
+
+\begin{example}[复数域$\mathbb{C}$][exam:C]
+  复数域$\mathbb{C}$是一个向量空间,且其与$\mathbb{R}^2$同构.
+\end{example}
+\subsection{基底}
+\begin{definition}[向量空间的基底][def:向量空间的基底]
+  向量空间$V$的基底$\mathscr{B}$为一向量的集合,满足:
+  \begin{enumerate}
+    \item 若$\mathscr{B}$中有限个向量的线性组合为零向量,则组合中各系数都必为标量域中的零元素.
+    \item $V$中任一个向量都可以表示成$\mathscr{B}$中\textbf{有限个}向量的线性组合.
+  \end{enumerate}
+\end{definition}
+\begin{proposition}[][prop:1.3.1]
+  有限维向量空间的维数固定,即基底中的向量个数为定值.
+\end{proposition}
+\begin{proposition}[][prop:1.3.2]
+\textbf{有限维}向量空间与其对偶空间的维数相同且二者同构. $V\cong V^{*}$.
+\end{proposition}
+\begin{proof}
+  首先设$\psi$是从$V$到$V^*$的一个映射,则对任意的$u\in V$,令
+  $\vec{e}_j$表示向量空间的基底,$\vec{e}^i$表示根据$e_j$构造出来的对偶空间的基底,则有
+  \begin{equation}
+\label{eq:jidi}
+\vec{e}^i (\vec{e}_j)=\begin{cases}
+  1,&i=j;\\
+  0,&i\neq j.
+\end{cases}
+  \end{equation}
+从而将该映射表示为基底的线性组合后有
+  \begin{equation*}
+    \begin{split}
+      \psi(u)&\xLongrightarrow[]{u=\sum_i \vec{e}_i},\\
+      &\implies \sum_i a_i \psi(\vec{e}_i),\\
+      &\implies \sum_i a_i \psi(\vec{e}_i) \left[\vec{e}^i (\vec{e}_i)\right],\\
+      &\implies \left(\sum_j \psi (\vec{e}_j)\vec{e}^j\right)\left(\sum_i a_i \vec{e}_i\right).
+    \end{split}
+  \end{equation*}
+故而它们的基底一一对应,映射$\psi$为一个同构映射.如下式所示
+\begin{center}
+\begin{tikzcd}
+    \psi(u)=\sum_i a_i \vec{e}^i \ar[d,<->,"\psi"]\\
+    u=\sum_i a_i \vec{e}_i
+\end{tikzcd}
+\end{center}
+
+\end{proof}
+\begin{remark}
+  这种证明方法的缺点是,如若没有指定空间的基底的话,这个同构映射便无法定义出来.对于这种不是自然的构造方式,一般称之为 "逆变构造".
+\end{remark}
+\subsection{ZFC公理系统}
+\begin{proposition}[][prop:1.3.3]
+如果承认ZFC公理系统,那么任一向量空间都存在基底.
+\end{proposition}
+\begin{axiom}[(ZFC $9^{\mathrm{th}}$) : 选择公理][axim:ZFC9]
+任何集合上都可以定义选择函数$f$,对任意的非空子集$S$满足$f(S)$是$S$里的元素.
+\end{axiom}
+接下来,都默认承认选择公理成立,并以此为依据证明向量空间基底的存在性.
+\begin{axiom}[(ZFC $8^{\mathrm{th}}$) : 幂集公理][axiom:ZFC8]
+定义集合$V$的幂集为
+\begin{equation}
+  \label{def: 幂集}
+  \mathscr{S}(V)=\{X\mid X\supset V\}.
+\end{equation}
+\end{axiom}
+接下来用反证法证明.
+\begin{proof}
+  证明分两步,第一步先承认一点,如下所述的无尽序列中的元素不构成集合,从而由反证法推导出矛盾,紧接着再证明这一点即得证.
+
+  第一步,在如下所述的无尽序列中的元素不构成集合的前提下进行分析,推导出矛盾点.
+
+  假设向量空间$V$不存在基底,这意味着我们可以在空间$V$中找到一组线性无关的向量$\{v_1,v_2,\cdots,v_n\}\in \mathscr{S}(V)$.该线性无关向量组的存在性由
+  \begin{axiom}[(ZFC $3^{\mathrm{th}}$) : 分类公理][axiom:ZFC3]
+      集合的子集可由命题进行描述.而命题作用于幂集 $\mathscr{S}(V)$.
+  \end{axiom}
+  保证.故任意选择$V$中的$n$个线性无关向量组,总能找到第$n+1$个向量与这$n$个向量线性无关.根据ZFC第九公理,这$n+1$个向量组成的向量组也是线性无关的,且新的向量组属于幂集$\mathscr{S}(V)$.
+
+  当我们无限次地重复以上步骤,我们可以得到一个无尽序列,它由一系列迭代生成的线性无关向量组所构成.事实上,该序列中的元素无法构成集合!亦即$\mathscr{S}(V)$的子集不是集合!而这显然是矛盾的.
+  因此任意的向量空间都存在基底.
+
+  第二步,证明上述前提的命题为真.
+
+    证明的关键在于,这样反复添加向量所构成的无尽序列全体不构成集合.下面解释原因.
+    \begin{definition}[VonNeumann序数][def:Von Neumann序数]
+      小数一定是大数的元素,即$A<B$,当且仅当$A\in B$.具体构造方法是,在每个序数$A$的下一个序数$A+1$都定义为:
+      \[A+1=\{A,\{A\}\}\]
+    \end{definition}
+    现根据添加向量的先后顺序,把这些向量子集与Von Neumann序数对应起来.
+    \begin{equation}
+      \begin{split}
+        &\{v_1,v_2,\cdots,v_n\} \longleftrightarrow \{\emptyset\},\\
+        &\{v_1,v_2,\cdots,v_{n+1}\} \longleftrightarrow \{\emptyset,\{\emptyset\}\},\\
+        &\{v_1,v_2,\cdots,v_{n+2}\} \longleftrightarrow \{\{\emptyset,\{\emptyset\}\},\{\emptyset,\{\emptyset\}\}\}\\
+        &\cdots
+      \end{split}
+    \end{equation}
+    \begin{proposition}[][prop:1.4.1]
+    Von Neumann 序数全体不构成集合.
+    \end{proposition}
+    \begin{proof}
+      假设Von Neumann 序数全体构成一个集合$S$,则可以推出Burali-Forti悖论.构造$S+1=\{S,\{S\}\}$,显然,$S$是$S+1$的元素,故而$S<S+1$.
+      但与此同时,$S+1$也是一个序数,所以应该属于$S$,即$S+1\in S$,从而$S+1<S$,矛盾.
+    \end{proof}
+    因而由于Von Neumann序数全体不构成集合,那么由ZFC第六公理--替代公理,与其一一对应的无尽序列作为其原像也不可能构成集合.
+\end{proof}
+ZFC的剩余几条公理.
+\begin{axiom}[(ZFC $1^{\mathrm{th}}$) : 外延公理][axiom:ZFC1]
+两集合相等当且仅当它们的元素一一相等.
+\end{axiom}
+\begin{remark}
+  这是比较集合的一般方法.
+\end{remark}
+\begin{axiom}[(ZFC $2^{\mathrm{th}}$) : 正规公理][axiom:ZFC2]
+  任一非空集合中,都有一个元素与本集合不交,故任一集合不可能是自身的元素.
+\end{axiom}
+
+\begin{axiom}[(ZFC $4^{\mathrm{th}}$) : 配对公理][axiom:ZFC4]
+  两个元素组成的集合是唯一的.
+\end{axiom}
+\begin{axiom}[(ZFC $5^{\mathrm{th}}$) : 并集公理][axiom:ZFC5]
+  集合内如果有某些元素也是集合,则它们的并集是唯一的.
+\end{axiom}
+\begin{axiom}[(ZFC $7^{\mathrm{th}}$) : 无穷公理][axiom:ZFC7]
+强行存在一个无限集$I$,$\exists I\left(\phi\in I\bigwedge\forall x\in I\left(\left(x\bigcup \{x\}\right)\in I\right)\right)$
+\end{axiom}
+\section{张量积与缩并}
+\subsection{张量分析初步}
+\begin{typicalbox}
+  强行存在一个无限集$I$,$\exists I\left(\phi\in I\bigwedge\forall x\in I\left(\left(x\bigcup \{x\}\right)\in I\right)\right)$
+\end{typicalbox}
+
+

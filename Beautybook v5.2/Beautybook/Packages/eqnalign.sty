@@ -1,0 +1,104 @@
+%%
+%% This is file `eqnalign.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% eqnalign-1.dtx  (with options: `package')
+%% ----------------------------------------------------------------
+%% eqnalign --- make eqnarray behave like align
+%% Author: Tom Hejda (a.k.a. tohecz or yo')
+%% E-mail: tohecz@gmail.com
+%% Released under the LaTeX Project Public License v1.3c or later
+%% See http://www.latex-project.org/lppl.txt
+%% Status: author-maintained
+%% ----------------------------------------------------------------
+%%
+\ProvidesPackage{Beautybook/Packages/eqnalign}[2016/08/25 v1.0a Make eqnarray(*) behave like align(*).]
+\RequirePackage{amsmath}
+\begingroup
+\catcode`\&=4
+\gdef\eqna@tab@amp{&}
+\catcode`\&=13
+\gdef\eqna@new@amp{%
+   \ifx\@currenvir\eqna@currenvir
+      \expandafter\eqna@amp@
+   \else
+      \expandafter\eqna@tab@amp
+   \fi
+}
+\gdef\eqna@amp@i{\eqna@tab@amp\let\eqna@amp@\eqna@amp@ii}
+\gdef\eqna@amp@ii{\let\eqna@amp@\eqna@amp@iii}
+\gdef\eqna@amp@iii{\eqna@tab@amp}
+\global\let\eqna@amp@\eqna@amp@i
+\gdef\eqna@hook{%
+   \let\eqna@currenvir\@currenvir
+   \catcode`\&=\active
+   \let&\eqna@new@amp
+}
+\catcode`\*=11
+\gdef\eqna@def@env{%
+   \gdef\eqnarray{\eqna@hook\align}%
+   \gdef\eqnarray*{\eqna@hook\align*}%
+   \global\let\endeqnarray\endalign
+   \global\let\endeqnarray*\endalign*
+}
+\eqna@def@env
+\global\let\eqnarray@qed\align@qed
+\global\let\eqnarray*@qed\align*@qed
+\endgroup
+\def\EQNarray{%
+   \stepcounter{equation}%
+   \def\@currentlabel{\p@equation\theequation}%
+   \global\@eqnswtrue
+   \m@th
+   \global\@eqcnt\z@
+   \tabskip\@centering
+   \let\\\@eqncr
+   $$\everycr{}\halign to\displaywidth\bgroup
+       \hskip\@centering$\displaystyle\tabskip\z@skip{##}$\@eqnsel
+      &\global\@eqcnt\@ne\hskip \tw@\arraycolsep \hfil${##}$\hfil
+      &\global\@eqcnt\tw@ \hskip \tw@\arraycolsep
+         $\displaystyle{##}$\hfil\tabskip\@centering
+      &\global\@eqcnt\thr@@ \hb@xt@\z@\bgroup\hss##\egroup
+         \tabskip\z@skip
+      \cr
+}
+\def\endEQNarray{%
+      \@@eqncr
+      \egroup
+      \global\advance\c@equation\m@ne
+   $$\@ignoretrue
+}
+\@namedef{EQNarray*}{\def\@eqncr{\nonumber\@seqncr}\EQNarray}
+\@namedef{endEQNarray*}{\nonumber\endEQNarray}
+\@ifpackageloaded{hyperref}{}{
+   \AtBeginDocument{
+      \@ifpackageloaded{hyperref}{
+         \@latex@warning{Package `eqnalign' should be loaded after
+         `hyperref'.\MessageBreak Redefining `eqnarray' and `eqnarray*' at this
+         point \MessageBreak and crossing fingers...}
+         \eqna@def@env
+      }{}
+   }
+}
+%%
+%% Copyright (C) 2016 by
+%%   Tom Hejda <tohecz@gmail.com>
+%%
+%% It may be distributed and/or modified under the conditions of
+%% the LaTeX Project Public License (LPPL), either version 1.3c of
+%% this license or (at your option) any later version.  The latest
+%% version of this license is in the file:
+%%
+%%    http://www.latex-project.org/lppl.txt
+%%
+%% This work is "maintained" (as per LPPL maintenance status) by
+%%   Tom Hejda.
+%%
+%% This work consists of the files eqnalign.dtx and
+%%                                 eqnalign.ins
+%%           and the derived file  eqnalign.sty
+%%
+%%
+%% End of file `eqnalign.sty'.

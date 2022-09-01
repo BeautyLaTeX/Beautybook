@@ -1,0 +1,117 @@
+\documentclass[twoside]{Beautybook/Beautybook}
+\overfullrule=1pt
+%******************************************************************************%
+%%=================================================%%
+%%--------------------------彩虹书边垂直位置调节--------------------------------%%
+%%=================================================%%
+\setlength{\outermarginwidth}{2cm}
+\setlength\baryshift{-2.5\outermarginwidth} %彩虹书边垂直位置调节
+\setlength\chapterNameheight{2.6\outermarginwidth} %章节名称高度调节 #\outermarginwidth
+\setlength\hdheight{50pt} %页眉高度
+\setlength\TitleWidth{2cm}
+\setlength\ChapterBackGroundHeight{4.4\outermarginwidth}
+\setlength\CoverLogoyshift{\footheight}
+\FootName{Shilong Lu}
+\colorlet{ocre}{outermarginbgcolor} %Part TOC background color
+%%=================================================%%
+%%--------------------------彩虹书边垂直位置调节--------------------------------%%
+%%=================================================%%
+%******************************************************************************%
+%\setlist{itemsep=-2pt} % Reducing white space in lists slightly
+\renewcommand{\deg}{\si{\degree}\xspace} % Use \deg easily, everywhere
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator\Char{Char}
+\DeclareMathOperator\diag{diag}
+\DeclareMathOperator\Arg{Arg}%辐角
+\DeclareMathOperator\im{Im}
+\DeclareMathOperator{\End}{End}
+\newcommand{\Diff}[2][]{\frac{\partial #1}{\partial #2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Begin of document %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeindex[intoc,title=Index,columnseprule]%columnsep=2pt
+\begin{document}
+%******************************************************************************%
+%%=================================================%%
+%%----------------------------------------封面------------------------------------------%%
+%%=================================================%%
+%% Defining the main parameters
+\title{Differential Geometry}
+\subtitle{Differential Geometry And Algebraic Geometry}
+\author{Author : Shilong.Lu}
+\press{Guangxi University For Nationalities LTD}
+\editor{Editor : Shilong.Lu}
+\version{The Fourth Version}
+\motto{The road is at our feet, if we are unwilling to set off, then no one can save ourselves! Remember, laziness is the public enemy of all people, only by overcoming laziness can success be possible!\hfill --By Shilong.Lu}
+\coverequation{Stokes Equation : $\iint\limits_{S}\kuohao{\Diff[R]{y}-\Diff[Q]{z}}\dd y\dd z+\kuohao{\Diff[P]{z}-\Diff[R]{x}}\dd z\dd x+\kuohao{\Diff[Q]{x}-\Diff[P]{y}}\dd x\dd y=\oint_{L}P\dd x+Q\dd y+R\dd z$.}
+\coverimage{figures/draw-3d-intersecting-surfaces.pdf} % Aspect ratio of 2:3 (portrait) recommended
+\covertikz{figures/Nine-pointCircle.pdf}
+\coverlogo{Beautybook/images/Guangximinzu.png}
+\makecover
+%******************************************************************************%
+%%=================================================%%
+%%----------------------------------------封面------------------------------------------%%
+%%=================================================%%
+\setcounter{page}{1}
+\pagenumbering{Roman}
+%% Roman page numbering
+\frontmatter %前言
+\input{frontmatter/titlepage_english_version} %标题页
+\tableofcontents\let\cleardoublepage\clearpage
+\listoffigures\let\cleardoublepage\clearpage
+\listoftables\let\cleardoublepage\clearpage
+\newpage %防止页码错误
+
+%% Arabic page numbering
+\mainmatter % 正文
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\colorlet{outermarginbgcolor}{orange!30}
+\colorlet{outermarginfgcolor}{orange}
+\colorlet{outermarginfontcolor}{brown6}
+\addtokomafont{outermargin}{\color{orange}}
+\evenoutermargin{Differential Flow} %偶数页页边内容
+\partimage{figures/Nine-pointCircle.pdf}
+\partabstract{Differential Flow is a important course in Differential Geometry And Algebraic Geometry}%  Part简介
+\part{Differential Flow}
+    \input{mainmatter/chapter1_differential_flow_english}
+
+%\clearpage
+%% change some settings
+%\colorlet{outermarginbgcolor}{orange!30}
+%\colorlet{outermarginfgcolor}{orange}
+%\addtokomafont{outermargin}{\color{orange}}
+%\evenoutermargin{}
+%\partabstract{} % Part简介
+\part*{Test}
+
+
+%%---------------------------------------  APPENDIX  START  -------------------------------------%%
+%% Letters for chapters
+    \appendix
+%\clearpage
+%\colorlet{outermarginbgcolor}{teal!30}
+%\colorlet{outermarginfgcolor}{teal}
+%\addtokomafont{outermargin}{\color{teal}}
+%\evenoutermargin{}
+%\partabstract{} % Part简介
+
+%%----------------------------------------  APPENDIX  END  ---------------------------------------%%
+
+\backmatter %不编号
+%%---------------------------------------  BIBLIOGRAPHY  START  -------------------------------------%%
+%% Prevent urls running into margins in bibliography
+\setcounter{biburlnumpenalty}{7000}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{7000}
+
+%% Add bibliography
+\printbibliography[heading=bibintoc,title= Reference]
+
+%%-----------------------------------------  BIBLIOGRAPHY  END  ---------------------------------------%%
+
+
+%%------------------------------------------  INDEX  START  ----------------------------------------%%
+    \printindex
+%%-------------------------------------------  INDEX  END  ------------------------------------------%%
+\end{document}

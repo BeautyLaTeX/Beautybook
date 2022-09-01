@@ -1,0 +1,343 @@
+\chapter{复几何 Complex Geometry}
+\section{局部理论}
+\subsection{多变量的全纯函数}
+本节主要介绍一些多复变的基本结论.
+首先回忆一些单复变中的结论. 设 $U \in \mathbb{C}$ 为开集,函数 $f: U \rightarrow \mathbb{C}$ 称为全纯的, 若对于任意 $z_{0} \in U$ ,存在半径 $\varepsilon>0$ 的球 $B_{\varepsilon}\left(z_{0}\right) \subset U$ ,使 $f$ 在 $B_{\varepsilon}\left(z_{0}\right)$ 上可展开为收敛的幂级数,即
+\begin{equation}
+  f(z)=\sum_{n=0}^{\infty} a_{n}\left(z-z_{0}\right)^{n}, \forall z_{0} \in B_{\varepsilon}\left(z_{0}\right) .
+\end{equation}
+全纯的等价条件之一是Cauchy-Riemann方程. 设 $z=x+i y $,$ f$ 可视作两变量的复值函数,即 $f(x, y)=u(x, y)+i v(x, y)$. 则 $f$ 全纯当且仅当 $u$ 和 $v$ 是连续可微的,且
+\begin{equation}\label{C.-R. Equation}
+  \frac{\partial u}{\partial x}=\frac{\partial v}{\partial y}, \frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x}
+\end{equation}
+定义微分算子
+\begin{equation}\label{eq:1.3}
+  \frac{\partial}{\partial z}:=\frac{1}{2}\left(\frac{\partial}{\partial x}-i \frac{\partial}{\partial y}\right), \frac{\partial}{\partial \bar{z}}:=\frac{1}{2}\left(\frac{\partial}{\partial x}+i \frac{\partial}{\partial y}\right)
+\end{equation}
+此时Cauchy-Riemann方程可写为
+\[
+  \frac{\partial f}{\partial \overline{z}}=0.
+\]
+全纯的另一个等价条件为Cauchy积分公式.一个函数$f\colon U\mapsto \mathbb{C}$为全纯的当且仅当它连续可微,且$\forall B_\varepsilon (z_0)$\newline $\subset U$,有下列公式
+\begin{equation}\label{}
+  f(z_0)=\frac{1}{2\pi i}\int_{\partial B_\varepsilon(x_0)} \frac{f(z)}{z-z_0}\dd z.
+\end{equation}
+此公式同样适用于函数$f\colon \overline{B_\varepsilon (z_0)}\to \mathbb{C}$,若它连续且在内部全纯.
+
+
+下面是几个单复变中的重要结论.
+\begin{theorem}[极大值原理][thm:极大值原理]
+  设$U\in \mathbb{C}$为连通开集,$f\colon U\to \mathbb{C}$全纯且非常值,则$|f|$在$U$中没有局部最大值.
+
+  若$U$有界且$f$可连续延拓到其边界上,则$|f|$的最大值在$\partial U$上取得.
+\end{theorem}
+\begin{theorem}[唯一性定理][thm:唯一性定理]
+  设 $U \in \mathbb{C}$ 为连通开集, $f, g: U \rightarrow \mathbb{C}$ 为两个全纯函数, 且对一个开子集 $V \subset U$ 中 的所有 $z$ 有 $f(z)=g(z)$ ,则 $f \equiv g$.
+\end{theorem}
+\begin{theorem}[Riemman扩张定理][thm:Riemann 扩张定理]
+  设 $f: B_{\varepsilon}\left(z_{0}\right) \backslash\left\{z_{0}\right\} \rightarrow \mathbb{C}$ 为有界全纯函数. 则 $f$ 可被唯一延拓为全纯函数 $f: B_{\varepsilon}\left(z_{0}\right) \rightarrow \mathbb{C}$
+\end{theorem}
+\begin{theorem}[Riemann映射定理][thm:Riemann映射定理]
+  设 $U \subset \mathbb{C}$ 为单连通开真子集,则 $U$ 双全纯同胚于单位球 $B_{1}(0)$.
+
+
+  也可以表述为:\;
+  假设$\Omega$是适当(非整个复平面也非空集)的单连通区域.如果$z_0\in \Omega$,对于从该区域到单位开圆盘的共形映射
+\[
+  F\colon \Omega \to \mathbb{D}
+\]
+满足$F(z_0)=0,F\pr (z_0)>0$,那么该映射存在且唯一.
+\end{theorem}
+可以看出,这个定理说明了任何适当单连通区域与单位开圆盘是共形等价的.进一步,\textbf{任何适当单连通区域都是共形等价的.}
+
+
+回顾一下拓扑的知识,我们知道适当单连通区域之间是同胚的,那么黎曼映射定理告诉我们,它们还在共形的意义下是等价的.
+
+
+从分析的角度,共形映射是非常好的映射.这个定理告诉我们,如果一个函数的性质不好,但至少在局部我们是可以将其共形映射到其他好的地方.
+
+
+从几何的角度,黎曼映射定理也告诉我们,保角映射在局部是成立的.
+\subsection{证明前置准备}
+需要用到极大模原理、Schwarz引理
+\begin{lemma}[Schwarz引理][lem:Schwarz引理]
+设 $f$ 为单位圆盘 $\mathbb{D}=\{z|| z \mid<1\}$ 到自身的解析映射,即 $f: \mathbb{D} \rightarrow \mathbb{D}$ ,并且满足 $f(0)=0$ ,那么我们有
+\begin{enumerate}
+  \item 对任意的 $z \in \mathbb{D}$ ,有 $|f(z)| \leq|z|$ .
+  \item  若某一个 $z_{0} \neq 0$ ,我们有 $\left|f\left(z_{0}\right)\right|=\left|z_{0}\right|$ ,那么 $f$ 是一个旋转.
+  \item  $\left|f^{\prime}(0)\right| \leq 1$ ,若有一个点 $z_{0}$ 使得等号成立,那么 $f$ 是一个旋转.
+\end{enumerate}
+\end{lemma}
+现在,我们来介绍证明存在唯一性的思路.
+
+\textbf{唯一性}
+
+
+对于唯一性,我们可以假设存在满足条件的两个函数 $f,g$,并利用施瓦茨引理证明它们相等.因此唯一性非常好证.
+
+\textbf{存在性}
+
+
+存在性的证明非常长,因此我们分为两部分.
+
+
+首先,我们将会引进一些数学工具,分别是正规,内闭一致有界,等度连续的概念,并且使用它们来证明\textbf{蒙泰尔定理}.随后,我们便开始着手于黎曼映射定理的证明步骤.
+下面先来证明\textit{存在性}.
+\begin{proof}
+\textbf{正规族(normal family)}
+
+
+让 $\Omega$ 是 $\mathbb{C}$ 上的开集,称全纯函数族 $\mathcal{F}$ 是正规的,如果 $\mathcal{F}$ 中任意序列都有内闭一致收敛子列.
+
+
+可以发现,这其实是实数中有界数列必有收敛子列的函数版本,但为了证明这个定理,我们需要引 进其他的数学工具.在引入之前,我们先考察为什么对于函数族我们不能直接用.实际上这与一元 实函数列的收敛是类似的,逐点收敛不一定有一致收敛,因此我们要先引入一致这个很好的东西.
+
+\textbf{内闭一致有界 (uniformly bounded on compact subsets)}
+
+
+称函数族 $\mathcal{F}$ 是一致有界的,如果对于 $\Omega$ 中的任意紧集 $K \subset \Omega$ ,存在 $B>0$ ,使得 $|f(z)| \leqslant B \quad (\forall z \in K , \forall f \in \mathcal{F})$
+
+\textbf{等度连续 (equicontinuous)}
+
+
+称函数族 $\mathcal{F}$ 在紧集 $\Omega$ 上是等度连续的,如果 $\forall \varepsilon>0$ ,存在 $\delta>0$ ,使得当 $z, \omega \in K$ ,且$|z-w|<\delta$时,有
+\[
+  |f(z)-f(w)|<\varepsilon\; (\forall f\in \mathcal{F}).
+\]
+
+现在我们回过头来看看数学分析里面.内闭一致有界实际上是函数列一致有界在紧集上的版本,这个在数学分析中我们非常熟悉,一致有界保证了函数列整体能够被同一个上界所控制,而不是会随着函数的变化而变化.
+
+
+一致连续说明了一个函数的平坦性,而\textbf{等度连续是比一致连续更强的概念},因为它对于整一个函数族中的函数都要成立.
+
+
+那么现在我们要研究的函数是一个全纯函数列$\mathcal{F}$ ,那么它有什么良好的性质呢？我们有以下定理来说明它们之间的关系.
+\begin{theorem}[][thm:穷竭紧集列]
+  假设 $\mathcal{F}$ 是开集$\Omega$ 上全纯函数族,并且在$\Omega$ 的紧子集上一致有界,那么我们有
+\begin{enumerate}
+  \item $\mathcal{F}$在 $\Omega$ 的任何紧子集等度连续(内闭等度连续).
+  \item (Montel's theorem) $\mathcal{F}$是一个正规族. 在叙述证明之前,我们需要引入一个辅助概念.
+\end{enumerate}
+
+
+穷竭(exhaustion)紧集列
+
+
+在一个开集$\Omega$中,我们称一个紧集列$\{K_l \} |_{l=1}^\infty$是穷竭的当它满足
+\begin{enumerate}
+  \item 对任意的$l=1,2,\cdots, \quad K_l\subset K_{l+1}$;
+  \item  任何紧集$K\in \Omega$ 包含在某一个 $K_l$中.特别的,我们有$\Omega=\bigcup_{l=1}^{\infty}K_l$.
+\end{enumerate}
+\end{theorem}
+下面先证明\thmref{thm:穷竭紧集列}的存在性:
+
+我们将$\Omega$分为两种情况.若$\Omega$有界,那么让$K_l=\{z\mid \abs{z-w}\geqslant 1/l,\forall w\in \partial\Omega\}$ ($\partial\Omega$为$\Omega$的边界); 若无界,则取在前面的集合加上$|z|\leqslant l$的条件即可.存在性得证.
+
+
+我们可以发现,穷竭紧集列可以逼近整个开集.并且任意一个紧集都包含在该紧集列中的一个元素,因此我们可以用它来证明\textbf{内闭收敛性}.
+
+\begin{proof}[\thmref{thm:穷竭紧集列}的证明]
+  我们先给出第一部分的证明.记$D_r (z_0)=\{z\mid \abs{z-z_0}<r\}$,让$K$是$\Omega$的一个紧子集,选定足够小的$r>0$,使得$D_{3r}(z)\subset \Omega$(由于圆盘为开集,这是必定取得到的).让$z,w\in K$,且$\abs{z-w}<r$,让$\gamma$为$D_{2r}(w)$的边界.因此通过\textbf{Cauchy积分公式}我们有
+  \[f(z)-f(w)=\frac{1}{2\pi i}\int_{\gamma}f(\xi)\zhkuohao{\frac{1}{\xi-z}-\frac{1}{\xi-w}}\dd \xi,\]
+  随后我们要对其进行上界控制.由于$\xi\in \gamma,\abs{z-w}<r$,我们有
+  \[\abs{\frac{1}{\xi-z}-\frac{1}{\xi-w}}=\frac{\abs{z-w}}{\abs{\xi-z}\abs{\xi-w}}\leqslant \frac{\abs{z-w}}{r^2}.\]
+  因此假设$B=\sup_{f\in \mathcal{F}}f(z)$,其中$z\in D_{2r}(w)$我们有
+  \[\abs{f(z)-f(w)}\leqslant \frac{1}{2\pi}\frac{\abs{z-w}}{r^2}B\int_\gamma \dd \xi=\frac{1}{2\pi}\frac{4\pi r}{r^2}B\abs{z-w}=\frac{2}{r}\abs{z-w},\]
+  由于$\frac{1}{r}$的有界性,我们上述不等式写为
+  \[\abs{f(z)-f(w)}\leqslant C\abs{z-w}, \]
+  这样,这个等式对于任意的$z,w\in K,\abs{z-w}<r$和$f,\in \mathcal{F}$都成立,这就说明了$\mathcal{F}$的内闭等度连续性.
+
+  随后我们证明第二部分.为了证明第二部分,我们要使用实数的\textbf{有界数列必有收敛子列}的性质和\textbf{对角线论证法}.
+
+  让$\{f_n\}_{n=1}^\infty$是$\F$在紧集$K\subset \Omega$上的一个函数序列.随后我们选择在$\Omega$上稠密的一个点列$\{w_j\}_{j=1}^\infty$(可数稠密点列是可以取到的,比如稠密有理点列,原因会在后面揭晓).由于$\{f_n\}$是一致有界的,那么它一定存在一个子列$\{f_{n,1}\}=\{f_{1,1},f_{2,1},f_{3,1},\cdots\}$,使得$f_{n,1}(w_1)$点态收敛(有界数列必有收敛子列).
+
+  随后我们可以仿照证明二元函数有界数列必有收敛子列的思路,取子列的子列,即在函数列$\{f_{n,1}\}$中取子列$\{f_{n,2}\}=\{f_{1,2},f_{2,2},f_{3,2}\cdots\}$,使得$f_{n,2}(w_2)$点态收敛.我们将其写为表格,即
+  \begin{equation}
+    \begin{pmatrix}
+      f_{1,1}&f_{2,1}&\cdots &f_{1,n}&\cdots\\
+f_{2,1}&f_{2,2}&\cdots &f_{2,n}&\cdots\\
+\vdots &\vdots &\ddots &\vdots &\cdots\\
+f_{n,1}&f_{n,2}&\cdots &f_{n,n}&\cdots\\
+\vdots &\vdots &\ddots &\vdots &\cdots\\
+    \end{pmatrix}
+  \end{equation}
+  这样,我们只要取$g_n=f_{n,n}$,并考虑其组成的对角线函数列$\{g_{n.n}\}$.显然的$g_n (w_j)$是点态收敛的.下面我们要用$g_n$的等度连续性,说明它的\textbf{一致连续性},给定一个$\varepsilon>0$,我们取等度连续性中的$\delta$,且由于$K$的紧性与$\{w_j\}_{j=1}^\infty$的稠密性,我们可以从可数覆盖集$\{D_\delta (w_j)\}$中取出一个有限覆盖,记为$\{d_\delta (w_1),\cdots,D_\delta (w_J)\}$,在其中我们都有点态收敛性.当$N$足够大,且$n,m>N$时,有
+  \[\abs{g_m (w_j)- g_n (w_j)}<\varepsilon,\; \forall j=1,2\cdots,J.\]
+  这里我们队员点态收敛,取收敛的点为稠密集,可以使用有限覆盖定理,保证两个不同函数差值能够被控制,且其中的$\delta$是与所选的点无关的(不是稠密集则没有这个性质).这样我们就可以使用经典的三角不等式对其进行控制了.若$z\in K$,那么对于某一个$j,z\in D_\delta (w_j)$,这样我们有
+  \[\abs{g_n (z)-g_m (z)}\leqslant \abs{g_n (z)-g_n (w_j)}+\abs{g_n (w_j)-g_m (w_j)}+\abs{g_m (w_j)-g_m (z)}<3\varepsilon.\]
+  这样我们就完成了对$g_n$一致收敛性的证明.\textbf{我们现在证明了一致收敛有界函数咧在一个紧集上必有一致收敛子列},下面就是用穷竭紧集列来证明内闭一致收敛了,技巧也是取子列的子列和对角线论证.取$\Omega$的一个穷竭紧集列$K_1\subset K_2 \subset \cdots \subset K_l\subset \cdots$,假定$\{g_{n,1}\}$是$\{f_n\}$在$\{g_{n.n}\}$在任意紧集$K_l$上都一致收敛.而由于$\Omega$中的每一个紧集都包含在某一个$K_l$中,我们就证完内闭一致收敛性了.
+
+  在继续我们的证明前,我们先来考察这两个结论.对于第一个结论,这时解析函数列独有的特性,一个实函数的例子为 $f_n (x)=\sin (nx),x\in (0,1)$,该函数列一致有界,但不等度连续,并且在紧集上没有收敛子列.
+
+对于第二个结论,不是解析函数列独有的.只要函数族$\F$是內闭一致有界且等度连续即可,解析函数的条件是可以去掉的(在证明的时候我们没有用到解析性！),对满足条件的任意的函数族我们称为 Arzela-Ascoli theorem .
+
+这样我们来证明一下一个有用的推论.
+\begin{corollary}[][cor:1]
+  若 $\Omega$是$\mathcal{C}$ 上的连通开集,且$\{f_n\}$是单叶解析函数的函数列,在$\Omega$上内闭一致收敛.那么$f$是单射或者是一个常值映射.
+\end{corollary}
+\begin{proof}[\corref{cor:1}的证明]
+  若$f$不是单射,那么存在$z_1\neq z_2$,使得$f(z_1)=f(z_2)$,定义微分算子\[g_n (z)=f_n (z)-f_n (z_1),\]
+  它内闭一致收敛于$g(z)=f(z)-f(z_1)$.又若$f$不是常值函数,那么$z_2$是一个孤立零点,因此
+  \[
+    \frac{1}{2\pi i}\int_{\gamma} \frac{g\pr (\xi)}{g(\xi)}\dd \xi =1,
+  \]
+  这里$\gamma$是以$z_2$为圆心的一个小圆(由孤立零点,总可以取到使得只有该孤立零点的小圆),同时,在$\gamma$上
+  \[
+    \frac{1}{g_n}\to \frac{1}{g},
+  \]
+  且该收敛为一致收敛.这样我们会有一致收敛
+  \[
+    \frac{1}{2\pi i}\int_{\gamma} \frac{g_n\pr (\xi)}{g_n
+    (\xi)}\dd \xi \to \frac{1}{2\pi i}\int_{\gamma} \frac{g\pr (\xi)}{g(\xi)}\dd \xi
+  \]
+  但是$g_n$在$\gamma$上是没有零点的($f(z)$的单射性),有
+  \[
+    \frac{1}{2\pi i}\int_{\gamma} \frac{g_n\pr (\xi)}{g_n (\xi)}\dd \xi=0\neq 1.
+  \]
+  这就产生了矛盾.
+\end{proof}
+\end{proof}
+\textbf{Riemann映射定理的证明}
+\textbf{唯一性证明}
+
+
+设$f_1(z)$与$f_2 (z)$都是满足定理要求的函数,那么对于函数
+\[
+  F(z)=f_1 (f_2^{-1}(z))
+\]
+它把单位圆盘映射到单位圆盘,并且$F(0)=0$,由Schwarz引理,就有
+\[
+  \abs{F(z)}\leqslant \abs{z}
+\]
+那么将$z$用$f^{-1}(z)$替换,就有
+\[
+  \abs{f_1 (z)}\leqslant \abs{f_2 (z)},
+\]
+同理也有$\abs{f_2 (z)}\leqslant \abs{f_1 (z)}$,那么
+\[
+  \abs{f_1 (z)}= \abs{f_2 (z)}.
+\]
+则由于$f_1 (z_0)=f_2 (z_0)=0,f_1\pr (z_0)>0$和$f_2\pr (z_0)>0$,那么
+\[
+  \frac{f_1 (z)}{f_2 (z)}
+\]
+在单位圆盘内解析.而$\abs{\frac{f_1 (z)}{f_2 (z)}}=1$,那么两者之间仅相差一个旋转,设有某一个常数$\theta\in \mathbb{R}$,有
+\[
+  f_1 (z)=e^{i\theta}f_2 (z).
+\]
+但是两者在$z_0$的导数都是大于零的,因此$e^{i\theta}=1$,那么我们就证明了两者相等,即唯一性得证.
+
+下面叙述存在性的证明.
+\textbf{存在性证明}
+
+\textbf{第一步,证明任意适当的单连通区域$\Omega$可以共形等价到包含原点的单位圆盘的子集}.\newline
+由于单连通区域是适当的,因此我们能找到一个复数$\alpha\not\in \Omega$,这样对于函数
+\[
+  f(z)=\ln (z-\alpha)
+\]
+上的道路是不会绕过奇点的,因此是全纯的.这样,我们有$e^{f(z)}=z-\alpha$,若$e^{f(z_1)}=e^{f(z_2)}$,那么有$z_1=z_2$,因此$f(z)$是一个单射.由于$\Omega$不绕过奇点,并且是一个单射,因此对于$\Omega$中的一个点$z$任意变动,不会绕过远点一圈再回来,这样我们取一个点$w\in \Omega$,有
+\[
+  f(z)\neq f(w)+2\pi i,\; \forall z\in \Omega,
+\]
+下面使用反证法.如若不然,有一点$f(z_0)=f(w)+2\pi i$,两边取指数,就有$e^{f(z_0)}=e^{f(w)}$,则就有$z_0=w$ ,那么$2\pi i=0$,矛盾.同时,我们证明$f(w)$ 与$f(w)+2\pi i$严格分离(即两者的闭包之交为空集).如若不然,我们可以在$\Omega$ 取一点列 $\{z_n\}$,使得$f(z_n)\to f(w)+2\pi i$ ,但由于连续性,我们有 $z_n \to w$,但这又说明了 $f(z_n)\to f(w)$,矛盾.由严格分离性,我们考虑映射
+\[
+  F(z)=\frac{1}{f(z)-\kuohao{f(w)+2\pi}}
+\]
+在$\Omega$上是有界的.并且由于$f(z)$为单射, $F(z)$也为单射.这样我们对其做一个放缩
+\[
+  F_1 (z)=\frac{1}{1+\sup F(z)}F(z)
+\]
+便将$\Omega$映射到半径小于$1$的圆盘内,我们再做一个平移,即可使其包含原点.(使其包含原点是为了后面证明更方便)
+
+\textbf{第二步,由共形等价,我们可以直接设 $\Omega$为$\mathbb{D}$ 上包含原点的开集.考虑上面的单叶解析函数族,并证明$\sup \abs{f\pr (0)}$是可以达到的.}
+
+即我们考虑
+\[
+  \F =\{f\mid \Omega \to \mathbb{D},f(0)=0,f\text{单叶解析}\}
+\]
+首先,由于恒等映射在$\F$中,因此集合非空.同时,由于 $f$ 将单位圆盘的子集映射到单位圆盘,因此 $\F$是一致有界的.
+
+这样,利用柯西不等式,我们估计$\abs{f\pr (0)}$,我们有
+
+\[
+  \abs{f\pr (0)}\leqslant \frac{\max_{z\in C}\abs{f(z)}}{\rho}
+\]
+其中 $C$为取定的半径为 $\rho$的开圆盘$D_\rho$ .这样,由于$\Omega$包含原点,我们可以取到一个$\overline{\rho}$(做闭包),使得该不等式对所有的$z$ 都成立.因此对于任意的 $f\in \F$,$\abs{f\pr (0)}$是一致有界的.这样我们令
+\[
+  s=\sup_{f\in \F}\abs{f\pr (0)},
+\]
+我们可以在$\F$中选取函数列$\{f_n\}$,其$\abs{f\pr (n)}\to s,n\to\infty$. 那样由蒙泰尔定理,可以取一个子列,使得其在$\Omega$上的任意紧集内闭一致收敛到$s$.并且,恒等映射在 $\F$中, 那么$s\geqslant 1$.我们假设$f$不是常值函数(总能取到,比如恒等映射),由前面的\corref{cor:1}, $f$就是单射.
+
+
+又由于连续性,对$z\in\Omega$ ,有 $\abs{f(z)}\leqslant 1$.又由最大模原理,就有 $\abs{f(z)}<1$.那么由连续性,$f(0)=0$ ,这样$f\in\F$,且有 $\abs{f\pr (0)}=s$ .
+
+
+\textbf{第三步,我们论证上面得到的$f$是一个从$\Omega$到 $\mathbb{D}$ 的共形映射.即$f$就是我们要找的共形映射.}
+
+
+我们已经知道所得到的 $f$ 是单叶解析的,下面要说明它是一个满射,即$f$ 映满了$\mathbb{D}$ .我们使用反证法,若有一个 $\alpha\in\mathbb{D}$ 使得$f(z)\neq \alpha$,那么我们考虑单位圆盘的自同构
+
+\[\psi_\alpha (z)=\frac{\alpha-z}{1-\overline{\alpha} z}\]
+
+因此该自同构将 $\alpha$ 映射到$0$ (也将 $0$映射到 $\alpha$ ),那么区域$\Omega$经过两个映射的复合$U=(\psi_\alpha \circ f)(\Omega)$ 后,我们发现区域$D$ 是不包含原点的(因为$f(z)$不会等于 $\alpha$ ).
+
+
+这样我们论述了一件事情,那就是我们将包含原点的$\Omega$ 可以共形等价到一个不包含原点的 $U$中,且$U$ 还是单位圆盘$\mathbb{D}$的子集.这样是有好处的,因为我们下面就要使用平方根函数,去将区域$U$ 向外扩张,并由此与 $\abs{f\pr (0)}$上确界性质相悖.
+
+
+考虑一个新函数
+\[g(z)=\sqrt{z}\; (z\in U),\]
+那么由于$U$是不包含原点的,选定一个解析分支,$g(z)$是一个解析函数.这样我们就可以考虑
+\[F=\psi_{g(\alpha)}\circ g\circ \psi_\alpha \circ f\]
+我们下面要证明$F\in \F$.可以看出 $F(0)$就是解析的,且
+\[F\colon 0\mapsto 0\mapsto \alpha \mapsto \sqrt{\alpha}\mapsto 0\]
+因此 $F(0)=0$ .并且由于其中的函数都不会将$\Omega$ 中的元素映射到单位圆盘外,那么 $F(z)$就将 $\Omega$ 映射到$\mathbb{D}$.我们还需证明它是一个单射,这是显然的,因为 $f,\psi_{\alpha},\psi_{g(\alpha)}$ 都是单射的,我们只需考察平方根函数.但这也明显是对的,这由$U$ 不包含原点可以推出(注意 $\Omega$是单连通,那么 $U$也是单连通).
+
+那么我们现在写出 $f$的表达式,我们有
+\[f=\psi_{\alpha}^{-1}\circ g^{-1}\circ \psi_{g(\alpha)}^{-1}\circ F\]
+但要注意
+\[g^{-1}(w)=w^2\]
+不是一个单射.现在我们考察$f\pr (0)$与 $F\pr (0)$.为了看的更方便,我们写出映射
+\[0\stackrel{F}{\mapsto}0\stackrel{\psi_{g(\alpha)}^{-1}}{\mapsto}g(\alpha)\stackrel{g^{-1}}{\mapsto}\alpha\stackrel{\psi_\alpha^{-1}}{\mapsto}0,\]
+那么我们发现,记 $\Psi=\psi_\alpha^{-1}\circ g^{-1}\circ \psi_{g(\alpha)}^{-1}$那么
+\[\Psi\colon 0\mapsto 0\]
+且由于$g^{-1}$为平方函数,那么 $\Psi$将单位圆盘映射到单位圆盘.那么由施瓦茨引理,我们就有$\abs{\Psi\pr (0)}\leqslant 1$并且,由于经过了平方函数,该映射不可能是一个旋转,因此等号不成立,我们就有
+\[\abs{\Psi\pr (0)}<1,\]
+那么我们就有
+\[f\pr (0)=\Psi\pr (0)F\pr (0),\]
+这样使用两边取模,就有
+\[\abs{f\pr (0)}<\abs{F\pr (0)}.\]
+这与 $\abs{f\pr (0)}$上确界的性质相悖,证毕.
+\end{proof}
+\renewcommand{\Remark}{$\bccrayon$ 总~结}
+\begin{remark}[]
+实际上,证明的主要思路就是,将任意单连通区域压缩到单位圆盘内,然后再使其慢慢扩充到整个单位圆盘.具体的扩充操作上面已经给出,不包含原点的单连通区域可用平方根函数,包含原点的单连通区域就将其共形映射到另外一个不包含原点的单连通区域,扩张后再利用共形映射的逆映射,即可扩充.
+
+
+在证明的时候,多次使用共形等价的性质.我们从拓扑的观点来看,解析同胚(共形等价)实际上是比同胚更强的性质,因为它还加上解析的条件.
+\end{remark}
+\renewcommand{\Remark}{$\bcbook$ 注}
+\begin{theorem}[Liouville定理][thm:Liouville定理]
+  有界全纯函数 $f: \mathbb{C} \rightarrow \mathbb{C}$ 是常值. 因此 $\mathbb{C}$ 与 $B_{\varepsilon}(0)$ 不双全纯同胚.
+\end{theorem}
+\begin{theorem}[留数定理][thm:留数定理]
+  设 $f: B_{\varepsilon}(0) \backslash\{0\} \rightarrow \mathbb{C}$ 为全纯函数, 则 $f$ 可被展开为Laurant级数 $f(z)=\sum_{n=-\infty}^{\infty} a_{n} z^{n}$. 其中系数 $a_{-1}=(1 / 2 \pi i) \int_{|z|=\varepsilon / 2} f(z) d z$.
+\end{theorem}
+
+
+将全纯的概念扩充至多个变量. 首先定义\textbf{多重圆盘}:  $B_{\varepsilon}(w)=\left\{z|| z_{i}-w_{i} \mid<\varepsilon_{i}\right\}$ ,其中 $\varepsilon:=\left(\varepsilon_{1}, \ldots, \varepsilon_{n}\right)$.
+\begin{definition}[][def:1.1.1]
+设 $U \subset \mathbb{C}^{n}$ 为开集, $f: U \rightarrow \mathbb{C}$ 为连续可微函数. 称 $f$ 为全纯的, 若Cauchy-Riemann方程\eqref{C.-R. Equation}对所有坐标$z_i=x_i+iy_i$成立,即
+\begin{equation}\label{C.-R.}
+  \frac{\partial u}{\partial x_i}=\frac{\partial v}{\partial y_i},\frac{\partial u}{\partial y_i}=\frac{\partial v}{\partial x_i},i=1,\cdots,n.
+\end{equation}
+定义微分算子
+\[
+  \frac{\partial}{\partial z_i}:=\frac{1}{2}\kuohao{\Diff{x_i}-i\Diff{y_i}},\Diff{\overline{z}_i}:=\frac{1}{2}\kuohao{\Diff{x_i}+i\Diff{y_i}}.
+\]
+此时\eqref{C.-R.}可被写为
+\[
+  \Diff[f]{\overline{z}_i}=0,\forall i=1,\cdots,n.
+\]
+\end{definition}
+下面讨论多变量函数的Cauchy积分公式.
