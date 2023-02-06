@@ -1,0 +1,88 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{stys/bottompage}[2023/01/18,v2.0]
+\usepackage[ISBN=978-80-85955-35-4,SC0]{ean13isbn}
+\makeatletter
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+\newcommand*\summary[1]{\def\@summary{#1}}
+\newcommand*\bottomimage[1]{\def\@bottomimage{#1}}
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+\makeatother
+% Define the layers to be used in document.
+% *****************************************************
+\pgfdeclarelayer{background} %背景%底层
+\pgfdeclarelayer{foreground} %上层
+\pgfdeclarelayer{top} %顶部
+\pgfdeclarelayer{bottom} %底部
+\pgfsetlayers{bottom,background,main,foreground,top}
+\definecolor{coverbgcolor}{HTML}{3D6EAE}
+\definecolor{coverfgcolor}{HTML}{503D4B}
+\definecolor{coverbar}{HTML}{BF8E6F}
+\definecolor{bottomcolor}{HTML}{B3686A}
+% \colorlet{coverfgcolor}{海棠红}
+% \colorlet{coverbgcolor}{嫣红}
+% \colorlet{coverbar}{嫣红}
+\definecolor{RED}{RGB}{220, 41, 26}
+\definecolor{teal}{RGB}{13,52,62}
+\definecolor{gold}{RGB}{239,173,91}
+\definecolor{silver}{RGB}{192,192,192}
+\makeatletter
+\newcommand*\makebottomcover{
+    %% Use the Tikz library positioning and clear the page header and footer
+    \newpage
+    \thispagestyle{empty}
+    \phantom{s}
+    \clearpage
+    \newpage
+    \usetikzlibrary{positioning}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture,overlay]
+        \begin{pgfonlayer}{bottom}
+    \node[opacity=0.85,inner sep=0pt] at (current
+            page.center){\includegraphics[width=\paperwidth,height=\paperheight]{\@bottomimage}};
+    \path[fill=bottomcolor!50] 
+    (current page.north east) coordinate (E) --++(-.6\paperwidth,0) coordinate (B) [bend right=30] to ([yshift=-.2\paperheight]E)--cycle;
+    \path[fill=bottomcolor!75,opacity=0.8] 
+    (current page.north east) coordinate (E) --++(-.6\paperwidth,0) coordinate (B) [bend right=30] to ([yshift=-.25\paperheight]E)--cycle;
+        \end{pgfonlayer}
+        \begin{pgfonlayer}{foreground}
+        \fill[color=bottomcolor!50,opacity=.4]
+    ([yshift=2\outermarginwidth]current page.west) rectangle ([shift={(0,.3\paperheight)}]current page.south east)  ; % 背景大矩形
+    \node[font=\large\bfseries,text=white,anchor=west] at ([shift={(-.45\paperwidth,0)}]current page.center) {\parbox[c][2\covershift][c]{.9\paperwidth}{\@summary}};
+        \end{pgfonlayer}
+        \node[text=white,left] at ([xshift=0cm,yshift=-.25\covershift]current page.north east) {%
+        \parbox{.6\linewidth}{\baselineskip=22.5pt
+        \raggedright
+        \sansa\fontsize{20}{23}\selectfont\@bookseries}
+        }; %系列丛书名称
+        \node[anchor=south,text=white,font=\rmfamily\Huge,] at
+        ([xshift=.9\covershift,yshift=-.1\covershift]current page.south west)  %
+    {\raisebox{-.27\covershift}{\includegraphics[width=0.3\linewidth]{\@presslogo}}\hspace{-1.7em}\parbox[c][\covershift][c]{.4\textwidth}{\@pressname}};%
+    \node[scale=1.5] (isbn) at ([shift={(-1.85\outermarginwidth,.5\covershift)}]current page.south east) {\EANisbn[ISBN=978-80-7340-097-2]};
+    \begin{pgfonlayer}{bottom}
+        \fill[white]
+        (isbn.north west) rectangle (isbn.south east);
+    \end{pgfonlayer}\end{tikzpicture}%
+}
+\makeatother
+\endinput
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
