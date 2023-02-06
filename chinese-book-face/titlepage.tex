@@ -1,0 +1,150 @@
+\documentclass{book}
+\def\fontspath{fonts/}
+\usepackage{fontspec}
+\newfontfamily\sandbox[Path=fonts/]{SANDBOX-TTF-2.ttf}
+\newfontfamily\Frick[Path=fonts/]{Frick0.3-Condensed-2.otf}
+\newfontfamily\Floane[Path=fonts/]{Floane-Regular-2.otf}
+\usepackage{anyfontsize} % 提供\fontsize{}{}\selectfont命令
+\usepackage{etoolbox} %提供自定义封面选项接口
+\usepackage[dvipsnames,svgnames,x11names,table]{xcolor}%颜色宏包 % Driver-independent color extensions
+\usepackage{ctex}
+\usepackage{tikz}
+\usepackage{titlesec,titletoc}
+\usepackage{graphicx} %插图
+\usetikzlibrary{calc,fadings,patterns}
+\usepackage{adjustbox} %修正minipage顶部对齐问题
+\makeatletter
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+\newcommand*\englishtitle[1]{\def\@englishtitle{#1}}
+\newcommand*\chinesetitle[1]{\def\@chinesetitle{#1}}
+\newcommand*\bookseries[1]{\def\@bookseries{#1}}
+\newcommand*\pressname[1]{\def\@pressname{#1}}
+\newcommand*\editor[1]{\def\@editor{#1}}
+\newcommand*\coverimage[1]{\def\@coverimage{#1}}
+\newcommand*\presslogo[1]{\def\@presslogo{#1}}
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+\makeatother
+%%%%===============================================================%%%%%
+%%------------------------------------------------------封面设计--------------------------------------------------------%%
+%%%%===============================================================%%%%%
+\definecolor{coverbgcolor}{HTML}{9CCCDA}
+\definecolor{coverfgcolor}{HTML}{508E99}
+\definecolor{coverbar}{HTML}{305756}
+\newlength\outermarginwidth
+\setlength\outermarginwidth{2cm}
+\newlength\covershift
+\setlength\covershift{5cm}
+\tikzfading[name=fade right,
+                    right color =transparent!100,
+                    left color=transparent!50]
+\tikzfading[name=fade left,
+                    left color =transparent!100,
+                    right color=transparent!50]
+\makeatletter
+\newcommand*\makecover{
+    %% Use the Tikz library positioning and clear the page header and footer
+    \usetikzlibrary{positioning}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture,overlay]
+      \fill[coverbgcolor]
+        (current page.north west) rectangle (current page.south east);% 填充封面背景颜色 (coverbgcolor)
+        \fill[coverbar]
+        ([xshift=-3\covershift,yshift=-.4\covershift]current page.east) rectangle ([yshift=-1.35\covershift]current page.east); % 被标题背景遮挡露出一部分的装饰矩形
+        \fill[coverfgcolor]
+        ([xshift=\outermarginwidth]current page.north west) rectangle ([xshift=-\outermarginwidth,yshift=1.5\covershift]current page.south east); % 标题背景大矩形
+        \fill[coverbar]
+        ([yshift=.44\covershift]current page.west) rectangle ([xshift=\outermarginwidth,yshift=-.4\covershift]current page.west); % 最左侧装饰矩形
+        \node[anchor=south] at ([xshift=-5\outermarginwidth,yshift=-.8\covershift]current page.north east) {%
+        \parbox{3\covershift}{
+        \raggedleft
+        \color{white}\sandbox\fontsize{18}{22}\selectfont\@bookseries}
+        }; %系列丛书名称
+        \node[ anchor=south] at ([yshift=-.4\paperheight]current page.north)
+    {\parbox{.8\paperwidth}{%
+            \filright%
+            \color{white}\Frick\fontsize{30}{30}\selectfont\@englishtitle\\[-1.6ex]
+            \begin{tikzpicture}
+              \draw[white,line width=1pt] (0,0) -- (\paperwidth-2.2\outermarginwidth,0);
+            \end{tikzpicture}\\[-.1ex]
+            \color{white}\rmfamily\bfseries\fontsize{30}{30}\selectfont
+            \ifdefvoid{\@chinesetitle}{}{\@chinesetitle}
+        }};% 封面英文书名与中文书名
+        \node[anchor=south east,
+      inner sep=0pt,
+      outer sep=0pt]  at ([xshift=-\outermarginwidth,yshift=1.8\covershift]current page.south east)
+    {%
+    \adjustbox{valign=t}{
+            \begin{minipage}{.25\textwidth}
+            \begin{tikzpicture}
+              \draw[white,line width=1.2pt] (0,0) circle [radius=6pt];
+              \draw[white,line width=.8pt] (0,0) circle [radius=4pt];
+              \fill[white] (0,0) circle [radius=2.5pt];
+            \end{tikzpicture}
+             \hspace{2pt}\color{white}\Floane\fontsize{20}{25}\selectfont Editors
+            \end{minipage}}
+            \hfill
+            \adjustbox{valign=t}{\begin{minipage}{.45\textwidth}
+              \raggedright\color{white}\Floane\fontsize{20}{25}\selectfont\@editor
+            \end{minipage}}
+    };% 封面作者信息栏
+        \node[%
+		anchor=south west,xshift=\outermarginwidth,
+		align=left,inner xsep=0pt] at ([yshift=-2mm]current page.south west)
+	{\includegraphics[width=.73\linewidth,]{\@coverimage}};% 封面图片
+        \fill[pattern color=coverfgcolor!70,pattern=horizontal lines]
+        ([xshift=\outermarginwidth,yshift=.2\covershift]current page.south west) rectangle ([xshift=-\outermarginwidth,yshift=1.43\covershift]current page.south east);
+        \fill [coverbgcolor,path fading=fade right]%
+         ([xshift=\outermarginwidth+.73\linewidth,yshift=.2\covershift]current page.south west) rectangle ([xshift=-\outermarginwidth,yshift=1.43\covershift]current page.south east);
+        \fill [coverbgcolor,path fading=fade left]%
+          ([xshift=\outermarginwidth+.73\linewidth,yshift=.2\covershift]current page.south west) rectangle ([xshift=-\outermarginwidth,yshift=1.43\covershift]current page.south east);
+        \node[anchor=south,text=white,font=\sandbox\Large,] at
+        ([xshift=\covershift,yshift=0\covershift]current page.south)  %
+    {\raisebox{-.1\covershift}{\includegraphics[width=0.1\linewidth]{\@presslogo}}\hspace*{1ex}\parbox[c][\covershift][c]{.4\textwidth}{\@pressname}};%
+    \end{tikzpicture}%
+  \newpage
+}
+\makeatother
+%%%%===============================================================%%%%%
+%%------------------------------------------------------封面设计--------------------------------------------------------%%
+%%%%===============================================================%%%%%
+\begin{document}
+\englishtitle{Lectures on the Analysis of Nonlinear Partial Differential Equations \; {\sffamily\fontsize{20}{25}\selectfont Vol. 4}}
+\bookseries{MLM 4 \\[-1ex] {\normalfont\fontsize{12}{18}\selectfont Morningguid Lectures in Mathematics}}
+\chinesetitle{非线性偏微分方程分析讲义 \; {\normalfont\fontsize{20}{25}\selectfont 第四卷}}
+\editor{Jean-Yves Chemin \\ Fanghua Lin \\ Ping Zhang}
+\pressname{HIGHER EDUCATION PRESS}
+\coverimage{figures/abstraction-smoke-highlights.jpg}
+\presslogo{figures/下载.png}
+\makecover
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
