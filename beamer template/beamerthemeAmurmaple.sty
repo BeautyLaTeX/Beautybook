@@ -1,0 +1,629 @@
+% Copyright (C) 2022 by Maxime CHUPIN
+% <chupin at ceremade.dauphine.fr>
+% -------------------------------------------------------
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+%  Author: Maxime CHUPIN
+%          chupin at ceremade.dauphine.fr
+%
+%  This work has the LPPL maintenance status "author-maintained".
+
+\NeedsTeXFormat{LaTeX2e}[2021-11-15]
+\ProvidesPackage{beamerthemeAmurmaple}[2022/05/28 v.1.0 Theme for the Beamer
+class]%
+
+\newif\ifbeamer@nogauge
+\beamer@nogaugetrue
+\DeclareOptionBeamer{nogauge}{\beamer@nogaugefalse}
+\newif\ifbeamer@nomail
+\beamer@nomailtrue
+\DeclareOptionBeamer{nomail}{\beamer@nomailfalse}
+\newif\ifbeamer@delaunay
+\beamer@delaunayfalse
+\DeclareOptionBeamer{delaunay}{\beamer@delaunaytrue}
+\newif\ifbeamer@amurmapleblue
+\beamer@amurmaplebluefalse
+\DeclareOptionBeamer{amurmapleblue}{\beamer@amurmaplebluetrue}
+\newif\ifbeamer@amurmaplegreen
+\beamer@amurmaplegreenfalse
+\DeclareOptionBeamer{amurmaplegreen}{\beamer@amurmaplegreentrue}
+\ProcessOptionsBeamer
+
+\RequirePackage{tcolorbox}
+\RequirePackage{multicol}
+\RequirePackage{xparse}
+\RequirePackage{xfp}
+\RequirePackage{expl3}
+\RequirePackage{iftex}
+
+
+
+\ifbeamer@delaunay
+\ifLuaTeX
+\else
+\errmessage{Delaunay option only available with luaLaTeX}
+\fi
+\fi
+
+
+% dimensions
+\ExplSyntaxOn
+\dim_const:Nn \c_amurmaple_barre_dim  { 15pt }
+\dim_const:Nn \c_amurmaple_margin {10pt}
+\tl_set:Nx \l_amurmaple_margin_left { \dim_eval:n { \c_amurmaple_barre_dim+\c_amurmaple_margin } }
+
+\setbeamersize
+{
+  text~ margin~ left=\l_amurmaple_margin_left,
+  text~ margin~ right=\c_amurmaple_margin
+}
+\ExplSyntaxOff
+
+\ifLuaTeX
+\RequirePackage{luamesh}
+\fi
+
+% randomseed
+\ExplSyntaxOn
+\sys_gset_rand_seed:n {\time}
+\ExplSyntaxOff
+
+% counters to set the depth of toc in \sepframe
+\newcounter{amurmapletoc}
+\setcounter{amurmapletoc}{1}
+\newcounter{amurmaple@oldtoc}
+
+\ExplSyntaxOn
+% stores all students, separated by commas
+\tl_new:N \l_amurmaple_mail_tl
+\tl_new:N \l_amurmaple_webpage_tl
+\tl_new:N \l_amurmaple_collab_tl
+
+\NewDocumentCommand{\mail}{m}{
+  \tl_set:Nn  \l_amurmaple_mail_tl {#1}
+}
+
+\NewDocumentCommand{\webpage}{m}{
+  \tl_set:Nn  \l_amurmaple_webpage_tl {#1}
+}
+
+\NewDocumentCommand{\collaboration}{m}{
+  \tl_set:Nn  \l_amurmaple_collab_tl {#1}
+}
+
+
+\NewDocumentCommand{\amurmaple@printmail}{}{
+  \IfValueT { \l_amurmaple_mail_tl} {
+    \tl_use:N \l_amurmaple_mail_tl
+  }
+}
+\NewDocumentCommand{\amurmaple@printwebpage}{}{
+  \IfValueT { \l_amurmaple_webpage_tl} {
+    \tl_use:N \l_amurmaple_webpage_tl
+  }
+}
+\ExplSyntaxOff
+\mode<presentation>
+
+\useinnertheme{rectangles}
+
+\tcbuselibrary{skins}
+
+
+\usefonttheme{professionalfonts}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{quotes,angles}
+\usetikzlibrary{automata}
+\usetikzlibrary{arrows}
+
+% some colors
+\definecolor{AmurmapleRed}{rgb}{0.6,0.,0.}
+\definecolor{AmurmapleOrange}{RGB}{230,108,17}
+\definecolor{AmurmapleBlue}{RGB}{55,119,231}
+\definecolor{AmurmapleGreen}{rgb}{0.1,0.4,0.1}
+
+\colorlet{Amurmaple@structure}{AmurmapleRed}
+\colorlet{Amurmaple@alert}{AmurmapleOrange}
+\colorlet{Amurmaple@info}{AmurmapleBlue}
+\colorlet{Amurmaple@example}{AmurmapleGreen}
+%
+\ifbeamer@amurmapleblue
+\colorlet{Amurmaple@structure}{AmurmapleBlue!80!black}
+\colorlet{Amurmaple@alert}{AmurmapleOrange}
+\colorlet{Amurmaple@info}{AmurmapleRed}
+\colorlet{Amurmaple@example}{AmurmapleGreen}
+\fi
+\ifbeamer@amurmaplegreen
+\colorlet{Amurmaple@structure}{AmurmapleGreen!80!black}
+\colorlet{Amurmaple@alert}{AmurmapleOrange}
+\colorlet{Amurmaple@info}{AmurmapleRed}
+\colorlet{Amurmaple@example}{AmurmapleBlue}
+\fi
+
+\setbeamercolor{structure}{fg=Amurmaple@structure}
+\setbeamercolor{itemize item}{fg=structure!60}
+\setbeamercolor{itemize subitem}{fg=structure!60}
+\setbeamercolor{enumerate item}{bg=structure!60,fg=white}
+\setbeamercolor{enumerate subitem}{fg=structure!60}
+\setbeamercolor{block title}{fg=structure}
+%\setbeamercolor{section in head/foot}{bg=Brown}
+%\setbeamercolor{author in head/foot}{bg=Brown}
+%\setbeamercolor{date in head/foot}{fg=Brown}
+\setbeamercolor{alerted text}{fg=Amurmaple@alert,bg=Amurmaple@alert!20}
+\setbeamercolor{subsection in toc}{fg=gray!70!black}
+% new
+\setbeamercolor{mail}{fg=structure!60}
+
+\setbeamertemplate{subsection in toc}
+  {\leavevmode\leftskip=2em\rule{0.6em}{0.6em}\hskip0.5em\inserttocsubsection\par}
+
+
+\def\amurmaple@gauge{%
+  \def\pourc{\numexpr(10*\insertframenumber/\insertmainframenumber)}%
+  \def\xj{\numexpr(4.95*\pourc)}
+  %\resetcolorseries[9]{PiedDePage}%
+  \begin{tikzpicture}[x=0.7cm,y=0.7cm]
+    \draw[color=white] (-.1,-.1)--(1.6,-.1)--(1.6,.2)--(-.1,.2)--cycle;
+    \foreach \i in {0,...,10}{%
+      \ifnum\i<\pourc%
+      \fill[color=white]%PiedDePage!!+]
+      (0+0.15*\i,0)--(0.15+0.15*\i,0)--(0.15+0.15*\i,.1)--(0+0.15*\i,.1)--cycle;
+      \fi
+    }
+  \end{tikzpicture}
+}
+
+% background
+\ExplSyntaxOn
+\setbeamertemplate{background}%
+{%
+  \hypersetup{linkcolor=white}
+  \begin{tikzpicture}[remember~picture,overlay]
+    \fill[Amurmaple@structure]
+    (current~page.south~west) rectangle ([xshift=\c_amurmaple_barre_dim]current~
+    page.north~west);
+    \node[anchor=north~west,rotate=90,color=white] at (current~page.south~west)
+    (title) {\scriptsize\insertshorttitle\quad---\quad \insertshortauthor
+     \ifbeamer@nomail
+     \quad \texttt{\amurmaple@printmail}
+     \fi
+    };
+    \ifbeamer@nogauge
+    \ifnum\insertframenumber>\insertmainframenumber % gauge only in main part
+    \else
+    \node[anchor=north~east,rotate=90,color=white] at (current~page.north~west)
+    (gauge) {\amurmaple@gauge};
+    \fi
+    \fi
+  \end{tikzpicture}
+}
+\ExplSyntaxOff
+%
+%
+\setbeamertemplate{navigation symbols}{}
+\newcounter{amurmaple@appendixframenumber}
+\newcounter{amurmaple@appendixtotalframenumber}
+\newcounter{amurmaple@numberofframes}
+\newcounter{amurmaple@numberofmainframes}
+\addtobeamertemplate{navigation symbols}{}{%
+  \hspace{1em}%
+  \setcounter{amurmaple@numberofframes}{\inserttotalframenumber}
+  \setcounter{amurmaple@numberofmainframes}{\insertmainframenumber}
+  \setcounter{amurmaple@appendixtotalframenumber}{\numexpr\value{amurmaple@numberofframes}-\value{amurmaple@numberofmainframes}}
+  \setcounter{amurmaple@appendixframenumber}{\numexpr\value{framenumber}-\value{amurmaple@numberofmainframes}}
+  \ifnum\insertframenumber>\insertmainframenumber% appendix
+  \footnotesize\color{black}\roman{amurmaple@appendixframenumber}/\roman{amurmaple@appendixtotalframenumber}
+  \else % main part
+  \footnotesize\color{black}\insertframenumber/\insertmainframenumber
+  \fi
+}
+
+% TOC
+\setbeamertemplate{section in toc}[square]
+\setbeamercolor{section number projected}{bg=white,fg=structure}
+
+
+% itemize enumerate
+\setbeamertemplate{itemize item}{$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\small$\blacktriangleright$}
+\setbeamertemplate{enumerate item}
+{
+  \hbox{%
+    \usebeamerfont*{item projected}%
+    \usebeamercolor[bg]{enumerate item}% original: [bg]
+    \vrule width2.25ex height1.85ex depth.4ex%
+    \hskip-2.25ex%
+    \hbox to2.25ex{%
+      \hfil%
+      \usebeamercolor[fg]{enumerate item}\insertenumlabel% original: [fg]
+      \hfil}%
+  }%
+}
+\setbeamertemplate{enumerate subitem}{\alph{enumii}.}
+
+% some fonts
+\setbeamerfont{block title}{size=\bfseries}
+\setbeamerfont{author}{size=\bfseries\large}
+\setbeamerfont{institute}{size=\normalsize\itshape}
+\setbeamerfont{title}{size=\huge\bfseries}
+\setbeamerfont{date}{size=\footnotesize}
+\setbeamerfont{subtitle}{size=\Large\normalfont\slshape}
+% new
+\setbeamerfont{mail}{size=\small\ttfamily}
+
+% title page
+\ExplSyntaxOn
+% list to get the points
+\tl_new:N \l_delaunaypointlist_tl
+\NewDocumentCommand\amurmaple@buildpoints{}{
+  \tl_clear:N \l_delaunaypointlist_tl
+  \int_set:Nn \l_tmpa_int { 1 }
+  \tl_put_right:Nn \l_delaunaypointlist_tl {(0,0);(16,0);(16,4.5);(0,4.5);}
+  \int_do_while:nNnn { \l_tmpa_int} < {40}
+  {
+    \tl_put_right:Nn \l_delaunaypointlist_tl {(\fpeval{16*rand()},\fpeval{4.5*rand()});}
+    \int_incr:N \l_tmpa_int
+  }
+  \tl_put_right:Nn \l_delaunaypointlist_tl {(\fpeval{16*rand()},\fpeval{4.5*rand()})}
+}
+
+\NewExpandableDocumentCommand\amurmaple@buildmesh{}{
+\node[anchor = north~west] at
+    ([xshift=-50pt,yshift=30pt]current~page.north~west){\resizebox{1.5\paperwidth}{0.8\paperheight}{\buildMeshBW[color=structure!15,colorBbox=structure!15,scale=2cm]{\l_delaunaypointlist_tl}}};
+}
+
+\setbeamertemplate{title~page}{%
+  \bgroup
+   \setbeamertemplate{background}%
+  {}
+  \begin{tikzpicture}[remember~picture,overlay]
+    \fill[white]
+    ([yshift=15pt]current~page.west) rectangle (current~page.north~
+    east);
+    \ifbeamer@delaunay
+    \ifLuaTeX
+    \amurmaple@buildpoints
+    \amurmaple@buildmesh
+    \fi
+    \fi
+    \fill[structure]
+    ([yshift=15pt]current~page.west)~rectangle~(current~page.south~
+    east);
+    \node[anchor=east]~
+    at~([yshift=-35pt,xshift=-20pt]current~page.north~east)~(author)~
+    {\parbox[t]{.6\paperwidth}{\raggedleft%
+        \usebeamerfont{author}\color{structure}%
+          \insertauthor
+          \IfValueT { \l_amurmaple_mail_tl} {
+            \par \usebeamerfont{mail}\usebeamercolor[fg]{mail} \tl_use:N \l_amurmaple_mail_tl
+          }
+          \IfValueT { \l_amurmaple_webpage_tl} {
+            \par \usebeamerfont{mail}\usebeamercolor[fg]{mail} \expandafter\url{\tl_use:N \l_amurmaple_webpage_tl}
+          }
+        }};
+    \node[anchor=north~east]
+    at~([yshift=-60pt,xshift=-20pt]current~page.north~east)
+    (institute)
+    {\parbox[t]{.78\paperwidth}{\raggedleft%
+        \usebeamerfont{institute}\textcolor{gray}{\insertinstitute}}};
+    \node[anchor=south~east]
+    at ([yshift=15pt,xshift=-20pt]current~page.east)
+    (date)
+    {\parbox[t]{.78\paperwidth}{\raggedleft%
+        \usebeamerfont{date}\textcolor{black}{\insertdate}}};
+    \node[anchor=south~west]
+    at ([yshift=20pt]current~page.west)~(logo)
+    {\parbox[t]{.19\paperwidth}{\raggedleft%
+        \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic}};
+    \node[anchor=east]
+    at ([yshift=-25pt,xshift=-20pt]current~
+    page.east) (title)
+    {\parbox[t]{\textwidth}{\raggedleft%
+        \usebeamerfont{title}\color{white}%
+        \inserttitle
+        \ifx\insertsubtitle\@empty%
+        \else\par\bigskip \usebeamerfont{subtitle}\color{white}\insertsubtitle
+        \fi
+      }};
+    \IfValueT { \l_amurmaple_collab_tl} {
+      \node[anchor=south,white,text~width=0.95\linewidth,align=center] at ([yshift=10pt]current~page.south) {\itshape\tl_use:N \l_amurmaple_collab_tl};
+    }
+\end{tikzpicture}
+\egroup
+}
+\ExplSyntaxOff
+
+\renewcommand{\maketitle}{%
+  \begingroup
+  \setbeamertemplate{background}%
+  {}
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamercolor{background canvas}{bg=white}
+  \begin{frame}[noframenumbering,plain]
+    \titlepage
+  \end{frame}
+  \endgroup
+}
+
+% section page
+\setbeamertemplate{section page}{
+  \hypersetup{linkcolor=structure}
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[white]
+    ([yshift=15pt]current page.west) rectangle (current page.north
+    east);
+    \ifbeamer@delaunay
+    \ifLuaTeX
+    \amurmaple@buildpoints
+    \amurmaple@buildmesh
+    \fi
+    \fi
+    \fill[structure]
+    ([yshift=15pt]current page.west) rectangle (current page.south
+    east);
+    \node[anchor=east, font=\huge, text width=0.95\linewidth,align=right]
+    at ([yshift=-50pt,xshift=-20pt]current page.north east) (section)
+    { Section \insertsectionnumber: \bfseries\textcolor{structure}{\insertsection}};
+  \end{tikzpicture}
+}
+
+% part page
+\setbeamertemplate{part page}{
+  \hypersetup{linkcolor=structure}
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[white]
+    ([yshift=15pt]current page.west) rectangle (current page.south
+    east);
+    \fill[structure]
+    ([yshift=15pt]current page.west) rectangle (current page.north
+    east);
+
+    \node[anchor=north]
+    at ([yshift=-20pt]current page.north) (section)
+    {\Large\textcolor{white}{Part~\insertpartnumber}};
+    \node[anchor=north, font=\huge\bfseries, text width=0.9\linewidth,align=center]
+    at ([yshift=-50pt]current page.north) (part)
+    {\textcolor{white}{\insertpart}};
+  \end{tikzpicture}
+}
+
+
+
+% frame title
+\setbeamercolor{frametitle}{fg=structure}
+\setbeamerfont{frametitle}{size=\bfseries\Large}
+\setbeamertemplate{frametitle}{%
+  \raggedleft
+  \usebeamerfont{frametitle}\insertframetitle%
+  \vphantom{g}% To avoid fluctuations per frame
+  \par
+  \raggedleft
+  \vspace*{-0.3cm}
+  \rule{0.5\paperwidth}{2pt}\hspace*{-1cm}%%
+  \par
+  \raggedleft
+  \vspace*{-0.3cm}%
+  {\ifx\insertframesubtitle\@empty%
+  \else%
+  \usebeamerfont{framesubtitle}\insertframesubtitle%
+  \fi}%
+  \par
+}
+
+%%%%%%%%%%%%%%
+%%% commands
+%%%%%%%%%%%%%%
+
+\newenvironment{boxalertenv}{\begin{altenv}%
+      {\usebeamertemplate{alerted text begin}\usebeamercolor[fg]{alerted text}\usebeamerfont{alerted text}\colorbox{bg}}
+      {\usebeamertemplate{alerted text end}}{\color{.}}{}}{\end{altenv}}
+
+\newcommand<>{\boxalert}[1]{{%
+  \begin{boxalertenv}#2{#1}\end{boxalertenv}%
+}}
+
+% new one a subtitle inside a frame
+\NewDocumentCommand{\framesection}{m}{
+  \medskip
+  \noindent{\large\bfseries\textcolor{structure}{#1}}\par\vspace*{-0.2cm}
+  \hspace*{-0.5cm}{\color{structure}\rule{0.4\paperwidth}{2pt}}\par\smallskip%
+}
+% new one  define a separation frame with a title and the TOC
+
+%% key/value
+\ExplSyntaxOn
+\keys_define:nn { amurmaple/sepframe } {
+  title .tl_set:N = \l_sepframetitle_tl ,
+  image .tl_set:N = \l_sepframeimage_tl
+}
+
+\NewDocumentCommand{\sepframe}{o}{
+  % key/value
+  \IfNoValueF{#1}{
+    \keys_set:nn { amurmaple/sepframe} {#1}
+  }
+  \begingroup
+  \setcounter{amurmaple@oldtoc}{\value{tocdepth}}
+  \setbeamercolor{section~in~toc}{fg=white}
+  \str_if_eq:VnTF{\l_sepframetitle_tl}{}{%
+    \def\amurmaple@septitle{\secname}
+  }{%
+    \def\amurmaple@septitle{\l_sepframetitle_tl}
+  }
+  \setbeamertemplate{background}{}
+  \setbeamertemplate{navigation~symbols}{}
+  \setbeamercolor{background~canvas}{bg=white}
+  \begin{frame}[noframenumbering,plain]
+    \begin{tikzpicture}[remember~picture,overlay]
+      \ifbeamer@delaunay
+      \ifLuaTeX
+      \amurmaple@buildpoints
+      \amurmaple@buildmesh
+      \fi
+      \fi
+      \fill[structure]
+      ([yshift=15pt]current~page.west) rectangle (current~page.south~
+      east);
+      \node[anchor=east,text~width = 0.75\linewidth, font=\huge\bfseries,align=right]
+      at ([yshift=-50pt,xshift=-20pt]current~page.north~east) (section)
+      {\textcolor{structure}{\amurmaple@septitle}};
+      \node[]
+      at ([yshift=-40pt]current~page.center) (toc)
+      {\color{white}\begin{minipage}{0.9\paperwidth}%
+          \begin{multicols}{2}\hypersetup{linkcolor=white}\setcounter{tocdepth}{\theamurmapletoc}\tableofcontents%
+          \end{multicols}\end{minipage}
+      };
+      \str_if_eq:VnTF{\l_sepframeimage_tl}{}{%
+      }{
+        \node[anchor=south~west]
+        at ([yshift=20pt]current~page.west) (logo)
+        {\parbox[t]{.19\paperwidth}{\raggedleft%
+            \usebeamercolor[fg]{titlegraphic}\l_sepframeimage_tl}};
+      }
+    \end{tikzpicture}
+    \setcounter{tocdepth}{\value{amurmaple@oldtoc}}
+  \end{frame}
+  \endgroup
+  \tl_clear:N \l_sepframetitle_tl
+    \tl_clear:N \l_sepframeimage_tl
+}
+
+\ExplSyntaxOff
+
+
+% new one  define a thanks frame with a simple message to thank
+\NewDocumentCommand{\thanksframe}{o m}{
+  \begingroup
+  \setbeamertemplate{background}{}
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamercolor{background canvas}{bg=white}
+  \IfNoValueTF{#1}{%
+    \def\amurmaple@finalgraphic{\inserttitlegraphic}
+  }{%
+    \def\amurmaple@finalgraphic{#1}
+  }
+  \begin{frame}[noframenumbering,plain]
+    \begin{tikzpicture}[remember picture,overlay]
+      \ifbeamer@delaunay
+      \ifLuaTeX
+      \amurmaple@buildpoints
+      \amurmaple@buildmesh
+      \fi
+      \fi
+      \fill[structure]
+      ([yshift=15pt]current page.west) rectangle (current page.south
+      east);
+      \node[anchor=east,text width = 0.95\linewidth, font=\huge\bfseries,align=right]
+      at ([yshift=50pt,xshift=-20pt]current page.south east) (section)
+      {\textcolor{white}{#2}};
+      \node[anchor=south west]
+    at ([yshift=20pt]current page.west) (logo)
+    {\parbox[t]{.19\paperwidth}{\raggedleft%
+        \usebeamercolor[fg]{titlegraphic}\amurmaple@finalgraphic}};
+    \end{tikzpicture}
+  \end{frame}
+  \endgroup
+}
+
+
+\setbeamertemplate{button}{\tikz
+  \node[
+  inner xsep=4pt,
+  minimum height = 2em,
+  draw=structure!80,
+  fill=structure!50,
+  rounded corners=1pt,
+    align=center]  {\footnotesize\insertbuttontext};}
+
+\RenewDocumentEnvironment{abstract}{}{%
+  \begin{tcolorbox}[boxrule=0pt,frame hidden,sharp corners,enhanced,borderline
+    north={1pt}{0pt}{structure},borderline
+    south={1pt}{0pt}{structure}]
+    \begin{center}\bfseries
+      \abstractname
+    \end{center}\itshape
+  }
+  {%
+  \end{tcolorbox}%
+}%
+
+\RenewDocumentEnvironment{quotation}{o}{%
+  \begin{tcolorbox}[boxrule=0pt,frame hidden,sharp corners,enhanced,borderline west={4pt}{0pt}{structure}]\itshape
+  }
+  {%
+    \IfNoValueTF{#1}{%
+    }{
+      \begin{flushright}
+        \normalfont #1
+      \end{flushright}
+    \end{tcolorbox}%
+  }%
+}
+
+\newcommand\amurmaple@info{\raisebox{-1mm}{\tikz{\node[circle,fill=Amurmaple@info,align=center,text
+      width=1em,inner sep = 0.0mm]
+      {\rmfamily\itshape\bfseries\color{white} i};}}}
+
+\NewDocumentEnvironment{information}{o}{%
+  \tcbset{leftrule=1mm,rightrule=0mm,toprule=0mm, bottomrule=0mm,%
+    colframe=Amurmaple@info,
+    sharp corners,
+    detach title,%
+    before title={\amurmaple@info~},
+    fonttitle = \color{black}\bfseries\sffamily,
+    before upper={\tcbtitle\par\medskip}
+  }
+  \IfNoValueTF{#1}{%
+    \begin{tcolorbox}[title=\translate{Information}]
+    }{
+      \begin{tcolorbox}[title=#1]
+      }
+    }%
+    {%
+    \end{tcolorbox}
+  }%
+
+  \NewDocumentEnvironment{remark}{o}{
+   \tcbset{%
+    arc=0pt,outer arc=0pt,colback=gray!10!white,colframe=gray!60!white,
+    boxsep=0pt,left=10pt,right=10pt,top=8pt,bottom=10pt, bottomtitle = 3pt, toptitle=3pt,
+    boxrule=0pt,bottomrule=0.5pt,toprule=0.5pt
+  }
+  \smallskip
+  \begin{tcolorbox}[fonttitle=\bfseries,title={\translate{Remark} \IfNoValueF{#1}{(#1)}}]}%
+  {\end{tcolorbox}\medskip
+}
+
+
+%%%%%%%%%%%% maths
+
+\AtBeginEnvironment{theorem}{%
+  \setbeamercolor{block body}{fg=black,bg=gray!20}
+  \setbeamercolor{block title}{fg=white,bg=structure}
+}
+
+\AtBeginEnvironment{definition}{%
+  \setbeamercolor{block body}{fg=black,bg=gray!10}
+  \setbeamercolor{block title}{fg=Amurmaple@example,bg=Amurmaple@example!40}
+}
+
+\AtBeginEnvironment{corollary}{%
+  \setbeamercolor{block body}{fg=black,bg=gray!10}
+  \setbeamercolor{block title}{fg=structure,bg=structure!30}
+}
+
+
+\setbeamercolor{block title alerted}{use=structure,fg=white,bg=Amurmaple@alert}
+\setbeamercolor{block body alerted}{parent=normal text,use=block
+  title,bg=gray!10}
+
+\setbeamercolor{block title example}{fg=Amurmaple@example}
+\mode
+<all>
