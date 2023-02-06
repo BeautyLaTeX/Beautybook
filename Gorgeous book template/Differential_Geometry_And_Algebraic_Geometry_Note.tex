@@ -1,0 +1,53 @@
+\documentclass[twoside,11pt]{memoir}
+\overfullrule=1pt %显示内容溢出位置
+\usepackage{stys/pagestyle} %页面设计宏包
+\usepackage{stys/bookset} %封面和章节标题设置宏包
+\usepackage{stys/Beautiful_Theorem_Style} %清新定理样式宏包
+\usepackage{imakeidx} %添加索引宏包
+\usetikzlibrary{cd}
+\usepackage{mathrsfs} %花体数学字母宏包
+\usepackage{bm}
+\usepackage{hyperref}
+\colorlet{linkscolor}{coverfgcolor}
+\hypersetup{colorlinks=true, linkcolor=linkscolor, filecolor=linkscolor, urlcolor=linkscolor,citecolor=linkscolor}
+\renewcommand{\proofname}{\songE 证明}
+\makeindex
+\setcounter{secnumdepth}{2}
+\usepackage{physics}
+\newcommand{\Diff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\Dif}[2]{\frac{\dd #1}{\dd #2}}
+\begin{document}
+%%%%======================== 封面内容设置区 ================================%%%%%
+\englishtitle{Note For Algebraic Geometry And Differential Geometry \; {\sandbox\fontsize{20}{25}\selectfont Vol. 1}}
+\bookseries{NAG And NDG Series \\[-1ex] {\normalfont\fontsize{12}{18}\selectfont Note For Algebraic Geometry And Note For Differential Geometry Series}}
+\chinesetitle{代数几何与微分几何笔记 \; {\normalfont\fontsize{20}{25}\selectfont 第一卷}}
+\editor{Weijun Lu \\ Shilong Lu }
+\pressname{Higher Education Press}
+\coverimage{figures/abstraction-smoke-highlights.jpg}
+\presslogo{figures/下载.png}
+\makecover
+%%%%=====================================================================%%%%
+
+\renewcommand\chapterillustration{figures/books-gbfa4091ab_1920.jpg} %章标题背景图片
+\tableofcontents\let\cleardoublepage\clearpage\newpage
+\listoffigures\let\cleardoublepage\clearpage
+% \listoftables\let\cleardoublepage\clearpage
+\newpage
+%%=========================================%%
+%                                        正文开始
+%%=========================================%%
+
+\input{mainmatter/Manifolds} %第一章:流形
+
+
+
+
+
+
+
+
+%%=============== 参考文献区 ==================%%
+\bibliography{ref}
+\bibliographystyle{unsrt} %参考文献样式
+\printindex %打印索引
+\end{document} 

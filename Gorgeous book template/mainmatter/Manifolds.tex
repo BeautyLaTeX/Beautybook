@@ -1,0 +1,176 @@
+\renewcommand\chapterwhat{微分流形的概念入门}
+\renewcommand\chapterbecause{Manifolds 流形}
+\chapter{Manifolds 流形}
+\section{形式与函数芽}
+\subsection{微分形式}\index{微分形式}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[>=stealth,spy using overlays= {rectangle, magnification=5, connect spies}] %spy using outlines= {circle, magnification=6, connect spies} %圆形放大镜
+        \draw[gray!30,very thin] (-5,-1) grid (5,9);
+        \draw[->,thin] (-5,0) -- (5,0) node[right] {$x$};
+        \draw[->,thin] (0,-1) -- (0,9) node[left] {$y$};
+        \foreach \x in {-5,...,5}{
+            \node[below,gray,font=\small] at (\x,-1) {$\x$};
+        }
+        \foreach \y in {-1,...,9}{
+            \node[left,gray,font=\small] at (-5,\y) {$\y$};
+        }
+        \draw[thick,blue,domain=-5:2.2,smooth] plot (\x,{e^\x}) node[right] {$f(x)=e^x$};
+        \draw[thick,black,domain=-2:5] plot (\x,{\x+1}) node[above] {$g(x)=x+1$};
+        \coordinate (intersection) at (0,1);
+        \shade[ball color=gray] (intersection) circle [radius=3pt];%(3pt)也行
+        \node[red,left] at (intersection) {$(0,1)$};
+        \node[black] at (1,e) {$(1,e)$};
+        \draw[very thick,cyan,->] (2,-0.5) -- (0.1,0.95);
+        \draw[shift={(0,-2)},thick,teal,domain=0:5] plot (\x,{\x+1}) node[above] {$g(x)=x-1$};
+        \draw[rotate=30,shift={(0,-0.7)},magenta,domain=-0.9:6.5,thick] plot (\x,{\x+1}) node[above] {$g_1(x)$};
+        \coordinate (spypoint) at (0,1);% The point to be magnified
+        \coordinate (magnifyglass) at (-3,5);% The point where to see
+        \spy [gray!50, size=2.5cm] on (spypoint) in node[fill=white] at (magnifyglass);
+    \end{tikzpicture}
+    \label{fig:微分形式解说}
+    \caption{微分形式解说}
+\end{figure}
+在$(0,1)$附近,两函数靠得很近,而在$(0,1)$该点上,两函数的变化完全一样,或者说\textbf{二者在该点的局部具有相似性}!而在实数的整体上,$f$和$g$是完全不同的.但是
+这里的函数$f$和$g$有着同样的微分形式,因为局部放大图中看到,它们在$(0,1)$的附近几乎无法区分.
+
+形象地说,假如在$(0,1)$上放置一个人,不管他踩在哪一条曲线上,他都感觉是站在$45^\circ$的斜坡上.而如果向下平移函数$g$,如图中青色直线所示,依然不会改变$g$在点$(0,1)$的斜率,感觉一模一样,所以微分形式不变.
+不过,如果我们旋转函数$g$的图像,如图中粉色直线所示,则在点$(0,1)$的坡度就变陡峭了,这时斜率发生了变化,我们放置在该点处的人可能就站不稳了,那么新函数$g_1(x)$在$(0,1)$点的微分形式发生了变化.其根本原因在于局部的导数值发生了变化.
+至此,我们对微分形式有了一个大致的感觉: 与\textbf{导数}相关.接下来说明如何定义微分形式.
+\begin{center}
+    \begin{tikzcd}
+    \text{实数域上的一元光滑函数}\ar[->,>=stealth,d]\\
+    \text{一元光滑函数芽}\ar[->,>=stealth,d]\\
+    \text{一元函数的$1$--形式}
+    \end{tikzcd}
+\end{center}
+现在只看微分形式中的$1$--形式,分三步理解.首先,光滑实值函数在任意一点处都有无穷阶连续导函数.在这里,我们只考虑定义域为全体实数的函数. 如一次函数,二次函数,指数函数等等,都是定义在
+全体实数上的一元光滑函数.不过光滑函数依然是一个整体的概念.微分形式是局部的观点,因此我们要想办法看一点的附近.遵循着这种局部化的思想,就有了" 芽"
+这一充满了局部风格的概念.
+
+\textbf{芽的思想,本质上是根据函数在一点附近的局部表现,对这些函数进行分类,即所谓的等价关系}
+\begin{definition}[芽]\label{def:芽}
+    芽是定义在拓扑空间上函数集合的一种等价关系.
+    定义在拓扑空间上的两个函数$f$和$g$,在点$x$处属于同一支芽,当且仅当存在一个开集$S$,使得$S$包含点$x$,且在$S$上$f$和$g$的函数值处处相等.
+\end{definition}
+这里的 拓扑空间可以选择实数集,开集就是开区间之并,而点$x$就是定义函数芽和微分形式的地方.
+\subsection{向量空间与对偶空间}
+\begin{itemize}
+    \item 引子:光滑运动
+    \item 向量与方向导数
+    \item 向量与$1$--形式
+    \item 向量空间与对偶空间的形式化定义
+    \item 对偶空间的对偶
+\end{itemize}
+在光滑曲线所处的三维空间定义一光滑的多元(此处为三元)函数 $f$,这里$f$是三元实值函数,而曲线函数就是将某个实数区间$I$里的数\textbf{映射为}曲线上的点. 而如此复合后的函数就是一个一元实值函数 $g$.它们之间的关系如下交换图所示:
+\begin{center}
+    \begin{tikzcd}
+    I\ar[->,>=stealth,r,"\gamma"] \ar[->,>=stealth,rd,"g=f\circ \gamma"swap]& \mathbb{R}^3 \ar[->,>=stealth,d,"f"]\\
+    & \mathbb{R}
+\end{tikzcd}
+\end{center}
+现设
+\[\begin{split}
+    \gamma(t)&=(x(t),y(t),z(t))\\
+    \Dif{(f\circ \gamma)}{t}&=\Diff{f}{x}\Dif{x}{t}+\Diff{f}{y}\Dif{y}{t}+\Diff{f}{z}\Dif{z}{t}\\
+&=(\Diff{f}{x},\Diff{f}{y},\Diff{f}{z})\cdot \begin{pmatrix}
+    \Dif{x}{t}\\ \Dif{y}{t}\\ \Dif{z}{t}
+\end{pmatrix}
+\end{split}\]
+,并引入表达式
+\begin{equation}
+    \label{eq:change}
+        \begin{array}{c}
+                \dd x^i \cdot \vec{e}_{x_j}=\delta_j^i=
+                \begin{cases}
+                    0,&i\neq j,\\
+                    1,&i=j.
+                \end{cases}\hfill\text{($f$沿$x^i$轴对$\vec{e}_{x_j}$方向的导数)}\\
+                \dd f =\Diff{f}{x}\dd \vec{x}+\Diff{f}{y}\dd \vec{y}+\Diff{f}{z}\dd \vec{z}.\hfill\text{($f$的$1$--形式坐标表示)}
+            \end{array}
+\end{equation}
+,此复合函数的导数是关于坐标分量的表达式,叫沿光滑曲线的方向导数.将其带入运算得
+\[\Dif{(f\circ \gamma)}{t}=\dd f\cdot\left(\Dif{x}{t}\vec{e}_x+\Dif{y}{t}\vec{e}_y+\Dif{z}{t}\vec{e}_z\right)\]
+$1$--形式定义为光滑函数芽的等价类,与坐标系无关.从而由于$1$--形式与方向导数均独立于任何人为的坐标系,故切矢的定义也与坐标系无关.
+其中切矢即$\gamma(t)$,$1$--形式指的是$\dd f$.
+
+\section{向量空间与对偶空间}
+\begin{definition}[向量空间][def:向量空间]
+    域$F$上的向量空间$V$是一个{\color{magenta}\textbf{集合}},在其上定义了两种运算:
+    \begin{enumerate}       
+        \item 向量加法: $V\times V\to V$,把$V$中的两个元素$u$和$v$映射到$V$中另一个元素,记作$u+v$;
+        \item 标量乘法: $F\times V\to V$,把$F$中的一个元素$a$和$V$中的一个元素$u$变为$V$中的另一个元素,记作$a\cdot u$.
+    \end{enumerate}     
+    并且向量空间还需在上述两种运算基础上满足以下性质:
+    \begin{enumerate}
+        \item 向量加法
+        \begin{description}   
+            \item[结合律:] $u+(v+w)=(u+v)+w$,
+            \item[交换律:] $u+v=v+u$, 
+            \item[向量加法单位元:] 在$V$中存在一个叫做"零向量"的元素 ,记作$\bm{0}$,使得对于$V$中的任意的向量$u$,都有$u+0=u$,
+            \item[向量加法逆元:] 对$V$中的任意向量$u$,都存在$v\in V$,使得$u+v=\bm{0}$,并称向量$v$为向量$u$在$V$中的逆元,
+        \end{description} 
+        \item 标量乘法
+        \begin{enumerate}
+            \item 标量乘法对向量加法满足分配律: $a\cdot (v+w)=a\cdot v+a\cdot w$,
+            \item 标量乘法对域的加法满足分配律: $(a+b)\cdot u=a\cdot u+b\cdot u$,
+            \item 标量乘法对标量域的乘法相容: $(ab)u=a(bu)$,
+            \item 标量乘法有单位元: 域$F$的乘法单位元"$1$" 满足: 对任意的$v\in V$,都有$1\cdot v=v$.
+        \end{enumerate}
+    \end{enumerate}
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

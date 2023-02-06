@@ -1,0 +1,467 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{stys/bookset}[2022/05/21,v1.0]
+\usepackage{anyfontsize} % 提供\fontsize{}{}\selectfont命令
+\usepackage{etoolbox} %提供自定义封面选项接口
+\usepackage{tikz}
+\tikzset{global scale/.style={
+    scale=#1,
+    every node/.append style={scale=#1}
+  }
+}
+\usepackage[explicit]{titlesec}
+\usepackage{titletoc}
+\usepackage{graphicx} %插图
+\usetikzlibrary{calc,fadings,patterns}
+\usepackage{adjustbox} %修正minipage顶部对齐问题
+\pgfplotsset{compat=1.18}
+\usepackage[a4paper,margin=2.1cm]{geometry}
+\usepackage[fontset=none]{ctex}
+\usepackage{mathrsfs}
+\def\fontspath{fonts/}
+\usepackage{fontspec}
+\newfontfamily\sandbox[Path=fonts/]{SANDBOX-TTF-2.ttf}
+\newfontfamily\Frick[Path=fonts/]{Frick0.3-Condensed-2.otf}
+\newfontfamily\Floane[Path=fonts/]{Floane-Regular-2.otf}
+\setmainfont{Times New Roman}%设置英文正文字体样式
+\setsansfont{Arial}% 设置英文\sffamily
+\setmonofont{Latin Modern Mono}
+ %%%%%%%%%%%%中文字体设置%%%%%%%%%%%
+    \setCJKmainfont[Path=fonts/chinesefonts/,BoldFont={FZFWZhuZiMinchoE.TTF},ItalicFont={FZXKTJW.TTF},SlantedFont
+    = {FZXKK.TTF} , SlantedFeatures = {FakeSlant}]{FZXSSJW.TTF}
+    \setCJKsansfont[Path=fonts/chinesefonts/,BoldFont={FZBaoHTJW_Cu.TTF},ItalicFont={FZXKK.TTF}]{FZBaoHTJW.TTF}
+    \setCJKmonofont[Path=fonts/chinesefonts/,BoldFont={FZZHK.TTF},ItalicFont={FZHanSTJW.TTF}]{FZPingXYSJW.TTF}
+    \newCJKfontfamily[song]\songti{FZXSSJW.TTF}[Path=fonts/chinesefonts/] %宋体
+    \newCJKfontfamily[hei]\heiti{FZBaoHTJW.TTF}[Path=fonts/chinesefonts/] %宝黑体
+    \newCJKfontfamily[kai]\kaiti{FZXKTJW.TTF}[Path=fonts/chinesefonts/] %宋体
+    \newCJKfontfamily[fs]\fangsong{FZQingFSJW_Cu.TTF}[Path=fonts/chinesefonts/] %宋体
+    \newCJKfontfamily[liti]\lishu{方正隶书简体.TTF}[Path=fonts/chinesefonts/] %宋体
+    \newCJKfontfamily[ZhuZiMinchoE]\songE{FZFWZhuZiMinchoE.TTF}[Path=fonts/chinesefonts/] %宋体
+    \newCJKfontfamily[ZhuZiMinchoD]\songD{FZFWZhuZiMinchoD.TTF}[Path=fonts/chinesefonts/] %宋体
+    \newCJKfontfamily[xk]\xingkai{FZXKK.TTF}[Path=fonts/chinesefonts/] %宋体
+    \newCJKfontfamily[zhdbs]\dbs{FZDBSK.TTF}[Path=fonts/chinesefonts/] %宋体
+\makeatletter
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+\newcommand*\englishtitle[1]{\def\@englishtitle{#1}}
+\newcommand*\chinesetitle[1]{\def\@chinesetitle{#1}}
+\newcommand*\bookseries[1]{\def\@bookseries{#1}}
+\newcommand*\pressname[1]{\def\@pressname{#1}}
+\newcommand*\editor[1]{\def\@editor{#1}}
+\newcommand*\coverimage[1]{\def\@coverimage{#1}}
+\newcommand*\presslogo[1]{\def\@presslogo{#1}}
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+\makeatother
+%%%%===============================================================%%%%%
+%%------------------------------------------------------封面设计--------------------------------------------------------%%
+%%%%===============================================================%%%%%
+\definecolor{coverbgcolor}{HTML}{9CCCDA}
+\definecolor{coverfgcolor}{HTML}{508E99}
+\definecolor{coverbar}{HTML}{305756}
+\newlength\outermarginwidth
+\setlength\outermarginwidth{2cm}
+\newlength\covershift
+\setlength\covershift{5cm}
+\tikzfading[name=fade right,
+                    right color =transparent!100,
+                    left color=transparent!50]
+\tikzfading[name=fade left,
+                    left color =transparent!100,
+                    right color=transparent!50]
+\makeatletter
+\newcommand*\makecover{
+    %% Use the Tikz library positioning and clear the page header and footer
+    \usetikzlibrary{positioning}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture,overlay]
+      \fill[coverbgcolor]
+        (current page.north west) rectangle (current page.south east);% 填充封面背景颜色 (coverbgcolor)
+        \fill[coverbar]
+        ([xshift=-3\covershift,yshift=-.58\covershift]current page.east) rectangle ([yshift=-1.54\covershift]current
+        page.east); % 被标题背景遮挡露出一部分的装饰矩形
+        \fill[coverfgcolor]
+        ([xshift=\outermarginwidth]current page.north west) rectangle
+        ([xshift=-\outermarginwidth,yshift=1.5\covershift]current page.south east); % 标题背景大矩形
+        \fill[coverbar]
+        ([yshift=.46\covershift]current page.west) rectangle ([xshift=\outermarginwidth,yshift=-.4\covershift]current
+        page.west); % 最左侧装饰矩形
+        \node[anchor=south] at ([xshift=-5\outermarginwidth,yshift=-.8\covershift]current page.north east) {%
+        \parbox{3\covershift}{
+        \raggedleft
+        \color{white}\sandbox\fontsize{18}{22}\selectfont\@bookseries}
+        }; %系列丛书名称
+        \node[ anchor=south] at ([yshift=-.4\paperheight]current page.north)
+    {\parbox{.8\paperwidth}{%
+            \filright%
+            \color{white}\Frick\fontsize{30}{30}\selectfont\@englishtitle\\[-1.6ex]
+            \begin{tikzpicture}
+              \draw[white,line width=1pt] (0,0) -- (\paperwidth-2.2\outermarginwidth,0);
+            \end{tikzpicture}\\[-.1ex]
+            \color{white}\rmfamily\bfseries\fontsize{30}{30}\selectfont
+            \ifdefvoid{\@chinesetitle}{}{\@chinesetitle}
+        }};% 封面英文书名与中文书名
+        \node[anchor=south east,
+      inner sep=0pt,
+      outer sep=0pt]  at ([xshift=-.86\outermarginwidth,yshift=1.8\covershift]current page.south east)
+    {%
+    \adjustbox{valign=t}{
+            \begin{minipage}{.15\textwidth}
+            \begin{tikzpicture}
+              \draw[white,line width=1.2pt] (0,0) circle [radius=6pt];
+              \draw[white,line width=.8pt] (0,0) circle [radius=4pt];
+              \fill[white] (0,0) circle [radius=2.5pt];
+            \end{tikzpicture}
+             \hspace{2pt}\color{white}\Floane\fontsize{18}{24}\selectfont Editors
+            \end{minipage}}
+            \hfill
+            \adjustbox{valign=t}{\begin{minipage}{.3\textwidth}
+              \raggedright\color{white}\Floane\fontsize{18}{24}\selectfont\@editor
+            \end{minipage}}
+    };% 封面作者信息栏
+        \node[%
+		anchor=south west,xshift=\outermarginwidth,
+		align=left,inner xsep=0pt] at ([yshift=-2mm]current page.south west)
+	{\includegraphics[width=.558\linewidth,]{\@coverimage}};% 封面图片
+        \fill[pattern color=coverfgcolor!70,pattern=horizontal lines]
+        ([xshift=\outermarginwidth,yshift=.2\covershift]current page.south west) rectangle
+        ([xshift=-\outermarginwidth,yshift=1.43\covershift]current page.south east);
+        \fill [coverbgcolor,path fading=fade right]%
+         ([xshift=\outermarginwidth+.558\linewidth,yshift=.2\covershift]current page.south west) rectangle
+         ([xshift=-\outermarginwidth,yshift=1.43\covershift]current page.south east);
+        \fill [coverbgcolor,path fading=fade left]%
+          ([xshift=\outermarginwidth+.558\linewidth,yshift=.2\covershift]current page.south west) rectangle
+          ([xshift=-\outermarginwidth,yshift=1.43\covershift]current page.south east);
+        \node[anchor=south,text=white,font=\sandbox\Large,] at
+        ([xshift=1.2\covershift,yshift=0\covershift]current page.south)  %
+    {\raisebox{-.05\covershift}{\includegraphics[width=0.05\linewidth]{\@presslogo}}\hspace*{.5ex}\parbox[c][\covershift][c]{.4\textwidth}{\@pressname}};%
+    \end{tikzpicture}%
+  \newpage
+}
+\makeatother
+%%%%===============================================================%%%%%
+%%------------------------------------------------------封面设计--------------------------------------------------------%%
+%%%%===============================================================%%%%%
+\usepackage{tcolorbox} %Allow those nice environments
+\tcbuselibrary{theorems, listings, breakable, most, skins}
+\usetikzlibrary{intersections, positioning, fit, backgrounds, shapes, fadings,
+decorations.pathmorphing, graphs, quotes, angles, calc, through, backgrounds}
+\usepackage{ifthen}
+% Define the layers to be used in document.
+% *****************************************************
+\newcommand\chapterillustration{} %背景图
+\newcommand\chapterwhat{} %序言
+\newcommand\chapterbecause{} %内容概要
+\newtcolorbox{openningbox}{
+  enhanced,
+%  jigsaw,
+  opacityframe=.3,
+  opacityfill=.3,
+  width=80mm,
+  left=3mm,
+  right=3mm,
+  top=3mm,
+  bottom=.5mm,
+  colback=black!10,
+  colframe=black!10,
+  arc=3mm,%
+  sharp corners=uphill,%
+    % frame empty,
+    % arc = 8pt,
+   lower separated = false,
+    before upper = \tcbsubtitle{序\qquad 言},
+    before lower = \tcbsubtitle{内容概要},
+    fontupper = \songE,
+    fontlower = \songE,
+    sharp corners = north,
+    subtitle style = {
+      frame empty,
+      fontupper = \xingkai\fontsize{13pt}{0}\selectfont,
+      colback = lightgray!50,
+      coltext = cor2,
+      width = 3.5cm,
+      arc = 3pt,
+      rounded corners = east
+    }
+  }
+
+\newcommand{\ChapNumTitle}[1]{%
+  \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture, overlay]
+        \coordinate (a) at ($(current page.north west) + (44.00mm,-44.00mm)$);
+        \coordinate (c) at ($(current page.north west) + (148.54mm,-64.82mm)$);
+        \coordinate (d) at ($(current page.north) + (0.00mm,-78.57mm)$);
+
+        \begin{pgfonlayer}{top}
+            % Rectangles
+            \shade[
+            left color=lightgray,
+            right color=lightgray!40,
+            transform canvas ={rotate around ={45:($(current page.north west)+(0,-6)$)}}]
+            ($(current page.north west)+(0,-6)$) rectangle ++(9,1.5);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!50,
+            rounded corners=0.75cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(.5,-10)$)}}]
+            ($(current page.north west)+(0.5,-10)$) rectangle ++(15,1.5);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!50,
+            rounded corners=0.3cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(.5,-10)$)}}] ($(current page.north west)+(1.5,-9.55)$) rectangle ++(10,.6);
+
+            \shade[
+            left color=lightgray!80,
+            right color=lightgray!60,
+            rounded corners=0.4cm,
+            transform canvas ={rotate around ={45:($(current page.north)+(-1.5,-3)$)}}]
+            ($(current page.north)+(-1.5,-3)$) rectangle ++(9,0.8);
+
+            \shade[
+            left color=lightgray!80,
+            right color=lightgray!50,
+            rounded corners=0.9cm,
+            transform canvas ={rotate around ={45:($(current page.north)+(-3,-8)$)}}] ($(current page.north)+(-3,-8)$) rectangle ++(15,1.8);
+
+            \shade[
+            left color=lightgray!80,
+            right color=lightgray!50,
+            rounded corners=0.45cm,
+            transform canvas ={rotate around ={45:($(current page.north)+(-3.5,-7)$)}}] ($(current page.north)+(-3.5,-7.55)$) rectangle ++(7.5,.8);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!50,
+            rounded corners=0.9cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(4,-15.5)$)}}]
+            ($(current page.north west)+(10,-15.5)$) rectangle ++(30,1.8);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!50,
+            rounded corners=0.45cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(3.4,-15.5)$)}}] ($(current page.north west)+(10.5,-15.45)$) rectangle ++(12,.8);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!50,
+            rounded corners=0.75cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(13,-10)$)}}]
+            ($(current page.north west)+(13,-10)$) rectangle ++(15,1.5);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!50,
+            rounded corners=0.375cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(12.7,-9)$)}}]
+            ($(current page.north west)+(12.5,-9.55)$) rectangle ++(10.5,.7);
+
+            \shade[
+            left color=lightgray,
+            rounded corners=0.3cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(18,-8)$)}}]
+            ($(current page.north west)+(18,-8)$) rectangle ++(15,0.6);
+
+            \shade[
+            left color=lightgray,
+            rounded corners=0.4cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(19,-5.65)$)}}]
+            ($(current page.north west)+(19,-5.65)$) rectangle ++(15,0.8);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!80,
+            rounded corners=0.6cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(20,-9)$)}}]
+            ($(current page.north west)+(20,-9)$) rectangle ++(14,1.2);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!50,
+            rounded corners=0.3cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(19.4,-8.5)$)}}]
+            ($(current page.north west)+(20,-9)$) rectangle ++(7,.6);
+
+
+        \filldraw [fill=lightgray, draw=lightgray] ($(a) + (0.00mm,-25.00mm)$) -- ++(22.00mm,0.0mm) arc
+        [start angle=270, end angle=360, x radius = 3.00mm, y
+        radius=3.00mm] coordinate (c1) -- ++(0.00mm,44.00mm) coordinate (c2) arc [start angle=0, end angle=90, x
+        radius=3.00mm, y radius=3.00mm] --
+        ++(-44.00mm,0.00mm) arc [start angle=90, end angle=180, x radius=3.00mm, y radius=3.00mm] --
+        ++(0.00mm,-44.00mm) arc [start angle=180, end
+        angle=270, x radius=3.00mm, y radius=3.00mm] -- cycle;
+        \node[font=\chapnumfont, text=cor2] at (a) {\chapnamefont\thechapter};
+
+        \coordinate (b) at ($(a)+(-25mm,-45mm)$);
+        \node (title) at (b) [right, font=\dbs\Huge, text=cor2] {\parbox{\linewidth}{#1}};
+
+        \node [right] at ($(current page.north)+(5mm,-180mm)$) %
+        {\begin{openningbox}
+            \chapterwhat
+
+            \tcblower
+
+            \chapterbecause
+
+            \end{openningbox}};
+
+        \end{pgfonlayer}
+
+        \begin{pgfonlayer}{bottom}
+            \node[opacity=0.8,inner sep=0pt] at (current
+            page.center){\includegraphics[width=\paperwidth,height=\paperheight]{\chapterillustration}};
+        \end{pgfonlayer}
+
+        \begin{pgfonlayer}{top}
+
+        \end{pgfonlayer}
+    \end{tikzpicture}
+}
+
+\newcommand{\ChapNoNumTitle}[1]{%
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture, overlay]
+        \coordinate (a) at ($(current page.north west) + (44.00mm,-44.00mm)$);
+        \coordinate (c) at ($(current page.north west) + (148.54mm,-64.82mm)$);
+        \coordinate (d) at ($(current page.north) + (0.00mm,-78.57mm)$);
+
+        \begin{pgfonlayer}{top}
+            % Rectangles
+            \shade[
+            left color=lightgray,
+            right color=lightgray!40,
+            transform canvas ={rotate around ={45:($(current page.north west)+(0,-6)$)}}]
+            ($(current page.north west)+(0,-6)$) rectangle ++(9,1.5);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!50,
+            rounded corners=0.75cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(.5,-10)$)}}]
+            ($(current page.north west)+(0.5,-10)$) rectangle ++(15,1.5);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!50,
+            rounded corners=0.3cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(.5,-10)$)}}] ($(current page.north west)+(1.5,-9.55)$) rectangle ++(10,.6);
+
+            \shade[
+            left color=lightgray!80,
+            right color=lightgray!60,
+            rounded corners=0.4cm,
+            transform canvas ={rotate around ={45:($(current page.north)+(-1.5,-3)$)}}]
+            ($(current page.north)+(-1.5,-3)$) rectangle ++(9,0.8);
+
+            \shade[
+            left color=lightgray!80,
+            right color=lightgray!50,
+            rounded corners=0.9cm,
+            transform canvas ={rotate around ={45:($(current page.north)+(-3,-8)$)}}] ($(current page.north)+(-3,-8)$) rectangle ++(15,1.8);
+
+            \shade[
+            left color=lightgray!80,
+            right color=lightgray!50,
+            rounded corners=0.45cm,
+            transform canvas ={rotate around ={45:($(current page.north)+(-3.5,-7)$)}}] ($(current page.north)+(-3.5,-7.55)$) rectangle ++(7.5,.8);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!50,
+            rounded corners=0.9cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(4,-15.5)$)}}]
+            ($(current page.north west)+(10,-15.5)$) rectangle ++(30,1.8);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!50,
+            rounded corners=0.45cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(3.4,-15.5)$)}}] ($(current page.north west)+(10.5,-15.45)$) rectangle ++(12,.8);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!50,
+            rounded corners=0.75cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(13,-10)$)}}]
+            ($(current page.north west)+(13,-10)$) rectangle ++(15,1.5);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!50,
+            rounded corners=0.375cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(12.7,-9)$)}}]
+            ($(current page.north west)+(12.5,-9.55)$) rectangle ++(10.5,.7);
+
+            \shade[
+            left color=lightgray,
+            rounded corners=0.3cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(18,-8)$)}}]
+            ($(current page.north west)+(18,-8)$) rectangle ++(15,0.6);
+
+            \shade[
+            left color=lightgray,
+            rounded corners=0.4cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(19,-5.65)$)}}]
+            ($(current page.north west)+(19,-5.65)$) rectangle ++(15,0.8);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!80,
+            rounded corners=0.6cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(20,-9)$)}}]
+            ($(current page.north west)+(20,-9)$) rectangle ++(14,1.2);
+
+            \shade[
+            left color=lightgray,
+            right color=lightgray!50,
+            rounded corners=0.3cm,
+            transform canvas ={rotate around ={45:($(current page.north west)+(19.4,-8.5)$)}}]
+            ($(current page.north west)+(20,-9)$) rectangle ++(7,.6);
+
+
+        \coordinate (b) at ($(a)+(-25mm,-45mm)$);
+        \node (title) at (b) [right, font=\dbs\Huge, text=cor2] {\parbox{\linewidth}{#1}};
+
+        \end{pgfonlayer}
+
+        \begin{pgfonlayer}{bottom}
+            \node[opacity=0.8,inner sep=0pt] at (current
+            page.center){\includegraphics[width=\paperwidth,height=\paperheight]{\chapterillustration}};
+        \end{pgfonlayer}
+
+        \begin{pgfonlayer}{top}
+
+        \end{pgfonlayer}
+    \end{tikzpicture}
+}
+\newif\ifnumberedchap
+\numberedchaptrue
+% Setup page
+% 章节标题设置
+% *****************************************************
+\makechapterstyle{mystyle}{
+    \renewcommand{\chapnamefont}{}
+    \renewcommand{\chapnumfont}{\sandbox\fontsize{140pt}{0}\selectfont}
+    \renewcommand{\chaptitlefont}{\rmfamily\bfseries\fontsize{25pt}{0}\selectfont}
+    \renewcommand{\chapternamenum}{}
+    \renewcommand{\afterchapternum}{}
+    \renewcommand{\printchaptername}{}
+    \renewcommand{\printchapternum}{}
+    \renewcommand{\printchapternonum}{\global\numberedchapfalse}
+    \renewcommand{\printchaptertitle}[1]{%
+    \thispagestyle{plain}
+        \ifnumberedchap
+            \ChapNumTitle{##1}
+        \else
+            \ChapNoNumTitle{##1}
+        \fi
+        \global\numberedchaptrue
+        }
+    \renewcommand{\afterchaptertitle}{\clearpage}
+}
+\renewcommand{\chaptermarksn}[1]{}
+\AtBeginDocument{%
+    \chapterstyle{mystyle}
+}
+%%==========Begin Document ======%%
+\endinput
