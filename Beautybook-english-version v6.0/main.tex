@@ -1,0 +1,40 @@
+\documentclass[12pt,fontset=windows]{Beautybook v6.0}
+\begin{document}
+\thispagestyle{empty}
+\title{Test Material}
+\subtitle{Book Name}
+\edition{First Edition}
+\bookseries{Preperation For The Final Test}
+\author{Shilong.Lu}
+\pressname{Springer} %出版社名称
+\presslogo{figures/Springer-logo.png} %出版社徽标
+\coverimage{figures/pexels-alex-andrews-816608.jpg}
+\makecover
+\thispagestyle{empty}\clearpage
+% \colorlet{outermarginbgcolor}{coverfgcolor!30}
+% \colorlet{outermarginfgcolor}{coverfgcolor}
+
+%\input{mainmatter/titlepage}%it is chinese version, and you can take it place with your own one.
+\frontmatter
+\pagenumbering{Roman}
+\input{mainmatter/preface} 
+\thispagestyle{empty}
+\definecolor{maincolor}{HTML}{8B8989}
+\tableofcontents\let\cleardoublepage\clearpage
+\mainmatter
+\pagenumbering{arabic}
+\partimage{figures/5.png}
+\partabstract{This is a part information example.}
+\part{Part Example}
+\input{mainmatter/theorem style}
+
+\normalem
+\printbibliography[
+heading=bibintoc,
+title={Reference}
+]
+\printindex
+\bottomimage{figures/M31OiiiArc_Strottner_5000.jpg}
+\summary{This is a bottom page information example.}
+\makebottomcover
+\end{document}

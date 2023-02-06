@@ -1,0 +1,162 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{stys/Titlepage}[2022/05/21,v1.0]
+\def\fontspath{fonts/}
+\usepackage{fontspec}
+\PassOptionsToPackage{quiet}{fontspec}%传递参数,以消除字体警告
+\usepackage{times}
+\setmainfont{Times New Roman}
+\newfontfamily\sandbox[Path=fonts/]{SANDBOX-TTF-2.ttf}
+\newfontfamily\Frick[Path=fonts/]{Frick0.3-Condensed-2.otf}
+\newfontfamily\Floane[Path=fonts/]{Floane-Regular-2.otf}
+\newfontfamily\cabin[
+Extension = .otf,
+UprightFont = *-Regular,
+    BoldFont = *-Bold,
+  ItalicFont = *-Italic,
+BoldItalicFont = *-BoldItalic,]{Cabin}
+\newfontfamily\sansa[Path=fonts/, Extension = .ttf,
+UprightFont = *_Regular,
+    BoldFont = *_Bold,
+  ItalicFont = *_Italic,
+BoldItalicFont = *_Bold_Italic,]{Sansation}
+\newfontfamily\dense[Path=fonts/]{Dense-Regular.otf}
+\newfontfamily\rodondo[Path=fonts/]{Rodondo.otf}
+\usepackage{anyfontsize} % 提供\fontsize{}{}\selectfont命令
+\usepackage{etoolbox} %提供自定义封面选项接口
+\usepackage[dvipsnames,svgnames,x11names,table]{xcolor}%颜色宏包 % Driver-independent color extensions
+\usepackage{tikz}
+\usepackage{graphicx} %插图
+\usetikzlibrary{calc,fadings,patterns}
+\usepackage{adjustbox} %修正minipage顶部对齐问题
+% \makeatletter
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+% \newcommand*\bookseries[1]{\def\@bookseries{#1}}
+% \newcommand*\subtitle[1]{\def\@subtitle{#1}}
+% \newcommand*\edition[1]{\def\@edition{#1}}
+% \newcommand*\presslogo[1]{\def\@presslogo{#1}}
+% \newcommand*\pressname[1]{\def\@pressname{#1}}
+%\newcommand*\coverimage[1]{\def\@coverimage{#1}}
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+% \makeatother
+%%%%===============================================================%%%%%
+%%------------------------------------------------------封面设计--------------------------------------------------------%%
+%%%%===============================================================%%%%%
+% \definecolor{coverbgcolor}{HTML}{9CCCDA}
+% \definecolor{coverfgcolor}{HTML}{508E99} %DE3A29 橙色
+% \definecolor{coverbar}{HTML}{508E99}
+% \newlength\outermarginwidth
+% \setlength\outermarginwidth{2cm}
+% \newlength\covershift
+% \setlength\covershift{5cm}
+\tikzfading[name=fade right,
+                    right color =transparent!100,
+                    left color=transparent!50]
+\tikzfading[name=fade left,
+                    left color =transparent!100,
+                    right color=transparent!50]
+\tikzfading[name=fade up,
+                    top color =transparent!100,
+                    bottom color=transparent!50]
+\tikzfading[name=fade down,
+                    bottom color =transparent!100,
+                    top color=transparent!50]
+\makeatletter
+\newcommand*\makecover{
+    %% Use the Tikz library positioning and clear the page header and footer
+    \usetikzlibrary{positioning}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture,overlay]
+        \fill[coverfgcolor]
+        (current page.north west) rectangle (current page.south east);% 填充封面背景颜色 (coverbgcolor)
+        \coordinate (start) at ($(current page.east)!0.5!(current page.north east)+(1,-1)$);
+    \coordinate (end)   at (current page.north west);
+    \foreach \i in {0,0.01,...,1}
+    {
+        \coordinate (point) at ($(start)!\i!(end)$);
+        \draw[qing!50]
+        ($(point)+(310*\i:6)$)--
+        ($(point)+(310*\i+120:6)$)--
+        ($(point)+(310*\i+240:6)$)--
+        ($(point)+(310*\i:6)$);
+    }
+    \coordinate (start) at (current page.south west);
+    \coordinate (end)   at (current page.east);
+    \foreach \i in {0,0.02,...,1}
+    {
+        \coordinate (point) at ($(start)!\i!(end)$);
+        \draw[qing!50]
+        ($(point)+(310*\i:10)$)--
+        ($(point)+(310*\i+120:10)$)--
+        ($(point)+(310*\i+240:10)$)--
+        ($(point)+(310*\i:10)$);
+    }
+        \shade[bottom color=coverfgcolor,top color=coverfgcolor!70,opacity=0.7]
+        ([xshift=.5\outermarginwidth]current page.north west) rectangle (current page.south east); % 背景大矩形
+        \shade[left color=coverfgcolor,right color=coverfgcolor!60,opacity=0.5]
+        ([xshift=\outermarginwidth,yshift=2\outermarginwidth]current page.west) rectangle (current page.south east); % 标题背景大矩形
+        \fill[coverbar!90,opacity=0.8]
+        ([yshift=2\outermarginwidth]current page.west) rectangle ([xshift=\outermarginwidth,yshift=-.2\outermarginwidth]current page.west); % 最左侧装饰矩形
+        \shade[bottom color=coverfgcolor!70,top color=coverfgcolor!80,opacity=.5]
+        ([xshift=\outermarginwidth]current page.north west) rectangle ([xshift=1.5\outermarginwidth,yshift=-1.75\covershift]current page.north west);%顶部琴键矩形1
+        \shade[top color=coverfgcolor!75,bottom color=coverfgcolor!65,opacity=.5]
+        ([xshift=1.5\outermarginwidth]current page.north west) rectangle ([xshift=2\outermarginwidth,yshift=-1.6\covershift]current page.north west);%顶部琴键矩形2
+        \shade[top color=coverfgcolor!70,bottom color=coverfgcolor!60,opacity=.5]
+        ([xshift=2\outermarginwidth]current page.north west) rectangle ([xshift=2.5\outermarginwidth,yshift=-1.3\covershift]current page.north west);%顶部琴键矩形3
+        \shade[top color=coverfgcolor!65,bottom color=coverfgcolor!55,opacity=.5]
+        ([xshift=2.5\outermarginwidth]current page.north west) rectangle ([xshift=3\outermarginwidth,yshift=-1\covershift]current page.north west);%顶部琴键矩形4
+        \shade[top color=coverfgcolor!60,bottom color=coverfgcolor!50,opacity=.5]
+        ([xshift=3\outermarginwidth]current page.north west) rectangle ([xshift=3.5\outermarginwidth,yshift=-.7\covershift]current page.north west);%顶部琴键矩形5
+        \shade[top color=coverfgcolor!70,bottom color=coverfgcolor!60,opacity=.5]
+        ([xshift=3.5\outermarginwidth]current page.north west) rectangle ([xshift=4\outermarginwidth,yshift=-1.2\covershift]current page.north west);%顶部琴键矩形6
+        \shade[top color=coverfgcolor!85,bottom color=coverfgcolor!75,opacity=.5]
+        ([xshift=4\outermarginwidth]current page.north west) rectangle ([xshift=4.5\outermarginwidth,yshift=-1.9\covershift]current page.north west);%顶部琴键矩形7
+        \shade[top color=coverfgcolor!65,bottom color=coverfgcolor!55,opacity=.5]
+        ([xshift=4.5\outermarginwidth]current page.north west) rectangle ([xshift=5\outermarginwidth,yshift=-1.1\covershift]current page.north west);%顶部琴键矩形8
+        \shade[top color=coverfgcolor!70,bottom color=coverfgcolor!60,opacity=.5]
+        ([xshift=5\outermarginwidth]current page.north west) rectangle ([xshift=5.5\outermarginwidth,yshift=-1.2\covershift]current page.north west);%顶部琴键矩形9
+        \shade[top color=coverfgcolor!75,bottom color=coverfgcolor!65,opacity=.5]
+        ([xshift=6\outermarginwidth]current page.north west) rectangle ([xshift=6.5\outermarginwidth,yshift=-1.6\covershift]current page.north west);%顶部琴键矩形10
+        \shade[top color=coverfgcolor!70,bottom color=coverfgcolor!60,opacity=.5]
+        ([xshift=6.5\outermarginwidth]current page.north west) rectangle ([xshift=7\outermarginwidth,yshift=-1.3\covershift]current page.north west);%顶部琴键矩形11
+        \shade[top color=coverfgcolor!80,bottom color=coverfgcolor!70,opacity=.5]
+        ([xshift=7\outermarginwidth]current page.north west) rectangle ([xshift=7.5\outermarginwidth,yshift=-1.87\covershift]current page.north west);%顶部琴键矩形12
+        \shade[top color=coverfgcolor!65,bottom color=coverfgcolor!55,opacity=.5]
+        ([xshift=7.5\outermarginwidth]current page.north west) rectangle ([xshift=8\outermarginwidth,yshift=-1.0\covershift]current page.north west);%顶部琴键矩形13
+        \shade[top color=coverfgcolor!60,bottom color=coverfgcolor!50,opacity=.5]
+        ([xshift=8\outermarginwidth]current page.north west) rectangle ([xshift=8.5\outermarginwidth,yshift=-0.9\covershift]current page.north west);%顶部琴键矩形14
+        \shade[top color=coverfgcolor!80,bottom color=coverfgcolor!70,opacity=.5]
+        ([xshift=8.5\outermarginwidth]current page.north west) rectangle ([xshift=9\outermarginwidth,yshift=-1.8\covershift]current page.north west);%顶部琴键矩形15
+        \shade[top color=coverfgcolor!75,bottom color=coverfgcolor!65,opacity=.5]
+        ([xshift=9\outermarginwidth]current page.north west) rectangle ([xshift=9.5\outermarginwidth,yshift=-1.6\covershift]current page.north west);%顶部琴键矩形16
+        \shade[top color=coverfgcolor!70,bottom color=coverfgcolor!60,opacity=.5]
+        ([xshift=9.5\outermarginwidth]current page.north west) rectangle ([xshift=10\outermarginwidth,yshift=-1.4\covershift]current page.north west);%顶部琴键矩形17
+        \shade[top color=coverfgcolor!65,bottom color=coverfgcolor!55,opacity=.5]
+        ([xshift=10\outermarginwidth]current page.north west) rectangle ([xshift=10.5\outermarginwidth,yshift=-1.0\covershift]current page.north west);%顶部琴键矩形18
+        \shade[top color=coverfgcolor!60,bottom color=coverfgcolor!50,opacity=.5]
+        ([xshift=10.5\outermarginwidth]current page.north west) rectangle ([xshift=11\outermarginwidth,yshift=-.7\covershift]current page.north west);%顶部琴键矩形19
+        \shade[top color=coverfgcolor!65,bottom color=coverfgcolor!55,opacity=.5]
+        ([xshift=11\outermarginwidth]current page.north west) rectangle ([xshift=11.5\outermarginwidth,yshift=-1.3\covershift]current page.north west);%顶部琴键矩形20
+        \node[anchor=south] at ([xshift=5.8\outermarginwidth,yshift=-.4\covershift]current page.north west) {
+        \parbox{.8\paperwidth}{
+        \raggedright
+        \color{white}\rodondo\fontsize{20}{22}\selectfont\@bookseries}
+        }; %系列丛书名称
+        \node[ anchor=south] at ([xshift=.3\outermarginwidth,yshift=-.5\paperheight]current page.north)
+    {\parbox{.8\paperwidth}{%
+            \raggedright
+            \color{white}\cabin\bfseries\fontsize{40}{40}\selectfont\@title\\[0.5ex]
+            \color{white}\cabin\fontsize{30}{30}\selectfont
+            \ifdefvoid{\@subtitle}{}{\@subtitle}
+        }};% 封面标题与副标题
+    \node[anchor=west,font=\rmfamily\bfseries\fontsize{25}{25}\itshape\selectfont,text=white] at ([xshift=1.4\outermarginwidth,yshift=-.8\covershift]current page.west) {\@edition};
+    \node[anchor=west,font=\cabin\bfseries\Huge,text=white] at ([xshift=1.4\outermarginwidth,yshift=\covershift]current page.west) {\@author};
+        \node[anchor=south,text=white,font=\rmfamily\fontsize{30}{30}\selectfont,] at
+        ([xshift=1.35\covershift,yshift=-.1\covershift]current page.south)  %
+    {\raisebox{-.3\covershift}{\includegraphics[width=0.3\linewidth]{\@presslogo}}\hspace*{-3.2ex}\parbox[c][\covershift][c]{.4\textwidth}{\@pressname}};%
+    \end{tikzpicture}%
+    \newpage
+}
+\makeatother
+%%%%===============================================================%%%%%
+%%------------------------------------------------------封面设计--------------------------------------------------------%%
+\endinput
