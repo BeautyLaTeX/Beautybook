@@ -1,0 +1,86 @@
+% 使用 BHCexam 文档类，并传递选项
+\documentclass[answers,custom]{BHCexam}
+\usepackage{wrapfig}
+\usepackage{hyperref}
+
+\begin{document}
+
+% 第一行主标题
+\title{出题卷}
+
+% 第二行主标题
+\subtitle{样例}
+
+% 考试说明
+\notice{满分100分, 10分钟完成.}
+
+% 命题人信息
+\author{微信关注公众号：橘子数学}
+
+% 考试日期
+\date{2019.12.1}
+
+% 生成试卷头
+\maketitle
+
+\begin{groups}
+
+% 第一个题组，显示分值，不预留空间
+\group{填空}{本题组共1小题，共30.0分}
+\begin{questions}[s]
+
+% 填空题，两个空
+\question[30] 橘子数学的网址是\key{www.mathcrowd.cn}, 橘子数学的微信公众号是\key{mathcrowd}.
+
+\end{questions}
+
+% 第二个题组，显示分值，不预留空间
+\group{选择}{本题组共2小题，共40.0分}
+\begin{questions}[ps]
+
+% 选择题，四个选项
+\question[30] 以下哪一项不是橘子数学社区的宗旨\key{C}.
+\fourchoices{开放}{高效}{无视版权}{合作}
+
+% 解答，4cm 参数被忽略
+\begin{solution}{4cm}
+\method 橘子数学社区的宗旨是开放、高效、合作、变革.
+\method 见 \href{http://docs.mathcrowd.cn/zh_CN/latest/community/principles.html}{橘子数学社区}
+\end{solution}
+
+% 选择题，五个选项
+\question[40] 以下数学公式显示有明显瑕疵的是\key{D}.
+\fivechoices{$\sin A\pi$}{$\sum_{i=1}^{nm}2+3\mathrm{i}$}{$x^2$}{$\ln x$}{$\mathrm{e}^{\mathrm{i}\theta}$}
+
+\begin{solution}{4cm}
+\methodonly D 中正确的公式显示效果为$\ln{x}$.
+\end{solution}
+\end{questions}
+
+% 第三个题组，显示分值，预留空间
+\group{主观题}{本题组共1小题，共30.0分}
+\begin{questions}[st]
+% 简答题，两个小问
+\question[30] 请回答以下问题：
+\begin{subquestions}
+    \subquestion 你觉得有必要创建这样一个试题社区吗? 为什么?
+    \subquestion 你对社区的建设有什么建议.
+\end{subquestions}
+
+% 解答，学生版会预留8cm的答题空间.
+\begin{solution}{8cm}
+    \methodonly 欢迎加入用户群组发言讨论.
+
+telegram 交流群组: https://t.me/mathcrowd
+
+QQ 群: 319701002
+
+Github项目页: \url{https://github.com/mathedu4all/mathcrowd-community/wiki}
+
+\score{30}{30}
+
+\end{solution}
+\end{questions}
+
+\end{groups}
+\end{document}
