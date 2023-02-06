@@ -1,0 +1,51 @@
+\documentclass{Beautybook v6.0}
+\newcommand{\Diff}[2][]{\frac{\partial #1}{\partial #2}}
+\newcommand{\Dif}[2]{\frac{\dd #1}{\dd #2}}
+\usepackage{tikz-cd}
+\begin{document}
+\thispagestyle{empty}
+\title{Reviewing Material}
+\subtitle{微分几何学笔记}
+\edition{First Edition}
+\bookseries{Preperation For The Final Test}
+\author{Shilong.Lu}
+\pressname{Springer}
+\presslogo{figures/Springer-logo.png}
+\coverimage{figures/pexels-alex-andrews-816608.jpg}
+\makecover
+
+\definecolor{bg}{HTML}{e0e0e0}
+\definecolor{fg}{HTML}{455a64}
+\colorlet{outermarginbgcolor}{bg}
+\colorlet{outermarginfgcolor}{fg}
+
+\input{Term I Note main/titlepage}
+\frontmatter
+\pagenumbering{Roman}
+\input{Term I Note main/preface}
+\thispagestyle{empty}
+\definecolor{maincolor}{HTML}{8B8989}
+\tableofcontents\let\cleardoublepage\clearpage
+\mainmatter
+\pagenumbering{arabic}
+\partimage{figures/5.png}
+\partabstract{本书系统地论述了微分几何的基本知识. 作者用前3章,  以及第6章共计4章的篇幅介绍了流形、多重线性函数、向量场、外微分、李群和活动标架等基本知识和工具.  基于上述基础知识,  论述了微分几何的核心问题,  即联络、黎曼几何、以及曲面论. 第7章是当前十分活跃的研究领域——复流形. 陈省身先生是此研究领域的大家,  此章包含有作者独到、深刻的见解和简捷、有效的方法. 第8章的Finsler几何是本书第2版新增加的一章,  它是陈省身先生近年来一直倡导的研究课题,  其中Chern联络具有突出的性质,  它使得黎曼几何成为Finsler几何的特殊情形. 最后两个附录,  介绍了大范围曲线论和曲面论,  以及微分几何与理论物理关系的论述,  为这两个活跃的前沿领域提出了不少进一步的研究课题. 
+本书的作者之一是已故数学家陈省身先生,  他开创并领导着整体微分几何、纤维丛微分几何、“陈省身示性类”等领域的研究,  他是第一个获得世界数学界最高荣誉“沃尔夫奖”的华人,  被称为“当今最伟大的数学家”,  被国际数学界尊为“微分几何之父”. }
+\part{微分几何讲义一陈省身}
+\input{Term I Note main/chapter1-xingshenChen}
+\partabstract{《微分流形与李群基础》根据F. w., 瓦内尔所著Foundations of Diffrentiable Manifoldsand Lie Groups(Springer出版社1983年版)一书译出. 《微分流形与李群基础》特色鲜明、选材精练、论述精辟, 全书共分6章, 其核心材料主要包含在第1, 2, 4章中, 包括微分流形、微分形式、流形上的积分以及de Rham上同调等, 第3章则比较系统地论述了Lie群论的基本内容, 第5章论述de Rham定理并为此发展了公理化层上同调论, 第6章论述Hodge定理并以Fourier级数为基本工具给出了椭圆算子局部理论的完整论述, 这在一般参考书中是不容易找到的. }
+\input{maincontents/differrential geometry}
+\partabstract{《复分析导引(北京市高等教育精品教材立项项目)》是为综合性大学、高等师范院校数学专业本科高年级学生和研究生编写的复分析教材, 其目的是讲述现代复分析（不含多复分析）的一些基本理论及其近代重要发展. 本书共分九章, 主要内容有: 正规族与Riemann映射定理, 经典几何函数论, 共形模与极值长度, 拟共形映射, Riemann曲面的基本概念, Riemann-Roch定理与单值化定理, Teichmuller理论与模空间. 这些内容与现代核心数学的许多分支领域有着深刻的联系. 因此, 本书不仅面向主修复分析的学生, 而且也面向其他有关领域的学生.  本书是在作者多年来使用的讲义基础上编写而成, 文字叙述简洁, 通俗易懂, 重点突出; 特别注重解释重要概念和重要定理的意义以及方法的实质；部分定理的证明具有自己的明显特色。书中对一些重要理论的历史发展及其与其他领域的联系，作了必要的介绍与评述.  本书可作为高等院校高年级大学生、研究生的复分析教材，也可作为有关专业研究人员的参考书. }
+\input{maincontents/complex annalysis}
+
+\normalem
+\printbibliography[
+heading=bibintoc,
+title={参考文献}
+]
+\printindex
+\thispagestyle{empty}
+\bottomimage{figures/M31OiiiArc_Strottner_5000.jpg}
+\summary{本书是复分析学的结课期考复习资料总结，主要包括了考试的证明题型以及各类的识记知识点,如黎曼映射定理、广义Schwarz引理等等。本书由本人期末写成, 仅用于复习.}
+\makebottomcover
+\end{document}
