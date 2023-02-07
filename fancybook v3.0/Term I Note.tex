@@ -1,0 +1,344 @@
+\documentclass[zihao=-4,fontset=windows,twoside]{ctexbook}
+\overfullrule=1pt
+\usepackage[dvipsnames,svgnames,x11names,table]{xcolor}
+\usepackage{cncolours}
+\usepackage{pgfornament-han}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows,hobby,intersections, decorations.markings, decorations.pathreplacing,spy,arrows,shapes,fadings,trees,mindmap,patterns,shapes.arrows,shapes.symbols,tikzmark,shapes.geometric,graphs, quotes, angles,decorations.pathmorphing,through,shadings,backgrounds,positioning,fit,arrows.meta,shapes.misc,decorations.shapes}
+\RequirePackage{pgfplots} %画图 %%页面样式设计核心包 %提供\pgfonlayer命令以及下列图层指令
+\pgfplotsset{compat=1.18}
+\usepackage{stys/Titlepage}
+\usepackage{stys/bottompage}
+\usepackage{amssymb,amsfonts}
+\usepackage{makeidx}
+\usepackage{etoolbox} % 判断函数
+\usepackage{paracol}
+\usepackage{etoc}
+\usepackage{calc}
+\usepackage{xkeyval,ifthen}
+\usepackage[backgroundcolor=yellow!40!cyan!20,bordercolor=yellow!40!cyan!20,linecolor=DarkCyan]{todonotes}
+\usepackage{varwidth}
+\usepackage[colorlinks,linkcolor = DarkCyan,		%%修改此处为你想要的颜色
+anchorcolor = DarkCyan,	%%修改此处为你想要的颜色
+urlcolor = DarkCyan,		%%修改此处为你想要的颜色
+citecolor = DarkCyan,		%%修改此处为你想要的颜色
+]{hyperref}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}%增加编号深度
+\usepackage{dashrule}
+\newlength\outermarginwidth
+\setlength\outermarginwidth{2cm}
+\newlength\covershift
+\setlength\covershift{5cm}
+\makeatletter
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+\newcommand*\bookseries[1]{\def\@bookseries{#1}}
+\newcommand*\subtitle[1]{\def\@subtitle{#1}}
+\newcommand*\edition[1]{\def\@edition{#1}}
+\newcommand*\presslogo[1]{\def\@presslogo{#1}}
+\newcommand*\pressname[1]{\def\@pressname{#1}}
+\newcommand*\coverimage[1]{\def\@coverimage{#1}}
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+\makeatother
+\usepackage{indentfirst}
+\usepackage{physics}
+\definecolor{nuanbai}{HTML}{f8f8f8} % F5F5F5
+\pagecolor{nuanbai!50}
+\usepackage{amsmath}
+\usepackage{zhlipsum}
+\setmainfont{XITS}
+\usepackage[left=2cm,right=2cm,top=.8cm,bottom=3.6cm]{geometry}
+\usepackage{xpatch}%修正章节编号
+\usepackage[automark]{scrlayer-scrpage}%页面设置宏包,隶属于koma-script文档类
+% \setcounter{secnumdepth}{5}%增加编号深度
+% \setcounter{tocdepth}{3} %增加目录深度
+\usepackage{fontawesome5}
+\usepackage{mathrsfs}
+
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins,theorems}%TcolorBox Library
+\usepackage{tabularx}
+\usepackage{lastpage}
+\usepackage{ninecolors}
+\usepackage{colortbl} %彩色表格
+\usepackage{tabularray}
+\usepackage{pgfornament}
+\usepackage{zhnumber}
+\usepackage{dashrule}
+\usepackage{adjustbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{amsthm}
+\usepackage{bclogo}
+\usepackage{ulem}
+\RequirePackage{pgfplots} %画图 %%页面样式设计核心包 %提供\pgfonlayer命令以及下列图层指令
+\pgfplotsset{compat=1.18}
+\usepackage{graphicx}%修正minipage顶部对齐问题
+
+\pgfdeclarelayer{background} %背景%底层
+\pgfdeclarelayer{foreground} %上层
+\pgfdeclarelayer{top} %顶部
+\pgfdeclarelayer{bottom} %底部
+\pgfsetlayers{bottom,background,main,foreground,top}
+%%%%===============================================================%%%%%
+
+\definecolor{qing}{HTML}{a88462}
+\definecolor{xieqing}{HTML}{88ada6}
+\definecolor{hex}{RGB}{217,230,232}  %grey
+\definecolor{hui}{HTML}{fffbf0}
+
+\newcommand{\triangler}[2][teal]{
+\begin{tikzpicture}[remember picture]
+\def\x{#2}
+\filldraw[#1] (-\x,\x) -- (0,0) --(-\x,-\x)--cycle;
+\filldraw[#1] (0,\x) -- (\x,0) -- (0,-\x)--cycle;
+\filldraw[#1] (\x,\x) -- (2*\x,0) -- (\x,-\x)--cycle;
+\end{tikzpicture}
+}
+\newcommand{\trianglel}[2][teal]{
+\begin{tikzpicture}[remember picture]
+\def\x{#2}
+\filldraw[#1] (\x,\x) -- (0,0) --(\x,-\x)--cycle;
+\filldraw[#1] (0,\x) -- (-\x,0) -- (0,-\x)--cycle;
+\filldraw[#1] (-\x,\x) -- (-2*\x,0) -- (-\x,-\x)--cycle;
+\end{tikzpicture}
+}
+\usepackage{lastpage}
+% 重置\rightmark与\leftmark名称
+\renewcommand{\chaptermark}[1]{\markboth{第{\upshape\thechapter} 章~ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{{\upshape\thesection}\ #1}}
+
+\setlength{\headheight}{50pt}
+\newlength\headradii
+\setlength\headradii{.16\headheight}
+\newcommand{\headstyle}{
+    \begin{tikzpicture}[remember picture,overlay]
+    \ifodd\value{page}
+    \path[fill,gray!40]
+    ([xshift=-\headheight,yshift=-.9\headheight]current page.north east) -- ([xshift=-.9\headheight-2cm,yshift=-.9\headheight]current page.north east) coordinate (NW) -- ([xshift=-3pt,yshift=-3.5pt]NW) node[above,text=black] (vline) {\color{black}\tikz\draw[line width=1pt] (0,0)--(0,.3\headheight);}--([xshift=-6pt]NW) -- ([xshift=\headheight,yshift=-.9\headheight]current page.north west)|-([xshift=-\headheight,yshift=-\headheight]current page.north east) --cycle;
+    % \node[right,font=\upshape] at (vline) {\thepage\ (\pageref{LastPage})};
+    \node[left] at (vline) {\begin{varwidth}{.9\linewidth}\trianglel[gray!50]{.45em}\rightmark\end{varwidth}};
+    
+    \path[fill,xieqing] ([shift={(-\headheight,-.9\headheight+2*\headradii)}]current page.north east) coordinate (NE) -- ([shift={(-1.5cm,0)}]NE) arc(90:270:\headradii) -- ([shift={(0,-2*\headradii)}]NE)--cycle;
+    \fill[xieqing!30] ([shift={(-1.5cm,0)}]NE) coordinate (ul) arc(90:270:\headradii)--++(1cm,0) coordinate (dr) arc(-90:90:\headradii)--cycle;
+    \node[font=\bfseries\upshape,text=black](pagenumber) at ($(ul)!0.5!(dr)$) {\thechapter\ 章};
+        \else
+        \path[fill,gray!40]
+        ([xshift=\headheight,yshift=-.9\headheight]current page.north west) -- ([xshift=.9\headheight+2cm,yshift=-.9\headheight]current page.north west) coordinate (NW) -- ([xshift=3pt,yshift=-3.5pt]NW) node[above,text=black] (vline) {\color{black}\tikz\draw[line width=1pt] (0,0)--(0,.3\headheight);}--([xshift=6pt]NW) -- ([xshift=-\headheight,yshift=-.9\headheight]current page.north east)|-([xshift=\headheight,,yshift=-\headheight]current page.north west) --cycle;
+    % \node[left,font=\upshape] at (vline) {(\pageref{LastPage})\ \thepage};
+    \node[right] at (vline) {\begin{varwidth}{.9\linewidth}\leftmark\triangler[gray!50]{.45em}\end{varwidth}};
+    \path[fill,xieqing] ([shift={(\headheight,-.9\headheight+2*\headradii)}]current page.north west) coordinate (Nl) -- ([shift={(1.5cm,0)}]Nl) arc(90:-90:\headradii) -- ([shift={(0,-2*\headradii)}]Nl)--cycle;
+    \fill[xieqing!30] ([shift={(1.5cm,0)}]Nl) coordinate (ull) arc(90:-90:\headradii)--++(-1cm,0) coordinate (drr) arc(270:90:\headradii)--cycle;
+    \node[font=\bfseries\upshape,text=black](pagenumberr) at ($(ull)!0.5!(drr)$) {\thesection\ 节};
+    \fi
+    \end{tikzpicture}
+}
+\newcommand{\pageheadstyle}{%
+    \begin{tikzpicture}[remember picture,overlay]
+    \coordinate (page head odd) at ([shift={(-\headheight,-.8\headheight)}]current page.north east);
+    \coordinate (page head even) at ([shift={(\headheight,-.8\headheight)}]current page.north west);
+    \ifodd\value{page}
+    \node[single arrow ,fill=hex!50,font=\bfseries\upshape,text=black,minimum height=8mm,left]
+    (page head information odd) at (page head odd) {\begin{varwidth}{.85\linewidth}\leftmark\end{varwidth}};
+    \else 
+    \node[signal ,fill=hex!50,font=\bfseries\upshape,text=black,minimum height=8mm,right]
+    (page head information even) at (page head even) {\begin{varwidth}{.85\linewidth}\rightmark\end{varwidth}};
+    \fi    
+    \end{tikzpicture}
+}
+\ihead{}
+\ohead{}
+\setlength{\headheight}{50pt}
+\chead{\headstyle}
+%%页脚
+\ifoot{}
+\cfoot{}
+\ofoot{\footSt}
+\setlength\footheight{50pt}
+\newcommand{\footSt}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \coordinate (page num odd) at ([shift={(\footheight,.9\footheight)}]current page.south west);
+        \coordinate (page num even) at ([shift={(-\footheight,.9\footheight)}]current page.south east);
+        \ifodd\value{page}
+    \node[circle,fill=gray!30,text=black,font=\bfseries\upshape,minimum size=6mm] (page numr) at (page num even) {\thepage};
+        \draw[line width=1.5pt] (page numr.west)--([xshift=-.2\linewidth]page numr.west) node[font=\slshape,text=black,left] {\begin{varwidth}{.75\linewidth}\leftmark\end{varwidth}};
+        \else 
+        \node[circle,fill=gray!30,text=black,font=\bfseries\upshape,minimum size=6mm] (page numl) at (page num odd) {\thepage};
+        \draw[line width=1.5pt] (page numl.east)--([xshift=.2\linewidth]page numl.east) node[font=\slshape,text=black,right] {\begin{varwidth}{.75\linewidth}\rightmark\end{varwidth}};
+        \fi
+    \end{tikzpicture}
+}
+\usepackage[explicit]{titlesec}
+\newtheorem*{solution}{\textbf{解答:~}}
+\newtheorem{defi}{\textbf{定义}}[section]
+\newtheorem{thm}{\textbf{定理}}[section]
+\newtheorem{lem}{\textbf{引理}}[section]
+\newtheorem{prop}{\textbf{命题}}[section]
+\renewcommand{\proofname}{\textbf{证明.}}
+\newtheorem{exam}{\textbf{题}}[chapter]
+\newtheorem{cor}{\textbf{推论}}[chapter]
+\newtheorem*{remark}{\textbf{评注}}
+
+\colorlet{CyaN}{yellow!40!cyan}
+\colorlet{OrangE}{yellow!20!orange}
+\colorlet{BluE}{cyan!70!blue}
+\colorlet{ReD}{red!20!orange}
+\colorlet{GreeN}{yellow!40!green}
+\tcolorboxenvironment{thm}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=CyaN!10, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{CyaN}, frame hidden}
+\tcolorboxenvironment{defi}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=ReD!5, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{ReD}, frame hidden}
+\tcolorboxenvironment{lem}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=BluE!5, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{BluE}, frame hidden}
+\tcolorboxenvironment{prop}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=OrangE!5, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{OrangE}, frame hidden}
+\tcolorboxenvironment{exam}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=GreeN!5, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{DarkGreen}, frame hidden}
+\tcolorboxenvironment{cor}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=violet!5, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{violet}, frame hidden}
+\newcommand*{\circled}[1]{\lower.7ex\hbox{\tikz\draw (0pt, 0pt)%
+    circle (.5em) node {\makebox[1em][c]{\small #1}};}}
+\newcommand{\twicecircle}{\raisebox{.7ex}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \draw[line width=0.6pt,black!60] (0,0) circle (3pt);
+        \fill[black]  (0,0) circle (1.6pt) ;
+    \end{tikzpicture}}
+}
+\newcommand{\exercise}[2][\bcicosaedre]{\bigskip
+\begin{tikzpicture}[remember picture,overlay]
+\draw[line width=2pt,loosely dotted,teal] (0,0)--node[pos=0.4,rectangle,minimum height=1.5em,font=\sffamily\Large,text=black,fill=black!2,drop shadow={opacity=.3, shadow xshift=0.1cm},anchor=center,
+	inner sep=1.5mm,
+	anchor=west,] {$#1$  ~ #2} (\linewidth,0);
+\end{tikzpicture}\bigskip\smallskip
+}
+\usepackage{extarrows}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\lan}[1]{\langle #1 \rangle}
+\newenvironment{eq}[1]{\begin{equation}\begin{aligned}#1}{\end{aligned}\end{equation}} %有编号
+\newenvironment{eq*}[1]{\begin{equation*}\begin{aligned}#1}{\end{aligned}\end{equation*}} %无编号
+\everymath{\displaystyle}
+
+
+%% --------目录页样式定制
+\titleformat{\chapter}{\huge\bfseries\filcenter}{}{1em}{
+    \begin{tikzpicture}[remember picture, overlay]%
+        \fill[CyaN!18,opacity=.5] (current page.north west) rectangle ++(\paperwidth,-.2\paperheight);
+        \node[left,font=\huge\bfseries] (contents name) at ([shift={(0cm,-3cm)}]current page.north east) {\begin{varwidth}{\linewidth}\baselineskip=2.6ex 第\thechapter\ 章\ #1\end{varwidth}};
+        \begin{pgfonlayer}{background}
+        \fill[DarkCyan,opacity=.8]([shift={(0,-4.25cm)}]current page.north west) rectangle ++(\paperwidth,-2mm);
+        \node[right] (image) at ([shift={(0,-2.5cm)}]current page.north west) {\includegraphics[width=3cm]{figures/hehua.png}};
+        \end{pgfonlayer}
+        \end{tikzpicture}
+    }
+\titleformat{name=\chapter,numberless}{\bfseries\huge\filcenter}{}{1em}{
+    \begin{tikzpicture}[remember picture, overlay]%
+        \fill[CyaN!18,opacity=.5] (current page.north west) rectangle ++(\paperwidth,-.2\paperheight);
+        \node[left,font=\huge\bfseries] (contents name) at ([shift={(0cm,-3cm)}]current page.north east) {\begin{varwidth}{.9\linewidth}\baselineskip=2.6ex #1\end{varwidth}};
+        \begin{pgfonlayer}{background}
+        \fill[DarkCyan,opacity=.8]([shift={(0,-4.25cm)}]current page.north west) rectangle ++(\paperwidth,-2mm);
+        \node[right] (image) at ([shift={(0,-2.2cm)}]current page.north west) {\includegraphics[width=3cm,angle =45]{figures/flower.png}};
+        \end{pgfonlayer}
+        \end{tikzpicture}
+}
+\titlespacing{\chapter}{0pt}{0pt}{65pt}
+%% ---------
+% -------- Part定制
+\definecolor{backgroundcolor}{HTML}{dfdfdf}
+\definecolor{barcolor}{HTML}{a8a8a8}
+% Partcode
+\makeatletter
+\newcommand*\partabstract[1]{\def\@partabstract{#1}}
+\newcommand*\partimage[1]{\def\@partimage{#1}}
+\titleformat{\part}
+{\normalfont\huge\filcenter}
+{}
+{20pt}
+{\begin{tikzpicture}[remember picture,overlay]
+    \def\barwidth{2cm}
+        \fill[backgroundcolor,opacity=0.6]
+    (current page.north west) rectangle (current page.south east);
+        \fill[barcolor]
+    (current page.north east) rectangle ++(-\barwidth,-\paperheight);
+        \node[] (hbar) at ($(current page.north)!0.33!(current page.south)$) {
+            \begin{tikzpicture}
+                \fill[white] 
+                (0,0) rectangle ++(\paperwidth,-1cm);
+                \fill[backgroundcolor]
+                (0,-.25cm) rectangle ++(\paperwidth,-.5cm);
+                \fill[barcolor]
+                (.67\paperwidth,-.25cm) rectangle ++(4.5cm,-.5cm);
+                \fill[barcolor!20!white]
+                (.67\paperwidth-1mm,-.25cm) rectangle ++(1mm,-.5cm);
+                \fill[barcolor!20!white]
+                (.67\paperwidth+4.4cm,-.25cm) rectangle ++(1mm,-.5cm);
+            \end{tikzpicture}
+        };
+        \node[above,font=\sffamily\huge,shift={(.33\linewidth,.5\barwidth)}] (partname) at (hbar) {第\,\zhnumber{\arabic{part}}\,部\,分};
+        \node[below,left,font=\bfseries\huge,shift={(.146\linewidth,-1.5*\barwidth)}] (partcontents) at (partname) {\begin{varwidth}{.8\linewidth}\raggedright\baselineskip=2.8ex  #1 \end{varwidth}}; % 标题名称
+        \node[below,,font=\kaishu\fontsize{13}{13}\selectfont,shift={(0\linewidth,-1.65*\barwidth)}] at (hbar) {\ifdefvoid{\@partabstract}{}{\begin{varwidth}{.85\linewidth}\baselineskip=3ex \@partabstract\end{varwidth}}}; % 简介文字调整
+            \begin{pgfonlayer}{background}
+                \node[above,shift={(-.4\linewidth,-4*\barwidth)},opacity=0.8] at (partname) {\ifdefvoid{\@partimage}{}{\includegraphics[width=1.2\linewidth]{\@partimage}}}; % 图片位置调整
+                \end{pgfonlayer}
+    \end{tikzpicture}}
+\makeatother
+\assignpagestyle{\part}{empty}
+%% -- Section 
+\titleformat{\section}
+{}
+{}
+{-.5em} %左右移动\thesection标签位置
+{\begin{tikzpicture}[remember picture,overlay]
+    \def\rad{7pt}
+    \def\Rad{3.5pt}
+    \def\tlength{3cm}
+    \def\theight{0.8cm}
+    \coordinate (sec) at (.6cm,0);
+    \fill[color=DarkCyan!80!black] ([xshift=\tlength-\Rad,yshift=5pt]sec.north west) coordinate (secnw) to[out=0,in=90,looseness=0.7] ([xshift=\tlength+0.5*\Rad]sec.north west) coordinate (NW)--([xshift=-2*\rad]NW)--cycle;
+    \path[fill=DarkCyan,drop shadow={opacity=0.3,shadow xshift=.05cm,shadow yshift=-.05cm}]
+    ([xshift=\rad,yshift=5pt]sec.north west) coordinate (topleft) to[out=180,in=0,looseness=1] ([xshift=-3*\rad,yshift=-\theight]sec.north west) --([xshift=\tlength-4*\rad,yshift=-\theight]sec.north west) coordinate (bottomright) to[out=0,in=180] ([xshift=\tlength,yshift=5pt]sec.north west) --cycle;
+    \coordinate (SecName) at ($(topleft)!0.5!(bottomright)$);
+    \node[text=white,font=\rmfamily\large\bfseries] at (SecName) {Sec \thesection};
+    \node[text=black,font=\rmfamily\bfseries\Large,below right] (secnum) at ([shift={(.1cm,-.16cm)}]secnw) {\begin{varwidth}{.8\linewidth}\baselineskip=22.5pt #1\end{varwidth}};
+\end{tikzpicture}}%[\addvspace{.5pc}]效果与在下面更改35pt变大一致, 最后一个选项为 [<after code>]
+\titlespacing{\section}{0pt}{0pt}{35pt}
+%% --------参考文献
+\usepackage[
+backend=biber,
+style=numeric,
+sorting=nty
+]{biblatex}
+\addbibresource{ref.bib}
+\makeindex
+\begin{document}
+\thispagestyle{empty}
+\title{复\hspace{1em}习\hspace{1em}资\hspace{1em}料}
+\subtitle{微分几何学笔记}
+\edition{第一版}
+\bookseries{期\hspace{1em}末\hspace{1em}复\hspace{1em}习}
+\author{Shilong.Lu}
+\pressname{Springer} %出版社名称
+\presslogo{figures/Springer-logo.png} %出版社徽标
+\makecover
+\input{Term I Note main/titlepage}
+\frontmatter
+\pagenumbering{Roman}
+\input{Term I Note main/preface}
+\thispagestyle{empty}
+\definecolor{maincolor}{HTML}{8B8989}
+\tableofcontents\let\cleardoublepage\clearpage
+\mainmatter
+\pagenumbering{arabic}
+\partimage{figures/5.png}
+\partabstract{本书系统地论述了微分几何的基本知识. 作者用前3章,  以及第6章共计4章的篇幅介绍了流形、多重线性函数、向量场、外微分、李群和活动标架等基本知识和工具.  基于上述基础知识,  论述了微分几何的核心问题,  即联络、黎曼几何、以及曲面论. 第7章是当前十分活跃的研究领域——复流形. 陈省身先生是此研究领域的大家,  此章包含有作者独到、深刻的见解和简捷、有效的方法. 第8章的Finsler几何是本书第2版新增加的一章,  它是陈省身先生近年来一直倡导的研究课题,  其中Chern联络具有突出的性质,  它使得黎曼几何成为Finsler几何的特殊情形. 最后两个附录,  介绍了大范围曲线论和曲面论,  以及微分几何与理论物理关系的论述,  为这两个活跃的前沿领域提出了不少进一步的研究课题. 
+本书的作者之一是已故数学家陈省身先生,  他开创并领导着整体微分几何、纤维丛微分几何、“陈省身示性类”等领域的研究,  他是第一个获得世界数学界最高荣誉“沃尔夫奖”的华人,  被称为“当今最伟大的数学家”,  被国际数学界尊为“微分几何之父”. }
+\part{微分几何讲义一陈省身}
+\input{Term I Note main/chapter1-xingshenChen}
+\partabstract{《微分流形与李群基础》根据F. w., 瓦内尔所著Foundations of Diffrentiable Manifoldsand Lie Groups(Springer出版社1983年版)一书译出. 《微分流形与李群基础》特色鲜明、选材精练、论述精辟, 全书共分6章, 其核心材料主要包含在第1, 2, 4章中, 包括微分流形、微分形式、流形上的积分以及de Rham上同调等, 第3章则比较系统地论述了Lie群论的基本内容, 第5章论述de Rham定理并为此发展了公理化层上同调论, 第6章论述Hodge定理并以Fourier级数为基本工具给出了椭圆算子局部理论的完整论述, 这在一般参考书中是不容易找到的. }
+\input{maincontents/differrential geometry}
+\partabstract{《复分析导引(北京市高等教育精品教材立项项目)》是为综合性大学、高等师范院校数学专业本科高年级学生和研究生编写的复分析教材, 其目的是讲述现代复分析（不含多复分析）的一些基本理论及其近代重要发展. 本书共分九章, 主要内容有: 正规族与Riemann映射定理, 经典几何函数论, 共形模与极值长度, 拟共形映射, Riemann曲面的基本概念, Riemann-Roch定理与单值化定理, Teichmuller理论与模空间. 这些内容与现代核心数学的许多分支领域有着深刻的联系. 因此, 本书不仅面向主修复分析的学生, 而且也面向其他有关领域的学生.  本书是在作者多年来使用的讲义基础上编写而成, 文字叙述简洁, 通俗易懂, 重点突出; 特别注重解释重要概念和重要定理的意义以及方法的实质；部分定理的证明具有自己的明显特色。书中对一些重要理论的历史发展及其与其他领域的联系，作了必要的介绍与评述.  本书可作为高等院校高年级大学生、研究生的复分析教材，也可作为有关专业研究人员的参考书. }
+\input{maincontents/complex annalysis}
+
+\normalem
+\printbibliography[
+heading=bibintoc,
+title={参考文献}
+]
+\printindex
+\summary{本书是复分析学的结课期考复习资料总结，主要包括了考试的证明题型以及各类的识记知识点,如黎曼映射定理、广义Schwarz引理等等。本书由本人期末写成, 仅用于复习.}
+\makebottomcover
+\end{document}

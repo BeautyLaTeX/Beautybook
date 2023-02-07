@@ -1,0 +1,426 @@
+\documentclass[zihao=-4,fontset=windows,twoside]{ctexbook}
+\usepackage[dvipsnames,svgnames,x11names,table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows,hobby,intersections, decorations.markings, decorations.pathreplacing,spy,arrows,shapes,fadings,trees,mindmap,patterns,shapes.arrows,shapes.symbols,tikzmark,shapes.geometric,graphs, quotes, angles,decorations.pathmorphing,through,shadings,backgrounds,positioning,fit,arrows.meta,shapes.misc,decorations.shapes}
+\RequirePackage{pgfplots} %画图 %%页面样式设计核心包 %提供\pgfonlayer命令以及下列图层指令
+\pgfplotsset{compat=1.18}
+\usepackage{stys/secondtitlepage}
+\usepackage{stys/bottompage}
+% \usepackage{unicode-math}
+% \setmathfont{XITS Math}
+% \setmathfont[range=bb]{TeX Gyre Termes Math} %定义\mathbb的字体,原字体XITSMath的\mathbb太丑,无法接受,遂换回原来的
+\usepackage{amssymb,amsfonts}
+\usepackage{etoolbox} % 判断函数
+\usepackage{paracol}
+\usepackage{etoc}
+\usepackage{calc}
+\usepackage{varwidth}
+\usepackage[colorlinks]{hyperref}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}%增加编号深度
+\usepackage{dashrule}
+\newlength\outermarginwidth
+\setlength\outermarginwidth{2cm}
+\newlength\covershift
+\setlength\covershift{5cm}
+\makeatletter
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+\newcommand*\bookseries[1]{\def\@bookseries{#1}}
+\newcommand*\subtitle[1]{\def\@subtitle{#1}}
+\newcommand*\edition[1]{\def\@edition{#1}}
+\newcommand*\presslogo[1]{\def\@presslogo{#1}}
+\newcommand*\pressname[1]{\def\@pressname{#1}}
+\newcommand*\coverimage[1]{\def\@coverimage{#1}}
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+\makeatother
+
+\usepackage{physics}
+\definecolor{nuanbai}{HTML}{f8f8f8} % F5F5F5
+\pagecolor{nuanbai!50}
+\usepackage{amsmath}
+\usepackage{fontspec}
+\usepackage{zhlipsum}
+\setmainfont{XITS}
+\usepackage[left=2cm,right=2cm,top=.8cm,bottom=3.6cm]{geometry}
+\usepackage{xpatch}%修正章节编号
+\usepackage[automark]{scrlayer-scrpage}%页面设置宏包,隶属于koma-script文档类
+% \setcounter{secnumdepth}{5}%增加编号深度
+% \setcounter{tocdepth}{3} %增加目录深度
+\usepackage{fontawesome5}
+\usepackage{mathrsfs}
+
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins,theorems}%TcolorBox Library
+\usepackage{tabularx}
+\usepackage{lastpage}
+\usepackage{ninecolors}
+\usepackage{colortbl} %彩色表格
+\usepackage{tabularray}
+\usepackage{pgfornament}
+\usepackage{zhnumber}
+\usepackage{dashrule}
+\usepackage{adjustbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{amsthm}
+\usepackage{bclogo}
+\usepackage{ulem}
+\RequirePackage{pgfplots} %画图 %%页面样式设计核心包 %提供\pgfonlayer命令以及下列图层指令
+\pgfplotsset{compat=1.18}
+\usepackage{graphicx}%修正minipage顶部对齐问题
+
+\pgfdeclarelayer{background} %背景%底层
+\pgfdeclarelayer{foreground} %上层
+\pgfdeclarelayer{top} %顶部
+\pgfdeclarelayer{bottom} %底部
+\pgfsetlayers{bottom,background,main,foreground,top}
+%%%%===============================================================%%%%%
+% \makeatletter
+% \newcommand*\footimage[1]{\def\@footimage{#1}}
+% \newcommand*\foottext[1]{\def\@foottext{#1}}
+% \newcommand*\foottheme[1]{\def\@foottheme{#1}}
+% \makeatother
+
+\definecolor{qing}{HTML}{a88462}
+\definecolor{xieqing}{HTML}{88ada6}
+\definecolor{hex}{RGB}{217,230,232}  %grey
+\definecolor{hui}{HTML}{fffbf0}
+
+\newcommand{\triangler}[2][teal]{
+\begin{tikzpicture}[remember picture]
+\def\x{#2}
+\filldraw[#1] (-\x,\x) -- (0,0) --(-\x,-\x)--cycle;
+\filldraw[#1] (0,\x) -- (\x,0) -- (0,-\x)--cycle;
+\filldraw[#1] (\x,\x) -- (2*\x,0) -- (\x,-\x)--cycle;
+\end{tikzpicture}
+}
+\newcommand{\trianglel}[2][teal]{
+\begin{tikzpicture}[remember picture]
+\def\x{#2}
+\filldraw[#1] (\x,\x) -- (0,0) --(\x,-\x)--cycle;
+\filldraw[#1] (0,\x) -- (-\x,0) -- (0,-\x)--cycle;
+\filldraw[#1] (-\x,\x) -- (-2*\x,0) -- (-\x,-\x)--cycle;
+\end{tikzpicture}
+}
+%%------------------------------------------%%
+% Tikz(node)等各种样式设置汇总
+% \tikzset{pagenumnode./style={circle,fill=gray!30,text=black,font=\bfseries\upshape,minimum size=6mm},
+% % chapnode./style={},
+% }
+%%-----------------------------------------%%
+\usepackage{lastpage}
+% 重置\rightmark与\leftmark名称
+\renewcommand{\chaptermark}[1]{\markboth{第{\upshape\thechapter} 章~ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{{\upshape\thesection}\ #1}}
+
+\setlength{\headheight}{50pt}
+\newlength\headradii
+\setlength\headradii{.16\headheight}
+\newcommand{\headstyle}{
+    \begin{tikzpicture}[remember picture,overlay]
+    \ifodd\value{page}
+    \path[fill,gray!40]
+    ([xshift=-\headheight,yshift=-.9\headheight]current page.north east) -- ([xshift=-.9\headheight-2cm,yshift=-.9\headheight]current page.north east) coordinate (NW) -- ([xshift=-3pt,yshift=-3.5pt]NW) node[above,text=black] (vline) {\color{black}\tikz\draw[line width=1pt] (0,0)--(0,.3\headheight);}--([xshift=-6pt]NW) -- ([xshift=\headheight,yshift=-.9\headheight]current page.north west)|-([xshift=-\headheight,yshift=-\headheight]current page.north east) --cycle;
+   % \node[right,font=\upshape] at (vline) {\thepage\ (\pageref{LastPage})};
+   \node[left] at (vline) {\begin{varwidth}{.9\linewidth}\trianglel[gray!50]{.45em}\rightmark\end{varwidth}};
+   
+   \path[fill,xieqing] ([shift={(-\headheight,-.9\headheight+2*\headradii)}]current page.north east) coordinate (NE) -- ([shift={(-1.5cm,0)}]NE) arc(90:270:\headradii) -- ([shift={(0,-2*\headradii)}]NE)--cycle;
+   \fill[xieqing!30] ([shift={(-1.5cm,0)}]NE) coordinate (ul) arc(90:270:\headradii)--++(1cm,0) coordinate (dr) arc(-90:90:\headradii)--cycle;
+   \node[font=\bfseries\upshape,text=black](pagenumber) at ($(ul)!0.5!(dr)$) {\thechapter\ 章};
+    \else
+    \path[fill,gray!40]
+    ([xshift=\headheight,yshift=-.9\headheight]current page.north west) -- ([xshift=.9\headheight+2cm,yshift=-.9\headheight]current page.north west) coordinate (NW) -- ([xshift=3pt,yshift=-3.5pt]NW) node[above,text=black] (vline) {\color{black}\tikz\draw[line width=1pt] (0,0)--(0,.3\headheight);}--([xshift=6pt]NW) -- ([xshift=-\headheight,yshift=-.9\headheight]current page.north east)|-([xshift=\headheight,,yshift=-\headheight]current page.north west) --cycle;
+   % \node[left,font=\upshape] at (vline) {(\pageref{LastPage})\ \thepage};
+   \node[right] at (vline) {\begin{varwidth}{.9\linewidth}\leftmark\triangler[gray!50]{.45em}\end{varwidth}};
+  \path[fill,xieqing] ([shift={(\headheight,-.9\headheight+2*\headradii)}]current page.north west) coordinate (Nl) -- ([shift={(1.5cm,0)}]Nl) arc(90:-90:\headradii) -- ([shift={(0,-2*\headradii)}]Nl)--cycle;
+   \fill[xieqing!30] ([shift={(1.5cm,0)}]Nl) coordinate (ull) arc(90:-90:\headradii)--++(-1cm,0) coordinate (drr) arc(270:90:\headradii)--cycle;
+   \node[font=\bfseries\upshape,text=black](pagenumberr) at ($(ull)!0.5!(drr)$) {\thesection\ 节};
+   \fi
+    \end{tikzpicture}
+}
+\newcommand{\pageheadstyle}{%
+    \begin{tikzpicture}[remember picture,overlay]
+    \coordinate (page head odd) at ([shift={(-\headheight,-.8\headheight)}]current page.north east);
+    \coordinate (page head even) at ([shift={(\headheight,-.8\headheight)}]current page.north west);
+    \ifodd\value{page}
+    \node[single arrow ,fill=hex!50,font=\bfseries\upshape,text=black,minimum height=8mm,left]
+    (page head information odd) at (page head odd) {\begin{varwidth}{.85\linewidth}\leftmark\end{varwidth}};
+    \else 
+    \node[signal ,fill=hex!50,font=\bfseries\upshape,text=black,minimum height=8mm,right]
+    (page head information even) at (page head even) {\begin{varwidth}{.85\linewidth}\rightmark\end{varwidth}};
+    \fi    
+    \end{tikzpicture}
+}
+\ihead{}
+\ohead{}
+\setlength{\headheight}{50pt}
+\chead{\headstyle}
+%%页脚
+\ifoot{}
+\cfoot{}
+\ofoot{\footSt}
+\setlength\footheight{50pt}
+\newcommand{\footSt}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \coordinate (page num odd) at ([shift={(\footheight,.9\footheight)}]current page.south west);
+        \coordinate (page num even) at ([shift={(-\footheight,.9\footheight)}]current page.south east);
+        \ifodd\value{page}
+    \node[circle,fill=gray!30,text=black,font=\bfseries\upshape,minimum size=6mm] (page numr) at (page num even) {\thepage};
+        \draw[line width=1.5pt] (page numr.west)--([xshift=-.2\linewidth]page numr.west) node[font=\slshape,text=black,left] {\begin{varwidth}{.75\linewidth}\leftmark\end{varwidth}};
+        \else 
+        \node[circle,fill=gray!30,text=black,font=\bfseries\upshape,minimum size=6mm] (page numl) at (page num odd) {\thepage};
+        \draw[line width=1.5pt] (page numl.east)--([xshift=.2\linewidth]page numl.east) node[font=\slshape,text=black,right] {\begin{varwidth}{.75\linewidth}\rightmark\end{varwidth}};
+        \fi
+    \end{tikzpicture}
+}
+
+% % -------- Part定制
+\usepackage[explicit]{titlesec}
+% \definecolor{backgroundcolor}{HTML}{dfdfdf}
+% \definecolor{barcolor}{HTML}{a8a8a8}
+% % Partcode
+% \makeatletter
+% \newcommand*\partabstract[1]{\def\@partabstract{#1}}
+% \newcommand*\partimage[1]{\def\@partimage{#1}}
+% \titleformat{\part}
+%   {\normalfont\huge\filcenter}
+%   {}
+%   {20pt}
+%   {\begin{tikzpicture}[remember picture,overlay]
+%     \def\barwidth{2cm}
+%         \fill[backgroundcolor]
+%     (current page.north west) rectangle (current page.south east);
+%         \fill[barcolor]
+%     (current page.north east) rectangle ++(-\barwidth,-\paperheight);
+%         \node[] (hbar) at ($(current page.north)!0.33!(current page.south)$) {
+%             \begin{tikzpicture}
+%                 \fill[white] 
+%                 (0,0) rectangle ++(\paperwidth,-1cm);
+%                 \fill[backgroundcolor]
+%                 (0,-.25cm) rectangle ++(\paperwidth,-.5cm);
+%                 \fill[barcolor]
+%                 (.67\paperwidth,-.25cm) rectangle ++(4.5cm,-.5cm);
+%             \end{tikzpicture}
+%         };
+%         \node[above,font=\sffamily\huge,shift={(.52\linewidth,.5\barwidth)}] (partname) at (hbar) {第\,\zhnumber{\thepart}\,部\,分};
+%         \node[below,font=\bfseries\huge,shift={(.29\linewidth,-.8\barwidth)}] (partcontents) at (hbar) {\begin{varwidth}{.9\linewidth}
+%             #1
+%         \end{varwidth}};
+%         \node[below,,font=\itshape\Large,shift={(0\linewidth,-1.4*\barwidth)}] at (hbar) {\ifdefvoid{\@partabstract}{}{\begin{varwidth}{1.2\linewidth}\@partabstract\end{varwidth}}};
+%         \node[above,shift={(-.1\linewidth,.8*\barwidth)},opacity=0.4] at (partname) {\ifdefvoid{\@partimage}{}{\includegraphics[width=.5\linewidth]{\@partimage}}};
+%     \end{tikzpicture}}
+% \makeatother
+% \assignpagestyle{\part}{empty}
+% --------
+\newtheorem*{solution}{\textbf{解答:~}}
+\newtheorem{defi}{\textbf{定义}}[section]
+\newtheorem{thm}{\textbf{定理}}[section]
+\newtheorem{lem}{\textbf{引理}}[section]
+\newtheorem{prop}{\textbf{命题}}[section]
+\renewcommand{\proofname}{\textbf{证明.}}
+\newtheorem{exam}{\textbf{题}}[chapter]
+\newtheorem{cor}{\textbf{推论}}[chapter]
+\newtheorem*{remark}{\textbf{评注}}
+
+\colorlet{CyaN}{yellow!40!cyan}
+\colorlet{OrangE}{yellow!20!orange}
+\colorlet{BluE}{cyan!70!blue}
+\colorlet{ReD}{red!20!orange}
+\colorlet{GreeN}{yellow!50!green}
+\tcolorboxenvironment{thm}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=CyaN!10, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{CyaN}, frame hidden}
+\tcolorboxenvironment{defi}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=ReD!10, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{ReD}, frame hidden}
+\tcolorboxenvironment{lem}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=BluE!10, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{BluE}, frame hidden}
+\tcolorboxenvironment{prop}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=OrangE!10, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{OrangE}, frame hidden}
+\tcolorboxenvironment{exam}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=GreeN!10, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{GreeN}, frame hidden}
+\tcolorboxenvironment{cor}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=violet!10, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{violet}, frame hidden}
+
+\newcommand{\exercise}[2][\bcicosaedre]{\bigskip
+\begin{tikzpicture}[remember picture,overlay]
+\draw[line width=2pt,loosely dotted,teal] (0,0)--node[pos=0.4,rectangle,minimum height=1.5em,font=\sffamily\Large,text=black,fill=black!2,drop shadow={opacity=.3, shadow xshift=0.1cm},anchor=center,
+	inner sep=1.5mm,
+	anchor=west,] {$#1$  ~ #2} (\linewidth,0);
+\end{tikzpicture}\bigskip\smallskip
+}
+
+\newcommand{\R}{\mathbb{R}}
+\newenvironment{eq}[1]{\begin{equation}\begin{aligned}#1}{\end{aligned}\end{equation}} %有编号
+\newenvironment{eq*}[1]{\begin{equation*}\begin{aligned}#1}{\end{aligned}\end{equation*}} %无编号
+\everymath{\displaystyle}
+\begin{document}
+\thispagestyle{empty}
+\title{复习资料}
+\subtitle{复分析}
+\edition{第一版}
+\bookseries{期末复习}
+\author{Shilong.Lu}
+\pressname{Springer} %出版社名称
+\presslogo{figures/Springer-logo.png} %出版社徽标
+\makecover
+
+\thispagestyle{empty}
+\frontmatter
+\pagenumbering{Roman}
+\definecolor{maincolor}{HTML}{8B8989}
+\makeatletter
+\newlength{\parttocsep}
+%%%---只需改这中间的即可，如果要改间距再改后面的
+\newcommand{\toccolorlist}{black,red!70,green!30!black,blue!30!black,,black!70,purple!30!black}
+%% 颜色自己加，使用逗号分割即可，在目录中 \tocthecolor 保存了当前值
+%%%---
+\ExplSyntaxOn
+\tl_set:Nn \tocthecolor {black}
+\cs_new_protected:Npn \toccolor #1
+  {
+    \tl_set:Nx \tocthecolor
+      {
+        \clist_item:Nn \toccolorlist
+          { \int_mod:nn {#1} { \clist_count:N \toccolorlist } + 1 }
+      }
+    \normalcolor
+  }
+\ExplSyntaxOff
+\newcommand{\chapbox}[1]{\begin{tcolorbox}[enhanced jigsaw,breakable,colback=black!2,boxrule=0pt,fuzzy shadow={-0.8mm}{0.8mm}{0mm}{0.4mm}{white!50!maincolor},%上
+fuzzy shadow={0.8mm}{-0.8mm}{0mm}{0.4mm}{fill=black!90!maincolor}%下
+,width=\linewidth
+]
+\color{\tocthecolor} #1
+\end{tcolorbox}\vspace*{-1.5ex}}
+
+\newcommand{\partpage}[1]{\begin{tcolorbox}[enhanced jigsaw,breakable,square,circular arc,halign=center,valign=center,colback=nuanbai!90!white,boxrule=0pt,fuzzy shadow={-0.8mm}{0.8mm}{0mm}{0.4mm}{white!50!maincolor},%上
+fuzzy shadow={0.8mm}{-0.8mm}{0mm}{0.4mm}{fill=black!90!maincolor}%下
+,width=.5\columnwidth,fontupper=\bfseries\fontsize{15}{15}\selectfont,%halign=center,valign=center,
+]
+\centering\color{\tocthecolor} #1
+\end{tcolorbox}\vspace{-.8ex}}
+
+\setlength{\parttocsep}{12pt plus 4pt minus 4pt}
+% #1=number, #2=name, #3=page
+\newcommand{\parttocbox}[3]{\zihao{-3}\centering\partpage{#1} 
+  \parbox[t]{.7\columnwidth}{\bfseries\large #2\hfill  #3}}
+  
+\newcommand{\chaptertocbox}[3]{%
+  \parbox{2em}{\bfseries #1}%
+    \begin{varwidth}{\linewidth-4em}\bfseries #2\end{varwidth}\hfill\bfseries #3}
+    
+\newcommand{\chaptertocdashed}{\noindent\makebox[\columnwidth]{\dotfill}}
+\newcommand{\tocinitials}{\columnratio{.33}
+  \twosided[m]%
+  \setlength{\columnseprule}{3pt}% 中间的线宽
+  \setlength{\parindent}{0pt}}
+  
+\newcommand{\parttoccode}{{\parttocbox{Part \etocnumber}{\etocname}{\two@digits{\etocthepage}}\par}}
+
+\newcommand{\chaptertoccode}{{\chaptertocbox{\etocnumber}{\etocname}{\etocpage}\\[-1em]\tikz\draw[thick] (0,0)--++(\linewidth,0);\par}}
+
+\newcommand{\sectiontoccode}{\@dottedtocline{1}{0em}{3.7em}{\etocnumber\enskip\etocname}{\etocpage}}
+
+\newcommand{\subsectiontoccode}{\@dottedtocline{2}{0em}{2.6em}{\etocnumber\enskip\etocname}{\etocpage}}
+
+\newcommand{\subsubsectiontoccode}{\@dottedtocline{3}{0em}{2.6em}{\etocnumber\etocname}{\etocpage}}
+
+\newcommand{\tocnumberline}[1]{%
+  \protect\numberline{\CTEXifname{\number\value{#1}}{0}}}
+%% 必须留着
+\ctexset{part/tocline=\tocnumberline{part}{#2},
+  chapter/tocline=\tocnumberline{chapter}{#2},
+  section/name={第,节},section/number=\arabic{section},
+  subsection/number={\thesection.\arabic{subsection}},}
+\renewcommand*{\thesection}{\arabic{chapter}.\arabic{section}}
+\counterwithin{chapter}{part}
+
+\begingroup
+\etocsetstyle{part}
+  {}
+  {\@bsphack\tocinitials\@esphack
+    \def\normalcolor{\color{\tocthecolor}}%
+    \etociffirst{}{\addvspace{\parttocsep}}%
+    \begin{paracol}{2}\nointerlineskip}
+  {\switchcolumn[0]* \toccolor{\etocthenumber}\parttoccode}
+  {}
+\etocsetstyle{chapter}
+  {\switchcolumn \nointerlineskip}
+  {\etociffirst{}{\par\chaptertocdashed\par}}
+  {\chaptertoccode\par \prevdepth-\@m\p@ \vspace{1ex+\lineskip}\par}
+  {\par\vspace{-1ex-\lineskip}\end{paracol}}
+\etocsetstyle{section}
+  {\par}
+  {}
+  {\sectiontoccode}
+  {\par\prevdepth-\@m\p@ \vspace{1ex+\lineskip}\par}
+\etocsetstyle{subsection}
+  {\par}
+  {}
+  {\subsectiontoccode}
+  {\par}
+\etocsetstyle{subsubsection}
+  {\par}
+  {}
+  {\subsubsectiontoccode}
+  {\par}
+\tableofcontents
+\endgroup
+\makeatother
+% \thispagestyle{empty}
+% \ExplSyntaxOn
+% % https://ask.latexstudio.net/ask/question/7397.html
+% \NewDocumentCommand \approxhdashrule { O{0pt} m m m }
+%   {
+%     \hbox_to_wd:nn {#2}
+%       {
+%         \int_set:Nn \l_tmpa_int 
+%           { 
+%             2 * \int_div_round:nn { \int_value:w \tex_dimexpr:D #2 } 
+%                                   { 2 * \int_value:w \tex_dimexpr:D #4 } + 1 
+%           }
+%         \dim_set:Nn \l_tmpa_dim { \dim_eval:n {#2} / \l_tmpa_int }
+%         \hdashrule [#1] {#2} {#3} { \l_tmpa_dim }
+%         \hbox_overlap_left:n { \rule [#1] { \l_tmpa_dim } {#3} }
+%       }
+%   }
+% \ExplSyntaxOff
+
+% \ctexset{section/tocline={\protect\numberline{第\chinese{section}节}#2}}
+
+% \makeatletter
+% \newlist{thetoclist}{itemize}{5}
+% % chapter
+% \setlist[thetoclist,1]{nosep,label=\etocnumber,
+%   left=0cm..5\ccwd,labelsep=1\ccwd}
+% % section
+% \setlist[thetoclist,2]{nosep,label=\etocnumber,
+%   left=5\ccwd..4\ccwd,labelsep=1\ccwd}
+% % subsection
+% \setlist[thetoclist,3]{nosep,label=\etocnumber,
+%   left=5\ccwd..3\ccwd,labelsep=1\ccwd}
+% \newcommand{\thetoc@dashed}{\noindent
+%   \approxhdashrule[.6ex]{\linewidth}{.6pt}{4pt}\par}
+% \let\thetocdashed\relax
+% \providecommand{\three@digits}[1]{\ifnum#1<10 0\fi
+%   \ifnum#1<100 0\fi \number#1 }
+% \etocsetstyle{chapter}
+%   {\begin{thetoclist}}
+%   {\etociffirst{}{\thetoc@dashed}%
+%     \rmfamily\bfseries\item}
+%   {\etocname\hfill \slshape\three@digits\etocthepage}
+%   {\end{thetoclist}}
+% \etocsetstyle{section}
+%   {\begin{thetoclist}}
+%   {\normalfont\item}
+%   {\etocname\hfill \slshape\three@digits\etocthepage}
+%   {\end{thetoclist}}
+% \etocsetstyle{subsection}
+%   {\begin{thetoclist}}
+%   {\normalfont\item}
+%   {\etocname\hfill \slshape\three@digits\etocthepage}
+%   {\end{thetoclist}}
+%   \frontmatter
+% \localtableofcontents\let\cleardoublepage\clearpage
+% \makeatother
+
+\mainmatter
+\pagenumbering{arabic}
+\input{maincontents/complex annalysis}
+
+\summary{本书是复分析学的结课期考复习资料总结，主要包括了考试的证明题型以及各类的识记知识点,如黎曼映射定理、广义Schwarz引理等等。本书由本人期末写成，仅用于复习.}
+\makebottomcover
+\end{document}

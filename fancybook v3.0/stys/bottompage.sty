@@ -1,0 +1,212 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{stys/bottompage}[2022/05/21,v1.0]
+% \def\fontspath{fonts/}
+% \usepackage{fontspec}
+% \setmainfont{Times New Roman}
+% \newfontfamily\sandbox[Path=fonts/]{SANDBOX-TTF-2.ttf}
+% \newfontfamily\Frick[Path=fonts/]{Frick0.3-Condensed-2.otf}
+% \newfontfamily\Floane[Path=fonts/]{Floane-Regular-2.otf}
+% \newfontfamily\cabin[Path=fonts/, Extension = .otf,
+% UprightFont = *-Regular,
+%     BoldFont = *-Bold,
+%   ItalicFont = *-Italic,
+% BoldItalicFont = *-BoldItalic,]{Cabin}
+% \newfontfamily\sansa[Path=fonts/, Extension = .ttf,
+% UprightFont = *_Regular,
+%     BoldFont = *_Bold,
+%   ItalicFont = *_Italic,
+% BoldItalicFont = *_Bold_Italic,]{Sansation}
+% \newfontfamily\dense[Path=fonts/]{Dense-Regular.otf}
+% \newfontfamily\rodondo[Path=fonts/]{Rodondo.otf}
+% \usepackage{anyfontsize} % 提供\fontsize{}{}\selectfont命令
+% \usepackage{etoolbox} %提供自定义封面选项接口
+% \usepackage[dvipsnames,svgnames,x11names,table]{xcolor}%颜色宏包 % Driver-independent color extensions
+% \usepackage{tikz}
+% \usetikzlibrary{intersections, positioning, fit, backgrounds, shapes, fadings,
+% decorations.pathmorphing, graphs, quotes, angles, calc, through, backgrounds,decorations.shapes} % %Tikz指令库
+% %
+% \RequirePackage{pgfplots} %画图 %%页面样式设计核心包 %提供\pgfonlayer命令以及下列图层指令
+% \pgfplotsset{compat=1.18}
+% \usepackage{graphicx} %插图
+\usepackage[ISBN=978-80-85955-35-4,SC0]{ean13isbn}
+% \usetikzlibrary{calc,fadings,patterns}
+% \usepackage{adjustbox} %修正minipage顶部对齐问题
+\makeatletter
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+\newcommand*\summary[1]{\def\@summary{#1}}
+% \newcommand*\edition[1]{\def\@edition{#1}}
+% \newcommand*\presslogo[1]{\def\@presslogo{#1}}
+% \newcommand*\pressname[1]{\def\@pressname{#1}}
+% \newcommand*\coverimage[1]{\def\@coverimage{#1}}
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+\makeatother
+% Define the layers to be used in document.
+% *****************************************************
+\pgfdeclarelayer{background} %背景%底层
+\pgfdeclarelayer{foreground} %上层
+\pgfdeclarelayer{top} %顶部
+\pgfdeclarelayer{bottom} %底部
+\pgfsetlayers{bottom,background,main,foreground,top}
+%%%%===============================================================%%%%%
+%%------------------------------------------------------封面设计--------------------------------------------------------%%
+%%%%===============================================================%%%%%
+% \definecolor{coverbgcolor}{RGB}{71,128,115}
+% \definecolor{coverfgcolor}{RGB}{24, 104, 89}
+% \definecolor{coverbar}{RGB}{0, 83, 67}
+\colorlet{coverfgcolor}{海棠红}
+\colorlet{coverbgcolor}{嫣红}
+\colorlet{coverbar}{嫣红}
+\definecolor{RED}{RGB}{220, 41, 26}
+\definecolor{teal}{RGB}{13,52,62}
+\definecolor{gold}{RGB}{239,173,91}
+\definecolor{silver}{RGB}{192,192,192}
+% \newlength\outermarginwidth
+% \setlength\outermarginwidth{2cm}
+% \newlength\covershift
+% \setlength\covershift{5cm}
+% \tikzfading[name=fade right,
+%                     right color =transparent!100,
+%                     left color=transparent!0]
+% \tikzfading[name=fade left,
+%                     left color =transparent!100,
+%                     right color=transparent!50]
+% \tikzfading[name=fade up,
+%                     top color =transparent!100,
+%                     bottom color=transparent!50]
+% \tikzfading[name=fade down,
+%                     bottom color =transparent!100,
+%                     top color=transparent!50]
+\makeatletter
+\newcommand*\makebottomcover{
+    %% Use the Tikz library positioning and clear the page header and footer
+    \newpage
+    \thispagestyle{empty}
+    \phantom{s}
+    \clearpage
+    \newpage
+    \usetikzlibrary{positioning}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture,overlay]
+        \begin{pgfonlayer}{bottom}
+            \fill[coverbgcolor]         
+            (current page.north west) rectangle (current page.south east);% 填充封面背景颜色 (coverbgcolor)
+            \node[] at (current page.center) {
+            \begin{tikzpicture}
+      \foreach \i in {0,1,2,...,11}{
+      \begin{scope}[rotate=\i*30]
+    
+      \draw[teal,fill=teal](0,0) to (8,0) to [bend right=45]  (30:8cm) -- cycle;
+    
+      \foreach \j in {0,2,4,...,28} {
+        \draw[thin, gold] (0,0) -- (\j:\j*0.03cm+7cm);
+      }
+    
+      \draw[line width=10mm, teal] (7.5,0) to [bend right=45] (30:7.5cm);
+    
+      \draw[fill=teal, teal, ultra thick] (0,0) -- (2.2,0) to [bend right=60] (30:2.2cm) -- cycle;
+    \end{scope}
+    }
+
+    \foreach \i in {0,1,2,...,11}{
+      \begin{scope}[rotate=\i*30]
+    
+        \foreach \k in {0.4,0.6,...,1.6} {
+        \draw[thick, silver] (\k,0) to [bend right=60] (30:\k cm);
+        }
+    
+        \draw[ultra thick, gold] (2,0) to [bend right=60] (30:2cm);
+        \draw[ultra thick, gold] (2.1,0) to [bend right=60] (30:2.1cm);
+        \draw[ultra thick, gold] (2.2,0) to [bend right=60] (30:2.2cm);
+    
+        \draw[gold, decorate, decoration={shape backgrounds,shape=circle,shape size=0.5mm,shape sep=1mm}] (1.7,0) to [bend right=60] (30:1.7cm);
+        \draw[gold, decorate, decoration={shape backgrounds,shape=circle,shape size=0.5mm,shape sep=1mm}] (1.8,0) to [bend right=60] (30:1.8cm);
+    
+        \draw[very thick, silver] (0,0) --(2.2,0);
+    
+        \draw[line width=3mm, gold] (7,0) to [bend right=45] (30:7cm);
+    
+        \draw[gold, thick, decorate, decoration={shape backgrounds,shape=circle,shape size=1.8mm,shape sep=3.05mm}] (7.4,0) to [bend right=45] (30:7.4cm);
+    
+        \draw[ultra thick, silver, fill=teal] (2.2,0) .. controls (3,-0.2) and (5.8,3.1) .. (6,0);
+        \draw[ultra thick, silver, fill=teal] (2.2,0) .. controls (3,0.2) and (5.8,-3.1) .. (6,0);
+    
+        \draw[ultra thick, silver] (4,0.92) .. controls (4.5,1) and (4.7,0) .. (5,0);
+        \draw[ultra thick, silver] (4,-0.92) .. controls (4.5,-1) and (4.7,0) .. (5,0);
+    
+        \draw[ultra thick, silver] (2.4,0) .. controls (4.5,1) and (4.5,0) .. (2.4,0);
+        \draw[ultra thick, silver] (2.4,0) .. controls (4.5,-1) and (4.5,0) .. (2.4,0);
+    
+        \draw[very thick, gold] (3.8,0) circle (0.2cm);
+        \draw[very thick, gold] (4.15,0) circle (0.15cm);
+        \draw[very thick, gold] (4.4,0) circle (0.1cm);
+        \draw[very thick, gold] (4.55,0) circle (0.05cm);
+    
+    
+        \draw[very thick, silver] (5.5,0) circle (0.5cm);
+        \filldraw[silver, inner color=teal,outer color=silver] (5.5,0) circle (0.5cm);
+    
+        \draw[very thick, silver] (5,0.65) circle (0.3cm);
+        \draw[very thick, silver] (5,-0.65) circle (0.3cm);
+        \draw[very thick, silver] (4.55,0.8) circle (0.15cm);
+        \draw[very thick, silver] (4.55,-0.8) circle (0.15cm);
+    
+        \draw[ultra thick, silver, fill=teal] (6,0) .. controls (6.4,1.2) and (6.9,0) .. (7,0);
+        \draw[ultra thick, silver, fill=teal] (6,0) .. controls (6.4,-1.2) and (6.9,0) .. (7,0);
+    
+        \foreach \j in {0,0.2,0.4,0.6,0.8,1}{
+        \draw[very thick, silver, dotted] (6,0) .. controls (6.4,1-\j) and (6.9,0) .. (7,0);
+        \draw[very thick, silver, dotted] (6,0) .. controls (6.4,-1+\j) and (6.9,0) .. (7,0);
+        }
+      \end{scope}
+    }
+    \end{tikzpicture}};
+    \path[fill=coverbgcolor!50] 
+    (current page.north east) coordinate (E) --++(-.5\paperwidth,0) coordinate (B) [bend right=30] to ([yshift=-.2\paperheight]E)--cycle;
+    \path[fill=coverbgcolor!75,opacity=0.8] 
+    (current page.north east) coordinate (E) --++(-.5\paperwidth,0) coordinate (B) [bend right=30] to ([yshift=-.25\paperheight]E)--cycle;
+        \end{pgfonlayer}
+        \begin{pgfonlayer}{foreground}
+        \fill[color=coverbgcolor!55,opacity=.9]
+    ([yshift=2\outermarginwidth]current page.west) rectangle ([shift={(0,.3\paperheight)}]current page.south east)  ; % 背景大矩形
+    \node[font=\large\bfseries,text=black,anchor=west] at ([shift={(-.45\paperwidth,0)}]current page.center) {\parbox[c][2\covershift][c]{.9\paperwidth}{\@summary}};
+        \end{pgfonlayer}
+        \node[anchor=south,text=black] at ([xshift=-.05\outermarginwidth,yshift=-.4\covershift]current page.north east) {%
+        \parbox{.8\paperwidth}{
+        \raggedright
+        \fontsize{20}{23}\selectfont\@bookseries}
+        }; %系列丛书名称
+        \node[anchor=south,text=white,font=\rmfamily\Huge,] at
+        ([xshift=.9\covershift,yshift=-.1\covershift]current page.south west)  %
+    {\raisebox{-.27\covershift}{\includegraphics[width=0.3\linewidth]{\@presslogo}}\hspace{-1.7em}\parbox[c][\covershift][c]{.4\textwidth}{\@pressname}};%
+    \node[scale=1.5] (isbn) at ([shift={(-1.5\outermarginwidth,.5\covershift)}]current page.south east) {\EANisbn[ISBN=978-80-7340-097-2]};
+    \begin{pgfonlayer}{bottom}
+        \fill[white]
+        (isbn.north west) rectangle (isbn.south east);
+    \end{pgfonlayer}\end{tikzpicture}%
+}
+\makeatother
+%%%%===============================================================%%%%%
+%%------------------------------------------------------封面设计--------------------------------------------------------%%
+%%%%===============================================================%%%%%
+\endinput
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
