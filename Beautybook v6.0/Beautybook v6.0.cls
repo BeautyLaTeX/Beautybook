@@ -20,7 +20,7 @@
 \usepackage{makeidx}
 \usepackage{etoolbox} % 判断函数
 \usepackage{paracol}
-% \usepackage{etoc}
+\usepackage{tikz-cd}
 \usepackage{imakeidx}
 \usepackage{anyfontsize}
 \usepackage{calc}
@@ -44,22 +44,22 @@ citecolor = black,		%%修改此处为你想要的颜色
 \colorlet{captioncolor}{outermarginfgcolor} % 图片和表格题注文字颜色
 \makeatletter
 %%----------------------------------封面信息定义--------------------------------------------------------%%
-\newcommand*\bookseries[1]{\def\@bookseries{#1}}
-\newcommand*\subtitle[1]{\def\@subtitle{#1}}
-\newcommand*\edition[1]{\def\@edition{#1}}
-\newcommand*\presslogo[1]{\def\@presslogo{#1}}
-\newcommand*\pressname[1]{\def\@pressname{#1}}
-\newcommand*\coverimage[1]{\def\@coverimage{#1}}
+\newcommand\bookseries[1]{\def\@bookseries{#1}}
+\newcommand\subtitle[1]{\def\@subtitle{#1}}
+\newcommand\edition[1]{\def\@edition{#1}}
+\newcommand\presslogo[1]{\def\@presslogo{#1}}
+\newcommand\pressname[1]{\def\@pressname{#1}}
+\newcommand\coverimage[1]{\def\@coverimage{#1}}
 %%----------------------------------封面信息定义--------------------------------------------------------%%
 \makeatother
 \usepackage{indentfirst}
 \usepackage{physics}
-\definecolor{nuanbai}{HTML}{f8f8f8} % F5F5F5
-\pagecolor{nuanbai!50}
+\definecolor{nuanbai}{HTML}{f5f5f5} % F5F5F5
+\pagecolor{nuanbai}
 \usepackage{amsmath}
 \usepackage{zhlipsum}
 \setmainfont{XITS}
-\usepackage[left=2cm,right=2cm,top=.6cm,bottom=3.3cm]{geometry}
+\usepackage[left=2cm,right=2cm,top=.6cm,bottom=2.2cm]{geometry}
 \usepackage{xpatch}%修正章节编号
 \usepackage[automark]{scrlayer-scrpage}%页面设置宏包,隶属于koma-script文档类
 \usepackage{fontawesome5}
@@ -68,7 +68,7 @@ citecolor = black,		%%修改此处为你想要的颜色
 \tcbuselibrary{breakable, skins,theorems}%TcolorBox Library
 \usepackage{tabularx}
 \usepackage{lastpage}
-\usepackage{twemojis}
+%\usepackage{twemojis}
 \usepackage{ninecolors}
 \usepackage{colortbl} %彩色表格
 \usepackage{tabularray}
@@ -129,17 +129,17 @@ citecolor = black,		%%修改此处为你想要的颜色
 \newcommand\coolrightbrace[2]{%
 	\left.\vphantom{\begin{matrix} #1 \end{matrix}}\right\}#2}
 \definecolor{lightergray}{gray}{0.99}
-\colorlet{CyaN}{yellow!40!cyan}
+\definecolor{CyaN}{HTML}{dbe1e5}
 \colorlet{OrangE}{yellow!20!orange}
 \colorlet{BluE}{cyan!70!blue}
 \colorlet{ReD}{red!20!orange}
 \colorlet{GreeN}{yellow!40!green}
-\tcolorboxenvironment{thm}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=CyaN!10, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{CyaN}, frame hidden}
-\tcolorboxenvironment{defi}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=ReD!5, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{ReD}, frame hidden}
-\tcolorboxenvironment{lem}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=BluE!5, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{BluE}, frame hidden}
-\tcolorboxenvironment{prop}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=OrangE!5, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{OrangE}, frame hidden}
-\tcolorboxenvironment{exam}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=GreeN!5, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{DarkGreen}, frame hidden}
-\tcolorboxenvironment{cor}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=violet!5, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{violet}, frame hidden}
+\tcolorboxenvironment{thm}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=CyaN, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{CyaN!80!black}, frame hidden}
+\tcolorboxenvironment{defi}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=CyaN!80, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{ReD}, frame hidden}
+\tcolorboxenvironment{lem}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=CyaN!80, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{BluE}, frame hidden}
+\tcolorboxenvironment{prop}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=CyaN!80, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{OrangE}, frame hidden}
+\tcolorboxenvironment{exam}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=CyaN!80, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{DarkGreen}, frame hidden}
+\tcolorboxenvironment{cor}{enhanced jigsaw, breakable, enlarge left by=-3.5mm, width=\textwidth+3.5mm, colback=CyaN!80, boxrule=0pt, top=2pt, bottom=2pt, left=2.5mm, borderline west={1.5mm}{0mm}{violet}, frame hidden}
 \newcommand*{\circled}[1]{\lower.7ex\hbox{\tikz\draw (0pt, 0pt)%
     circle (.5em) node {\makebox[1em][c]{\small #1}};}}
 \newcommand{\twicecircle}{\raisebox{.7ex}{
@@ -200,8 +200,8 @@ citecolor = black,		%%修改此处为你想要的颜色
 \titlespacing{\chapter}{0pt}{0pt}{65pt}
 % -------- Part定制
 \makeatletter
-\newcommand*\partabstract[1]{\def\@partabstract{#1}}
-\newcommand*\partimage[1]{\def\@partimage{#1}}
+\newcommand\partabstract[1]{\def\@partabstract{#1}}
+\newcommand\partimage[1]{\def\@partimage{#1}}
 \titleformat{\part}
 {\normalfont\huge\filcenter}
 {}
@@ -274,6 +274,7 @@ citecolor = black,		%%修改此处为你想要的颜色
     \fill[color=outermarginfgcolor!80!black] ([xshift=\tlength-\Rad,yshift=5pt]sec.north west) coordinate (secnw) to[out=0,in=90,looseness=0.7] ([xshift=\tlength+0.5*\Rad]sec.north west) coordinate (NW)--([xshift=-2*\rad]NW)--cycle;
     \path[fill=outermarginfgcolor,drop shadow={opacity=0.3,shadow xshift=.05cm,shadow yshift=-.05cm}]
     ([xshift=\rad,yshift=5pt]sec.north west) coordinate (topleft) to[out=180,in=0,looseness=1] ([xshift=-3*\rad,yshift=-\theight]sec.north west) --([xshift=\tlength-4*\rad,yshift=-\theight]sec.north west) coordinate (bottomright) to[out=0,in=180] ([xshift=\tlength,yshift=5pt]sec.north west) --cycle;
+    \draw[outermarginbgcolor,line width=0.5pt] (NW)--++(.8\linewidth,0);
     \coordinate (SecName) at ($(topleft)!0.5!(bottomright)$);
     \node[text=white,font=\rmfamily\large\bfseries] at (SecName) {Sec \thesection};
     \node[text=black,font=\rmfamily\bfseries\Large,below right] (secnum) at ([shift={(.1cm,-.16cm)}]secnw) {\begin{varwidth}{.8\linewidth}\baselineskip=22.5pt #1\end{varwidth}};
@@ -471,8 +472,6 @@ citecolor = black,		%%修改此处为你想要的颜色
 %% Begin The Most Beautiful Box (STYLE : ys style) % 中国风盒子
 \makeatletter
 % \definecolor{framegolden}{HTML}{CC2F69} % 控制外框颜色
-\colorlet{framegolden}{outermarginfgcolor}
-\colorlet{framegray}{outermarginbgcolor!50}
 % \definecolor{framegray}{HTML}{e2dbbe} % 控制填充颜色
 \newdimen\ys@frame@linewidth
 \newdimen\ys@frame@radius
@@ -750,7 +749,7 @@ color(75bp)=(pgftransparent!100); color(100bp)=(pgftransparent!100)}
 \newcounter{tcbexam}
 \renewcommand{\thetcbexam}{\thesection.\arabic{tcbexam}}
 \def\tcbexamautorefname{\bf 例题}
-
+% 定理名称
 \newcommand{\Example}{例题}
 \newcommand{\Proofs}{证明}
 \newcommand{\Solutions}{解}
@@ -759,337 +758,260 @@ color(75bp)=(pgftransparent!100); color(100bp)=(pgftransparent!100)}
 \newcommand{\Proposition}{命题}
 \newcommand{\Theorem}{定理}
 \newcommand{\Corollary}{推论}
-
-\tikzset{
-	wnodeTheorem/.style={%
-		rectangle,top color=lightergray, bottom color=lightergray,
-		inner sep=1mm,anchor=west,font=\bfseries\rmfamily},
-}
-	\newtcolorbox{wwtheorem}[3][]{
-		arc=3pt,breakable,enhanced,colback=nuanbai,boxrule=0pt,top=8mm,
-    fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
-    fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
-    opacityframe=0, opacityback=0.98,
-		fontupper=\itshape, step and label={tcbthm}{#3},
-		overlay unbroken = {
-			%标题 %更改有效
-			\node[rectangle, 
-	text=white, drop shadow={opacity=.3, shadow xshift=0.1cm},
-	inner sep=1.5mm,fill=purple5,
-	anchor=west,rounded corners=3pt,
-	font=\normalsize] at ([xshift=0cm,yshift=-3.mm]frame.north west)%
-	{\phantom{\rule{1.2em}{0pt}}\bf   \Theorem\ \thetcbthm.~#2};
-            \fill[color=purple5,drop shadow={opacity=0.3,shadow xshift=.3pt}] 
-            ([xshift=1cm,yshift=5pt]frame.north west) {[rounded corners=3pt]--++(-1cm-5pt,0)}--++(0,-1cm-5pt)--cycle;
-      \fill[color=black!60] ([xshift=-5pt,yshift=-1cm]frame.north west)--([xshift=0cm,yshift=-0.8cm]frame.north west)-- ([xshift=0cm,yshift=-1.2cm]frame.north west)--cycle;
+\NewTColorBox{theorem}{O{} O{} o}
+{arc=3pt,breakable,enhanced,colback=nuanbai,boxrule=0pt,top=8mm,
+  fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+  fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+  opacityframe=0, opacityback=0.98,
+  fontupper=\itshape, step={tcbthm}, IfNoValueF={#3}{label={#3}},
+  before pre=\smallskip, after app=\smallskip,
+overlay unbroken = {
+      %%============== First ==============%% 
       \fill[black!60] ([xshift=1cm,yshift=5pt]frame.north west)-- ([xshift=0.8cm,yshift=0cm]frame.north west)--([xshift=1.2cm,yshift=0cm]frame.north west)--cycle;
-			%%============================%% End
-            \fill[purple5,drop shadow={opacity=0.3,shadow xshift=-0.008\linewidth,shadow yshift=0.0016\linewidth}] 
-            ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) {[rounded corners=3pt]--++(0.05\linewidth+5pt,0)}--++(0,0.05\linewidth+5pt)--cycle;
-			\fill[black!60] ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) -- ([xshift=-0.04\linewidth,yshift=0pt]frame.south east)-- ([xshift=-0.06\linewidth,yshift=0pt]frame.south east)--cycle;
-			\fill[black!60] ([xshift=5pt,yshift=0.05\linewidth]frame.south east)-- ([yshift=0.04\linewidth]frame.south east) -- ([yshift=0.06\linewidth]frame.south east)--cycle;
-		},%上面是实际控制代码,下面的代码仅在跨页分割时生效
-		overlay first = {%跨页时生效
-			%标题 %跨页时生效
-			\node[rectangle, 
-	text=white, drop shadow={opacity=.3, shadow xshift=0.1cm},
-	inner sep=1.5mm,fill=purple5,
-	anchor=west,rounded corners=3pt,
-	font=\normalsize] at ([xshift=0cm,yshift=-3.mm]frame.north west)%
-	{\phantom{\rule{1.2em}{0pt}}\bf  \Theorem\ \thetcbthm.~#2};
-            \fill[color=purple5,drop shadow={opacity=0.3,shadow xshift=.3pt}] 
-            ([xshift=1cm,yshift=5pt]frame.north west) {[rounded corners=3pt]--++(-1cm-5pt,0)}--++(0,-1cm-5pt)--cycle;
-		    \fill[color=black!60] ([xshift=-5pt,yshift=-1cm]frame.north west)--([xshift=0cm,yshift=-0.8cm]frame.north west)-- ([xshift=0cm,yshift=-1.2cm]frame.north west)--cycle;
-		    \fill[black!60] ([xshift=1cm,yshift=5pt]frame.north west)-- ([xshift=0.8cm,yshift=0cm]frame.north west)--([xshift=1.2cm,yshift=0cm]frame.north west)--cycle;
-		},%保持边缘的变化
-		overlay last = {%跨页时生效
-			%%============================%% End
-            \fill[purple5,drop shadow={opacity=0.3,shadow xshift=-0.008\linewidth,shadow yshift=0.0016\linewidth}] 
-            ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) {[rounded corners=3pt]--++(0.05\linewidth+5pt,0)}--++(0,0.05\linewidth+5pt)--cycle;
-			\fill[black!60] ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) -- ([xshift=-0.04\linewidth,yshift=0pt]frame.south east)-- ([xshift=-0.06\linewidth,yshift=0pt]frame.south east)--cycle;
-			\fill[black!60] ([xshift=5pt,yshift=0.05\linewidth]frame.south east)-- ([yshift=0.04\linewidth]frame.south east) -- ([yshift=0.06\linewidth]frame.south east)--cycle;
-		}
-		#1
-	}
-\NewDocumentEnvironment{theorem}{O{} O{} O{}}{\smallskip\begin{wwtheorem}{#1}{#2}#3}{\end{wwtheorem} \smallskip}
+      \node[rectangle, text=white, drop shadow={opacity=.3, shadow xshift=0.1cm}, inner sep=1.5mm,fill=purple5,
+anchor=west,rounded corners=3pt,font=\normalsize] at ([xshift=0cm,yshift=-3.mm]frame.north west) {\phantom{\rule{1.2em}{0pt}}\bf   \Theorem\ \thetcbthm.~#2};
+      \fill[color=purple5,drop shadow={opacity=0.3,shadow xshift=.3pt}] 
+      ([xshift=1cm,yshift=5pt]frame.north west) {[rounded corners=3pt]--++(-1cm-5pt,0)}--++(0,-1cm-5pt)--cycle;
+      \fill[color=black!60] ([xshift=-5pt,yshift=-1cm]frame.north west)--([xshift=0cm,yshift=-0.8cm]frame.north west)-- ([xshift=0cm,yshift=-1.2cm]frame.north west)--cycle;
+      %%============== End ==============%% 
+      \fill[purple5,drop shadow={opacity=0.3,shadow xshift=-0.008\linewidth,shadow yshift=0.0016\linewidth}] 
+      ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) {[rounded corners=3pt]--++(0.05\linewidth+5pt,0)}--++(0,0.05\linewidth+5pt)--cycle;
+      \fill[black!60] ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) -- ([xshift=-0.04\linewidth,yshift=0pt]frame.south east)-- ([xshift=-0.06\linewidth,yshift=0pt]frame.south east)--cycle;
+      \fill[black!60] ([xshift=5pt,yshift=0.05\linewidth]frame.south east)-- ([yshift=0.04\linewidth]frame.south east) -- ([yshift=0.06\linewidth]frame.south east)--cycle;
+      },%上面非跨页生效,而下面则跨页分割时生效
+overlay first = {
+      \fill[black!60] ([xshift=1cm,yshift=5pt]frame.north west)-- ([xshift=0.8cm,yshift=0cm]frame.north west)--([xshift=1.2cm,yshift=0cm]frame.north west)--cycle;
+      \node[rectangle, text=white, drop shadow={opacity=.3, shadow xshift=0.1cm}, inner sep=1.5mm,fill=purple5, anchor=west,rounded corners=3pt,font=\normalsize] at ([xshift=0cm,yshift=-3.mm]frame.north west) {\phantom{\rule{1.2em}{0pt}}\bf  \Theorem\ \thetcbthm.~#2};
+      \fill[color=purple5,drop shadow={opacity=0.3,shadow xshift=.3pt}] 
+        ([xshift=1cm,yshift=5pt]frame.north west) {[rounded corners=3pt]--++(-1cm-5pt,0)}--++(0,-1cm-5pt)--cycle;
+      \fill[color=black!60] ([xshift=-5pt,yshift=-1cm]frame.north west)--([xshift=0cm,yshift=-0.8cm]frame.north west)-- ([xshift=0cm,yshift=-1.2cm]frame.north west)--cycle;
+      },
+overlay last = {
+      \fill[purple5,drop shadow={opacity=0.3,shadow xshift=-0.008\linewidth,shadow yshift=0.0016\linewidth}] 
+      ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) {[rounded corners=3pt]--++(0.05\linewidth+5pt,0)}--++(0,0.05\linewidth+5pt)--cycle;
+      \fill[black!60] ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) -- ([xshift=-0.04\linewidth,yshift=0pt]frame.south east)-- ([xshift=-0.06\linewidth,yshift=0pt]frame.south east)--cycle;
+      \fill[black!60] ([xshift=5pt,yshift=0.05\linewidth]frame.south east)-- ([yshift=0.04\linewidth]frame.south east) -- ([yshift=0.06\linewidth]frame.south east)--cycle;
+      },
+   #1} % #1 -- tcolorbox键值 ; #2 -- 定理名称 ; #3 -- 定理标签 (label) .
 %引理
-%% fuzzy shadow={〈xshift〉}{〈yshift〉}{〈offset〉}{〈step〉}{〈options〉}
-
-% fuzzy shadow是tcolorbox提供的诸多shadow模式中的一种，它的主要特色是会让阴影区有一种渐变的效果，类似于边缘糊化。
-
-% 具体可以看下面的效果，我对阴影区做了一些夸张地处理，可以看到它产生了颜色的一个渐变过程。
-
-%% 其中xshift和yshift是指阴影部分相对于主体部分的偏移量，如果均为0，那阴影和主体部分会重合在一起。取正值代表向上和向右移动，相反取负值。在我们的例子中，第一个fuzzy shadow向左向上移动，所以第一个参数为负值，第二个刚好相反。
-
-% 第三个参数：offset可以扩大或者缩小已有的阴影面积，取负值为扩大，取正值为缩小。如果前两个参数设置合理，是不需要offset取值，直接设为0即可。
-
-% 第四个参数：step就决定了阴影部分的效果，这个值如果取0，那么阴影区没有糊化，即没有渐变的效果。一个合适的取值可以调整其视觉效果。
-\newtcolorbox{wwlemma}[3][]{
-		arc=0mm,breakable,enhanced,colback=nuanbai,arc=3pt,boxrule=0pt,top=8mm,
+\NewTColorBox{lemma}{O{} O{} o}
+  {arc=0mm,breakable,enhanced,colback=靛蓝!1!nuanbai,arc=3pt,boxrule=0pt,top=8mm,
       fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
       fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
-        opacityframe=0, opacityback=0.98,
-		fontupper=\normalsize, step and label={tcblemma}{#3},
-	% Overlay Unbroken
-  overlay unbroken= {
-  %%====================== First ============================%% 
-	\def\rad{5pt}
-	\def\Rad{2.5pt}
-	\def\tlength{2.7cm}
-	\def\theight{0.6cm}
-	\fill[color=DarkCyan!80!black] ([xshift=\tlength-\Rad,yshift=5pt]frame.north west) to[out=0,in=90,looseness=0.7] ([xshift=\tlength+0.5*\Rad]frame.north west) coordinate (NW)--([xshift=-2*\rad]NW)--cycle;
-    \node[text=DarkCyan,right,
-  font=\normalsize\bfseries] at ([xshift=2.5cm,yshift=-2.85mm]frame.north west)%
-  {#2};
-    \path[fill=DarkCyan,drop shadow={opacity=0.3,shadow xshift=.3pt}]
+      opacityframe=0, opacityback=0.98,
+      fontupper=\normalsize,step={tcblemma}, IfNoValueF={#3}{label={#3}},before pre=\smallskip, after app=\smallskip,
+overlay unbroken= {
+    %%============== First ==============%%
+    \def\rad{5pt}
+    \def\Rad{2.5pt}
+    \def\tlength{2.7cm}
+    \def\theight{0.6cm}
+    \fill[color=靛蓝!80!black] ([xshift=\tlength-\Rad,yshift=5pt]frame.north west) to[out=0,in=90,looseness=0.7] ([xshift=\tlength+0.5*\Rad]frame.north west) coordinate (NW)--([xshift=-2*\rad]NW)--cycle;
+    \node[text=靛蓝,right,font=\normalsize\bfseries] at ([xshift=2.5cm,yshift=-2.85mm]frame.north west) {#2};
+    \path[fill=靛蓝,drop shadow={opacity=0.3,shadow xshift=.3pt}]
     ([xshift=\rad,yshift=5pt]frame.north west) coordinate (topleft) to[out=180,in=0] ([xshift=-2*\rad,yshift=-\theight]frame.north west) --([xshift=\tlength-3*\rad,yshift=-\theight]frame.north west) coordinate (bottomright) to[out=0,in=180] ([xshift=\tlength,yshift=5pt]frame.north west) --cycle;
     \coordinate (LemName) at ($(topleft)!0.5!(bottomright)$);
     \node[text=white,font=\bfseries] at (LemName) {\Lemma~\thetcblemma.};
-    %%========================== End ========================%% 
+    %%============== End ==============%%  
     \def\tlen{1.5cm}
-    \fill[color=DarkCyan!80!black] ([xshift=-\tlen+\Rad,yshift=-5pt]frame.south east) to[out=180,in=90,looseness=0.7] ([xshift=-\tlen-0.5*\Rad]frame.south east) coordinate (NWl)--([xshift=2*\rad]NWl)--cycle;
-    \path[fill=DarkCyan,drop shadow={opacity=0.3,shadow xshift=.3pt}]
+    \fill[color=靛蓝!80!black] ([xshift=-\tlen+\Rad,yshift=-5pt]frame.south east) to[out=180,in=90,looseness=0.7] ([xshift=-\tlen-0.5*\Rad]frame.south east) coordinate (NWl)--([xshift=2*\rad]NWl)--cycle;
+    \path[fill=靛蓝,drop shadow={opacity=0.3,shadow xshift=.3pt}]
     ([xshift=-\rad,yshift=-5pt]frame.south east) coordinate (topleftt) to[out=0,in=180] ([xshift=2*\rad,yshift=\theight]frame.south east) --([xshift=-\tlen+3*\rad,yshift=\theight]frame.south east) coordinate (bottomrightt) to[out=180,in=0] ([xshift=-\tlen,yshift=-5pt]frame.south east) --cycle;
-	},%上面是不跨页时生效,下面代码仅在跨页分割时生效
-  % Overlay First
-  overlay first={
+	},
+overlay first={
     \def\rad{5pt}
-	\def\Rad{2.5pt}
-	\def\tlength{2.7cm}
-	\def\theight{0.6cm}
-    %%====================== First ============================%% 
-    \fill[color=DarkCyan!80!black] ([xshift=\tlength-\Rad,yshift=5pt]frame.north west) to[out=0,in=90,looseness=0.7] ([xshift=\tlength+0.5*\Rad]frame.north west) coordinate (NW)--([xshift=-2*\rad]NW)--cycle;
-    \node[text=DarkCyan,right,
-  font=\normalsize\bfseries] at ([xshift=2.5cm,yshift=-2.85mm]frame.north west)%
-  {#2};
-    \path[fill=DarkCyan,drop shadow={opacity=0.3,shadow xshift=.3pt}]
+    \def\Rad{2.5pt}
+    \def\tlength{2.7cm}
+    \def\theight{0.6cm}
+    \fill[color=靛蓝!80!black] ([xshift=\tlength-\Rad,yshift=5pt]frame.north west) to[out=0,in=90,looseness=0.7] ([xshift=\tlength+0.5*\Rad]frame.north west) coordinate (NW)--([xshift=-2*\rad]NW)--cycle;
+    \node[text=靛蓝,right,font=\normalsize\bfseries] at ([xshift=2.5cm,yshift=-2.85mm]frame.north west) {#2};
+    \path[fill=靛蓝,drop shadow={opacity=0.3,shadow xshift=.3pt}]
     ([xshift=\rad,yshift=5pt]frame.north west) coordinate (topleft) to[out=180,in=0] ([xshift=-2*\rad,yshift=-\theight]frame.north west) --([xshift=\tlength-3*\rad,yshift=-\theight]frame.north west) coordinate (bottomright) to[out=0,in=180] ([xshift=\tlength,yshift=5pt]frame.north west) --cycle;
     \coordinate (LemName) at ($(topleft)!0.5!(bottomright)$);
     \node[text=white,font=\bfseries] at (LemName) {\Lemma~\thetcblemma.};
   },
-	% Overlay Last
-	overlay last = {%跨页时生效 尾部
-		%%========================== End ========================%% 
+overlay last = {
     \def\rad{5pt}
-	\def\Rad{2.5pt}
-	\def\theight{0.6cm}
+    \def\Rad{2.5pt}
+    \def\theight{0.6cm}
     \def\tlen{1.5cm}
-    \fill[color=DarkCyan!80!black] ([xshift=-\tlen+\Rad,yshift=-5pt]frame.south east) to[out=180,in=90,looseness=0.7] ([xshift=-\tlen-0.5*\Rad]frame.south east) coordinate (NWl)--([xshift=2*\rad]NWl)--cycle;
-    \path[fill=DarkCyan,drop shadow={opacity=0.3,shadow xshift=.3pt}]
+    \fill[color=靛蓝!80!black] ([xshift=-\tlen+\Rad,yshift=-5pt]frame.south east) to[out=180,in=90,looseness=0.7] ([xshift=-\tlen-0.5*\Rad]frame.south east) coordinate (NWl)--([xshift=2*\rad]NWl)--cycle;
+    \path[fill=靛蓝,drop shadow={opacity=0.3,shadow xshift=.3pt}]
     ([xshift=-\rad,yshift=-5pt]frame.south east) coordinate (topleftt) to[out=0,in=180] ([xshift=2*\rad,yshift=\theight]frame.south east) --([xshift=-\tlen+3*\rad,yshift=\theight]frame.south east) coordinate (bottomrightt) to[out=180,in=0] ([xshift=-\tlen,yshift=-5pt]frame.south east) --cycle;
-	}
-		#1
-	}
-\NewDocumentEnvironment{lemma}{O{} O{} O{}}{\smallskip\begin{wwlemma}{#1}{#2}#3}{\end{wwlemma} \smallskip}
+	},
+		#1}
 %命题
-\newtcolorbox{wwproposition}[3][]{
-		arc=3pt,breakable,enhanced,colback=nuanbai,boxrule=0pt,top=8mm,fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
-    fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
-    opacityframe=0, opacityback=0.98,
-		fontupper=\normalsize, step and label={tcbproposition}{#3},
-		overlay unbroken = {
-			\node[rectangle, %opacity=.3,
-	text=white, drop shadow={opacity=.3, shadow xshift=0.1cm},
-	inner sep=1.5mm,fill=DeepPink,
-	anchor=west,rounded corners=3pt,
-	font=\normalsize\bfseries] at ([xshift=0cm,yshift=-3.mm]frame.north west)%
-	{\phantom{\rule{1.2em}{0pt}}\Proposition\ \thetcbproposition.~#2};
-            \fill[color=DeepPink,drop shadow={opacity=0.3,shadow xshift=.3pt}] 
-            ([xshift=1cm,yshift=5pt]frame.north west) {[rounded corners=3pt]--++(-1cm-5pt,0)}--++(0,-1cm-5pt)--cycle;
-		    \fill[color=black!60] ([xshift=-5pt,yshift=-1cm]frame.north west)--([xshift=0cm,yshift=-0.8cm]frame.north west)-- ([xshift=0cm,yshift=-1.2cm]frame.north west)--cycle;
-		    \fill[black!60] ([xshift=1cm,yshift=5pt]frame.north west)-- ([xshift=0.8cm,yshift=0cm]frame.north west)--([xshift=1.2cm,yshift=0cm]frame.north west)--cycle;
-			%%============================%% End
-            \fill[DeepPink,drop shadow={opacity=0.3,shadow xshift=-0.008\linewidth,shadow yshift=0.0016\linewidth}] 
-            ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) {[rounded corners=3pt]--++(0.05\linewidth+5pt,0)}--++(0,0.05\linewidth+5pt)--cycle;
-			\fill[black!60] ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) -- ([xshift=-0.04\linewidth,yshift=0pt]frame.south east)-- ([xshift=-0.06\linewidth,yshift=0pt]frame.south east)--cycle;
-			\fill[black!60] ([xshift=5pt,yshift=0.05\linewidth]frame.south east)-- ([yshift=0.04\linewidth]frame.south east) -- ([yshift=0.06\linewidth]frame.south east)--cycle;
-		},%上面是实际控制代码,下面的代码仅在跨页分割时生效
-		overlay first = {%跨页时生效
-			% \draw[color=gray,  line width=0.2pt] (frame.north west)--([xshift=0pt]frame.north east);
-			%标题 %跨页时生效
-			\node[rectangle, %opacity=.3,
-	text=white, drop shadow={opacity=.3, shadow xshift=0.1cm},
-	inner sep=1.5mm,fill=DeepPink,
-	anchor=west,rounded corners=3pt,
-	font=\normalsize\bfseries] at ([xshift=0cm,yshift=-3.mm]frame.north west)%
-	{\phantom{\rule{1.2em}{0pt}}\Proposition\ \thetcbproposition.~#2};
-            \fill[color=DeepPink,drop shadow={opacity=0.3,shadow xshift=.3pt}] 
-            ([xshift=1cm,yshift=5pt]frame.north west) {[rounded corners=3pt]--++(-1cm-5pt,0)}--++(0,-1cm-5pt)--cycle;
-		    \fill[color=black!60] ([xshift=-5pt,yshift=-1cm]frame.north west)--([xshift=0cm,yshift=-0.8cm]frame.north west)-- ([xshift=0cm,yshift=-1.2cm]frame.north west)--cycle;
-		    \fill[black!60] ([xshift=1cm,yshift=5pt]frame.north west)-- ([xshift=0.8cm,yshift=0cm]frame.north west)--([xshift=1.2cm,yshift=0cm]frame.north west)--cycle;
-		},%保持边缘的变化
-		overlay last = {%跨页时生效
-			%%============================%% End
-            \fill[DeepPink,drop shadow={opacity=0.3,shadow xshift=-0.008\linewidth,shadow yshift=0.0016\linewidth}] 
-            ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) {[rounded corners=3pt]--++(0.05\linewidth+5pt,0)}--++(0,0.05\linewidth+5pt)--cycle;
-			\fill[black!60] ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) -- ([xshift=-0.04\linewidth,yshift=0pt]frame.south east)-- ([xshift=-0.06\linewidth,yshift=0pt]frame.south east)--cycle;
-			\fill[black!60] ([xshift=5pt,yshift=0.05\linewidth]frame.south east)-- ([yshift=0.04\linewidth]frame.south east) -- ([yshift=0.06\linewidth]frame.south east)--cycle;
-		}
-		#1
-	}
-\NewDocumentEnvironment{proposition}{O{} O{} O{}}{\smallskip\begin{wwproposition}{#1}{#2}#3}{\end{wwproposition}\smallskip }
-%推论
-\newtcolorbox{wwcorollary}[3][]{
-		arc=3pt,breakable,enhanced,colback=nuanbai,boxrule=0pt,top=8mm,fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
-    fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
-    opacityframe=0, opacityback=0.98,
-		fontupper=\normalsize, step and label={tcbcorollary}{#3},
-		overlay unbroken = {
-			\node[rectangle,
-	text=white, drop shadow={opacity=.3, shadow xshift=0.1cm},
-	inner sep=1.5mm,fill=BlueGreen,
-	anchor=west,rounded corners=3pt,
-	font=\normalsize\bfseries] at ([xshift=0cm,yshift=-3.mm]frame.north west)%
-	{\phantom{\rule{1.2em}{0pt}}\Corollary\ \thetcbcorollary.~#2};
-            \fill[color=BlueGreen,drop shadow={opacity=0.3,shadow xshift=.3pt}] 
-            ([xshift=1cm,yshift=5pt]frame.north west) {[rounded corners=3pt]--++(-1cm-5pt,0)}--++(0,-1cm-5pt)--cycle;
-		    \fill[color=black!60] ([xshift=-5pt,yshift=-1cm]frame.north west)--([xshift=0cm,yshift=-0.8cm]frame.north west)-- ([xshift=0cm,yshift=-1.2cm]frame.north west)--cycle;
-		    \fill[black!60] ([xshift=1cm,yshift=5pt]frame.north west)-- ([xshift=0.8cm,yshift=0cm]frame.north west)--([xshift=1.2cm,yshift=0cm]frame.north west)--cycle;
-			%%============================%% End
-            \fill[BlueGreen,drop shadow={opacity=0.3,shadow xshift=-0.008\linewidth,shadow yshift=0.0016\linewidth}] 
-            ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) {[rounded corners=3pt]--++(0.05\linewidth+5pt,0)}--++(0,0.05\linewidth+5pt)--cycle;
-			\fill[black!60] ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) -- ([xshift=-0.04\linewidth,yshift=0pt]frame.south east)-- ([xshift=-0.06\linewidth,yshift=0pt]frame.south east)--cycle;
-			\fill[black!60] ([xshift=5pt,yshift=0.05\linewidth]frame.south east)-- ([yshift=0.04\linewidth]frame.south east) -- ([yshift=0.06\linewidth]frame.south east)--cycle;
-		},
-		overlay first = {
-			\node[rectangle,
-	text=white, drop shadow={opacity=.3, shadow xshift=0.1cm},
-	inner sep=1.5mm,fill=BlueGreen,
-	anchor=west,rounded corners=3pt,
-	font=\normalsize\bfseries] at ([xshift=0cm,yshift=-3.mm]frame.north west)%
-	{\phantom{\rule{1.2em}{0pt}}\Corollary\ \thetcbcorollary.~#2};
-            \fill[color=BlueGreen,drop shadow={opacity=0.3,shadow xshift=.3pt}] 
-            ([xshift=1cm,yshift=5pt]frame.north west) {[rounded corners=3pt]--++(-1cm-5pt,0)}--++(0,-1cm-5pt)--cycle;
-		    \fill[color=black!60] ([xshift=-5pt,yshift=-1cm]frame.north west)--([xshift=0cm,yshift=-0.8cm]frame.north west)-- ([xshift=0cm,yshift=-1.2cm]frame.north west)--cycle;
-		    \fill[black!60] ([xshift=1cm,yshift=5pt]frame.north west)-- ([xshift=0.8cm,yshift=0cm]frame.north west)--([xshift=1.2cm,yshift=0cm]frame.north west)--cycle;
-		},
-		overlay last = {
-			%%============================%% End
-            \fill[BlueGreen,drop shadow={opacity=0.3,shadow xshift=-0.008\linewidth,shadow yshift=0.0016\linewidth}] 
-            ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) {[rounded corners=3pt]--++(0.05\linewidth+5pt,0)}--++(0,0.05\linewidth+5pt)--cycle;
-			\fill[black!60] ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) -- ([xshift=-0.04\linewidth,yshift=0pt]frame.south east)-- ([xshift=-0.06\linewidth,yshift=0pt]frame.south east)--cycle;
-			\fill[black!60] ([xshift=5pt,yshift=0.05\linewidth]frame.south east)-- ([yshift=0.04\linewidth]frame.south east) -- ([yshift=0.06\linewidth]frame.south east)--cycle;
-		}
-		#1
-	}
-\NewDocumentEnvironment{corollary}{O{} O{} O{}}{\smallskip\begin{wwcorollary}{#1}{#2}#3}{\end{wwcorollary}\smallskip }
-% 定义开始
-\newtcolorbox{wwdefinition}[3][]{
-		arc=3pt,breakable,enhanced,colback=nuanbai,boxrule=0pt,top=8mm,
+\NewTColorBox{proposition}{O{} O{} o}
+  {arc=3pt,breakable,enhanced,colback=nuanbai,boxrule=0pt,top=8mm,
     fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
     fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
     opacityframe=0, opacityback=0.98,
-		fontupper=\itshape, step and label={tcbdefinition}{#3},
-		overlay unbroken = {
-			%标题 %更改有效
-			\node[rectangle, 
-	text=white, drop shadow={opacity=.3, shadow xshift=0.1cm},
-	inner sep=1.5mm,fill=紫棠!80,
-	anchor=west,rounded corners=3pt,
-	font=\normalsize] at ([xshift=0cm,yshift=-3.mm]frame.north west)%
-	{\phantom{\rule{1.2em}{0pt}}\bf   \Definition\ \thetcbdefinition.~#2};
-            \fill[color=紫棠!80,drop shadow={opacity=0.3,shadow xshift=.3pt}] 
-            ([xshift=1cm,yshift=5pt]frame.north west) {[rounded corners=3pt]--++(-1cm-5pt,0)}--++(0,-1cm-5pt)--cycle;
-      \fill[color=black!60] ([xshift=-5pt,yshift=-1cm]frame.north west)--([xshift=0cm,yshift=-0.8cm]frame.north west)-- ([xshift=0cm,yshift=-1.2cm]frame.north west)--cycle;
+		fontupper=\normalsize,step={tcbproposition}, IfNoValueF={#3}{label={#3}},before pre=\smallskip, after app=\smallskip,
+overlay unbroken = {
+      %%============== First ==============%%
       \fill[black!60] ([xshift=1cm,yshift=5pt]frame.north west)-- ([xshift=0.8cm,yshift=0cm]frame.north west)--([xshift=1.2cm,yshift=0cm]frame.north west)--cycle;
-			%%============================%% End
-            \fill[紫棠!80,drop shadow={opacity=0.3,shadow xshift=-0.008\linewidth,shadow yshift=0.0016\linewidth}] 
-            ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) {[rounded corners=3pt]--++(0.05\linewidth+5pt,0)}--++(0,0.05\linewidth+5pt)--cycle;
+			\node[rectangle,text=white, drop shadow={opacity=.3, shadow xshift=0.1cm}, inner sep=1.5mm,fill=DeepPink,
+	anchor=west,rounded corners=3pt,font=\normalsize\bfseries] at ([xshift=0cm,yshift=-3.mm]frame.north west) {\phantom{\rule{1.2em}{0pt}}\Proposition\ \thetcbproposition.~#2};
+      \fill[color=DeepPink,drop shadow={opacity=0.3,shadow xshift=.3pt}] 
+      ([xshift=1cm,yshift=5pt]frame.north west) {[rounded corners=3pt]--++(-1cm-5pt,0)}--++(0,-1cm-5pt)--cycle;
+      \fill[color=black!60] ([xshift=-5pt,yshift=-1cm]frame.north west)--([xshift=0cm,yshift=-0.8cm]frame.north west)-- ([xshift=0cm,yshift=-1.2cm]frame.north west)--cycle;
+			%%============== End ==============%% 
+      \fill[DeepPink,drop shadow={opacity=0.3,shadow xshift=-0.008\linewidth,shadow yshift=0.0016\linewidth}] 
+      ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) {[rounded corners=3pt]--++(0.05\linewidth+5pt,0)}--++(0,0.05\linewidth+5pt)--cycle;
 			\fill[black!60] ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) -- ([xshift=-0.04\linewidth,yshift=0pt]frame.south east)-- ([xshift=-0.06\linewidth,yshift=0pt]frame.south east)--cycle;
 			\fill[black!60] ([xshift=5pt,yshift=0.05\linewidth]frame.south east)-- ([yshift=0.04\linewidth]frame.south east) -- ([yshift=0.06\linewidth]frame.south east)--cycle;
-		},%上面是实际控制代码,下面的代码仅在跨页分割时生效
-		overlay first = {%跨页时生效
-			%标题 %跨页时生效
-			\node[rectangle, 
-	text=white, drop shadow={opacity=.3, shadow xshift=0.1cm},
-	inner sep=1.5mm,fill=紫棠!80,
-	anchor=west,rounded corners=3pt,
-	font=\normalsize] at ([xshift=0cm,yshift=-3.mm]frame.north west)%
-	{\phantom{\rule{1.2em}{0pt}}\bf  \Definition\ \thetcbdefinition.~#2};
-            \fill[color=紫棠!80,drop shadow={opacity=0.3,shadow xshift=.3pt}] 
-            ([xshift=1cm,yshift=5pt]frame.north west) {[rounded corners=3pt]--++(-1cm-5pt,0)}--++(0,-1cm-5pt)--cycle;
-		    \fill[color=black!60] ([xshift=-5pt,yshift=-1cm]frame.north west)--([xshift=0cm,yshift=-0.8cm]frame.north west)-- ([xshift=0cm,yshift=-1.2cm]frame.north west)--cycle;
-		    \fill[black!60] ([xshift=1cm,yshift=5pt]frame.north west)-- ([xshift=0.8cm,yshift=0cm]frame.north west)--([xshift=1.2cm,yshift=0cm]frame.north west)--cycle;
-		},%保持边缘的变化
-		overlay last = {%跨页时生效
-			%%============================%% End
-            \fill[紫棠!80,drop shadow={opacity=0.3,shadow xshift=-0.008\linewidth,shadow yshift=0.0016\linewidth}] 
-            ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) {[rounded corners=3pt]--++(0.05\linewidth+5pt,0)}--++(0,0.05\linewidth+5pt)--cycle;
+		}, 
+overlay first = {
+      \fill[black!60] ([xshift=1cm,yshift=5pt]frame.north west)-- ([xshift=0.8cm,yshift=0cm]frame.north west)--([xshift=1.2cm,yshift=0cm]frame.north west)--cycle;
+			\node[rectangle,text=white, drop shadow={opacity=.3, shadow xshift=0.1cm}, inner sep=1.5mm,fill=DeepPink,
+	anchor=west,rounded corners=3pt,font=\normalsize\bfseries] at ([xshift=0cm,yshift=-3.mm]frame.north west) {\phantom{\rule{1.2em}{0pt}}\Proposition\ \thetcbproposition.~#2};
+      \fill[color=DeepPink,drop shadow={opacity=0.3,shadow xshift=.3pt}] 
+      ([xshift=1cm,yshift=5pt]frame.north west) {[rounded corners=3pt]--++(-1cm-5pt,0)}--++(0,-1cm-5pt)--cycle;
+      \fill[color=black!60] ([xshift=-5pt,yshift=-1cm]frame.north west)--([xshift=0cm,yshift=-0.8cm]frame.north west)-- ([xshift=0cm,yshift=-1.2cm]frame.north west)--cycle;
+		},
+overlay last = {
+      \fill[DeepPink,drop shadow={opacity=0.3,shadow xshift=-0.008\linewidth,shadow yshift=0.0016\linewidth}] 
+      ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) {[rounded corners=3pt]--++(0.05\linewidth+5pt,0)}--++(0,0.05\linewidth+5pt)--cycle;
 			\fill[black!60] ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) -- ([xshift=-0.04\linewidth,yshift=0pt]frame.south east)-- ([xshift=-0.06\linewidth,yshift=0pt]frame.south east)--cycle;
 			\fill[black!60] ([xshift=5pt,yshift=0.05\linewidth]frame.south east)-- ([yshift=0.04\linewidth]frame.south east) -- ([yshift=0.06\linewidth]frame.south east)--cycle;
-		}
-		#1
-	}
-\NewDocumentEnvironment{definition}{O{} O{} O{}}{\smallskip\begin{wwdefinition}{#1}{#2}#3}{\end{wwdefinition} \smallskip}
-% 例题环境
-%% fuzzy shadow={〈xshift〉}{〈yshift〉}{〈offset〉}{〈step〉}{〈options〉}
-
-% fuzzy shadow是tcolorbox提供的诸多shadow模式中的一种，它的主要特色是会让阴影区有一种渐变的效果，类似于边缘糊化。
-
-% 具体可以看下面的效果，我对阴影区做了一些夸张地处理，可以看到它产生了颜色的一个渐变过程。
-
-%% 其中xshift和yshift是指阴影部分相对于主体部分的偏移量，如果均为0，那阴影和主体部分会重合在一起。取正值代表向上和向右移动，相反取负值。在我们的例子中，第一个fuzzy shadow向左向上移动，所以第一个参数为负值，第二个刚好相反。
-
-% 第三个参数：offset可以扩大或者缩小已有的阴影面积，取负值为扩大，取正值为缩小。如果前两个参数设置合理，是不需要offset取值，直接设为0即可。
-
-% 第四个参数：step就决定了阴影部分的效果，这个值如果取0，那么阴影区没有糊化，即没有渐变的效果。一个合适的取值可以调整其视觉效果。
-\newtcolorbox{wwexample}[3][]{
-		arc=0mm,breakable,enhanced,colback=CyaN!10,arc=3pt,boxrule=0pt,top=8mm,%drop fuzzy shadow=black!20!white,
+		},
+		#1}
+%推论
+\NewTColorBox{corollary}{O{} O{} o}
+  {arc=0mm,breakable,enhanced,colback=茶色!1!nuanbai,arc=3pt,boxrule=0pt,top=8mm,
       fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
       fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
-        opacityframe=0, opacityback=0.98,
-		fontupper=\normalsize, step and label={tcbexam}{#3},
-	% Overlay Unbroken
+      opacityframe=0, opacityback=0.98,
+      fontupper=\normalsize,step={tcbcorollary},IfNoValueF={#3}{label={#3}},before pre=\smallskip, after app=\smallskip,
+overlay unbroken= {
+    %%============== First ==============%% 
+    \def\rad{5pt}
+    \def\Rad{2.5pt}
+    \def\tlength{2.7cm}
+    \def\theight{0.6cm}
+    \fill[color=茶色!80!black] ([xshift=\tlength-\Rad,yshift=5pt]frame.north west) to[out=0,in=90,looseness=0.7] ([xshift=\tlength+0.5*\Rad]frame.north west) coordinate (NW)--([xshift=-2*\rad]NW)--cycle;
+    \node[text=茶色,right,font=\normalsize\bfseries] at ([xshift=2.5cm,yshift=-2.85mm]frame.north west) {#2};
+    \path[fill=茶色,drop shadow={opacity=0.3,shadow xshift=.3pt}]
+    ([xshift=\rad,yshift=5pt]frame.north west) coordinate (topleft) to[out=180,in=0] ([xshift=-2*\rad,yshift=-\theight]frame.north west) --([xshift=\tlength-3*\rad,yshift=-\theight]frame.north west) coordinate (bottomright) to[out=0,in=180] ([xshift=\tlength,yshift=5pt]frame.north west) --cycle;
+    \coordinate (LemName) at ($(topleft)!0.5!(bottomright)$);
+    \node[text=white,font=\bfseries] at (LemName) {\Corollary~\thetcbcorollary.};
+    %%============== End ==============%%  
+    \def\tlen{1.5cm}
+    \fill[color=茶色!80!black] ([xshift=-\tlen+\Rad,yshift=-5pt]frame.south east) to[out=180,in=90,looseness=0.7] ([xshift=-\tlen-0.5*\Rad]frame.south east) coordinate (NWl)--([xshift=2*\rad]NWl)--cycle;
+    \path[fill=茶色,drop shadow={opacity=0.3,shadow xshift=.3pt}]
+    ([xshift=-\rad,yshift=-5pt]frame.south east) coordinate (topleftt) to[out=0,in=180] ([xshift=2*\rad,yshift=\theight]frame.south east) --([xshift=-\tlen+3*\rad,yshift=\theight]frame.south east) coordinate (bottomrightt) to[out=180,in=0] ([xshift=-\tlen,yshift=-5pt]frame.south east) --cycle;
+	},
+overlay first={
+    \def\rad{5pt}
+    \def\Rad{2.5pt}
+    \def\tlength{2.7cm}
+    \def\theight{0.6cm} 
+    \fill[color=茶色!80!black] ([xshift=\tlength-\Rad,yshift=5pt]frame.north west) to[out=0,in=90,looseness=0.7] ([xshift=\tlength+0.5*\Rad]frame.north west) coordinate (NW)--([xshift=-2*\rad]NW)--cycle;
+    \node[text=茶色,right,font=\normalsize\bfseries] at ([xshift=2.5cm,yshift=-2.85mm]frame.north west) {#2};
+    \path[fill=茶色,drop shadow={opacity=0.3,shadow xshift=.3pt}]
+    ([xshift=\rad,yshift=5pt]frame.north west) coordinate (topleft) to[out=180,in=0] ([xshift=-2*\rad,yshift=-\theight]frame.north west) --([xshift=\tlength-3*\rad,yshift=-\theight]frame.north west) coordinate (bottomright) to[out=0,in=180] ([xshift=\tlength,yshift=5pt]frame.north west) --cycle;
+    \coordinate (LemName) at ($(topleft)!0.5!(bottomright)$);
+    \node[text=white,font=\bfseries] at (LemName) {\Corollary~\thetcbcorollary.};
+  },
+overlay last = {
+    \def\rad{5pt}
+    \def\Rad{2.5pt}
+    \def\theight{0.6cm}
+    \def\tlen{1.5cm}
+    \fill[color=茶色!80!black] ([xshift=-\tlen+\Rad,yshift=-5pt]frame.south east) to[out=180,in=90,looseness=0.7] ([xshift=-\tlen-0.5*\Rad]frame.south east) coordinate (NWl)--([xshift=2*\rad]NWl)--cycle;
+    \path[fill=茶色,drop shadow={opacity=0.3,shadow xshift=.3pt}]
+    ([xshift=-\rad,yshift=-5pt]frame.south east) coordinate (topleftt) to[out=0,in=180] ([xshift=2*\rad,yshift=\theight]frame.south east) --([xshift=-\tlen+3*\rad,yshift=\theight]frame.south east) coordinate (bottomrightt) to[out=180,in=0] ([xshift=-\tlen,yshift=-5pt]frame.south east) --cycle;
+	},
+		#1}
+% 定义开始
+\NewTColorBox{definition}{O{} O{} o}
+  {arc=3pt,breakable,enhanced,colback=nuanbai,boxrule=0pt,top=8mm,
+    fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+    fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+    opacityframe=0, opacityback=0.98,
+		fontupper=\itshape,step={tcbdefinition}, IfNoValueF={#3}{label={#3}},before pre=\smallskip, after app=\smallskip,
+overlay unbroken = {
+      %%============== First ==============%%
+      \fill[black!60] ([xshift=1cm,yshift=5pt]frame.north west)-- ([xshift=0.8cm,yshift=0cm]frame.north west)--([xshift=1.2cm,yshift=0cm]frame.north west)--cycle;
+			\node[rectangle,text=white, drop shadow={opacity=.3, shadow xshift=0.1cm}, inner sep=1.5mm,fill=紫棠!80,
+anchor=west, rounded corners=3pt,font=\normalsize] at ([xshift=0cm,yshift=-3.mm]frame.north west) {\phantom{\rule{1.2em}{0pt}}\bf   \Definition\ \thetcbdefinition.~#2};
+      \fill[color=紫棠!80,drop shadow={opacity=0.3,shadow xshift=.3pt}] 
+      ([xshift=1cm,yshift=5pt]frame.north west) {[rounded corners=3pt]--++(-1cm-5pt,0)}--++(0,-1cm-5pt)--cycle;
+      \fill[color=black!60] ([xshift=-5pt,yshift=-1cm]frame.north west)--([xshift=0cm,yshift=-0.8cm]frame.north west)-- ([xshift=0cm,yshift=-1.2cm]frame.north west)--cycle;
+			%%============== End ==============%% 
+      \fill[紫棠!80,drop shadow={opacity=0.3,shadow xshift=-0.008\linewidth,shadow yshift=0.0016\linewidth}] 
+      ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) {[rounded corners=3pt]--++(0.05\linewidth+5pt,0)}--++(0,0.05\linewidth+5pt)--cycle;
+			\fill[black!60] ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) -- ([xshift=-0.04\linewidth,yshift=0pt]frame.south east)-- ([xshift=-0.06\linewidth,yshift=0pt]frame.south east)--cycle;
+			\fill[black!60] ([xshift=5pt,yshift=0.05\linewidth]frame.south east)-- ([yshift=0.04\linewidth]frame.south east) -- ([yshift=0.06\linewidth]frame.south east)--cycle;
+		},
+overlay first = {
+      \fill[black!60] ([xshift=1cm,yshift=5pt]frame.north west)-- ([xshift=0.8cm,yshift=0cm]frame.north west)--([xshift=1.2cm,yshift=0cm]frame.north west)--cycle;
+			\node[rectangle, text=white, drop shadow={opacity=.3, shadow xshift=0.1cm},inner sep=1.5mm,fill=紫棠!80,anchor=west,rounded corners=3pt,font=\normalsize] at ([xshift=0cm,yshift=-3.mm]frame.north west) {\phantom{\rule{1.2em}{0pt}}\bf  \Definition\ \thetcbdefinition.~#2};
+      \fill[color=紫棠!80,drop shadow={opacity=0.3,shadow xshift=.3pt}] 
+      ([xshift=1cm,yshift=5pt]frame.north west) {[rounded corners=3pt]--++(-1cm-5pt,0)}--++(0,-1cm-5pt)--cycle;
+      \fill[color=black!60] ([xshift=-5pt,yshift=-1cm]frame.north west)--([xshift=0cm,yshift=-0.8cm]frame.north west)-- ([xshift=0cm,yshift=-1.2cm]frame.north west)--cycle;
+		},
+overlay last = {
+      \fill[紫棠!80,drop shadow={opacity=0.3,shadow xshift=-0.008\linewidth,shadow yshift=0.0016\linewidth}] 
+      ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) {[rounded corners=3pt]--++(0.05\linewidth+5pt,0)}--++(0,0.05\linewidth+5pt)--cycle;
+			\fill[black!60] ([xshift=-0.05\linewidth,yshift=-5pt]frame.south east) -- ([xshift=-0.04\linewidth,yshift=0pt]frame.south east)-- ([xshift=-0.06\linewidth,yshift=0pt]frame.south east)--cycle;
+			\fill[black!60] ([xshift=5pt,yshift=0.05\linewidth]frame.south east)-- ([yshift=0.04\linewidth]frame.south east) -- ([yshift=0.06\linewidth]frame.south east)--cycle;
+		},
+		#1}
+% 例题环境
+%% fuzzy shadow={〈xshift〉}{〈yshift〉}{〈offset〉}{〈step〉}{〈options〉}
+% fuzzy shadow是tcolorbox提供的诸多shadow模式中的一种，它的主要特色是会让阴影区有一种渐变的效果，类似于边缘糊化。
+% 具体可以看下面的效果，我对阴影区做了一些夸张的处理，可以看到它产生了颜色的一个渐变过程。
+%% 其中xshift和yshift是指阴影部分相对于主体部分的偏移量，如果均为0，那阴影和主体部分会重合在一起。取正值代表向上和向右移动，相反取负值。在我们的例子中，第一个fuzzy shadow向左向上移动，所以第一个参数为负值，第二个刚好相反。
+% 第三个参数：offset可以扩大或者缩小已有的阴影面积，取负值为扩大，取正值为缩小。如果前两个参数设置合理，是不需要offset取值，直接设为0即可。
+% 第四个参数：step就决定了阴影部分的效果，这个值如果取0，那么阴影区没有糊化，即没有渐变的效果。一个合适的取值可以调整其视觉效果。
+\definecolor{examback}{HTML}{e3e6e8}
+\NewTColorBox{example}{O{} O{} o}
+  {arc=0mm,breakable,enhanced,colback=examback,arc=3pt,boxrule=0pt,top=8mm,
+      fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+      fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+      opacityframe=0, %opacityback=0.98,
+      fontupper=\normalsize,step={tcbexam}, IfNoValueF={#3}{label={#3}},before pre=\smallskip, after app=\smallskip,
   overlay unbroken= {
-  %%====================== First ============================%% 
-	\def\rad{5pt}
-	\def\Rad{2.5pt}
-	\def\tlength{2.7cm}
-	\def\theight{0.6cm}
-	\fill[color=DarkCyan!80!black] ([xshift=\tlength-\Rad,yshift=5pt]frame.north west) to[out=0,in=90,looseness=0.7] ([xshift=\tlength+0.5*\Rad]frame.north west) coordinate (NW)--([xshift=-2*\rad]NW)--cycle;
-    \node[text=DarkCyan,right,
-  font=\normalsize\bfseries] at ([xshift=2.5cm,yshift=-2.85mm]frame.north west)%
-  {#2};
-    \path[fill=DarkCyan,drop shadow={opacity=0.3,shadow xshift=.3pt}]
+    %%============== First ==============%%
+    \def\rad{5pt}
+    \def\Rad{2.5pt}
+    \def\tlength{2.7cm}
+    \def\theight{0.6cm}
+    \fill[color=黛绿!80!black] ([xshift=\tlength-\Rad,yshift=5pt]frame.north west) to[out=0,in=90,looseness=0.7] ([xshift=\tlength+0.5*\Rad]frame.north west) coordinate (NW)--([xshift=-2*\rad]NW)--cycle;
+    \node[text=黛绿,right,font=\normalsize\bfseries] at ([xshift=2.5cm,yshift=-2.85mm]frame.north west) {#2};
+    \path[fill=黛绿,drop shadow={opacity=0.3,shadow xshift=.3pt}]
     ([xshift=\rad,yshift=5pt]frame.north west) coordinate (topleft) to[out=180,in=0] ([xshift=-2*\rad,yshift=-\theight]frame.north west) --([xshift=\tlength-3*\rad,yshift=-\theight]frame.north west) coordinate (bottomright) to[out=0,in=180] ([xshift=\tlength,yshift=5pt]frame.north west) --cycle;
     \coordinate (LemName) at ($(topleft)!0.5!(bottomright)$);
     \node[text=white,font=\bfseries] at (LemName) {\Example~\thetcbexam.};
-    %%========================== End ========================%% 
+    %%============== End ==============%% 
     \def\tlen{1.5cm}
-    \fill[color=DarkCyan!80!black] ([xshift=-\tlen+\Rad,yshift=-5pt]frame.south east) to[out=180,in=90,looseness=0.7] ([xshift=-\tlen-0.5*\Rad]frame.south east) coordinate (NWl)--([xshift=2*\rad]NWl)--cycle;
-    \path[fill=DarkCyan,drop shadow={opacity=0.3,shadow xshift=.3pt}]
+    \fill[color=黛绿!80!black] ([xshift=-\tlen+\Rad,yshift=-5pt]frame.south east) to[out=180,in=90,looseness=0.7] ([xshift=-\tlen-0.5*\Rad]frame.south east) coordinate (NWl)--([xshift=2*\rad]NWl)--cycle;
+    \path[fill=黛绿,drop shadow={opacity=0.3,shadow xshift=.3pt}]
     ([xshift=-\rad,yshift=-5pt]frame.south east) coordinate (topleftt) to[out=0,in=180] ([xshift=2*\rad,yshift=\theight]frame.south east) --([xshift=-\tlen+3*\rad,yshift=\theight]frame.south east) coordinate (bottomrightt) to[out=180,in=0] ([xshift=-\tlen,yshift=-5pt]frame.south east) --cycle;
-	},%上面是不跨页时生效,下面代码仅在跨页分割时生效
-  % Overlay First
-  overlay first={
+	},
+  overlay first = {
     \def\rad{5pt}
-	\def\Rad{2.5pt}
-	\def\tlength{2.7cm}
-	\def\theight{0.6cm}
-    %%====================== First ============================%% 
-    \fill[color=DarkCyan!80!black] ([xshift=\tlength-\Rad,yshift=5pt]frame.north west) to[out=0,in=90,looseness=0.7] ([xshift=\tlength+0.5*\Rad]frame.north west) coordinate (NW)--([xshift=-2*\rad]NW)--cycle;
-    \node[text=DarkCyan,right,
-  font=\normalsize\bfseries] at ([xshift=2.5cm,yshift=-2.85mm]frame.north west)%
-  {#2};
-    \path[fill=DarkCyan,drop shadow={opacity=0.3,shadow xshift=.3pt}]
+    \def\Rad{2.5pt}
+    \def\tlength{2.7cm}
+    \def\theight{0.6cm}
+    \fill[color=黛绿!80!black] ([xshift=\tlength-\Rad,yshift=5pt]frame.north west) to[out=0,in=90,looseness=0.7] ([xshift=\tlength+0.5*\Rad]frame.north west) coordinate (NW)--([xshift=-2*\rad]NW)--cycle;
+    \node[text=黛绿,right,font=\normalsize\bfseries] at ([xshift=2.5cm,yshift=-2.85mm]frame.north west) {#2};
+    \path[fill=黛绿,drop shadow={opacity=0.3,shadow xshift=.3pt}]
     ([xshift=\rad,yshift=5pt]frame.north west) coordinate (topleft) to[out=180,in=0] ([xshift=-2*\rad,yshift=-\theight]frame.north west) --([xshift=\tlength-3*\rad,yshift=-\theight]frame.north west) coordinate (bottomright) to[out=0,in=180] ([xshift=\tlength,yshift=5pt]frame.north west) --cycle;
     \coordinate (LemName) at ($(topleft)!0.5!(bottomright)$);
     \node[text=white,font=\bfseries] at (LemName) {\Example~\thetcblemma.};
   },
-	% Overlay Last
-	overlay last = {%跨页时生效 尾部
-		%%========================== End ========================%% 
+	overlay last = {
     \def\rad{5pt}
-	\def\Rad{2.5pt}
-	\def\theight{0.6cm}
+    \def\Rad{2.5pt}
+    \def\theight{0.6cm}
     \def\tlen{1.5cm}
-    \fill[color=DarkCyan!80!black] ([xshift=-\tlen+\Rad,yshift=-5pt]frame.south east) to[out=180,in=90,looseness=0.7] ([xshift=-\tlen-0.5*\Rad]frame.south east) coordinate (NWl)--([xshift=2*\rad]NWl)--cycle;
-    \path[fill=DarkCyan,drop shadow={opacity=0.3,shadow xshift=.3pt}]
+    \fill[color=黛绿!80!black] ([xshift=-\tlen+\Rad,yshift=-5pt]frame.south east) to[out=180,in=90,looseness=0.7] ([xshift=-\tlen-0.5*\Rad]frame.south east) coordinate (NWl)--([xshift=2*\rad]NWl)--cycle;
+    \path[fill=黛绿,drop shadow={opacity=0.3,shadow xshift=.3pt}]
     ([xshift=-\rad,yshift=-5pt]frame.south east) coordinate (topleftt) to[out=0,in=180] ([xshift=2*\rad,yshift=\theight]frame.south east) --([xshift=-\tlen+3*\rad,yshift=\theight]frame.south east) coordinate (bottomrightt) to[out=180,in=0] ([xshift=-\tlen,yshift=-5pt]frame.south east) --cycle;
-	}
-		#1
-	}
-\NewDocumentEnvironment{example}{O{} O{} O{}}{\smallskip\begin{wwexample}{#1}{#2}#3}{\end{wwexample} \smallskip}
+	},
+		#1}
 % proof
 \declaretheoremstyle[
     spaceabove=3pt,spacebelow=3pt,
@@ -1113,3 +1035,5 @@ sorting=nty
 \indexsetup{level=\chapter*,noclearpage}
 \makeindex[title=索引,columns=3,columnsep=15pt,columnseprule]
 \makeindex
+\newcommand{\Diff}[2][]{\frac{\partial #1}{\partial #2}}
+\newcommand{\Dif}[2]{\frac{\dd #1}{\dd #2}}
