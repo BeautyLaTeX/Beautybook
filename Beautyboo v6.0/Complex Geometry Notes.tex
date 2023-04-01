@@ -1,0 +1,64 @@
+\documentclass{Beautybook V6.0 En}
+\usepackage{mtpro2}
+\usepackage{amsfonts}
+\DeclareFontFamily{U}{nxlmi}{}
+\DeclareFontSubstitution{U}{nxlmi}{m}{it}
+\DeclareFontShape{U}{nxlmi}{m}{it}{
+  <-6.3>    nxlmi05
+  <6.3-8.6> nxlmi07
+  <8.6->    nxlmi0
+}{}
+
+\DeclareFontShape{U}{nxlmi}{b}{it}{
+  <-6.3>    nxlbmi05
+  <6.3-8.6> nxlbmi07
+  <8.6->    nxlbmi0
+}{}
+
+\renewcommand{\partial}{{\text{\usefont{U}{nxlmi}{m}{it}\symbol{64}}\mspace{1mu}}}
+
+\begin{document}
+\thispagestyle{empty}
+\title{Notes Of Self-learning}
+\subtitle{Complex Geometry Notes}
+\edition{First Edition}
+\bookseries{Notes Series}
+\author{Shilong.Lu}
+\pressname{Springer}
+\presslogo{figures/Springer-logo.png}
+\coverimage{figures/pexels-alex-andrews-816608.jpg}
+\makecover
+
+\definecolor{bg}{HTML}{e0e0e0}
+\definecolor{fg}{HTML}{455a64}
+\colorlet{outermarginbgcolor}{bg}
+\colorlet{outermarginfgcolor}{fg}
+\colorlet{framegolden}{fg}
+\colorlet{framegray}{bg!50}
+
+\input{Term I Note main/titlepage-en}
+\frontmatter
+\pagenumbering{Roman}
+\input{Term I Note main/preface-en}
+\thispagestyle{empty}
+\definecolor{maincolor}{HTML}{8B8989}
+\tableofcontents\let\cleardoublepage\clearpage
+\mainmatter
+\pagenumbering{arabic}
+\partimage{figures/5.png}
+\partabstract{}
+\part{xx}
+\input{Term I Note main/chap1}
+\cite{2015Glypican}test
+
+\normalem
+\printbibliography[
+heading=bibintoc,
+title={References}
+]
+\printindex
+\thispagestyle{empty}
+\bottomimage{figures/M31OiiiArc_Strottner_5000.jpg}
+\summary{}
+\makebottomcover
+\end{document} 
