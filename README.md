@@ -18,13 +18,13 @@ For reference, the images of Chinese version are provided here:
 ![11](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/11.png)
 
 and the english verion are provided here:
-![Cover](https://github.com/BeautyLaTeX/latex-template/tree/master/en/1.png)
-![2](https://github.com/BeautyLaTeX/latex-template/tree/master/en/2.png)
-![3](https://github.com/BeautyLaTeX/latex-template/tree/master/en/3.png)
-![4](https://github.com/BeautyLaTeX/latex-template/tree/master/en/4.png)
-![5](https://github.com/BeautyLaTeX/latex-template/tree/master/en/5.png)
-![6](https://github.com/BeautyLaTeX/latex-template/tree/master/en/6.png)
-![7](https://github.com/BeautyLaTeX/latex-template/tree/master/en/7.png)
-![8](https://github.com/BeautyLaTeX/latex-template/tree/master/en/8.png)
-![9](https://github.com/BeautyLaTeX/latex-template/tree/master/en/9.png)
+![Cover](https://github.com/BeautyLaTeX/latex-template/blob/master/en/1.png)
+![2](https://github.com/BeautyLaTeX/latex-template/blob/master/en/2.png)
+![3](https://github.com/BeautyLaTeX/latex-template/blob/master/en/3.png)
+![4](https://github.com/BeautyLaTeX/latex-template/blob/master/en/4.png)
+![5](https://github.com/BeautyLaTeX/latex-template/blob/master/en/5.png)
+![6](https://github.com/BeautyLaTeX/latex-template/blob/master/en/6.png)
+![7](https://github.com/BeautyLaTeX/latex-template/blob/master/en/7.png)
+![8](https://github.com/BeautyLaTeX/latex-template/blob/master/en/8.png)
+![9](https://github.com/BeautyLaTeX/latex-template/blob/master/en/9.png)
 
