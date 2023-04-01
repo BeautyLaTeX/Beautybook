@@ -1,0 +1,551 @@
+\documentclass[12pt,twoside]{book}
+\overfullrule=1pt
+\usepackage[fontsize=13.5pt]{fontsize}
+\usepackage[a4paper,left=2.2cm, right=2.2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+\usepackage[colorlinks,linkcolor = blue,anchorcolor = blue,urlcolor = blue,citecolor = red]{hyperref}
+\usepackage{times}
+\usepackage{graphicx} % Required for inserting images
+\title{THE HODGE CONJECTURE}
+\makeatletter
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[EL]{\thepage}
+\fancyhead[ER]{PIERRE DELIGNE}
+\fancyhead[OL]{THE HODGE CONJECTURE}
+\fancyhead[OR]{\thepage}
+\fancyfoot[EL]{\includegraphics[scale=0.13]{OIP-C}}
+\fancyfoot[OR]{\includegraphics[scale=0.13]{OIP-C}}
+\setlength\headwidth{\textwidth}
+\renewcommand{\headrulewidth}{0.5mm} %页眉线宽，设为0可以去页眉线
+% \renewcommand{\footrulewidth}{0.1mm} %页脚线宽，设为0可以去页眉线
+\makeatother
+\usepackage{varwidth}
+\usepackage{lipsum}
+\setlength{\headheight}{14.49998pt}
+\setlength{\footskip}{64.57396pt}
+\usepackage{amsmath,amsthm,amsfonts}
+\usepackage{mtpro2}
+\newcommand\R{\mathbb{R}}
+\usepackage{physics}
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\usepackage[titles]{tocloft}
+\setlength{\cftsecindent}{0em}
+\setlength{\cftsecnumwidth}{1.5em}
+\setlength{\cftsubsecindent}{1em}
+\setlength{\cftsubsecnumwidth}{1.8em}
+\makeatletter
+\renewcommand{\@dotsep}{1.8}
+\renewcommand{\tableofcontents}{%
+\section*{Contents}
+\vspace*{-5pt}%
+\@starttoc{toc}}
+\makeatother
+
+\linespread{1.05}
+\usepackage{aliascnt}
+\usepackage{amscd}
+\usepackage{appendix}
+\usepackage{bm}
+\usepackage{color}
+\usepackage[shortlabels]{enumitem}
+\usepackage{float}
+%%%%%%H-N %%%%%%
+\usepackage{indentfirst}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{multirow}
+%%%%%%O-T %%%%%%
+\usepackage{pstricks}
+\usepackage{rotating}
+\usepackage{changepage}
+%%%%%%U-Z %%%%%%
+%\usepackage{ulem} %下划线标重点，而非斜体%
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage[all,poly,knot]{xy}
+%-------------------- end usepackage -----------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%定理格式 %%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{plain}
+%--------------------------------------
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{mainthm}{Main Theorem}
+%--------------------------------------
+\newtheorem*{acknowledgement*}{\protect \acknowledgementname}
+\providecommand{\acknowledgementname}{Acknowledgement}
+%--------------------------------------
+\newaliascnt{setup}{theorem}
+\newtheorem{setup}[setup]{Setup}
+\aliascntresetthe{setup}
+\providecommand*{\setupautorefname}{Setup}
+%--------------------------------------
+\newaliascnt{question}{theorem}
+\newtheorem{question}[question]{Question}
+\aliascntresetthe{question}
+\providecommand*{\questionautorefname}{Question}
+%--------------------------------------
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\providecommand*{\lemmaautorefname}{Lemma}
+%--------------------------------------
+\newaliascnt{assumption}{theorem}
+\newtheorem{assumption}[assumption]{Assumption}
+\aliascntresetthe{assumption}
+\providecommand*{\lemmaautorefname}{Assumption}
+%--------------------------------------
+\newaliascnt{conjecture}{theorem}
+\newtheorem{conjecture}[conjecture]{Conjecture}
+\aliascntresetthe{conjecture}
+\providecommand*{\conjectureautorefname}{Conjecture}
+%--------------------------------------
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\providecommand*{\propositionautorefname}{Proposition}
+%--------------------------------------
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+\providecommand*{\corollaryautorefname}{Corollary}
+%--------------------------------------
+\newaliascnt{problem}{theorem}
+\newtheorem{problem}[problem]{Problem}
+\aliascntresetthe{problem}
+\providecommand*{\problemautorefname}{Problem}
+%--------------------------------------
+\newaliascnt{claim}{theorem}
+\newtheorem{claim}[claim]{Claim}
+\aliascntresetthe{claim}
+\providecommand*{\claimautorefname}{Claim}
+%%%%%%%%%%%%%%%%$ Text roman 定义格式 %%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{definition}
+%--------------------------------------
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+\providecommand*{\definitionautorefname}{Definition}
+%--------------------------------------
+\newaliascnt{example}{theorem}
+\newtheorem{example}[example]{Example}
+\aliascntresetthe{example}
+\providecommand*{\exampleautorefname}{Example}
+%%%%%%%%%%%%%%%%%%%%Text roman 注记格式 %%%%%%%%%%%%%%%%%%%%
+\theoremstyle{remark}
+%--------------------------------------
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+\providecommand*{\remarkautorefname}{Remark}
+%--------------------------------------
+\newaliascnt{remarks}{theorem}
+\newtheorem{remarks}[remarks]{Remarks}
+\aliascntresetthe{remarks}
+\providecommand*{\remarksautorefname}{Remarks}
+%-------------------- 定理格式结束 --------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%begin list of symbols %%%%%%%%%%%%
+%---------------------------------
+\newcommand{\fraka}{{\mathfrak a}}
+\newcommand{\frakb}{{\mathfrak b}}
+\newcommand{\frakc}{{\mathfrak c}}
+\newcommand{\frakd}{{\mathfrak d}}
+\newcommand{\frake}{{\mathfrak e}}
+\newcommand{\frakf}{{\mathfrak f}}
+\newcommand{\frakg}{{\mathfrak g}}
+\newcommand{\frakh}{{\mathfrak h}}
+\newcommand{\fraki}{{\mathfrak i}}
+\newcommand{\frakj}{{\mathfrak j}}
+\newcommand{\frakk}{{\mathfrak k}}
+\newcommand{\frakl}{{\mathfrak l}}
+\newcommand{\frakm}{{\mathfrak m}}
+\newcommand{\frakn}{{\mathfrak n}}
+\newcommand{\frako}{{\mathfrak o}}
+\newcommand{\frakp}{{\mathfrak p}}
+\newcommand{\frakq}{{\mathfrak q}}
+\newcommand{\frakr}{{\mathfrak r}}
+\newcommand{\fraks}{{\mathfrak s}}
+\newcommand{\frakt}{{\mathfrak t}}
+\newcommand{\fraku}{{\mathfrak u}}
+\newcommand{\frakv}{{\mathfrak v}}
+\newcommand{\frakw}{{\mathfrak w}}
+\newcommand{\frakx}{{\mathfrak x}}
+\newcommand{\fraky}{{\mathfrak y}}
+\newcommand{\frakz}{{\mathfrak z}}
+%---------------------------------
+%---------------------------------
+\newcommand{\frakA}{{\mathfrak A}}
+\newcommand{\frakB}{{\mathfrak B}}
+\newcommand{\frakC}{{\mathfrak C}}
+\newcommand{\frakD}{{\mathfrak D}}
+\newcommand{\frakE}{{\mathfrak E}}
+\newcommand{\frakF}{{\mathfrak F}}
+\newcommand{\frakG}{{\mathfrak G}}
+\newcommand{\frakH}{{\mathfrak H}}
+\newcommand{\frakI}{{\mathfrak I}}
+\newcommand{\frakJ}{{\mathfrak J}}
+\newcommand{\frakK}{{\mathfrak K}}
+\newcommand{\frakL}{{\mathfrak L}}
+\newcommand{\frakM}{{\mathfrak V}}
+\newcommand{\frakN}{{\mathfrak N}}
+\newcommand{\frakO}{{\mathfrak O}}
+\newcommand{\frakP}{{\mathfrak P}}
+\newcommand{\frakQ}{{\mathfrak Q}}
+\newcommand{\frakR}{{\mathfrak R}}
+\newcommand{\frakS}{{\mathfrak S}}
+\newcommand{\frakT}{{\mathfrak T}}
+\newcommand{\frakU}{{\mathfrak U}}
+\newcommand{\frakV}{{\mathfrak V}}
+\newcommand{\frakW}{{\mathfrak W}}
+\newcommand{\frakX}{{\mathfrak X}}
+\newcommand{\frakY}{{\mathfrak Y}}
+\newcommand{\frakZ}{{\mathfrak Z}}
+%---------------------------------
+%---------------------------------
+\newcommand{\bA}{{\mathbb A}}
+\newcommand{\bB}{{\mathbb B}}
+\newcommand{\bC}{{\mathbb C}}
+\newcommand{\bD}{{\mathbb D}}
+\newcommand{\bE}{{\mathbb E}}
+\newcommand{\bF}{{\mathbb F}}
+\newcommand{\bG}{{\mathbb G}}
+\newcommand{\bH}{{\mathbb H}}
+\newcommand{\bI}{{\mathbb I}}
+\newcommand{\bJ}{{\mathbb J}}
+\newcommand{\bK}{{\mathbb K}}
+\newcommand{\bL}{{\mathbb L}}
+\newcommand{\bM}{{\mathbb M}}
+\newcommand{\bN}{{\mathbb N}}
+\newcommand{\bO}{{\mathbb O}}
+\newcommand{\bP}{{\mathbb P}}
+\newcommand{\bQ}{{\mathbb Q}}
+\newcommand{\bR}{{\mathbb R}}
+\newcommand{\bS}{{\mathbb S}}
+\newcommand{\bT}{{\mathbb T}}
+\newcommand{\bU}{{\mathbb U}}
+\newcommand{\bV}{{\mathbb V}}
+\newcommand{\bW}{{\mathbb W}}
+\newcommand{\bX}{{\mathbb X}}
+\newcommand{\bY}{{\mathbb Y}}
+\newcommand{\bZ}{{\mathbb Z}}
+%---------------------------------
+%---------------------------------
+\newcommand{\mA}{{\mathcal A}}
+\newcommand{\mB}{{\mathcal B}}
+\newcommand{\mC}{{\mathcal C}}
+\newcommand{\mD}{{\mathcal D}}
+\newcommand{\mE}{{\mathcal E}}
+\newcommand{\mF}{{\mathcal F}}
+\newcommand{\mG}{{\mathcal G}}
+\newcommand{\mH}{{\mathcal H}}
+\newcommand{\mI}{{\mathcal I}}
+\newcommand{\mJ}{{\mathcal J}}
+\newcommand{\mK}{{\mathcal K}}
+\newcommand{\mL}{{\mathcal L}}
+\newcommand{\mM}{{\mathcal V}}
+\newcommand{\mN}{{\mathcal N}}
+\newcommand{\mO}{{\mathcal O}}
+\newcommand{\mP}{{\mathcal P}}
+\newcommand{\mQ}{{\mathcal Q}}
+\newcommand{\mR}{{\mathcal R}}
+\newcommand{\mS}{{\mathcal S}}
+\newcommand{\mT}{{\mathcal T}}
+\newcommand{\mU}{{\mathcal U}}
+\newcommand{\mV}{{\mathcal V}}
+\newcommand{\mW}{{\mathcal W}}
+\newcommand{\mX}{{\mathcal X}}
+\newcommand{\mY}{{\mathcal Y}}
+\newcommand{\mZ}{{\mathcal Z}}
+%---------------------------------
+%---------------------------------
+\newcommand{\sA}{{\mathscr A}}
+\newcommand{\sB}{{\mathscr B}}
+\newcommand{\sC}{{\mathscr C}}
+\newcommand{\sD}{{\mathscr D}}
+\newcommand{\sE}{{\mathscr E}}
+\newcommand{\sF}{{\mathscr F}}
+\newcommand{\sG}{{\mathscr G}}
+\newcommand{\sH}{{\mathscr H}}
+\newcommand{\sI}{{\mathscr I}}
+\newcommand{\sJ}{{\mathscr J}}
+\newcommand{\sK}{{\mathscr K}}
+\newcommand{\sL}{{\mathscr L}}
+\newcommand{\sM}{{\mathscr V}}
+\newcommand{\sN}{{\mathscr N}}
+\newcommand{\sO}{{\mathscr O}}
+\newcommand{\sP}{{\mathscr P}}
+\newcommand{\sQ}{{\mathscr Q}}
+\newcommand{\sR}{{\mathscr R}}
+\newcommand{\sS}{{\mathscr S}}
+\newcommand{\sT}{{\mathscr T}}
+\newcommand{\sU}{{\mathscr U}}
+\newcommand{\sV}{{\mathscr V}}
+\newcommand{\sW}{{\mathscr W}}
+\newcommand{\sX}{{\mathscr X}}
+\newcommand{\sY}{{\mathscr Y}}
+\newcommand{\sZ}{{\mathscr Z}}
+%---------------------------------
+%------------------------- end list of symbols --------------
+%%%%%%%%%%%%%%%%%%%begin math operator %%%%%%%%%%%%%%%%%%%%%%
+%---------------------------------
+%\DeclareMathOperator ---> amsopn ---> amsmath
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Div{Div}
+\DeclareMathOperator\cech{\check Cech}
+\DeclareMathOperator\Char{char}
+\DeclareMathOperator\rmd{d}
+\DeclareMathOperator\End{End}
+\DeclareMathOperator\mEnd{\mathcal End}
+\DeclareMathOperator\Fil{Fil}
+\DeclareMathOperator\Frac{Frac}
+\DeclareMathOperator\Gal{Gal}
+\DeclareMathOperator\GL{GL}
+%\DeclareMathOperator\gcd{gcd}
+\DeclareMathOperator\gl{mathscr{gl}}
+\DeclareMathOperator\Gr{Gr}
+\DeclareMathOperator\Hom{Hom}
+\DeclareMathOperator\mHom{\mathcal Hom}
+\DeclareMathOperator\id{id}
+\DeclareMathOperator\lcm{lcm}
+\DeclareMathOperator\Pic{Pic}
+\DeclareMathOperator\PGL{PGL}
+\DeclareMathOperator\res{res}
+%\DeclareMathOperator\sl{\mathscr{sl}}
+\DeclareMathOperator\SL{SL}
+\DeclareMathOperator\Spec{Spec}
+\DeclareMathOperator\Spf{Spf}
+\DeclareMathOperator\Sp{Sp}
+\DeclareMathOperator\Spa{Spa}
+%---------------------------------
+\newcommand{\dR}{\mathrm{dR}}
+\newcommand{\crys}{\mathrm{crys}}
+\newcommand{\et}{\mathrm{et}}
+\newcommand{\MF}{\mathcal{MF}}
+\newcommand{\MCF}{\mathrm{MCF}}
+\newcommand{\MIC}{\mathrm{MIC}}
+\newcommand{\HDF}{\mathrm{HDF}}
+\newcommand{\HIG}{\mathrm{HIG}}
+\DeclareMathOperator{\FIsoc}{F-Isoc}
+\newcommand{\FIsocd}{\FIsoc^\dagger}
+\DeclareMathOperator{\Crys}{Crys}
+\DeclareMathOperator{\FCrys}{F-Crys}
+\DeclareMathOperator{\logCrys}{\log-Crys}
+\DeclareMathOperator{\logFCrys}{\log-F-Crys}
+%------------------------- end math operator ----------------
+%%%%%%%%%%%begin notion in number theory %%%%%%%%%%%%%%%%%%%%
+\newcommand{\Zbar}{{\overline{\mathbb Z}}}
+\newcommand{\Zp}{{\mathbb{Z}_p}}
+\newcommand{\Zq}{{\mathbb{Z}_q}}
+\newcommand{\Zpbar}{{\overline{\mathbb Q}_p}}
+\newcommand{\Zl}{{\mathbb{Z}_\ell}}
+%-----------------------------
+\newcommand{\Fp}{{\mathbb{F}_p}}
+\newcommand{\Fq}{{\mathbb{F}_q}}
+\newcommand{\Fpbar}{{\overline{\mathbb F}_p}}
+%-----------------------------
+\newcommand{\Qbar}{{\overline{\mathbb Q}}}
+\newcommand{\Qp}{{\mathbb{Q}_p}}
+\newcommand{\Qq}{{\mathbb{Q}_q}}
+\newcommand{\Qpbar}{{\overline{\mathbb Q}_p}}
+%-----------------------------
+\newcommand{\Ql}{{\mathbb{Q}_{\ell}}}
+\newcommand{\Qlbar}{{\overline{\mathbb{Q}}_{\ell}}}
+
+\numberwithin{equation}{section}
+%%%%%%%%%%%%%%%%%%%%本笔记中的专属记号 %%%%%%%%%%%%%%%h=half %%%%%%%%%%%%%%
+\def\FIsoch{{\FIsoc^{\dagger{1\over 2}}_{\lambda} }}
+\def\FIsochf{{\FIsoc^{\dagger{1\over 2}}_{\lambda,f} }}
+\def\HDFh{\mathrm{HDF}^{{1\over 2}}_{\lambda}}
+\def\High{{\mathrm{HIG}^{{\rm gr}\,{1\over 2}}_{\lambda}}}
+\def\Loch{{\mathrm{LOC}^{\ell,{1\over 2}}_{\lambda}}}
+\def\Lochf{{\mathrm{LOC}^{\ell,{1\over 2}}_{\lambda,f}}}
+\def\MdRh{{M^{{1\over 2}}_{{\rm dR}\,\lambda}}}
+
+\def\MFh{\MF^{{1\over 2}}_{\lambda}}
+\def\MFhf{\MF^{{1\over 2}}_{\lambda,f}}
+
+\def\PHDFh{\mathrm{PHDF}^{{1\over 2}}_{\lambda}}
+\def\PHDFhf{\mathrm{PHDF}^{{1\over 2}}_{\lambda,f}}
+\def\PHigh{{\mathrm{PHIG}^{{\rm gr}\,{1\over 2}}_{\lambda}}}
+\def\PHighf{{\mathrm{PHIG}^{{\rm gr}\,{1\over 2}}_{\lambda,f}}}
+%-----------------------------------------
+\def\Flow{\mathrm{Flow}}
+\def\Frob{\mathrm{Frob}}
+\def\EK{{\mathbb E}}
+\def\QP{{\mathrm{QP}}}
+\def\P{{\mathrm{P}}}
+\def\DR{{\mathrm{DR}}}
+%------------------------------------------
+\def\BBone{{(\mathbb P^1_k,D_k)/k}}
+\def\BBtwo{{(\mathbb P^1_{W_2(k)}, D_{W_2(k)})/W_2(k)}}
+\def\BBn{{(\mathbb P^1_{W_n(k)}, D_{W_n(k)})/W_n(k)}}
+\def\bark{{\overline k}_0}
+%-----------------------------------------
+\def\barFp{{\overline{\mathbb F}_p}}
+\def\barQp{{\overline{\mathbb Q}_p}}
+\setcounter{secnumdepth}{3} 
+\begin{document}
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+%\node[] at ([shift={(5.8cm,1.4cm)}]current page.south west) {published online: 20 March 2023};
+\node[] at ([shift={(-3.3cm,1.5cm)}]current page.south east){\includegraphics[scale=0.13]{OIP-C}};
+\end{tikzpicture}
+\vspace*{-5em}
+\begin{flushleft}
+\begin{minipage}[b]{.88\linewidth}
+Invent. math \\ 
+\href{https://doi.org/10.1007/s00222-023-01182-9}{https://doi.org/10.1007/s00222-023-01182-9}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{.1\linewidth}
+\raisebox{-0.1cm}{\includegraphics[width=1.3cm]{removed-background.png}}
+\end{minipage}
+\\[-0.5em]
+\tikz[overlay]\draw[line width=1.2pt,black] (0,0) --++(\linewidth,0);\\[3em]
+\makeatletter
+{\Large\bfseries
+\@title\\[1em]
+}{\large\bfseries
+Pierre Deligne$^1$  
+%\raisebox{.25em}{\tikz\draw[fill=black] (0,0) circle(2pt);}
+}\\
+\vspace{4em}
+\makeatother
+{\footnotesize Received: 16 November 2020 \/ Accepted: 31 January 2023\\
+© The Author(s), under exclusive licence to Springer-Verlag GmbH Germany, part of\\
+Springer Nature 2023}\\[1.5em]
+
+\begin{varwidth}{\linewidth}
+\textbf{Abstract}\hspace{0.2em}
+The intoduction to Hodge Conjecture.
+\end{varwidth}
+
+\vspace{5em}
+\vfill
+%\tikz[overlay]\draw[thin] (0,0)--++(.3\linewidth,0);\\
+%The authors were supported by the ANR Grant DynGeo ANR-11-BS01-013. They
+%acknowledge support from U.S. National Science Foundation Grants DMS 1107452, 1107263,
+%1107367 “RNMS: Geometric structures And Representation varieties” (the GEAR Network).
+%F. L. appreciates the support of the Mathematical Sciences Research Institute during the fall of
+%2019 (NSF DMS-1440140) as well the support of the Institut Universitaire de France.\\[-0.8em]
+%\tikz[overlay]\draw[thin] (0,0)--++(.3\linewidth,0);\\[0.5em]
+
+\faEnvelope[regular]\hspace{0.2em} PIERRE DELIGNE\\
+%\href{mailto:yjb@mail.ustc.edu.cn}{yjb@mail.ustc.edu.cn} \\
+1\hspace{0.8em} School of Mathematical Sciences, Institute for Advanced Study, 173 Nassau St, Princeton, NJ 08542\\
+\end{flushleft}
+\end{titlepage}
+\let\cleardoublepage\clearpage
+\setcounter{tocdepth}{2}
+\tableofcontents\let\cleardoublepage\clearpage
+\thispagestyle{fancy}
+\newpage
+\renewcommand\thesection{\arabic {section}}
+\section{\bf The Hodge Conjecture}
+\subsection{Statement}
+We recall that a pseudo complex structure on a $C^{\infty}$-manifold $X$ of dimension $2 N$ is a $\mathbb{C}$-module structure on the tangent bundle $T_X$. Such a module structure induces an action of the group $\mathbb{C}^*$ on $T_X$, with $\lambda \in \mathbb{C}^*$ acting by multiplication by $\lambda$. By transport of structures, the group $\mathbb{C}^*$ acts also on each exterior power $\wedge^n T_X$, as well as on the complexified dual $\Omega^n:=\mathcal{H} \operatorname{Com}\left(\wedge^n T_X, \mathbb{C}\right)$. For $p+q=n$, a $(p, q)$-form is a section of $\Omega^n$ on which $\lambda \in \mathbb{C}^*$ acts by multiplication by $\lambda^{-p} \bar{\lambda}^{-q}$.
+From now on, we assume $X$ complex analytic. A $(p, q)$-form is then a form which, in local holomorphic coordinates, can be written as
+$$
+\sum a_{i_1, \ldots, i_p, j_1 \ldots j_q} d z_{i_1} \wedge \cdots \wedge d z_{i_p} \wedge d \bar{z}_{j_1} \wedge \cdots \wedge d \bar{z}_{j_q}
+$$
+and the decomposition $\Omega^n=\oplus \Omega^{p, q}$ induces a decomposition $d=d^{\prime}+d^{\prime \prime}$ of the exterior differential, with $d^{\prime}$ (resp. $d^{\prime \prime}$ ) of degree $(1,0)$ (resp. $(0,1)$ ).
+
+If $X$ is compact and admits a Kähler metric, for instance if $X$ is a projective non-singular algebraic variety, this action of $\mathbb{C}^*$ on forms induces an action on cohomology. More precisely, $H^n(X, \mathbb{C})$ is the space of closed $n$-forms modulo exact forms, and if we define $H^{p, q}$ to be the space of closed $(p, q)$-forms modulo the $d=d^{\prime} +d^{\prime \prime}$ of $(p-1, q-1)$-forms, the natural map
+$$
+\underset{p+q=n}{\oplus} H^{p, q} \rightarrow H^n(X, \mathbb{C})
+$$
+is an isomorphism. If we choose a Kähler structure on $X$, one can give the following interpretation to the decomposition $(1)$ of $H^n(X, \mathbb{C})$ : the action of $\mathbb{C}^*$ on forms commutes with the Laplace operator, hence induces an action of $\mathbb{C}^*$ on the space $\mathcal{H}^n$ of harmonic $n$-forms. We have $\mathcal{H}^n \stackrel{\sim}{\longrightarrow} H^n(X, \mathbb{C})$ and $H^{p, q}$ identifies with the space of harmonic $(p, q)$-forms.
+
+When $X$ moves in a holomorphic family, the Hodge filtration $F^p:=\underset{a \geq p}{\oplus} H^{a, n-a}$ of $H^n(X, \mathbb{C})$ is better behaved than the Hodge decomposition. Locally on the parameter space $T, H^n\left(X_t, \mathbb{C}\right)$ is independent of $t \in T$ and the Hodge filtration can be viewed as a variable filtration $F(t)$ on a fixed vector space. It varies holomorphically with $t$, and obeys Griffiths transversality: at first order around $t_0 \in T, F^p(t)$ remains in $F^{p-1}\left(t_0\right)$
+
+So far, we have computed cohomology using $C^{\infty}$ forms. We could as well have used forms with generalized functions coefficients, that is, currents. The resulting groups $H^n(X, \mathbb{C})$ and $H^{p, q}$ are the same. If $Z$ is a closed analytic subspace of $X$, of complex codimension $p, Z$ is an integral cycle and, by Poincaré duality, defines a class $\operatorname{cl}(Z)$ in $H^{2 p}(X, \mathbb{Z})$. The integration current on $Z$ is a closed $(p, p)$-form with generalized function coefficients, representing the image of $\operatorname{cl}(Z)$ in $H^{2 p}(X, \mathbb{C})$.
+
+The class $\operatorname{cl}(Z)$ in $H^{2 p}(X, \mathbb{Z})$ is hence of type $(p, p)$, in the sense that its image in $H^{2 p}(X, \mathbb{C})$ is. Rational $(p, p)$-classes are called Hodge classes. They form the group
+$$
+H^{2 p}(X, \mathbb{Q}) \cap H^{p, p}(X)=H^{2 p}(X, \mathbb{Q}) \cap F^p \subset H^{2 p}(X, \mathbb{C}) .
+$$
+In [6], Hodge posed the
+\begin{conjecture}[Hodge Conjecture]
+  On a projective non-singular algebraic variety over $\mathbb{C}$, any Hodge class is a rational linear combination of classes $\operatorname{cl}(Z)$ of algebraic cycles.
+\end{conjecture}
+\subsection{REMARKS}
+(i).  By Chow's theorem, on a complex projective variety, algebraic cycles are the same as closed analytic subspaces.
+
+(ii).  On a projective non-singular variety $X$ over $\mathbb{C}$, the group of integral linear combinations of classes $\operatorname{cl}(Z)$ of algebraic cycles coincides with the group of integral linear combinations of products of Chern classes of algebraic (equivalently by GAGA: analytic) vector bundles. To express $\operatorname{cl}(Z)$ in terms of Chern classes, one resolves the structural sheaf $\mathcal{O}_Z$ by a finite complex of vector bundles. That Chern classes are algebraic cycles holds, basically, because vector bundles have plenty of meromorphic sections.
+
+(iii).  A particular case of (ii) is that the integral linear combinations of classes of divisors (= codimension 1 cycles) are simply the first Chern classes of line bundles. If $Z^{+}-Z^{-}$is the divisor of a meromorphic section of $\mathcal{L}, c_1(\mathcal{L})=\operatorname{cl}\left(Z^{+}\right)-\operatorname{cl}\left(Z^{-}\right)$. This is the starting point of the proof given by Kodaira and Spencer [7] of the Hodge conjecture for $H^2$ : a class $c \in H^2(X, \mathbb{Z})$ of type $(1,1)$ has image 0 in the quotient $H^{0,2}=H^2(X, \mathcal{O})$ of $H^2(X, \mathbb{C})$, and the long exact sequence of cohomology defined by the exponential exact sequence
+$$
+0 \longrightarrow \mathbb{Z} \longrightarrow \mathcal{O} \stackrel{\exp (2 \pi i)}{\longrightarrow} \mathcal{O}^* \longrightarrow 0
+$$
+shows that $c$ is the first Chern class of a line bundle.
+
+(iv).  The relation between algebraic cycles and algebraic vector bundles is also the basis of \textbf{the Atiyah and Hirzebruch theorem} [2] that the Hodge conjecture cannot hold integrally. In the Atiyah-Hirzebruch spectral sequence from cohomology to topological $K$-theory,
+$$
+E_2^{p q}=H^p\left(X, K^q\left(P^t\right)\right) \Longrightarrow K^{p+q}(X) ;
+$$
+the resulting filtration of $K^n(X)$ is by the
+$$
+F^p K^n(X)=\operatorname{Ker}\left(K^n(X) \rightarrow K^n((p-1) \text {-skeleton, in any triangulation })\right) .
+$$
+Equivalently, a class $c$ is in $F^p$ if for some topological subspace $Y$ of codimension $p, c$ is the image of a class $\tilde{c}$ with support in $Y$. If $Z$ is an algebraic cycle of codimension $p$, a resolution of $\mathcal{O}_Z$ defines a $K$-theory class with support in $Z: c_Z \in K^0(X, X-Z)$. Its image in $F^p K^0(X)$ agrees with the class of $Z$ in $H^{2 p}(X, \mathbb{Z})$. The latter hence is in the kernel of the successive differentials $d_r$ of the spectral sequence.
+
+No counterexample is known to the statement that integral $(p, p)$ classes killed by all $d_r$ are integral linear combinations of classes $\operatorname{cl}(Z)$. One has no idea of which classes should be effective, that is, of the form $\operatorname{cl}(Z)$, rather than a difference of such.
+
+On a Stein manifold $X$, any topological complex vector bundle can be given a holomorphic structure and, at least for $X$ of the homotopy type of a finite CW
+complex, it follows that any class in $H^{2 p}(X, \mathbb{Z})$ in the kernel of all $d_r$ is a $\mathbb{Z}$-linear combination of classes of analytic cycles.
+
+(v).  The assumption in the Hodge conjecture that $X$ be algebraic cannot be weakened to $X$ being merely Kähler. See Zucker's appendix to [11] for counterexamples where $X$ is a complex torus.
+
+(vi).  When Hodge formulated his conjecture, he had not realized it could hold only rationally (i.e. after tensoring with $\mathbb{Q}$ ). He also proposed a further conjecture, characterizing the subspace of $H^n(X, \mathbb{Z})$ spanned by the images of cohomology classes with support in a suitable closed analytic subspace of complex codimension $k$. Grothendieck observed that this further conjecture is trivially false, and gave a corrected version of it in [5].
+\section{\bf The Intermediate Jacobian}
+The cohomology class of an algebraic cycle $Z$ of codimension $p$ has a natural lift to a group $J_p(X)$, extension of the group of classes of type $(p, p)$ in $H^{2 p}(X, \mathbb{Z})$ by the intermediate jacobian
+$$
+J_p(X)^0:=H^{2 p-1}(X, \mathbb{Z}) \backslash H^{2 p-1}(X, \mathbb{C}) / F^p .
+$$
+This expresses that the class can be given an integral description (in singular cohomology), as well as an analytic one, as a closed $(p, p)$ current, giving a hypercohomology class in $\mathbb{H}^{2 p}$ of the subcomplex $F^p \Omega_{\mathrm{hol}}^*:=\left(0 \rightarrow \cdots \rightarrow 0 \rightarrow \Omega_{\mathrm{hol}}^p \rightarrow \cdots\right)$ of the holomorphic de Rham complex, with an understanding at the cocycle level of why the two agree in $H^{2 p}(X, \mathbb{C})$. 'Understanding' means a cochain in a complex computing $H^*(X, \mathbb{C})$, whose coboundary is the difference between cocycles coming from the integral, resp. analytic, constructions. Indeed, $J_p(X)$ is the hypercohomology $\mathbb{H}^{2 p}$ of the homotopy kernel of the difference map $\mathbb{Z} \oplus F^p \Omega_{\mathrm{hol}}^* \rightarrow \Omega^*$.
+
+In general, using that all algebraic cycles on $X$ fit in a denumerable number of algebraic families, one checks that the subgroup $A_p(X)$ of $J_p(X)$ generated by algebraic cycles is the extension of a denumerable group by its connected component $A_p^0(X)$, and that for some sub-Hodge structure $H_{\text {alg }}$ of type $\{(p-1, p),(p, p-1)\}$ of $H^{2 p-1}(X), A_p^0(X)$ is $H_{\text {alg }_Z} \backslash H_{\mathrm{alg}_{\mathrm{C}}} / F^p$. 'Sub-Hodge structure' means the subgroup of the integral lattice whose complexification is the sum of its intersections with the $H^{a, b}$. The Hodge conjecture (applied to the product of $X$ and a suitable abelian variety) predicts that $H_{\mathrm{alg}}$ is the largest sub-Hodge structure of $H^{2 p-1}(X)$ of type $\{(p-1, p)(p, p-1)\}$.
+
+No conjecture is available to predict what subgroup of $J_p(X)$ the group $A_p(X)$ is. Cases are known where $A_p(X) / A_p^0(X)$ is of infinite rank. See, for instance, the paper [9] and the references it contains. This has made generally inapplicable the methods introduced by Griffiths (see, for instance, Zucker [11]) to prove the Hodge conjecture by induction on the dimension of $X$, using a Lefschetz pencil of hyperplane sections of $X$. Indeed, the method requires not just the Hodge conjecture for the hyperplane sections $H$, but that all of $J_p(H)$ comes from algebraic cycles.
+\section{\bf Detecting Hodge Classes}\label{sec: Detecting Hodge Classes}
+Let $\left(X_s\right)_{s \in S}$ be an algebraic family of projective non-singular algebraic varieties: the fibers of a projective and smooth map $f: X \rightarrow S$. We assume it is defined over the algebraic closure $\overline{\mathbb{Q}}$ of $\mathbb{Q}$ in $\mathbb{C}$. No algorithm is known to decide whether a given integral cohomology class of a typical fiber $X_0$ is somewhere on $S$ of type $(p, p)$. The Hodge conjecture implies that the locus where this happens is a denumerable union of algebraic subvarieties of $S$ (known: see [4]), and is defined over $\overline{\mathbb{Q}}$ (unknown).
+
+The Hodge conjecture is not known even in the following nice examples.
+\begin{example}\label{exam: 1}
+  For $X$ of complex dimension $N$, the diagonal $\Delta$ of $X \times X$ is an algebraic cycle of codimension $N$. The Hodge decomposition being compatible with Künneth, the Künneth components $\operatorname{cl}(\Delta)_{a, b} \in H^a(X) \otimes H^b(X) \subset H^{2 N}(X \times X)$ $(a+b=2 N)$ of $\operatorname{cl}(\Delta)$ are Hodge classes.
+\end{example}
+\begin{example}\label{exam: 2}
+  If $\eta \in H^2(X, \mathbb{Z})$ is the cohomology class of a hyperplane section of $X$, the iterated cup product $\eta^p: H^{N-p}(X, \mathbb{C}) \rightarrow H^{N+p}(X, \mathbb{C})$ is an isomorphism (hard Lefschetz theorem, proved by Hodge. See $\left[10\right.$, IV.6]). Let $\mathfrak{z} \in H^{N-p}(X, \mathbb{C}) \otimes$ $H^{N-p}(X, \mathbb{C}) \subset H^{2 N-2 p}(X \times X)$ be the class such that the inverse isomorphism $\left(\eta^p\right)^{-1}$ is $c \mapsto \operatorname{pr}_{1 !}\left(\mathfrak{z} \cup \operatorname{pr}_2^* c\right)$. The class $\mathfrak{z}$ is Hodge.
+\end{example}
+\section{\bf Motives}
+Algebraic varieties admit a panoply of cohomology theories, related over $\mathbb{C}$ by comparison isomorphisms. Resulting structures on $H^*(X, \mathbb{Z})$ should be viewed as analogous to the Hodge structure. Examples: If $X$ is defined over a subfield $K$ of $\mathbb{C}$, with algebraic closure $\bar{K}$ in $\mathbb{C}, \operatorname{Gal}(\bar{K} / K)$ acts on $H^*(X, \mathbb{Z}) \otimes \mathbb{Z}_{\ell}$ and $H^*(X, \mathbb{C})=$ $H^*(X, \mathbb{Z}) \otimes \mathbb{C}$ has a natural $K$-structure $H_{\mathrm{DR}}(X$ over $K)$, compatible with the Hodge filtration. Those cohomology theories give rise to conjectures parallel to the Hodge conjecture, determining the linear span of classes of algebraic cycles. Example: the Tate conjecture [8]. Those conjectures are open even for $H^2$.
+
+Grothendieck's theory of motives aims at understanding the parallelism between those cohomology theories. Progress is blocked by a lack of methods to construct interesting algebraic cycles. If the cycles of \textbf{Examples \ref{exam: 1} and \ref{exam: 2}} of \textbf{Sec~\ref{sec: Detecting Hodge Classes}} were algebraic, Grothendieck's motives over $\mathbb{C}$ would form a semi-simple abelian category with a tensor product, and be the category of representations of some pro-reductive groupscheme. If the algebraicity of those cycles is assumed, the full Hodge conjecture is equivalent to a natural functor from the category of motives to the category of Hodge structures being fully faithful.
+\section{\bf Substitutes and Weakened Forms}
+In despair, efforts have been made to find substitutes for the Hodge conjecture.On abelian varieties, Hodge classes at least share many properties of cohomology classes of algebraic cycles: they are "absolutely Hodge" [3], even "motivated" [1]. This suffices for some applications - for instance, the proof of algebraic relations among periods and quasi periods of abelian varieties predicted by the Hodge conjecture [3], but does not allow for reduction modulo $p$. The following corollaries of the Hodge conjecture would be particularly interesting. Let $A$ be an abelian variety over the algebraic closure $\mathbb{F}$ of a finite field $\mathbb{F}_q$. Lift $A$ in two different ways to characteristic 0 , to complex abelian varieties $A_1$ and $A_2$ defined over $\overline{\mathbb{Q}}$. Pick Hodge classes $\mathfrak{z}_1$ and $\mathfrak{z}_2$ on $A_1$ and $A_2$, of complementary dimension. Interpreting $\mathfrak{z}_1$ and $\mathfrak{z}_2$ as $\ell$-adic cohomology classes, one can define the intersection number $\kappa$ of the reduction of $\mathfrak{z}_1$ and $\mathfrak{z}_2$ over $\mathbb{F}$. Is $\kappa$ a rational number? If $\mathfrak{z}_1$ and $\mathfrak{z}_2$ were $\operatorname{cl}\left(Z_1\right)$ and $\operatorname{cl}\left(Z_2\right), Z_1$ and $Z_2$ could be chosen to be defined over $\overline{\mathbb{Q}}$ and $\kappa$ would be the intersection number of the reductions of $Z_1$ and $Z_2$. Same question for the intersection number of the reduction of $\mathfrak{z}_1$ over $\mathbb{F}$ with the class of an algebraic cycle on $A$.
+
+\section{\bf References}
+[1] Y. André, Pour une théorie inconditionnelle des motifs, Publ. Math. IHES 83 (1996), 5-49.
+
+[2] M.F. Atiyah and F. Hirzebruch, Analytic cycles on complex manifolds, Topology 1 (1962), $25-45$.
+
+[3] P. Deligne (rédigé par J. L. Brylinski), Cycles de Hodge absolus et périodes des intégrales des variétés abéliennes, Mémoires SMF 2 (1980), 23-33.
+
+[4] P. Deligne, E. Cattani, and A. Kaplan, On the locus of Hodge classes, JAMS 8 (1995), $483-505$.
+
+[5] A. Grothendieck, Hodge's general conjecture is false for trivial reasons, Topology 8 (1969), 299-303.
+
+[6] W.V.D. Hodge, The topological invariants of algebraic varieties, in Proceedings ICM 1950, AMS, Providence, RI, 1952, 181-192.
+
+[7] K. Kodaira and D.C. Spencer, Divisor classes on algebraic varieties, Proc. Nat. Acad. Sci. 39 (1953), 872-877.
+
+[8] J. Tate, Algebraic cycles and poles of zeta functions, in Arithmetic Algebraic Geometry, Harper and Row, New York, 1965, 93-110.
+
+[9] C. Voisin, The Griffiths group of a general Calabi-Yau threefold is not finitely generated, Duke Math. J. 102, 151-186.
+
+[10] A. Weil, Introduction à l'étude des variétés kahlériennes, Publ. Univ. Nancago VI, Act. Sci. et Ind. 1267, Hermann, Paris, 1958.
+
+[11] S. Zucker, The Hodge conjecture for cubic fourfolds, Comp. Math. 34 (1977), 199-209.
+\end{document} 
