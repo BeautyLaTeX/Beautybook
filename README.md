@@ -5,5 +5,5 @@ They should be complied by the `xelatex` engine, no matter Chinese version or no
 - If you have any questions about the use of this series of templates, you can add my qq group to find a solution, which number is the 809237593.
 
 For reference, the images of Chinese version are provided here:
-
+![Cover](https://github.com/BeautyLaTeX/latex-template/tree/master/cn/Snipaste_2023-04-01_12-06-49.png)
 
