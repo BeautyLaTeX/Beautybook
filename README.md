@@ -1,1 +1,1 @@
-# 这是Beautybook 的发布渠道,欢迎您的使用!
+# This is the channel for the "BeautyLaTeX" template series release; thanks for your support and feedback.
