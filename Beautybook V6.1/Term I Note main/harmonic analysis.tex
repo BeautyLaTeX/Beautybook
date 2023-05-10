@@ -1,0 +1,153 @@
+\chapter{调和分析}
+\section{典型域}
+\textbf{第一种是 $m$ 行 $n$ 列的矩阵双曲空间,今后以 $\mathfrak{R} _{\mathrm{I}}$ 表示.} 它是由 $m$ 行 $n$ 列的复元素矩阵 $Z$ 之适合于条件
+\begin{align*}
+I^{(m)}-Z \bar{Z}^{\prime}>0
+\end{align*}
+者所组成, 此处 $I^{(m)}$ 表示 $m$ 阶的单位方阵, $\bar{Z}^{\prime}$ 表示由 $Z$ 行列互换并取共轭复数所得出的矩阵, 因此它是 $n$ 行 $m$ 列的. 如果 $H$ 是一个 Hermite 方阵, 则以 $H>0$ 表示 $H$ 是正定的.
+
+\textbf{第二种是 $n$ 阶的对称方阵的双曲空间,今后以 $\mathfrak{R} _{\mathrm{II}}$ 表示.} 它是由 $n$ 阶的复元素对称方阵 $Z$ 之适合于条件
+\begin{align*}
+I^{(n)}-Z \bar{Z}>0
+\end{align*}
+者所组成.
+
+\textbf{第三种是 $n$ 阶的斜对称方阵的双曲空间,令后以 $\mathfrak{R} _{\mathrm{III}}$ 表示.} 它是由 $n$ 阶的复元素斜对称方阵 $Z$ 之适合于条件
+\begin{align*}
+I^{(n)}+Z \bar{Z}>0
+\end{align*}
+者所组成.
+
+\textbf{第四种称为 Lie 球双曲空间,今后以 $\mathfrak{R} _{\mathrm{IV}}$ 表示.} 它是由 $n(>2)$ 维复元素矢量 $z\left(=\left(z_1, \ldots, z_n\right)\right)$ 之适合下列条件
+\begin{align*}
+\left|z z^{\prime}\right|^2+1-2 \bar{z} z^{\prime}>0
+\end{align*}
+及
+\begin{align*}
+\left|z z^{\prime}\right|<1
+\end{align*}
+者所组成.
+
+这四种域的维数 (复数维) 各为 
+\begin{align*}
+    \dim(\mathfrak{R}_{\mathrm{I}})&=mn,\\ 
+    \dim(\mathfrak{R}_{\mathrm{II}})&=\frac{1}{2} n(n+1), \\
+    \dim(\mathfrak{R}_{\mathrm{III}})&=\frac{1}{2} n(n-1), \\
+    \dim(\mathfrak{R}_{\mathrm{IV}})&=n.
+\end{align*}
+
+\section{代数工具}
+假定 $n \geqslant 2$, 命 $\quad D\left(x_1, \cdots, x_n\right)=\prod_{1\leqslant i<j\leqslant n}\left(x_j-x_i\right)$.
+
+与 Vandermonde 行列式有关的恒等式: 
+1. \begin{align}
+D\left(x_1, x_2, \cdots, x_n\right)=(-1)^{\frac{n(n-1)}{2}}
+\left|\begin{array}{cccc}
+1 & 1& \cdots & 1 \\
+x_1&  x_2&\cdots& x_n \\
+\vdots&\vdots& &\vdots \\
+x_1^{n-1}& x_2^{n-1}& \cdots& x_n^{n-1}
+\end{array}\right| .
+\end{align}
+由于范德蒙行列式等于
+\begin{align*}
+\left|\begin{array}{cccc}
+1 & 1 & \cdots & 1 \\
+x_1 & x_2 & \cdots & x_n \\
+\vdots & \vdots & \ddots & \vdots \\
+x_1^{n-1} & x_2^{n-1} & \cdots & x_n^{n-1}
+\end{array}\right|=\prod_{1\leqslant i<j\leqslant n}\left(x_j-x_i\right)=(-1)^{\binom{n}{2}} \prod_{1\leqslant i<j\leqslant n}\left(x_i-x_j\right) .
+\end{align*}
+故而有
+\begin{align*}
+    \left|\begin{array}{cccc}
+    1 & 1 & \cdots & 1 \\
+    x_1 & x_2 & \cdots & x_n \\
+    \vdots & \vdots & \ddots & \vdots \\
+    x_1^{n-1} & x_2^{n-1} & \cdots & x_n^{n-1}
+    \end{array}\right|
+    &=\sum_{j=1}^n 1 \cdot(-1)^{1+j}\left|\begin{array}{cccccc}
+    x_1 & \cdots & x_{j-1} & x_{j+1} & \cdots & x_n \\
+    x_1^2 & \cdots & x_{j-1}^2 & x_{j+1}^2 & \cdots & x_n^2 \\
+    \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+    x_1^{n-1} & \cdots & x_{j-1}^{n-1} & x_{j+1}^{n-1} & \cdots & x_n^{n-1}
+    \end{array}\right|\\
+    &=\sum_{j=1}^n 1 \cdot \left| \begin{array}{cccccccc}
+    1 & \cdots & 1 & 1 & 1 & \cdots & 1 \\
+    x_1 & \cdots & x_{j-1} & 0 & x_{j+1} & \cdots & x_n \\
+    x_1^2 & \cdots & x_{j-1}^2 & 0 & x_{j+1}^2 & \cdots & x_n^2 \\
+    \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+    x_1^{n-1} & \cdots & x_{j-1}^2 & 0 & x_{j+1}^{n-1} & \cdots & x_n^{n-1}
+    \end{array}\right| \\
+    & =\sum_{j=1}^n(-1)^{C_n^2} D\left(x_1, \cdots, x_{j-1}, 0, x_{j+1}, \cdots, x_n\right)=(-1)^{C_n^2} \sum_{j=1}^n D_j .
+    \end{align*}
+\clearpage
+\subsection{性质}
+1.
+\[\begin{aligned}
+    \sum_{j=1}^n x_j^{l} D_j &=\sum_{j=1}^n x_j^{l} \cdot\left|\begin{array}{ccccccc}
+    1 & \cdots & 1 & 1 & 1 & \cdots & 1 \\
+    x_1 & \ddots & x_{j-1} & 0 & x_{j+1} & \cdots & x_n \\
+    x_1^2 & \cdots & x_{j-1}^2 & 0 & x_{j+1}^2 & \cdots & x_n^2 \\
+    \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+    x_1^{n-1} & \cdots & x_{j-1}^{n-1} & 0 & x_{j+1}^{n-1} & \cdots & x_n^{n-1}
+    \end{array}\right|\\
+    &=\left|\begin{array}{ccccccc}
+    x_1^l & \ldots & x_{j-1}^l & x_j^l & x_{j+1}^l & \cdots & x_n^l \\
+    x_1 & \ddots & x_{j-1} & x_j & x_{j+1} & \cdots & x_n \\
+    x_1^2 & \ldots & x_{j-1}^2 & x_j^2 & x_{j+1}^2 & \cdots & x_n^2 \\
+    \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+    x_1^{n-1} & \cdots & x_{j-1}^{n-1} & x_j^{n-1} & x_{j+1}^{n-1} & \cdots & x_n^{n-1}
+    \end{array}\right| \\
+    & =\left\{\begin{array}{ll}
+    D\left(x_1, \cdots, x_n\right), & l=0 \,(\text{Vandermonde Determinant})\\
+    0 & 1 \leq l \leq n \,(\text{Linear correlation})\\
+    (-1)^{n-1} \prod_{i=1}^n x_i D\left(x_1, \cdots, x_n\right), & l=n \,(\text{Extracting common factor $x_i$})
+    \end{array}\right. \\
+    &
+    \end{aligned}\]
+2.
+\[\begin{aligned}\sum_{j=1}^n \frac{x_j}{1-x_j} D_j &=(-1)^{c_n^2}\left|\begin{array}{ccccccc}
+    \frac{x_1}{1-x_1} & \cdots & \frac{x_{j-1}}{1-x_{j-1}} & \frac{x_j}{1-x_j} & \frac{x_{j+1}}{1-x_{j+1}} & \cdots & \frac{x_n}{1-x_n} \\
+    x_1 & \ddots & x_{j-1} & x_j & x_{j+1} & \cdots & x_n \\
+    x_1^2 & \cdots & x_{j-1}^2 & x_j^2 & x_{j+1}^2 & \cdots & x_n^2 \\
+    \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+    x_1^{n-1} & \cdots & x_{j-1}^{n-1} & x_j^{n-1} & x_{j+1}^{n-1} & \cdots & x_n^{n-1}
+    \end{array}\right|\\
+    &=(-1)^{(n-1)} \frac{\prod_{i=1}^n x_i}{\prod_{j=1}^n\left(1-x_j\right)} D\left(x_1, \cdots, x_n\right) .
+\end{aligned}\]
+3. 
+\[\begin{aligned}
+    \sum_{j=1}^{n}\frac{x_j}{1+x_j}D_j
+    & =(-1)^{n-1} \frac{\prod_{i=1}^n\left(-x_i\right)}{\prod_{j=1}^n\left(1-\left(-x_j\right)\right)} D\left(x_1, \cdots, x_n\right)=\frac{\prod_{i=1}^n x_i}{\prod_{j=1}^n\left(1+x_j\right)} D\left(x_1, \cdots, x_n\right) . \\
+    &
+    \end{aligned}\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

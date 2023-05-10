@@ -1,0 +1,224 @@
+\documentclass{Beautybook-V6.1-EN}
+\usepackage{rotating}
+\tikzset{>=Stealth}
+\setlist{nosep,font=\upshape} % 取消所有列表默认距离
+% 浮动环境设置
+% 默认情况下, \LaTeX{} 要求每页的文字至少占据 20%,否则该页就只单独放置一个浮动环境,
+% 而这通常不是我们想要的, 我们将这个要求降低到 5%.
+\renewcommand*{\textfraction}{0.05}
+% 有时如果多个浮动环境连续放在一起,
+% 会将它们分在几个不同页,即使它们可在同一页放
+% 得下. 我们可以通过修改 |\topfraction| 和 |\bottomfraction| 分别设置顶端和底端的浮
+% 动环境的最大比例.
+\renewcommand*{\topfraction}{0.9}
+\renewcommand*{\bottomfraction}{0.8}
+% 有时\LaTeX{}会把一个浮动环境单独放在一页,
+% 我们要求这个环境至少要占据 85% 才能单独放在一页.
+% 注意:  |\floatpagefraction| 的数值必须小于 |\topfraction|.
+\renewcommand*{\floatpagefraction}{0.85}
+% 关于图片 graphicx
+% 如果图片没有指定后缀, 依次按下列顺序搜索
+\DeclareGraphicsExtensions{.pdf,.eps,.jpg,.png}
+% 设置图表搜索路径, 可以给图表文件夹取如下名字
+\graphicspath{{figures/}{figure/}{pictures/}{picture/}{pic/}{pics/}{image/}{images/}}
+\usepackage{mtpro2}
+\usepackage[physics]{stys/physicx}
+\usepackage{stys/Symbols}
+\usepackage{amsfonts}
+\DeclareFontFamily{U}{nxlmi}{}
+\DeclareFontSubstitution{U}{nxlmi}{m}{it}
+\DeclareFontShape{U}{nxlmi}{m}{it}{
+    <-6.3>    nxlmi05
+    <6.3-8.6> nxlmi07
+    <8.6->    nxlmi0
+}{}
+
+\DeclareFontShape{U}{nxlmi}{b}{it}{
+    <-6.3>    nxlbmi05
+    <6.3-8.6> nxlbmi07
+    <8.6->    nxlbmi0
+}{}
+
+\renewcommand{\partial}{{\text{\usefont{U}{nxlmi}{m}{it}\symbol{64}}\mspace{1mu}}}
+%% 定义第一种定理
+\mynewtheorem{
+    defi={\textbf{Definition}}[section]{interior style={left color=ReD!8,right color=ReD!5!CyaN!50}, borderline west={1.5mm}{0mm}{ReD}},
+    thm={\textbf{Theorem}}[section]{interior style={left color=CyaN!80!black!20,right color=CyaN!80!black!15!CyaN!50}, borderline west={1.5mm}{0mm}{CyaN!80!black}},
+    lem={\textbf{Lemma}}[section]{interior style={left color=BluE!8,right color=BluE!5!CyaN!50}, borderline west={1.5mm}{0mm}{BluE}},
+    prop={\textbf{Proposition}}[section]{interior style={left color=OrangE!8,right color=OrangE!5!CyaN!50}, borderline west={1.5mm}{0mm}{OrangE}},
+    exam={\textbf{Example}}[chapter]{interior style={left color=DarkGreen!8,right color=DarkGreen!5!CyaN!50}, borderline west={1.5mm}{0mm}{DarkGreen}},
+    cor={\textbf{Corollary}}[chapter]{interior style={left color=violet!8,right color=violet!5!CyaN!50}, borderline west={1.5mm}{0mm}{violet}},
+}
+\newtheorem*{remark}{\textbf{Remark}}
+%% 定义第二种定理
+%%  用法
+% % theorem 环境
+% overlay unbroken=\my@theorem@overlay@unbroken{\theorem@name\ \thetcbthm}{额外的选项}
+% overlay first=\my@theorem@overlay@first{\theorem@name\ \thetcbthm}{额外的选项}
+% % lemma 环境
+% overlay unbroken=\my@theorem@overlay@unbroken{\lemma@name\ \thetcblemma}{额外的选项}
+%% 用户接口区
+\definecolor{examback}{HTML}{e3e6e8}
+\makeatletter
+\mynewtcbtheorem{
+    % 这个 theorem 是环境名
+    theorem={
+        counter=tcbthm, 
+        the counter=\thesection.\arabic{tcbthm}, 
+        name=Theorem, % 它保存到 \theorem@name 里
+        thmcolor=purple5,
+        autoref name=\bfseries Theorem, 
+        style={
+        arc=3pt,breakable,enhanced,interior style={top color=purple5!5 ,middle color=purple5!1!nuanbai, bottom color=nuanbai},boxrule=0pt,top=8mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape, step={tcbthm},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@theorem@overlay@unbroken{\theorem@name\ \thetcbthm}{\theorem@thmcolor},
+        overlay first=\my@theorem@overlay@first{\theorem@name\ \thetcbthm}{\theorem@thmcolor},
+        overlay last=\my@theorem@overlay@last,
+        }
+    },
+    proposition={
+        counter=tcbprop, 
+        the counter=\thesection.\arabic{tcbprop}, 
+        autoref name=\bfseries Proposition, 
+        style={
+        arc=3pt,breakable,enhanced,interior style={top color=DeepPink!5 ,middle color=DeepPink!1!nuanbai, bottom color=nuanbai},boxrule=0pt,top=8mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape, step={tcbprop},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@theorem@overlay@unbroken{Proposition\ \thetcbprop}{DeepPink},
+        overlay first=\my@theorem@overlay@first{Proposition\ \thetcbprop}{DeepPink},
+        overlay last=\my@theorem@overlay@last{DeepPink},
+        }
+    },
+    definition={
+        counter=tcbdefi, 
+        the counter=\thesection.\arabic{tcbdefi}, 
+        autoref name=\bfseries Definition, 
+        style={
+        arc=3pt,breakable,enhanced,interior style={top color=紫棠!5 ,middle color=紫棠!1!nuanbai, bottom color=nuanbai},boxrule=0pt,top=8mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape, step={tcbdefi},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@theorem@overlay@unbroken{Definition\ \thetcbdefi}{紫棠},
+        overlay first=\my@theorem@overlay@first{Definition\ \thetcbdefi}{紫棠},
+        overlay last=\my@theorem@overlay@last{紫棠},
+        }
+    },
+    lemma={
+        counter=tcblem,
+        the counter=\thesection.\arabic{tcblem},
+        name=Lemma, 
+        lemcolor=靛蓝, 
+        autoref name=\bfseries Lemma,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=靛蓝!5 ,middle color=靛蓝!1!nuanbai, bottom color=nuanbai},arc=3pt,boxrule=0pt,top=7mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcblem},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{\lemma@name\ \thetcblem}{\lemma@lemcolor},
+        overlay first=\my@lemma@overlay@first{\lemma@name\ \thetcblem}{\lemma@lemcolor},
+        overlay last=\my@lemma@overlay@last{\lemma@lemcolor},
+        }
+    },
+    corollary={
+        counter=tcbcor,
+        the counter=\thesection.\arabic{tcbcor},
+        autoref name=\bfseries Corollary,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=茶色!5 ,middle color=茶色!1!nuanbai, bottom color=nuanbai},arc=3pt,boxrule=0pt,top=7mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcbcor},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Corollary\ \thetcbcor}{茶色},
+        overlay first=\my@lemma@overlay@first{Corollary\ \thetcbcor}{茶色},
+        overlay last=\my@lemma@overlay@last{茶色},
+        }
+    },
+    example={
+        counter=tcbexam,
+        the counter=\thesection.\arabic{tcbexam},
+        autoref name=\bfseries Example,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=黛绿!5 ,middle color=黛绿!1!nuanbai, bottom color=nuanbai},arc=3pt,boxrule=0pt,top=7mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcbexam},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Example\ \thetcbexam}{黛绿},
+        overlay first=\my@lemma@overlay@first{Example\ \thetcbexam}{黛绿},
+        overlay last=\my@lemma@overlay@last{黛绿},
+        }
+    },
+}
+\makeatother
+
+\newenvironment{note}[1][\bf Note:]{\par\Line\uuline{#1} }{\par\Line}
+\renewcommand{\Line}{\noindent\tikz\draw[line width=0.65pt,gray!80,dashed] (0,0)--++(.99\linewidth,0);\par}
+\newcommand{\Wedge}[1][]{\tikz\path [draw,line width=1pt] (0,0)--++(4pt,12pt) node[right,font=\scriptsize] {#1} --++(4pt,-12pt);}
+\newenvironment{key}[1]{\begin{fancybox}{#1}\ }{\end{fancybox}}
+\begin{document}
+\thispagestyle{empty}
+\title{Notes Of Self-learning}
+\subtitle{Complex Geometry Notes}
+\edition{First Edition}
+\bookseries{Notes Series}
+\author{Shilong.Lu}
+\pressname{Springer}
+\presslogo{figures/Springer-logo.png}
+\coverimage{figures/pexels-alex-andrews-816608.jpg}
+\makecover
+
+\definecolor{bg}{HTML}{e0e0e0}
+\definecolor{fg}{HTML}{455a64}
+\colorlet{outermarginbgcolor}{bg}
+\colorlet{outermarginfgcolor}{fg}
+\colorlet{framegolden}{fg}
+\colorlet{framegray}{bg!50}
+
+\input{Term I Note main/titlepage-en}
+\frontmatter
+\pagenumbering{Roman}
+\input{Term I Note main/preface-en}
+\thispagestyle{empty}
+\definecolor{maincolor}{HTML}{8B8989}
+\tableofcontents\let\cleardoublepage\clearpage
+\mainmatter
+\pagenumbering{arabic}
+\partimage{figures/5.png}
+\partabstract{The primary goal of this Module is to present some fundamental techniques from several complex variables, Hermitian differential geometry (and partial differential equations, potential theory, functional analysis), to study the geometry of complex, and in particular,  K\"ahler manifolds. Hodge theory will be one important major topic of this course. Some possible topics:
+\begin{itemize}
+    \item Basics/definitions concerning complex manifolds, vector bundles and sheaf theory
+    \item Some selected topics from several complex variables: the Cauchy integral, the Cauchy-Riemann equations, Hartogs's principle, plurisubharmonic functions, domains of holomorphy, holomorphic convexity, Riemann extension theorem,  H\"ormander's $L^2$ estimates . . .
+    \item Hermitian differential geometry, curvature of Hermitian holomorphic vector bundles, Chern classes
+    \item Some elliptic operator theory,  K\"ahler manifolds, Hodge decomposition, Kodaira embedding
+    \item Outlook on the topology of varieties, Morse theory, Lefschetz pencils,
+variation of Hodge structures, Clemens-Schmid exact sequences, etc.
+\end{itemize}}
+\part{Introduction to Complex Geometry}
+\input{Term I Note main/chap1}
+\input{Term I Note main/chapter2-complex-manifolds}
+
+\normalem
+\printbibliography[
+heading=bibintoc,
+title={References}
+]
+\printindex
+\thispagestyle{empty}
+\bottomimage{figures/M31OiiiArc_Strottner_5000.jpg}
+\summary{}
+\makebottomcover
+\end{document} 

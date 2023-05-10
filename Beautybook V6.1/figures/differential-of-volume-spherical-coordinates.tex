@@ -1,0 +1,217 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{ifthen}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{1pt}
+%
+% File name: differential-of-volume-spherical-coordinates.tex
+% Description: 
+% A geometric representation of the differential of volume 
+% in spherical coordinates is shown.
+% 
+% Date of creation: November, 10th, 2021.
+% Date of last modification: October, 9th, 2022.
+% Author: Efraín Soto Apolinar.
+% https://www.aprendematematicas.org.mx/author/efrain-soto-apolinar/instructing-courses/
+% Source: page 122 of the 
+% Glosario Ilustrado de Matem\'aticas Escolares.
+% https://tinyurl.com/5udm2ufy
+%
+% Terms of use:
+% According to TikZ.net
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+%
+\begin{document}
+%
+\begin{center}
+\tdplotsetmaincoords{70}{120}
+%
+\begin{tikzpicture}[tdplot_main_coords]
+	% Coordinates of the location of the differential of volume
+	\pgfmathsetmacro{\x}{0.75}
+	\pgfmathsetmacro{\y}{1.5}
+	\pgfmathsetmacro{\z}{2.25}
+	\pgfmathsetmacro{\step}{0.025}
+	% coordinates in spherical coordinates
+	\pgfmathsetmacro{\radio}{sqrt(\x*\x+\y*\y+\z*\z)}
+	\pgfmathsetmacro{\zf}{\radio+1.0} % To indicate the end point in the z axis
+	\pgfmathsetmacro{\angulot}{atan(\y/\x)} % angle $\theta$
+	\pgfmathsetmacro{\dominio}{\angulot*pi/180}	% Convert $\theta$ into radians
+	\pgfmathsetmacro{\angulop}{acos(\z/\radio)} % angle $\phi$
+	\pgfmathsetmacro{\dominiop}{\angulop*pi/180}	% Convert $\phi$ into radians
+	% Diferencial
+	\pgfmathsetmacro{\dradio}{0.75}	% Differential of $r$
+	\pgfmathsetmacro{\dangulot}{10}	% Differential of $\theta$
+	\pgfmathsetmacro{\dangulop}{10}	% Differential of $\phi$
+	\pgfmathsetmacro{\dominiof}{(\angulot+\dangulot)*pi/180}
+	% Vertices of the differential of area 
+	% on the xy plane (in polar coordinates)
+	\pgfmathsetmacro{\Ax}{\radio*cos(\angulot)}
+	\pgfmathsetmacro{\Ay}{\radio*sin(\angulot)}
+	\pgfmathsetmacro{\Bx}{(\radio+\dradio)*cos(\angulot)}
+	\pgfmathsetmacro{\By}{(\radio+\dradio)*sin(\angulot)}
+	\pgfmathsetmacro{\Cx}{(\radio+\dradio)*cos(\angulot+\dangulot)}
+	\pgfmathsetmacro{\Cy}{(\radio+\dradio)*sin(\angulot+\dangulot)}
+	\pgfmathsetmacro{\Dx}{(\radio)*cos(\angulot+\dangulot)}
+	\pgfmathsetmacro{\Dy}{(\radio)*sin(\angulot+\dangulot)}
+	% 
+	\pgfmathsetmacro{\radiof}{\radio+\dradio}
+	\pgfmathsetmacro{\radiorayo}{\radiof+2.0*\dradio}
+	\pgfmathsetmacro{\angulotf}{\angulot+\dangulot}
+	\pgfmathsetmacro{\angulopf}{\angulop+\dangulop}
+	% Location of the node to indicate the angles $\theta$ and $\phi$
+	\pgfmathsetmacro{\xnodo}{0.35*cos(0.5*\angulot)}
+	\pgfmathsetmacro{\ynodo}{0.35*sin(0.5*\angulot)}
+	\pgfmathsetmacro{\xnodop}{0.35*sin(0.5*\angulop)*cos(\angulot)}
+	\pgfmathsetmacro{\ynodop}{0.35*sin(\angulop)*sin(\angulot)}
+	\pgfmathsetmacro{\znodop}{0.35*cos(0.5*\angulop)}
+	\pgfmathsetmacro{\xnododp}{0.85*\radio*sin(0.5*(\angulop+\angulopf))*cos(\angulot)}
+	\pgfmathsetmacro{\ynododp}{0.85*\radio*sin(0.5*(\angulop+\angulopf))*sin(\angulot)}
+	\pgfmathsetmacro{\znododp}{0.85*\radio*cos(0.5*(\angulop+\angulopf))}
+	%
+	\pgfmathsetmacro{\xfrayouno}{(\radiof+0.5)*cos(\angulot)}
+	\pgfmathsetmacro{\yfrayouno}{(\radiof+0.5)*sin(\angulot)}
+	\pgfmathsetmacro{\xfrayodos}{(\radiof+0.5)*cos(\angulotf)}
+	\pgfmathsetmacro{\yfrayodos}{(\radiof+0.5)*sin(\angulotf)}
+	% Vertices of the differential of area in spherical coordinates
+	\pgfmathsetmacro{\Px}{\radio*sin(\angulopf)*cos(\angulot)}
+	\pgfmathsetmacro{\Py}{\radio*sin(\angulopf)*sin(\angulot)}
+	\pgfmathsetmacro{\Pz}{\radio*cos(\angulopf)}
+	\pgfmathsetmacro{\Qx}{\radiof*sin(\angulopf)*cos(\angulot)}
+	\pgfmathsetmacro{\Qy}{\radiof*sin(\angulopf)*sin(\angulot)}
+	\pgfmathsetmacro{\Qz}{\radiof*cos(\angulopf)}
+	\pgfmathsetmacro{\Rx}{\radiof*sin(\angulop)*cos(\angulot)}
+	\pgfmathsetmacro{\Ry}{\radiof*sin(\angulop)*sin(\angulot)}
+	\pgfmathsetmacro{\Rz}{\radiof*cos(\angulop)}
+	\pgfmathsetmacro{\Sx}{\radio*sin(\angulop)*cos(\angulot)}
+	\pgfmathsetmacro{\Sy}{\radio*sin(\angulop)*sin(\angulot)}
+	\pgfmathsetmacro{\Sz}{\radio*cos(\angulop)}
+	% 
+	\pgfmathsetmacro{\Tx}{\radio*sin(\angulopf)*cos(\angulotf)}
+	\pgfmathsetmacro{\Ty}{\radio*sin(\angulopf)*sin(\angulotf)}
+	\pgfmathsetmacro{\Tz}{\radio*cos(\angulopf)}
+	\pgfmathsetmacro{\Ux}{\radiof*sin(\angulopf)*cos(\angulotf)}
+	\pgfmathsetmacro{\Uy}{\radiof*sin(\angulopf)*sin(\angulotf)}
+	\pgfmathsetmacro{\Uz}{\radiof*cos(\angulopf)}
+	\pgfmathsetmacro{\Vx}{\radiof*sin(\angulop)*cos(\angulotf)}
+	\pgfmathsetmacro{\Vy}{\radiof*sin(\angulop)*sin(\angulotf)}
+	\pgfmathsetmacro{\Vz}{\radiof*cos(\angulop)}
+	\pgfmathsetmacro{\Wx}{\radio*sin(\angulop)*cos(\angulotf)}
+	\pgfmathsetmacro{\Wy}{\radio*sin(\angulop)*sin(\angulotf)}
+	\pgfmathsetmacro{\Wz}{\radio*cos(\angulop)}	
+	% Points to draw the angle $\phi$
+	\pgfmathsetmacro{\Qex}{\radiorayo*sin(\angulopf)*cos(\angulot)}
+	\pgfmathsetmacro{\Qey}{\radiorayo*sin(\angulopf)*sin(\angulot)}
+	\pgfmathsetmacro{\Qez}{\radiorayo*cos(\angulopf)}
+	\pgfmathsetmacro{\Rex}{\radiorayo*sin(\angulop)*cos(\angulot)}
+	\pgfmathsetmacro{\Rey}{\radiorayo*sin(\angulop)*sin(\angulot)}
+	\pgfmathsetmacro{\Rez}{\radiorayo*cos(\angulop)}
+	\pgfmathsetmacro{\Uex}{\radiorayo*sin(\angulopf)*cos(\angulotf)}
+	\pgfmathsetmacro{\Uey}{\radiorayo*sin(\angulopf)*sin(\angulotf)}
+	\pgfmathsetmacro{\Uez}{\radiorayo*cos(\angulopf)}
+	\pgfmathsetmacro{\Vex}{\radiorayo*sin(\angulop)*cos(\angulotf)}
+	\pgfmathsetmacro{\Vey}{\radiorayo*sin(\angulop)*sin(\angulotf)}
+	\pgfmathsetmacro{\Vez}{\radiorayo*cos(\angulop)}
+	% The origin
+	\coordinate (O) at (0,0,0);	
+	% Coordinate axis
+	\draw[thick,->] (0,0,0) -- (\radiof+0.5,0,0) node [below left] {$x$};
+	\draw[thick,->] (0,0,0) -- (0,\radiof+0.5,0) node [right] {$y$};
+	\draw[thick,->] (0,0,0) -- (0,0,\zf+0.5) node [above] {$z$};
+	% Intersection of the sphere of radius $\rho$ with the plane $y = 0$
+	\draw[blue,dashed] plot[domain=0:0.5*pi,smooth,variable=\t] ({\radio*sin(\t r)},{0.0},{\radio*cos(\t r)});
+	% Intersection of the sphere of radius $\rho + d\rho$ with the plane $y = 0$
+	\draw[blue,dashed] plot[domain=0:0.5*pi,smooth,variable=\t] ({\radiof*sin(\t r)},{0.0},{\radiof*cos(\t r)});
+	% Differential of area in polar coordinates (on the xy-plane)
+	\draw[blue,dashed](0,0,0) --  (\xfrayouno,\yfrayouno,0) node[below left] {$\theta$};	
+	\draw[blue,dashed](0,0,0) --  (\xfrayodos,\yfrayodos,0) node [below right] {$\theta + d\theta$};
+	% Indication of the angle $\theta$
+	\draw[blue] plot[domain=0:\dominio,smooth,variable=\t] ({0.5*cos(\t r)},{0.5*sin(\t r)},{0.0});  % 0.5236
+	\node[blue,below] at (\xnodo,\ynodo,0) {$\theta$};		
+	%
+	\draw[blue,dashed] plot[domain=0:0.5*pi,variable=\t] ({\radio*cos(\t r)},{\radio*sin(\t r)},0.0);
+	\node[blue,above left] at (\radio,0,0) {$\rho$};
+	\draw[blue,dashed] plot[domain=0:0.5*pi,variable=\t] ({\radiof*cos(\t r)},{\radiof*sin(\t r)},0.0);
+	\node[blue,above left] at (\radiof,0,0) {$\rho + d\rho$};
+	% Differerential of area
+	\draw[blue] (\Ax,\Ay,0) -- (\Bx,\By,0) 
+					-- plot[domain=\dominio:\dominiof,variable=\t] ({\radiof*cos(\t r)},{\radiof*sin(\t r)},0.0)
+					-- (\Dx,\Dy,0) 
+					-- plot[domain=\dominiof:\dominio,smooth,variable=\t] ({\radio*cos(\t r)},{\radio*sin(\t r)},0.0)
+					-- (\Ax,\Ay,0);	
+	% Plane at $\theta + d\theta$ (inside of the sphere)
+	\draw[blue,dashed,fill=yellow!50,opacity=0.35] 
+			(0,0,0) -- (\Dx,\Dy,0) -- plot[domain=0.5*pi:0.0,smooth,variable=\t] 
+				({\radio*sin(\t r)*cos(\angulotf)},{\radio*sin(\t r)*sin(\angulotf)},{\radio*cos(\t r)}) 
+			-- (0,0,0);	
+	% lines from the origin to the differential of volume
+	\draw[blue,dashed] (O) -- (\Tx,\Ty,\Tz);
+	\draw[blue,dashed] (O) -- (\Wx,\Wy,\Wz);
+	% Plane at $\theta$ (inside the sphere)
+	\draw[blue,dashed,fill=yellow!50,opacity=0.35] 
+			(0,0,0) -- (\Ax,\Ay,0) -- plot[domain=0.5*pi:0.0,smooth,variable=\t] 
+				({\radio*sin(\t r)*cos(\angulot)},{\radio*sin(\t r)*sin(\angulot)},{\radio*cos(\t r)}) 
+			-- (0,0,0);	
+	% lines from the origin to the differential of volume
+	\draw[blue,dashed] (O) -- (\Px,\Py,\Pz);
+	\draw[blue,dashed] (O) -- (\Sx,\Sy,\Sz);
+	% Arc to indicate the angle $\phi$ 
+	\draw[blue] plot[domain=0:\dominiop,smooth,variable=\t] ({0.5*sin(\t r)*cos(\angulot)},{0.5*sin(\t r)*sin(\angulot)},{0.5*cos(\t r)});
+	\node[blue,above] at (\xnodop,\ynodop,\znodop) {$\phi$};
+	\node[blue] at (\xnododp,\ynododp,\znododp) {$d\phi$};
+	% Intersection of the sphere of radius $\rho$ with the plane $x = 0$
+	\draw[blue,dashed] plot[domain=0:0.5*pi,smooth,variable=\t] ({0.0},{\radio*sin(\t r)},{\radio*cos(\t r)});
+	% Intersection of the sphere of radius $\rho + d\rho$ with the plane $x = 0$
+	\draw[blue,dashed] plot[domain=0:0.5*pi,smooth,variable=\t] ({0.0},{\radiof*sin(\t r)},{\radiof*cos(\t r)});
+	% Sphere of radius $\rho$
+	\foreach \altura in {0,\step,...,\radio}{
+		\pgfmathsetmacro{\r}{sqrt((\radio)^2-(\altura)^2)}
+		\draw[cyan,line width=3pt,opacity=0.05] plot[domain=0:0.5*pi,smooth,variable=\t] ({\r*cos(\t r)},{\r*sin(\t r)},{\altura});
+		\draw[cyan,thin,opacity=0.25] plot[domain=0:0.5*pi,smooth,variable=\t] ({\r*cos(\t r)},{\r*sin(\t r)},{\altura});
+	}
+	% The differential of volume in spherical coordinates
+	\draw[red,thick] (\Px,\Py,\Pz) -- (\Qx,\Qy,\Qz) -- (\Rx,\Ry,\Rz) -- (\Sx,\Sy,\Sz) -- (\Px,\Py,\Pz);
+	\draw[red,thick] (\Tx,\Ty,\Tz) -- (\Ux,\Uy,\Uz) -- (\Vx,\Vy,\Vz) -- (\Wx,\Wy,\Wz) -- (\Tx,\Ty,\Tz);
+	\draw[red,thick] (\Px,\Py,\Pz) -- (\Tx,\Ty,\Tz);
+	\draw[red,thick] (\Qx,\Qy,\Qz) -- (\Ux,\Uy,\Uz);
+	\draw[red,thick] (\Rx,\Ry,\Rz) -- (\Vx,\Vy,\Vz);
+	\draw[red,thick] (\Sx,\Sy,\Sz) -- (\Wx,\Wy,\Wz);
+	% Sphere of radius $\rho + d\rho$
+	\foreach \altura in {0,\step,...,\radiof}{
+		\pgfmathsetmacro{\r}{sqrt((\radiof)^2-(\altura)^2)}
+		\draw[cyan,line width=3pt,opacity=0.05] plot[domain=0:0.5*pi,smooth,variable=\t] ({\r*cos(\t r)},{\r*sin(\t r)},{\altura});
+		\draw[cyan,thin,opacity=0.25] plot[domain=0:0.5*pi,smooth,variable=\t] ({\r*cos(\t r)},{\r*sin(\t r)},{\altura});
+	}
+	% Plane at $\theta + d\theta$ (part that is out of the sphere)
+	\draw[blue,dashed,fill=yellow!50,opacity=0.35] 
+			(\Cx,\Cy,0) -- (\xfrayodos,\yfrayodos,0) -- plot[domain=0.5*pi:0.0,smooth,variable=\t] 
+				({\radiof*sin(\t r)*cos(\angulotf)},{\radiof*sin(\t r)*sin(\angulotf)},{\radiof*cos(\t r)}) 
+			-- (0,0,\zf) -- (\xfrayodos,\yfrayodos,\zf) -- (\xfrayodos,\yfrayodos,0) -- (\Cx,\Cy,0);	
+	% Indication for the angle $\phi$
+	\draw[blue,dashed] (\Ux,\Uy,\Uz) -- (\Uex,\Uey,\Uez);
+	\draw[blue,dashed] (\Vx,\Vy,\Vz) -- (\Vex,\Vey,\Vez);
+	% Plane at $\theta$ (part that is out of the sphere)
+	\draw[blue,dashed,fill=yellow!50,opacity=0.35] 
+			(\Bx,\By,0) -- (\xfrayouno,\yfrayouno,0) -- plot[domain=0.5*pi:0.0,smooth,variable=\t] 
+				({\radiof*sin(\t r)*cos(\angulot)},{\radiof*sin(\t r)*sin(\angulot)},{\radiof*cos(\t r)}) 
+			-- (0,0,\zf) -- (\xfrayouno,\yfrayouno,\zf) -- (\xfrayouno,\yfrayouno,0) -- (\Bx,\By,0);	
+	% Indication for the angle $\phi$
+	\draw[blue,dashed] (\Qx,\Qy,\Qz) -- (\Qex,\Qey,\Qez);
+	\draw[blue,dashed] (\Rx,\Ry,\Rz) -- (\Rex,\Rey,\Rez);
+	%
+	% Nodes indicating lengths in the differential of volume
+	%
+	\pgfmathsetmacro{\SWmx}{0.5*(\Sx+\Wx)}
+	\pgfmathsetmacro{\SWmy}{0.5*(\Sy+\Wy)}
+	\pgfmathsetmacro{\SWmz}{0.5*(\Sz+\Wz)}
+	\draw[<-,shift={(\SWmx,\SWmy,\SWmz)}] (0,0,0) -- (-0.5,-0.5,1.75) node [above] {\footnotesize$\rho\,\sin\phi\,d\theta$};
+	\pgfmathsetmacro{\TWmx}{0.5*(\Wx+\Tx)}
+	\pgfmathsetmacro{\TWmy}{0.5*(\Wy+\Ty)}
+	\pgfmathsetmacro{\TWmz}{0.5*(\Wz+\Tz)}
+	\draw[<-,shift={(\TWmx,\TWmy,\TWmz)}] (0,0,0) -- (-1,0.75,1.5) node [above] {~~~\footnotesize$\rho\,d\phi$};	
+\end{tikzpicture}
+\end{center}
+%
+\end{document}
