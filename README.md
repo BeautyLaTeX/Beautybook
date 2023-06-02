@@ -5,7 +5,7 @@ They should be complied by the `xelatex` engine, no matter Chinese version or no
 - If you have any questions about the use of this series of templates, you can add my qq group to find a solution, which number is the 809237593.
 
 For reference, the images of Chinese version are provided here:
-![Cover](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-001.jpg)
+![Cover](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-0001.jpg)
 ![2](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-0003.jpg)
 ![3](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-0004.jpg)
 ![4](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-0005.jpg)
