@@ -6,11 +6,11 @@ They should be complied by the `xelatex` engine, no matter Chinese version or no
 
 For reference, the images of Chinese version are provided here:
 ![Cover](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-001.jpg)
-![2](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-003.jpg)
-![3](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-004.jpg)
-![4](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-005.jpg)
-![5](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-006.jpg)
-![6](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-007.jpg)
+![2](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-0003.jpg)
+![3](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-0004.jpg)
+![4](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-0005.jpg)
+![5](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-0006.jpg)
+![6](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-0007.jpg)
 ![7](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-0010.jpg)
 
 
