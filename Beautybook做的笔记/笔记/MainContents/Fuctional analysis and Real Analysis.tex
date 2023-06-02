@@ -1,0 +1,205 @@
+\chapter{实变函数论与泛函分析}
+\section{泛函分析考试题目}
+\begin{example}
+    我们来证明在空间 $s$ 中点列按距离收敛等价于按坐标收敛. 这就是说, 设点 列 $x^{(n)}=\left\{x_i^{(n)}\right\} \in s, n=1,2,3, \cdots$, 又 $x \in s, x=\left\{x_i\right\}$ 那么 $\rho\left(x^{(n)}, x\right) \rightarrow 0(n \rightarrow$ $\infty)$ 的充分必要条件是: 对每个自然数 $i$
+$$
+\lim _{n \rightarrow \infty} x_i^{(n)}=x_i
+$$
+\end{example}
+
+\begin{proof}
+事实上, 如果
+$$
+\rho\left(x^{(n)}, x\right)=\sum_{i=1}^{\infty} \frac{1}{2^i} \frac{\left|x_i^{(n)}-x_i\right|}{1+\left|x_i^{(n)}-x_i\right|} \rightarrow 0 \quad(n \rightarrow \infty)
+$$
+那么, 对每一个 $i$, 由于 $\frac{\left|x_i^{(n)}-x_i\right|}{1+\left|x_i^{(n)}-x_i\right|} \leqslant 2^i \rho\left(x^{(n)}, x\right)$, 我们得到 $\frac{\left|x_i^{(n)}-x_i\right|}{1+\left|x_i^{(n)}-x_i\right|} \rightarrow$ $0(n \rightarrow \infty)$, 于是, 对于给定的正数 $\varepsilon$, 不妨设 $\varepsilon<1$, 有自然数 $N$, 使得当 $n>N$ 时成立着
+$$
+\frac{\left|x_i^{(n)}-x_i\right|}{1+\left|x_i^{(n)}-x_i\right|}<\varepsilon
+$$
+从而有
+$$
+\left|x_i^{(n)}-x_i\right|<\frac{\varepsilon}{1-\varepsilon}, \quad i=1,2,3, \cdots .
+$$
+这说明对每个 $i=1,2,3, \cdots$, 当 $n \rightarrow \infty$ 时, $x_i^{(n)} \rightarrow x_i$.
+反过来, 设 $x_i^{(n)} \rightarrow x_i(n \rightarrow \infty), i=1,2,3, \cdots$. 因为对任一正数 $\varepsilon$, 存在自然 数 $m$, 使得
+$$
+\sum_{i=m}^{\infty} \frac{1}{2^i}<\frac{\varepsilon}{2}
+$$
+又对每个 $i=1,2, \cdots, m-1$, 存在着 $N_i$, 使得当 $n>N_i$ 时
+$$
+\left|x_i^{(n)}-x_i\right|<\frac{\varepsilon}{2}
+$$
+取 $N=\max \left\{N_1, \cdots, N_{m-1}\right\}$, 那么当 $n>N$ 时
+$$
+\sum_{i=1}^{m-1} \frac{1}{2^i} \frac{\left|x_i^{(n)}-x_i\right|}{1+\left|x_i^{(n)}-x_i\right|}<\sum_{i=1}^{m-1} \frac{1}{2^i} \frac{\frac{\varepsilon}{2}}{1+\frac{\varepsilon}{2}}<\frac{\varepsilon}{2} .
+$$
+所以, 当 $n>N$ 时, 有
+$$
+\rho\left(x^{(n)}, x\right)=\left(\sum_{i=1}^{m-1}+\sum_{i=m}^{\infty}\right) \frac{1}{2^i} \frac{\left|x_i^{(n)}-x_i\right|}{1+\left|x_i^{(n)}-x_i\right|}<\varepsilon .
+$$
+\end{proof}
+
+
+\begin{example}
+ 设 $f_n(x)(n=1,2,3, \cdots)$ 及 $f(x)$ 是 $L^p(E, \boldsymbol{B}, \mu)$ 中的函数. 如 果函数列 $\left\{f_n(x)\right\}$ 是 $p$ 方平均收敛于 $f(x)$, 那么函数列 $\left\{f_n(x)\right\}$ 必然在 $E$ 上依 测度收敛于 $f(x)$.
+
+\end{example}
+
+\begin{proof}
+ 对于任何正数 $\sigma$, 有
+\begin{align*}
+\begin{aligned}
+\int_E\left|f_n(x)-f(x)\right|^p \mathrm{~d} \mu & \geqslant \int_{E\left(\left|f_n-f\right| \geqslant \sigma\right)}\left|f_n(x)-f(x)\right|^p \mathrm{~d} \mu \\
+& \geqslant \sigma^p \mu\left(E\left(\left|f_n(x)-f(x)\right| \geqslant \sigma\right)\right)
+\end{aligned}
+\end{align*}
+令 $n \rightarrow \infty$, 就有 $\mu\left(E\left(\left|f_n(x)-f(x)\right|\right) \geqslant \sigma\right) \rightarrow 0$.
+\end{proof}
+
+
+\begin{example}
+    $ C[a, b]$ 是一个 Banach 空间.
+\end{example}
+
+\begin{proof}
+    在空间 $C[a, b]$ 中按范数收敛的点列 $f_n(x)$ 在 $[a, b]$ 上均匀收敛, 而在数 学分析中已经证明均匀收敛的连续函数列的极限函数是连续的. 因此, 只须证明 $C[a, b]$ 中的基本点列 $\left\{f_n\right\}$ 是 $[a, b]$ 上的均匀收敛函数列. 设 $\left\{f_n(x)\right\}$ 是 $C[a, b]$ 中的基本点列, 即对任何正数 $\varepsilon$, 存在 $N(\varepsilon)>0$, 使得当 $n, m \geqslant N(\varepsilon)$ 时
+\begin{align*}
+\left\|f_n-f_m\right\|=\sup _{a \leqslant x \leqslant b}\left|f_n(x)-f_m(x)\right|<\varepsilon
+\end{align*}
+从而对于任何 $x \in[a, b]$, 只要 $n, m \geqslant N(\varepsilon)$ 必有
+\begin{align*}
+\left|f_n(x)-f_m(x)\right|<\varepsilon
+\end{align*}
+由数列的 Cauchy 收敛条件, $\left\{f_n(x)\right\}$ 在 $[a, b]$ 上收敛于一函数 $f(x)$, 再在上式中 令 $m \rightarrow \infty$ 得到 $\left|f_n(x)-f(x)\right| \leqslant \varepsilon$. 因此 $\left\{f_n\right\}$ 在 $[a, b]$ 上均匀收敛于 $f(x)$.
+\end{proof}
+
+\begin{example}
+设 $f(s)$ 为 $a \leqslant s \leqslant b$ 上的连续函数, $K(s, t)$ 为正方形 $a \leqslant s \leqslant$ $b, a \leqslant t \leqslant b$ 上的连续函数, 且常数 $M$ 使得
+\begin{align*}
+\int_a^b|K(s, t)| \mathrm{d} t \leqslant M<\infty,(a \leqslant s \leqslant b),
+\end{align*}
+那么, 当 $|\lambda|<\frac{1}{M}$ 时, 必有唯一的 $\varphi \in C[a, b]$ 适合方程
+\begin{align*}
+\varphi(s)=f(s)+\lambda \int_a^b K(s, t) \varphi(t) \mathrm{d} t .
+\end{align*}
+
+\end{example}
+
+\begin{proof}
+在连续函数空间 $C[a, b]$ 上定义映照
+\begin{align*}
+K \varphi(s)=f(s)+\lambda \int_a^b K(s, t) \varphi(t) \mathrm{d} t,
+\end{align*}
+记 $\alpha=M|\lambda|$, 那么 $\alpha<1$, 对于任意的 $\varphi, \psi \in C[a, b]$, 有
+\begin{align*}
+\begin{aligned}
+\|K \varphi-K \psi\| & =|\lambda|\left\|\int_a^b K(s, t) \varphi(t) \mathrm{d} t-\int_a^b K(s, t) \psi(t) \mathrm{d} t\right\| \\
+& \leqslant|\lambda| \max _{a \leqslant s \leqslant b} \int_a^b|K(s, t) \| \varphi(t)-\psi(t)| \mathrm{d} t \\
+& \leqslant|\lambda| M \max _{a \leqslant t \leqslant b}|\varphi(t)-\psi(t)|=\alpha\|\varphi-\psi\| .
+\end{aligned}
+\end{align*}
+应用 Banach 不动点定理便知道积分方程 (4.8.10) 有唯一的连续解 $\varphi(t)$.
+\end{proof}
+
+\begin{example}[][][exam:func Ex5]
+    设 $T$ 是赋范线性空间 $X$ 到赋范线性空间 $Y$ 的线性算子. 假 如 $T$ 在某一点 $x_0 \in \mathscr{D}(T)$ 连续, 那么在 $\mathscr{D}(T)$ 上处处连续.
+\end{example}
+
+\begin{proof}
+    对任意一点 $x \in \mathscr{D}(T)$, 设 $x_n \in \mathscr{D}(T)$, 且 $x_n \rightarrow x$, 于是 $x_n-x+x_0 \rightarrow x_0$, 由假设 $T$ 在 $x_0$ 处连续, 所以当 $n \rightarrow \infty$ 时,
+\begin{align*}
+T\left(x_n-x+x_0\right)=T x_n-T x+T x_0 \rightarrow T x_0,
+\end{align*}
+因此 $T x_n \rightarrow T x$, 即 $T$ 在 $x$ 点是连续的.
+由此可知, 要验证线性算子 $T$ 是连续的, 只需验证 $T$ 在 $x=0$ 点连续就可 以了.
+\end{proof}
+\clearpage
+\begin{example}
+对任何 $f \in L[a, b]$, 作
+\begin{align*}
+(T f)(x)=\int_a^x f(t) \mathrm{d} t
+\end{align*}
+把 $T$ 视为 $L[a, b] \rightarrow C[a, b]$ 的算子时, 那么 $\|T\|=1$.
+\end{example}
+
+\begin{proof}
+    事实上, 任取 $f \in L[a, b]$, 使 $\|f\|_L=1$, 由于
+\begin{align*}
+\begin{aligned}
+\|T f\|_{C[a, b]} & =\max _{a \leqslant x \leqslant b}|(T f)(x)|=\max _{a \leqslant x \leqslant b}\left|\int_a^x f(t) \mathrm{d} t\right| \\
+& \leqslant \max _{a \leqslant x \leqslant b} \int_a^x|f(t)| \mathrm{d} t \leqslant \int_a^b|f(t)| \mathrm{d} t=1,
+\end{aligned}
+\end{align*}
+即 $\|T\| \leqslant 1$. 另一方面, 取 $f_0=\frac{1}{b-a}$, 显然 $\left\|f_0\right\|_L=1$, 那么又有
+\begin{align*}
+\begin{aligned}
+\|T\| & =\sup _{\|f\|=1}\|T f\| \geqslant\left\|T f_0\right\|=\max _{a \leqslant x \leqslant b} \int_a^x \frac{1}{b-a} \mathrm{~d} t \\
+& =\int_a^b \frac{1}{b-a} \mathrm{~d} t=1,
+\end{aligned}
+\end{align*}
+即 $\|T\| \geqslant 1$, 所以 $\|T\|=1$.
+\end{proof}
+
+\begin{example}
+    线性算子 $T$ 是有界的充要条件是 $T$ 是连续算子.
+\end{example}
+
+\begin{proof}
+    显然, 有界算子在点 $x=0$ 是连续的. 由\autoref{exam:func Ex5}, 有界线性算子 $T$ 处处连续.
+反过来, 设 $T$ 是连续的线性算子, 我们只需证明
+\begin{align*}
+M_0=\sup _{\|x\|=1}\|T x\|<\infty,
+\end{align*}
+假若不然, 设 $M_0=\infty$, 那么就在单位球面 $\|x\|=1$ 上存在点列 $\left\{x_n\right\}$, 使得 $\left\|T x_n\right\|=\lambda_n \rightarrow \infty$. 考察点列 $y_n=\frac{x_n}{\lambda_n}$, 显然, $y_n \rightarrow 0$. 由 $T$ 的连续性, 得到 $T y_n \rightarrow 0$. 但是实际上 $\left\|T y_n\right\|=1$, 这是矛盾. 因而 $M_0<\infty$, 即 $T$ 是有界算子.
+\end{proof}
+
+
+\begin{example}
+    设 $X$ 是赋范线性空间, 如果 $X^*$ 是可析的, 那么 $X$ 也必是可析的.
+\end{example}
+
+\begin{proof}
+    由于假设 $X^*$ 是可析的, 所以在 $X^*$ 中有一列 $\left\{f_n\right\}$, 它在 $X^*$ 的单位 球面上稠密. 对每个 $f_n$, 由于 $\sup _{\|x\|=1}\left|f_n(x)\right|=\left\|f_n\right\|>\frac{1}{2}$, 在 $X$ 的单位球面上必有 $x_n$, 使得 $\left|f_n\left(x_n\right)\right|>\frac{1}{2}$. 这时把 $\left\{x_n\right\}$ 张成 $X$ 的线性闭子空间记作 $X_0$, 如果 $X$ 不可析, 那么必然 $X_0 \neq X$. 从而在 $X^*$ 中存在 $f_0,\left\|f_0\right\|=1$, 而且当 $x \in X_0$ 时, $f_0(x)=0$. 然而对任何正整数 $n$
+\begin{align*}
+\left\|f_n-f_0\right\| \geqslant\left|f_n\left(x_n\right)-f_0\left(x_n\right)\right|=\left|f_n\left(x_n\right)\right|>\frac{1}{2},
+\end{align*}
+这与 $\left\{f_n\right\}$ 在 $X^*$ 的单位球面上稠密的假设冲突. 所以 $X$ 是可析的.
+\end{proof}
+
+\begin{example}
+    证明: 当 $X$ 是自反空间时,
+    \begin{align*}
+        X^* &=X^{* * *}=X^{5 *}=\cdots=X^{(2 n+1) *}=\cdots\\ 
+        X^{* *} &=X^{4 *}=\cdots=X^{(2 n) *}=\cdots.
+    \end{align*}
+\end{example}
+
+\begin{proof}
+    假设 $X$ 是一个自反空间, 根据定义5.3.1知, 自反空间 $X$满足 $X=X^{**}$. 接下来, 对 $X^*$与 $X^{**}$反复运用该式迭代可得
+
+    \begin{minipage}[t]{.44\linewidth}
+            \begin{align*}
+        (X^*) &= (X^*)^{**}=X^{***}\\ 
+        (X^{***}) &=(X^{***})^{**}=X^{5*}\\ 
+        \cdots &\qquad\cdots\qquad\cdots\\ 
+        X^{(2n-1)*} &=X^{(2n+1)*}\\ 
+    \end{align*}
+    \end{minipage}
+    \begin{minipage}[t]{.44\linewidth}
+            \begin{align*}
+        (X^{**}) &= (X^{**})^{**}=X^{4*}\\ 
+        (X^{4*}) &=(X^{4*})^{**}=X^{6*}\\ 
+        \cdots &\qquad\cdots\qquad\cdots\\ 
+        X^{(2n-2)*} &=X^{(2n)*}\\ 
+    \end{align*}
+    \end{minipage}
+\end{proof}
+
+
+
+
+
+
+
+
+
