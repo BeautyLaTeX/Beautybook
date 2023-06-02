@@ -1,0 +1,90 @@
+\chapter{local theory}
+\section{Holomorphic functions of several Variables}
+\subsection{Hartogs' Phenomenon and Hartogs' Theorem}
+\begin{example}
+Let 
+\begin{align*}
+G &=\{(z,w)\in \mathbb{C}^2 : |z|<1,\beta<1,\beta <|w|<1\}\\
+&\bigcup \{(z,w)\in\mathbb{C}^2 : |z|<\alpha<1,|w|<1\}.
+\end{align*}
+then every holomorphic function on $G$ can be expanded to double cyclindrical domain $\{(z,w)\in \mathbb{C}^2 \mid  |z|<1,|w|<1\}$.
+\end{example}
+\begin{solution}
+Now let we see the Figure 1 and let $S$ denote the shadow part of $\R^2$. Define map $\varphi$ by
+\[\varphi\colon \mathbb{C}^2 \to \R^2 ; (z,w)\mapsto (|z|,|w|),\]
+then $G=\varphi^{-1}(S)$. Next we will show that the conclusion above is true.
+\paragraph{Setp I. Taking Laurent expansion of $f(z,w)$.}
+
+For every fixed $|z|<1$, $f(z,w)$ can be expressed as Laurent series  
+\[f(z,w)=\sum_{v=-\infty}^{+\infty}a_v (z)w^v.\]
+,where $a_v (z)$ is holomorphic on $D_z(0,1)$. For fixed $|z|<1$, $\varphi^{-1}$ transfers into an single variable complex function $\varphi^{-1}_{|z|<1}(|w|)$, $ |w|<1$, then $f$ is holomorphic  about $w$
+and posses Laurent series expansion on $D_w (0,1)$.
+Owing to $a_v (z)$ being holomorphic on $D_z (0,1)$, when $|z|<\alpha$, the Laurent series has no term with negative power, in other words, $a_v (z)=0, \forall v<0$.
+
+Because $a_v (z)$ is holomorphic on $D_z(0,1)$ and $a_v (z)=0,\forall v<0$, then according to Identity theorem, we yield $a_v (z)\equiv 0$ on $D_z(0,1)$. It is clear that $f(z,w)$ is holomorphic on $\{(z,w)\in \mathbb{C}^2\mid |z|<1,|w|<1\}$.
+\paragraph{Step II. The expression of $f(z,w)$ analytic continuation is obtained by using Cauchy Integral theorem. }
+
+On step I, we have shown that $f(z,w)$ is holomorphic on $\{(z,w)\in \mathbb{C}^2\mid |z|<1,|w|<1\}$, then on step II, our purpose is to ascertain the expression of the expanded function. 
+
+Let $\beta^\prime<\beta<1$. Define a function by using Cauchy Integral theorem, we gain 
+\begin{equation}
+    \widetilde{f}(z,w)=\frac{1}{2\pi i}\int_{|\xi|=\beta^\prime} \frac{f(z,\xi)}{\xi-w}\dd \xi. 
+\end{equation}
+Where $\widetilde{f}(z,w)$ is holomorphic function on $\{(z,w)\in \mathbb{C}^2\mid |z|<1,|w|<\beta^\prime\}$. In particular, $\widetilde{f}(z,w)=f(z,w)$ on $\{(z,w)\in \mathbb{C}^2\mid |z|<1,|w|<1\}$. So $\widetilde{f}(z,w)$ dose the expanded function what we find. 
+\end{solution}
+
+\begin{lemma}[][][lem:1.1]
+    Let $U\subset \mathbb{C}^n$ be an open subset and let $V\subset \mathbb{C} $ be an open neighbourhood of the boundary of $B_\varepsilon(0)\subset \mathbb{C}$. Assume that $f\colon V\times U\to \mathbb{C}$ is a holomorphic function. Then 
+    \[g(z):=g(z_1,\cdots,z_n);=\int_{|\xi|=\varepsilon}f(\xi,z_1,\cdots,z_n)\dd \xi\]
+    is holomorphic function on $U$.
+\end{lemma}
+
+\begin{theorem}[][Hartogs' Theorem]
+    Suppose $\varepsilon=(\varepsilon_1,\cdots,\varepsilon_n) $ and $\varepsilon^\prime=(\varepsilon_1^\prime,\cdots,\varepsilon_n^\prime)$ are given such that for all $i$ one has $\varepsilon_i^\prime <\varepsilon$. If $n>1$ , then any holomorphic map $f\colon B_\varepsilon (0)\backslash \overline{B_{\varepsilon^\prime}(0)}\to \mathbb{C}$ can be uniformly extended to a holomorphic map $\widetilde{f}: B_\varepsilon(0)\to \mathbb{C}$.
+\end{theorem}
+\begin{proof}
+    Let $\varepsilon=(1,\cdots,1) $ and $\exists\delta>0$ such that 
+    \[V=\{z\in \mathbb{C}^n\mid 1-\delta<|z_1|<1,|z_{i\neq 1|<1}\}\bigcup \{z\in \mathbb{C}^n\mid 1-\delta<|z_2|<1,|z_{i\neq 2|<1}\}.\]
+    is contained in $B_\varepsilon(0)\backslash\overline{B_{\varepsilon^\prime}(0)}$. So $f$ is holomorphic on $V$. Thus, for any $w := (z_2,\cdots,z_n)$ with $|z_j|<1,j=2,\cdots,n$, there exists a holomorphic function $f_w(z_1):=f(z_1;z_2,\cdots,z_n)$ on annulus $1-\delta<|z_1|<1$. 
+    \begin{remark}
+        For the Lemma \ref{lem:1.1}, $V\subset \mathbb{C}^n$ is open subset and let $\{z\in\mathbb{C}^n\mid 1-\delta<|z_1|<1,|z_{i\neq 1}|<1\}\subset \mathbb{C}$ be an neighbourhood of the boundary of $B_1(0)\subset \mathbb{C}$. Because $f$ is holomorphic on $\{z\in\mathbb{C}^n\mid 1-\delta<|z_1|<1,|z_{i\neq 1}|<1\}\times V$, so $g(z_1;z_2,\cdots,z_n):=f(z_1,\cdots,z_n):=f_w(z_1)$ is holomorphic on $\{z\in\mathbb{C}^n\mid 1-\delta<|z_1|<1,|z_{i\neq 1}|<1\}$. 
+    \end{remark}
+    Now due to $f_w(z_1)$ is holomorphic on $\{z\in\mathbb{C}^n\mid 1-\delta<|z_1|<1,|z_{i\neq 1}|<1\}\subset \mathbb{C}$, then $f_w(z_1)$ can be expanded to Laurent series by $f_w(z_1)=\sum_{n=-\infty}^{+\infty}a_n (w) z_1 ^n$ with the coefficient $a_n (w)=\frac{1}{2\pi i}\int_{|\xi|=1-\delta/2}\frac{f(\xi)}{\xi^{n+1}}\dd \xi$. 
+
+    By Lemma \ref{lem:1.1} ,$a_n (w)$ is holomorphic for $w$ in the unit polydisc of $\mathbb{C}^{n-1}$.
+
+    On the other hand, the function $f_w\colon z_1\mapsto f_w(z_1)$ is holomorphic on the unit disc for fixed $w$ such that $1-\delta<|z_1|<1$. 
+    \begin{remark}
+        On above description, we have shown that $f_w\colon z_1\mapsto f_w(z_1)$ is holomorphic on $\{z\in\mathbb{C}^n\mid 1-\delta<|z_1|<1,|z_{i\neq 1}|<1\}$, so it's obviously that $f_w$ is also holomorphic on 
+        \begin{align*}
+        &\{z\in\mathbb{C}^n\mid 1-\delta<|z_1|<1,1-\delta<|z_2|<1,|z_{i\neq 1,2}|<1\}\\
+        &\subset \{z\in\mathbb{C}^n\mid 1-\delta<|z_1|<1,|z_{i\neq 1}|<1\}.
+        \end{align*}
+    \end{remark}
+    Thus, $a_n (w)=0$, for $n<0$ and $1-\delta<|z_2|<1$. 
+    \begin{remark}
+        $a_n(w)$ is holomorphic for $w$ on the unit disc of $\mathbb{C}^n$, so $a_n (w)=0, \forall n<0$. 
+    \end{remark}
+    By the Identity theorem , we show that $a_n(w)\equiv 0$ for $n<0$. But then we define the holomorphic extension $\widetilde{f}$ of $f$ by the power series $\sum_{n=0}^{\infty}a_n (w)z_1^n$. (without terms of negative power)
+    \begin{remark}
+        Also, we could use the Cauchy Integral theorem, which is equivalent to that.
+    \end{remark}
+    This series converges uniformly ,as $a_n (w)$ are holomorphic and attain maximum at the boundary. 
+    \begin{remark}
+        For $\widetilde{f}=\sum_{n=0}^{\infty}a_n(w)z_1^n, 1-\delta<|z_1|<1$, if we want the series converges uniformly, it just need $a_n(w)$ are bounded on $\{z\in\mathbb{C}^n\mid 1-\delta<|z_2|<1,|z_{i\neq 2}|<1\}$. By $a_n(w)$ be holomorphic on $\{z\in\mathbb{C}^n\mid 1-\delta<|z_2|<1,|z_{i\neq 2}|<1\}$, then use Maximum princple, $a_n(w)$ attain their maximum at the boundary.
+        \end{remark}
+        So the convergence of the Laurent series on the annulus yields the uniformly convergence everywhere. Clearly, the holomorphic function given by the series (the power series) glues with $f$ to give the disired holomorphic function.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
