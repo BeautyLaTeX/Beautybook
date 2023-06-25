@@ -1,8 +1,8 @@
 ## This is the channel for the "BeautyLaTeX" template series release. Thanks for your support and feedback.
-The file named `Beautybook v6.0.cls` is the Chinese version, conversely, the file named `Beautybook v6.0 En.cls` is the English one.
-They should be complied by the `xelatex` engine, no matter Chinese version or not.
-- For the packages `mtpro2` and `twemojis`, if they are not installed on your Pc/Mac, you should delete them before compilation.
-- If you have any questions about the use of this series of templates, you can add my qq group to find a solution, which number is the 809237593.
+The file named `Beautybook-V6.1-CN.cls` is the Chinese version, conversely, the file named `Beautybook-V6.1-EN.cls` is the English one.
+They should be complied by the `XeLaTeX` command, no matter Chinese version or not.
+- For the package `mtpro2`, if they are not installed on your Pc/Mac, you should not use the option 'math-font=mtpro2'!
+- If you have any questions about the use of this series of templates, you can add my qq group to find a solution, which number is the 809237593. If you are not chinese, you can contact me here or email me [Outlook](h1479840692@outlook.com)!
 
 For reference, the images of Chinese version are provided here:
 ![Cover](https://github.com/BeautyLaTeX/latex-template/blob/master/cn/Beautybook-cn_page-0001.jpg)
