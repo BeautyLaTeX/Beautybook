@@ -1,0 +1,157 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{stys/settings-CN}[2023/06/27,v4.0]
+%% 定义第一种定理
+\mynewtheorem{
+    defi={\textbf{定义}}[section]{interior style={left color=ReD!8,right color=ReD!5!CyaN!50}, borderline west={1.5mm}{0mm}{ReD}},
+    thm={\textbf{定理}}[section]{interior style={left color=CyaN!80!black!20,right color=CyaN!80!black!15!CyaN!50}, borderline west={1.5mm}{0mm}{CyaN!80!black}},
+    lem={\textbf{引理}}[section]{interior style={left color=BluE!8,right color=BluE!5!CyaN!50}, borderline west={1.5mm}{0mm}{BluE}},
+    prop={\textbf{命题}}[section]{interior style={left color=OrangE!8,right color=OrangE!5!CyaN!50}, borderline west={1.5mm}{0mm}{OrangE}},
+    exam={\textbf{题}}[chapter]{interior style={left color=DarkGreen!8,right color=DarkGreen!5!CyaN!50}, borderline west={1.5mm}{0mm}{DarkGreen}},
+    cor={\textbf{推论}}[chapter]{interior style={left color=violet!8,right color=violet!5!CyaN!50}, borderline west={1.5mm}{0mm}{violet}},
+}
+\newtheorem*{remark}{\textbf{注}}
+%% 定义第二种定理
+% overlay unbroken=\my@theorem@overlay@unbroken{\theorem@name\ \thetcbthm}{额外的选项}
+% overlay first=\my@theorem@overlay@first{\theorem@name\ \thetcbthm}{额外的选项}
+%% 用户接口区
+\definecolor{examback}{HTML}{e3e6e8}
+\makeatletter
+\mynewtcbtheorem{
+    % 这个 theorem 是环境名
+    theorem={
+        counter=tcbthm, 
+        the counter=\thesection.\arabic{tcbthm}, 
+        name=定理, % 它保存到 \theorem@name 里
+        thmcolor=高粱红,
+        autoref name=\bfseries 定理, 
+        style={
+        arc=3pt,breakable,enhanced,interior style={top color=高粱红!12 ,middle color=高粱红!9, bottom color=高粱红!6},boxrule=0pt,top=8mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape, step={tcbthm},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@theorem@overlay@unbroken{\theorem@name\ \thetcbthm}{\theorem@thmcolor},
+        overlay first=\my@theorem@overlay@first{\theorem@name\ \thetcbthm}{\theorem@thmcolor},
+        overlay last=\my@theorem@overlay@last{\theorem@thmcolor},
+        }
+    },
+    proposition={
+        counter=tcbprop, 
+        the counter=\thesection.\arabic{tcbprop}, 
+        autoref name=\bfseries 命题, 
+        style={
+        arc=3pt,breakable,enhanced,interior style={top color=高粱红!12 ,middle color=高粱红!9, bottom color=高粱红!6},boxrule=0pt,top=8mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape, step={tcbprop},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@theorem@overlay@unbroken{命题\ \thetcbprop}{高粱红},
+        overlay first=\my@theorem@overlay@first{命题\ \thetcbprop}{高粱红},
+        overlay last=\my@theorem@overlay@last{高粱红},
+        }
+    },
+    definition={
+        counter=tcbdefi, 
+        the counter=\thesection.\arabic{tcbdefi}, 
+        autoref name=\bfseries 定义, 
+        style={
+        arc=3pt,breakable,enhanced,interior style={top color=紫棠!12 ,middle color=紫棠!9, bottom color=紫棠!6},boxrule=0pt,top=8mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape, step={tcbdefi},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@theorem@overlay@unbroken{定义\ \thetcbdefi}{紫棠},
+        overlay first=\my@theorem@overlay@first{定义\ \thetcbdefi}{紫棠},
+        overlay last=\my@theorem@overlay@last{紫棠},
+        }
+    },
+    lemma={
+        counter=tcblem,
+        the counter=\thesection.\arabic{tcblem},
+        name=引理, 
+        lemcolor=靛蓝, 
+        autoref name=\bfseries 引理,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=靛蓝!12 ,middle color=靛蓝!9, bottom color=靛蓝!6},arc=3pt,boxrule=0pt,top=7mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcblem},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{\lemma@name\ \thetcblem}{\lemma@lemcolor},
+        overlay first=\my@lemma@overlay@first{\lemma@name\ \thetcblem}{\lemma@lemcolor},
+        overlay last=\my@lemma@overlay@last{\lemma@lemcolor},
+        }
+    },
+    corollary={
+        counter=tcbcor,
+        the counter=\thesection.\arabic{tcbcor},
+        autoref name=\bfseries 推论,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=茶色!12 ,middle color=茶色!9, bottom color=茶色!6},arc=3pt,boxrule=0pt,top=7mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcbcor},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{推论\ \thetcbcor}{茶色},
+        overlay first=\my@lemma@overlay@first{推论\ \thetcbcor}{茶色},
+        overlay last=\my@lemma@overlay@last{茶色},
+        }
+    },
+    example={
+        counter=tcbexam,
+        the counter=\thesection.\arabic{tcbexam},
+        autoref name=\bfseries 例题,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=黛绿!12 ,middle color=黛绿!9, bottom color=黛绿!6},arc=3pt,boxrule=0pt,top=7mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcbexam},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{例题\ \thetcbexam}{黛绿},
+        overlay first=\my@lemma@overlay@first{例题\ \thetcbexam}{黛绿},
+        overlay last=\my@lemma@overlay@last{黛绿},
+        }
+    },
+    problem={
+        counter=tcbprob,
+        the counter=\thechapter.\arabic{tcbprob},
+        autoref name=\bfseries 问题,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=绛紫!12 ,middle color=绛紫!9, bottom color=绛紫!6},arc=3pt,boxrule=0pt,top=7mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.9,
+        fontupper=\normalsize,step={tcbprob},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{问题\ \thetcbprob}{绛紫},
+        overlay first=\my@lemma@overlay@first{问题\ \thetcbprob}{绛紫},
+        overlay last=\my@lemma@overlay@last{绛紫},
+        }
+    },
+}
+\makeatother
+\newcommand{\pr}{^\prime}
+
+% 中文字体配置示例，英文字体见cls，那个比较简单，不再赘述！需要 fontset=none!!
+% 字体族设定 (中英文通用)
+\setCJKmainfont[Path=chinesefonts/,BoldFont={FZH.TTF},ItalicFont={FZXKTJW.TTF},SlantedFont = {FZXKK.TTF} , SlantedFeatures = {FakeSlant}]{FZXSSJW.TTF} % (\rmfamily) % 正文字体
+\setCJKsansfont[Path=chinesefonts/,BoldFont={FZH.TTF},ItalicFont={FZXKK.TTF}]{FZH.TTF} % (\sffamily) %`sansfont` 是无衬线字体，可以用于标题。
+\setCJKmonofont[Path=chinesefonts/,BoldFont={FZH.TTF},ItalicFont={FZXKTJW.TTF}]{FZXKTJW.TTF}  % (\ttfamily) %`monofont` 是等宽字体，用于抄录内容，如代码等等。
+% 新字体设定 % 通过命令调用 (xeCJK提供) (仅中文)
+\newCJKfontfamily[song]\songti{FZXSSJW.TTF}[Path=chinesefonts/] %新宋体
+\newCJKfontfamily[kai]\kaishu{FZXKTJW.TTF}[Path=chinesefonts/] %新楷体
+\newCJKfontfamily[fs]\fangsong{FZKBFSJW.TTF}[Path=chinesefonts/] %仿宋
+\newCJKfontfamily[liti]\lishu{FZL.TTF}[Path=chinesefonts/] %隶书
+\newCJKfontfamily[xk]\xingkai{FZXKK.TTF}[Path=chinesefonts/] %行楷
+\newCJKfontfamily[zhdbs]\dbs{FZDBSK.TTF}[Path=chinesefonts/] %大标宋
+% 另一种由fontspec宏包给出的新字体命令设定 (中英文通用)
+\newfontfamily\largetitlestyle[Path=chinesefonts/]{FZH.TTF}
+%
+
+\endinput

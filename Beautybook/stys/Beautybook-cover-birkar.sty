@@ -1,0 +1,125 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{stys/Beautybook-cover-birkar}[2022/05/21,v1.0]
+\usepackage{anyfontsize} % 提供\fontsize{}{}\selectfont命令
+\usepackage{etoolbox} %提供自定义封面选项接口
+\usepackage[dvipsnames,svgnames,x11names,table]{xcolor}%颜色宏包 % Driver-independent color extensions
+\usepackage{tikz}
+\usetikzlibrary{intersections, positioning, fit, backgrounds, shapes, fadings,
+decorations.pathmorphing, graphs, quotes, angles, calc, through, backgrounds} % %Tikz指令库
+\usepackage{graphicx} %插图
+\usetikzlibrary{calc,fadings,patterns}
+\usepackage{adjustbox} %修正minipage顶部对齐问题
+
+% Define the layers to be used in document.
+% *****************************************************
+\pgfdeclarelayer{background} %背景%底层
+\pgfdeclarelayer{foreground} %上层
+\pgfdeclarelayer{top} %顶部
+\pgfdeclarelayer{bottom} %底部
+\pgfsetlayers{bottom,background,main,foreground,top}
+\definecolor{RED}{RGB}{220, 41, 26}
+\definecolor{arc color}{HTML}{546E7A}
+
+\tikzfading[name=fade right,
+                    right color =transparent!100,
+                    left color=transparent!0]
+\tikzfading[name=fade left,
+                    left color =transparent!100,
+                    right color=transparent!50]
+\tikzfading[name=fade up,
+                    top color =transparent!100,
+                    bottom color=transparent!50]
+\tikzfading[name=fade down,
+                    bottom color =transparent!100,
+                    top color=transparent!50]
+\makeatletter
+\newcommand*\makecover{
+    %% Use the Tikz library positioning and clear the page header and footer
+    \usetikzlibrary{positioning}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture,overlay]
+        \begin{pgfonlayer}{bottom}
+            \fill[coverfgcolor]         
+            (current page.north west) rectangle (current page.south east);% 填充封面背景颜色 (coverbgcolor)
+            \fill[RED]
+            ([shift={(2.05cm,0)}]current page.north west) rectangle ([shift={(2.35cm,-6cm)}]current page.north west);
+            \fill[coverfgcolor!80,opacity=0.5]
+            ([shift={(0,-2cm)}]current page.north west) arc (90:-90:.3\paperheight) --cycle;
+            \fill[coverfgcolor!80,opacity=0.5]
+            ([shift={(0,-4cm)}]current page.north east) arc (90:270:.2\paperheight) --cycle;
+            \fill[coverfgcolor!80] 
+            (current page.north west) rectangle ([shift={(2cm,0)}]current page.south west);
+            \begin{scope}[opacity=0.8]
+            \coordinate (triangleA) at ([shift={(1cm,-1cm)}]current page.north);
+            \coordinate (triangleB) at ([shift={(-.85\linewidth,-.46\paperheight)}]triangleA);
+            \coordinate (triangleC) at ([shift={(.52\linewidth,-.46\paperheight)}]triangleA);
+            \draw[name path=triangle,very thick,coverfgcolor!70!white] 
+            (triangleA)--(triangleB)--(triangleC)--cycle;
+            \draw[name path=circle,very thick,coverfgcolor!70!white]
+            ([shift={(-1.6cm,-7.3cm)}]triangleA) coordinate (O) circle(6cm);
+            %标注每个交点坐标
+            \fill [name intersections={of=triangle and circle, name=i, total=\t}]
+            [coverbar,opacity=0.5, every node/.style={above left, white, opacity=1}]
+            \foreach \s in {1,...,\t}{(i-\s) circle (1em) node {}};
+            \draw[name path=l,very thick,coverfgcolor!70!white] (i-1) -- (triangleC);
+            \draw[very thick,coverfgcolor!70!white] (i-6) -- (triangleB);
+            \draw[name path=l2,very thick,coverfgcolor!70!white] (i-4) -- (triangleA);
+            \fill[name intersections={of=l and circle,name=j,total=\l}]
+            [coverbar,opacity=0.5, every node/.style={above left, white, opacity=1}]
+            \foreach \c in {1,...,\l}{(j-\c) circle (1em) node {}};
+
+            \fill[name intersections={of=l2 and l,name=jj,total=\ll}]
+            [coverbar,opacity=0.5, every node/.style={above left, white, opacity=1}]
+            \foreach \cc in {1,...,\ll}{(jj-\cc) circle (1em) node {}};
+            \end{scope}
+        \end{pgfonlayer}
+        \begin{pgfonlayer}{foreground}
+            \fill[coverbar,opacity=.5]
+        ([yshift=2\outermarginwidth]current page.west) rectangle ([xshift=\outermarginwidth,yshift=-.2\outermarginwidth]current page.west); % 最左侧装饰矩形
+        \end{pgfonlayer}
+        \shade[left color=coverfgcolor,right color=coverfgcolor!60,opacity=.3]
+        ([xshift=\outermarginwidth,yshift=2\outermarginwidth]current page.west) rectangle (current page.south east); % 标题背景大矩形
+        \node[anchor=south] at ([xshift=.3\outermarginwidth,yshift=-.4\covershift]current page.north) {%
+        \parbox{.8\paperwidth}{
+        \filright
+        \color{white}\sansa\fontsize{20}{23}\selectfont\@bookseries}
+        }; %系列丛书名称
+        \node[ anchor=south] at ([xshift=.3\outermarginwidth,yshift=-.57\paperheight]current page.north)
+    {\parbox{.8\paperwidth}{%
+            \raggedright%
+ {\renewcommand\baselinestretch{1.1}\selectfont           \color{white}\cabin\bfseries\fontsize{40}{40}\selectfont\@title\\[0.5ex]
+            \color{white}\sansa\fontsize{30}{30}\selectfont
+            \ifdefvoid{\@subtitle}{}{\@subtitle}\par}
+        }};% 封面标题与副标题
+    \node[anchor=west,font=\cabin\fontsize{23}{23}\selectfont,text=white] at ([xshift=1.8\outermarginwidth,yshift=-.6\covershift]current page.west) {\@edition};
+    \node[anchor=west,font=\cabin\Huge,text=white] at ([xshift=1.8\outermarginwidth,yshift=\covershift]current page.west) {\@author};
+    \node[left,text=white,font=\rmfamily\Large,] at
+    ([shift={(-1cm,2cm)}]current page.south east)  %
+    {\raisebox{-1.1cm}{\includegraphics[width=0.2\linewidth]{\@presslogo}}\hspace*{-3.5ex}\begin{varwidth}{.4\textwidth}\tikz\draw[white,line width=1.25pt] (0,0)--++(0,1cm);\,\raisebox{.25cm}{\@pressname} \end{varwidth}};%
+    \end{tikzpicture}%
+    \newpage
+}
+\makeatother
+
+\endinput
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

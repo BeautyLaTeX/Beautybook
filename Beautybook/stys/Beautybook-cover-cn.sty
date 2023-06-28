@@ -1,0 +1,109 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{stys/Beautybook-cover-cn}[2023/05/10,v1.0]
+\usetikzlibrary{calc,fadings,patterns}
+\usepackage{adjustbox} %修正minipage顶部对齐问题
+\makeatletter
+%%-------------------封面信息定义-----------------------------------------%%
+\newcommand\entitle[1]{\def\@entitle{#1}}
+%%--------------------封面信息定义----------------------------------------%%
+\makeatother
+%%%%===============================================================%%%%%
+% \definecolor{coverbgcolor}{HTML}{9CCCDA}
+% \definecolor{coverfgcolor}{HTML}{508E99}
+% \definecolor{coverbar}{HTML}{305756}
+\tikzfading[name=fade right,
+                    right color =transparent!100,
+                    left color=transparent!50]
+\tikzfading[name=fade left,
+                    left color =transparent!100,
+                    right color=transparent!50]
+\tikzfading[name=fade up,
+top color =transparent!100,
+bottom color=transparent!50]
+\tikzfading[name=fade down,
+                    bottom color =transparent!100,
+                    top color=transparent!50]
+\makeatletter
+\newcommand*\makecover{
+    %% Use the Tikz library positioning and clear the page header and footer
+    \usetikzlibrary{positioning}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture,overlay]
+      \fill[coverfgcolor!75]
+        (current page.north west) rectangle (current page.south east);% 填充封面背景颜色 (coverbgcolor)
+        \fill[coverfgcolor!50]
+        ([xshift=-3\covershift,yshift=-.4\covershift]current page.east) rectangle ([yshift=-1.35\covershift]current page.east); % 被标题背景遮挡露出一部分的装饰矩形
+        \fill[coverfgcolor]
+        ([xshift=\outermarginwidth]current page.north west) rectangle ([xshift=-\outermarginwidth,yshift=1.5\covershift]current page.south east); % 标题背景大矩形
+        \fill[coverbar]
+        ([yshift=.44\covershift]current page.west) rectangle ([xshift=\outermarginwidth,yshift=-.4\covershift]current page.west); % 最左侧装饰矩形
+        \node[left] at ([xshift=-1.8cm,yshift=-1.5cm]current page.north east) {%
+        \parbox{3\covershift}{
+        \raggedleft
+        \color{white}\sansa\bfseries\fontsize{18}{22}\selectfont\@bookseries}
+        }; %系列丛书名称
+        \node[right] at ([xshift=\outermarginwidth,yshift=1.5*\covershift]current page.west)
+    {\parbox{.8\paperwidth}{%
+            \filright%
+            \color{white}\sansa\bfseries\fontsize{30}{30}\selectfont\@entitle\\[-1.6ex]
+            \begin{tikzpicture}
+              \draw[white,line width=1pt] (0,0) --++ (\paperwidth-3\outermarginwidth,0);
+            \end{tikzpicture}\\[-.5ex]
+            \color{white}\sansa\bfseries\fontsize{30}{30}\selectfont
+            \ifdefvoid{\@title}{}{\@title}
+        }};% 封面英文书名与中文书名
+        \node[left,inner sep=0pt,outer sep=0pt]  at ([xshift=1.2\outermarginwidth,yshift=1.8cm]current page.east)
+    {%
+    \adjustbox{valign=t}{
+            \begin{minipage}{.25\textwidth}
+            \begin{tikzpicture}
+              \foreach \x/\r in {1.2/6,.8/4} {
+              \draw[white,line width=\x pt] (0,0) circle [radius=\r pt];}
+              \fill[white] (0,0) circle [radius=2.5pt];
+            \end{tikzpicture}
+            \hspace{2pt}\color{white}\cabin\fontsize{20}{25}\selectfont Editors
+            \end{minipage}}
+            \hfill
+            \adjustbox{valign=t}{\begin{minipage}{.45\textwidth}
+              \raggedright\color{white}\cabin\fontsize{20}{25}\selectfont\@author
+            \end{minipage}}
+    };% 封面作者信息栏
+    \fill [path picture={ \node at (path picture bounding box.center)
+    {\includegraphics[height=.92\linewidth]{\@coverimage}};}]
+    ([xshift=\outermarginwidth]current page.south west) rectangle ++(1.8*\covershift,.58\paperheight);
+        \fill[pattern color=coverfgcolor!70,pattern=horizontal lines,opacity=0.8]
+        ([xshift=\outermarginwidth,yshift=.2\covershift]current page.south west) rectangle ([xshift=-\outermarginwidth,yshift=1.43\covershift]current page.south east);
+        \fill [coverfgcolor!80,path fading=fade right]%
+        ([xshift=\outermarginwidth+.5\linewidth+.2cm,yshift=.2\covershift]current page.south west) rectangle ([xshift=-\outermarginwidth,yshift=1.43\covershift]current page.south east);
+        \fill [coverfgcolor!80,path fading=fade left]%
+          ([xshift=\outermarginwidth+.5\linewidth+.2cm,yshift=.2\covershift]current page.south west) rectangle ([xshift=-\outermarginwidth,yshift=1.43\covershift]current page.south east);
+          \node[left,text=white,font=\rmfamily\Large,] at
+          ([shift={(-2cm,2cm)}]current page.south east)  %
+          {\raisebox{-1.1cm}{\includegraphics[width=0.2\linewidth]{\@presslogo}}\hspace*{-3.5ex}\begin{varwidth}{.4\textwidth}\tikz\draw[white,line width=1.25pt] (0,0)--++(0,1cm);\,\raisebox{.25cm}{\@pressname} \end{varwidth}};%
+    \end{tikzpicture}%
+  \newpage
+}
+\makeatother
+\endinput
+% %%%%===============================================================%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
