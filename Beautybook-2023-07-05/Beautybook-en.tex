@@ -1,0 +1,78 @@
+\documentclass{Beautybook-EN}
+\coverstyle={
+    cover-choose=en, % cn (需新增项\entitle{#}); en ; enfig ; birkar
+}
+\mathstyle={
+    math-font=mtpro2, % plain (默认数学字体); mtpro2 % !!没有安装mtpro2字体的不要使用该选项
+}
+\usepackage{stys/settings-EN}
+\newenvironment{note}[1][\bf Note:]{\par\Line\uuline{#1} }{\par\Line}
+\renewcommand{\Line}{\noindent\tikz\draw[line width=0.65pt,gray!80,dashed] (0,0)--++(.99\linewidth,0);\par}
+\newcommand{\Wedge}[1][]{\tikz\path [draw,line width=1pt] (0,0)--++(4pt,12pt) node[right,font=\scriptsize] {#1} --++(4pt,-12pt);}
+\newenvironment{key}[1]{\begin{fancybox}{#1}\ }{\end{fancybox}}
+\newcommand{\pr}{^\prime}
+\newcommand{\prr}{^{\prime\prime}}
+\newcommand{\itbf}[1]{\textit{\textbf{#1}}}
+\usepackage{lipsum}
+\begin{document}
+\thispagestyle{empty}
+\title{An Introduction to Complex Geometry}
+\subtitle{}
+\edition{First Edition}
+\bookseries{UniversiText}
+\author{Ethan Lu}
+\pressname{Springer}
+\presslogo{inner_pics/Springer-logo.png}
+\coverimage{inner_pics/ivy-ge998908f8_1280.jpg}
+\makecover
+
+\definecolor{bg}{HTML}{e0e0e0}
+\definecolor{fg}{HTML}{203A43}
+\colorlet{outermarginbgcolor}{bg}
+\colorlet{outermarginfgcolor}{fg}
+\colorlet{framegolden}{fg}
+\colorlet{framegray}{bg!50}
+\colorlet{headlinecolor}{靛蓝}
+\chapoddimage{inner_pics/songodd.png}
+\chapevenimage{inner_pics/songeven.png}
+% set the contents of the outer margin on even and odd pages for scrheadings, plain and scth
+\oddoutermargin{\cabin\leftmark} % Odd 奇数页
+\makeatletter
+\evenoutermargin{\cabin\@title} % Even 偶数页
+\setlength\footheight{20pt}
+\ofoot{} % 页脚信息
+\makeatother
+\input{frontmatter/titlepage-en}
+\frontmatter
+\pagenumbering{Roman}
+\input{frontmatter/preface-en}
+
+\thispagestyle{empty}
+\tableofcontents\let\cleardoublepage\clearpage
+
+
+\mainmatter
+\pagenumbering{arabic}
+
+\partimage{inner_pics/part.png}
+\partabstract{A small introduction A small introduction A small introduction A small introduction A small introduction A small introduction}
+\part{Exercises Of Riemannian Geometry (Ver : Do Carmo)}
+\chapter{Test Chapter}
+\section{test section}
+test\cite{Huybrechts2010Complex}
+\lipsum[1-12]
+
+
+{ % 限制空页面样式命令作用范围
+\normalem
+\printbibliography[
+heading=bibintoc,
+title={References}
+]
+\printindex
+\thispagestyle{empty}}
+\bottomimage{inner_pics/ivy-ge998908f8_1280.jpg}
+\ISBNcode{\EANisbn[ISBN=978-80-7340-097-2]} %
+\summary{Bottom information}
+\makebottomcover
+\end{document} 

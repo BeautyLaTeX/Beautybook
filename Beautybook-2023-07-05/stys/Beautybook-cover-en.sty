@@ -1,0 +1,87 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{stys/Beautybook-cover-en}[2022/05/21,v1.0]
+\usepackage{anyfontsize} % 提供\fontsize{}{}\selectfont命令
+\usepackage{etoolbox} %提供自定义封面选项接口
+\usepackage[dvipsnames,svgnames,x11names,table]{xcolor}%颜色宏包 % Driver-independent color extensions
+\usepackage{tikz}
+\usepackage{graphicx} %插图
+\usetikzlibrary{calc,fadings,patterns}
+\usepackage{adjustbox} %修正minipage顶部对齐问题
+\tikzfading[name=fade right,
+                    right color =transparent!100,
+                    left color=transparent!50]
+\tikzfading[name=fade left,
+                    left color =transparent!100,
+                    right color=transparent!50]
+\tikzfading[name=fade up,
+                    top color =transparent!100,
+                    bottom color=transparent!50]
+\tikzfading[name=fade down,
+                    bottom color =transparent!100,
+                    top color=transparent!50]
+\makeatletter
+\newcommand*\makecover{
+    %% Use the Tikz library positioning and clear the page header and footer
+    \usetikzlibrary{positioning}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture,overlay]
+        \fill[coverfgcolor]
+        (current page.north west) rectangle (current page.south east);% 填充封面背景颜色 (coverbgcolor)
+        \coordinate (start) at ($(current page.east)!0.5!(current page.north east)+(1,-1)$);
+    \coordinate (end)   at (current page.north west);
+    \foreach \i in {0,0.01,...,1}
+    {
+        \coordinate (point) at ($(start)!\i!(end)$);
+        \draw[coverfgcolor!50]
+        ($(point)+(310*\i:6)$)--
+        ($(point)+(310*\i+120:6)$)--
+        ($(point)+(310*\i+240:6)$)--
+        ($(point)+(310*\i:6)$);
+    }
+    \coordinate (start) at (current page.south west);
+    \coordinate (end)   at (current page.east);
+    \foreach \i in {0,0.02,...,1}
+    {
+        \coordinate (point) at ($(start)!\i!(end)$);
+        \draw[coverfgcolor!50]
+        ($(point)+(310*\i:10)$)--
+        ($(point)+(310*\i+120:10)$)--
+        ($(point)+(310*\i+240:10)$)--
+        ($(point)+(310*\i:10)$);
+    }
+        \shade[bottom color=coverfgcolor,top color=coverfgcolor!70,opacity=0.7]
+        ([xshift=.5\outermarginwidth]current page.north west) rectangle (current page.south east); % 背景大矩形
+        \shade[left color=coverfgcolor,right color=coverfgcolor!60,opacity=0.5]
+        ([xshift=\outermarginwidth,yshift=2\outermarginwidth]current page.west) rectangle (current page.south east); % 标题背景大矩形
+        \fill[coverbar!90,opacity=0.8]
+        ([yshift=2\outermarginwidth]current page.west) rectangle ([xshift=\outermarginwidth,yshift=-.2\outermarginwidth]current page.west); % 最左侧装饰矩形
+        \foreach \lx/\rx/\ry/\bc/\tc in {
+                1/1.5/1.75/70/80,1.5/2/1.6/65/75,2/2.5/1.3/60/70,2.5/3/1/55/65,3/3.5/.7/50/60,3.5/4/1.2/60/70,4/4.5/1.9/75/85,4.5/5/1.1/55/65,5/5.5/1.2/60/70,6/6.5/1.6/65/75,6.5/7/1.3/60/70,7/7.5/1.87/70/80,7.5/8/1/55/65,8/8.5/.9/50/60,8.5/9/1.8/70/80,9/9.5/1.6/65/75,9.5/10/1.4/60/70,10/10.5/1/55/65,10.5/11/.7/50/60,11/11.5/1.3/55/65,11.5/12/1/70/80,12/12.5/1.3/65/75,12.5/13/1.6/60/70,13/13.5/1.75/55/65,13.5/14/1.6/65/75,14/14.5/1.3/60/70
+        }{
+            \shade[bottom color=coverfgcolor!\bc,top color=coverfgcolor!\tc,opacity=.5]
+            ([xshift=\lx\outermarginwidth]current page.north west) rectangle ([xshift=\rx\outermarginwidth,yshift=-\ry\covershift]current page.north west);%顶部琴键矩形
+        }
+        \node[anchor=south] at ([xshift=.3\outermarginwidth,yshift=-.4\covershift]current page.north) {%
+        \parbox{.8\paperwidth}{
+        \filright
+        \color{white}\sansa\fontsize{20}{23}\selectfont\@bookseries}
+        }; %系列丛书名称
+        \node[ anchor=south] at ([xshift=.3\outermarginwidth,yshift=-.57\paperheight]current page.north)
+    {\parbox{.8\paperwidth}{%
+            \raggedright%
+ {\renewcommand\baselinestretch{1.1}\selectfont           \color{white}\cabin\bfseries\fontsize{40}{40}\selectfont\@title\\[0.5ex]
+            \color{white}\sansa\fontsize{30}{30}\selectfont
+            \ifdefvoid{\@subtitle}{}{\@subtitle}\par}
+        }};% 封面标题与副标题
+    \node[anchor=west,font=\cabin\fontsize{23}{23}\selectfont,text=white] at ([xshift=1.8\outermarginwidth,yshift=-.6\covershift]current page.west) {\@edition};
+    \node[anchor=west,font=\cabin\Huge,text=white] at ([xshift=1.8\outermarginwidth,yshift=\covershift]current page.west) {\@author};
+    \node[left,text=white,font=\rmfamily\Large,] at
+    ([shift={(-1cm,2cm)}]current page.south east)  %
+    {\raisebox{-1.1cm}{\includegraphics[width=0.2\linewidth]{\@presslogo}}\hspace*{-3.5ex}\begin{varwidth}{.4\textwidth}\tikz\draw[white,line width=1.25pt] (0,0)--++(0,1cm);\,\raisebox{.25cm}{\@pressname} \end{varwidth}};%
+    \end{tikzpicture}%
+    \newpage
+}
+\makeatother
+%%%%===============================================================%%%%%
+%%------------------------------------------------------封面设计--------------------------------------------------------%%
+\endinput

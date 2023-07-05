@@ -1,0 +1,89 @@
+\documentclass[zihao=-4,fontset=none]{Beautybook-CN}
+\coverstyle={ % 封面键值列表
+    cover-choose=cn, % cn (需新增项\entitle{#}); en ; enfig ; birkar
+}
+\mathstyle={ % 数学字体键值列表
+    math-font=mtpro2, %plain (默认数学字体); mtpro2
+}
+\RequirePackage{stys/settings-CN}
+\usepackage{zhlipsum}
+\begin{document}
+\thispagestyle{empty}
+\entitle{Notes for Differential Geometry} % cncover专用
+\title{Reviewing Material}
+\subtitle{复代数几何学笔记}
+\edition{First Edition}
+\bookseries{Preperation For The Final Test}
+\author{Shilong.Lu}
+\pressname{Springer}
+\presslogo{inner_pics/Springer-logo.png}
+\coverimage{inner_pics/coverimage.jpg} % cncover专用
+%\coverimage{inner_pics/ivy-ge998908f8_1280.jpg}
+\makecover % 封面生成命令
+
+% 主题色调
+\definecolor{bg}{HTML}{e0e0e0}
+\definecolor{fg}{HTML}{203A43}
+\colorlet{outermarginbgcolor}{bg}
+\colorlet{outermarginfgcolor}{fg}
+\colorlet{framegolden}{fg}
+\colorlet{framegray}{黛绿!5}
+\colorlet{headlinecolor}{靛蓝}
+\chapoddimage{inner_pics/songodd.png}
+\chapevenimage{inner_pics/songeven.png}
+% set the contents of the outer margin on even and odd pages for scrheadings, plain and scth
+\oddoutermargin{\cabin\leftmark} % Odd 奇数页
+\makeatletter
+\evenoutermargin{\cabin\@title} % Even 偶数页
+\setlength\footheight{25pt}
+\ofoot{} % 页脚信息
+\makeatother
+%
+\input{frontmatter/titlepage-cn} % 内封面页
+%
+\frontmatter % 前置材料
+\pagenumbering{Roman}
+\input{frontmatter/preface-cn} % 前言
+\thispagestyle{empty}
+\tableofcontents\let\cleardoublepage\clearpage % 目录
+
+\mainmatter % 正文
+\pagenumbering{arabic}
+\partimage{inner_pics/part.png}
+\partabstract{\hspace{2em}本书系统地论述了微分几何的基本知识. 作者用前3章,  以及第6章共计4章的篇幅介绍了流形、多重线性函数、向量场、外微分、李群和活动标架等基本知识和工具.  基于上述基础知识,  论述了微分几何的核心问题,  即联络、黎曼几何、以及曲面论. 第7章是当前十分活跃的研究领域——复流形. 陈省身先生是此研究领域的大家,  此章包含有作者独到、深刻的见解和简捷、有效的方法. 第8章的Finsler几何是本书第2版新增加的一章,  它是陈省身先生近年来一直倡导的研究课题,  其中Chern联络具有突出的性质,  它使得黎曼几何成为Finsler几何的特殊情形. 最后两个附录,  介绍了大范围曲线论和曲面论,  以及微分几何与理论物理关系的论述,  为这两个活跃的前沿领域提出了不少进一步的研究课题.
+
+\hspace*{2em} 本书的作者之一是已故数学家陈省身先生\cite{Huybrechts2010Complex},  他开创并领导着整体微分几何、纤维丛微分几何、“陈省身示性类”等领域的研究,  他是第一个获得世界数学界最高荣誉“沃尔夫奖”的华人,  被称为“当今最伟大的数学家”,  被国际数学界尊为“微分几何之父”. }
+\part{微分几何讲义一陈省身}
+
+\chapter{测试章 Test chapter}
+\section{测试节本书系统地论述了微分几何的基本知识. 作者用前3章,  以及第6章共计4章的篇幅介绍了流形、多重线性函数、向量场、外微分、李群和活动标架等基本知识和工具. }
+
+$x^2+y^2=z^2$\\
+{\largetitlestyle 测试一下字体命令} | {\kaishu 测试一下字体命令} | {\songti 测试一下字体命令} | {\fangsong 测试一下字体命令}\\
+{\xingkai 测试一下字体命令} | {\dbs 测试一下字体命令} | {\lishu 测试一下字体命令}
+\zhlipsum
+\newpage
+test
+\zhlipsum{1-9}
+\newpage
+test 
+\zhlipsum
+\zhlipsum
+
+\appendix % 附录章节
+%
+
+
+{ % 限制空页面样式命令作用范围
+\normalem
+\printbibliography[
+heading=bibintoc,
+title={参考文献}
+]
+\printindex
+\thispagestyle{empty}}
+\bottomimage{inner_pics/ivy-ge998908f8_1280.jpg}
+\ISBNcode{\EANisbn[ISBN=978-80-7340-097-2]} %
+\summary{本书是复分析学的结课期考复习资料总结,主要包括了考试的证明题型以及各类的识记知识点,如黎曼映射定理、广义Schwarz引理等等.本书由本人期末写成, 仅用于复习. 本书是复分析学的结课期考复习资料总结,主要包括了考试的证明题型以及各类的识记知识点,如黎曼映射定理、广义Schwarz引理等等.本书由本人期末写成, 仅用于复习. 本书是复分析学的结课期考复习资料总结,主要包括了考试的证明题型以及各类的识记知识点,如黎曼映射定理、广义Schwarz引理等等.本书由本人期末写成, 仅用于复习.}
+\makebottomcover
+\end{document} 

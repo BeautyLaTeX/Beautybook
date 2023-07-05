@@ -1,0 +1,147 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{stys/settings-EN}[2023/06/27,v4.0]
+%% 定义第一种定理
+\mynewtheorem{
+    defi={\textbf{Definition}}[section]{interior style={left color=ReD!8,right color=ReD!5!CyaN!50}, borderline west={1.5mm}{0mm}{ReD}},
+    thm={\textbf{Theorem}}[section]{interior style={left color=CyaN!80!black!20,right color=CyaN!80!black!15!CyaN!50}, borderline west={1.5mm}{0mm}{CyaN!80!black}},
+    lem={\textbf{Lemma}}[section]{interior style={left color=BluE!8,right color=BluE!5!CyaN!50}, borderline west={1.5mm}{0mm}{BluE}},
+    prop={\textbf{Proposition}}[section]{interior style={left color=OrangE!8,right color=OrangE!5!CyaN!50}, borderline west={1.5mm}{0mm}{OrangE}},
+    exam={\textbf{Example}}[chapter]{interior style={left color=DarkGreen!8,right color=DarkGreen!5!CyaN!50}, borderline west={1.5mm}{0mm}{DarkGreen}},
+    cor={\textbf{Corollary}}[chapter]{interior style={left color=violet!8,right color=violet!5!CyaN!50}, borderline west={1.5mm}{0mm}{violet}},
+}
+\newtheorem*{remark}{\textbf{Remark}}
+%% 定义第二种定理
+%%  用法
+% % theorem 环境
+% overlay unbroken=\my@theorem@overlay@unbroken{\theorem@name\ \thetcbthm}{额外的选项}
+% overlay first=\my@theorem@overlay@first{\theorem@name\ \thetcbthm}{额外的选项}
+% % lemma 环境
+% overlay unbroken=\my@theorem@overlay@unbroken{\lemma@name\ \thetcblemma}{额外的选项}
+%% 用户接口区
+\makeatletter
+\mynewtcbtheorem{
+    % 这个 theorem 是环境名
+    theorem={
+        counter=tcbthm, 
+        the counter=\thesection.\arabic{tcbthm}, 
+        name=Theorem, % 它保存到 \theorem@name 里
+        thmcolor=高粱红,
+        autoref name=\bfseries Theorem, 
+        style={
+        arc=3pt,breakable,enhanced,interior style={top color=高粱红!12 ,middle color=高粱红!9, bottom color=高粱红!6},boxrule=0pt,top=8mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape, step={tcbthm},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@theorem@overlay@unbroken{\theorem@name\ \thetcbthm}{\theorem@thmcolor},
+        overlay first=\my@theorem@overlay@first{\theorem@name\ \thetcbthm}{\theorem@thmcolor},
+        overlay last=\my@theorem@overlay@last,
+        }
+    },
+    proposition={
+        counter=tcbprop, 
+        the counter=\thesection.\arabic{tcbprop}, 
+        autoref name=\bfseries Proposition, 
+        style={
+        arc=3pt,breakable,enhanced,interior style={top color=高粱红!12 ,middle color=高粱红!9, bottom color=高粱红!6},boxrule=0pt,top=8mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape, step={tcbprop},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@theorem@overlay@unbroken{Proposition\ \thetcbprop}{高粱红},
+        overlay first=\my@theorem@overlay@first{Proposition\ \thetcbprop}{高粱红},
+        overlay last=\my@theorem@overlay@last{高粱红},
+        }
+    },
+    definition={
+        counter=tcbdefi, 
+        the counter=\thesection.\arabic{tcbdefi}, 
+        autoref name=\bfseries Definition, 
+        style={
+        arc=3pt,breakable,enhanced,interior style={top color=紫棠!12 ,middle color=紫棠!9, bottom color=紫棠!6},boxrule=0pt,top=8mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape, step={tcbdefi},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@theorem@overlay@unbroken{Definition\ \thetcbdefi}{紫棠},
+        overlay first=\my@theorem@overlay@first{Definition\ \thetcbdefi}{紫棠},
+        overlay last=\my@theorem@overlay@last{紫棠},
+        }
+    },
+    lemma={
+        counter=tcblem,
+        the counter=\thesection.\arabic{tcblem},
+        name=Lemma, 
+        lemcolor=靛蓝, 
+        autoref name=\bfseries Lemma,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=靛蓝!12 ,middle color=靛蓝!9, bottom color=靛蓝!6},arc=3pt,boxrule=0pt,top=7mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcblem},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{\lemma@name\ \thetcblem}{\lemma@lemcolor},
+        overlay first=\my@lemma@overlay@first{\lemma@name\ \thetcblem}{\lemma@lemcolor},
+        overlay last=\my@lemma@overlay@last{\lemma@lemcolor},
+        }
+    },
+    corollary={
+        counter=tcbcor,
+        the counter=\thesection.\arabic{tcbcor},
+        autoref name=\bfseries Corollary,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=茶色!12 ,middle color=茶色!9, bottom color=茶色!6},arc=3pt,boxrule=0pt,top=7mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcbcor},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Corollary\ \thetcbcor}{茶色},
+        overlay first=\my@lemma@overlay@first{Corollary\ \thetcbcor}{茶色},
+        overlay last=\my@lemma@overlay@last{茶色},
+        }
+    },
+    example={
+        counter=tcbexam,
+        the counter=\thesection.\arabic{tcbexam},
+        autoref name=\bfseries Example,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=黛绿!12 ,middle color=黛绿!9, bottom color=黛绿!6},arc=3pt,boxrule=0pt,top=7mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcbexam},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Example\ \thetcbexam}{黛绿},
+        overlay first=\my@lemma@overlay@first{Example\ \thetcbexam}{黛绿},
+        overlay last=\my@lemma@overlay@last{黛绿},
+        }
+    },
+    Exercise={
+        counter=tcbexer,
+        the counter=\thechapter.\arabic{tcbexer},
+        autoref name=\bfseries Exercise,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=绛紫!12 ,middle color=绛紫!9, bottom color=绛紫!6},arc=3pt,boxrule=0pt,top=7mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.9,
+        fontupper=\normalsize,step={tcbexer},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Exercise\ \thetcbexer}{绛紫},
+        overlay first=\my@lemma@overlay@first{Exercise\ \thetcbexer}{绛紫},
+        overlay last=\my@lemma@overlay@last{绛紫},
+        }
+    },
+}
+\makeatother
+%
+
+\setsansfont{Arial}
+
+\endinput
+

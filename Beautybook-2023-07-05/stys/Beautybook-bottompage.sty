@@ -1,0 +1,85 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{stys/Beautybook-bottompage}[2023/01/18,v2.0]
+\usepackage[ISBN=978-80-85955-35-4,SC0]{ean13isbn}
+\makeatletter
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+\newcommand\summary[1]{\def\@summary{#1}}
+\newcommand\ISBNcode[1]{\def\@ISBNcode{#1}}
+\newcommand\bottomimage[1]{\def\@bottomimage{#1}}
+%%----------------------------------封面信息定义--------------------------------------------------------%%
+\makeatother
+% Define the layers to be used in document.
+% *****************************************************
+\pgfdeclarelayer{background} %背景%底层
+\pgfdeclarelayer{foreground} %上层
+\pgfdeclarelayer{top} %顶部
+\pgfdeclarelayer{bottom} %底部
+\pgfsetlayers{bottom,background,main,foreground,top}
+\definecolor{coverbgcolor}{HTML}{e0e0e0} %f9b868
+\definecolor{coverfgcolor}{HTML}{455a64} %503D4B
+\definecolor{coverbar}{HTML}{c02c38}
+\definecolor{bottomcolor}{HTML}{24661c}
+\makeatletter
+\newcommand*\makebottomcover{
+    %% Use the Tikz library positioning and clear the page header and footer
+    \newpage
+    \thispagestyle{empty}
+    \phantom{s}
+    \clearpage
+    \newpage
+    \usetikzlibrary{positioning}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture,overlay]
+        \begin{pgfonlayer}{bottom}
+    \node[opacity=0.85,inner sep=0pt] at (current
+            page.center){\includegraphics[width=\paperwidth,height=\paperheight]{\@bottomimage}};
+    \path[fill=bottomcolor!50] 
+    (current page.north east) coordinate (E) --++(-.6\paperwidth,0) coordinate (B) [bend right=30] to ([yshift=-.2\paperheight]E)--cycle;
+    \path[fill=bottomcolor!75,opacity=0.8] 
+    (current page.north east) coordinate (E) --++(-.6\paperwidth,0) coordinate (B) [bend right=30] to ([yshift=-.25\paperheight]E)--cycle;
+        \end{pgfonlayer}
+        \ifdefvoid{\@summary}{}{
+            \begin{pgfonlayer}{foreground}
+        \fill[color=bottomcolor!80,opacity=.6]node[append after command={
+        ([yshift=0.5cm]bottominfo.north west) rectangle ([yshift=-0.5cm]bottominfo.south east)},font=\large\bfseries,text=white,minimum width=\paperwidth,opacity=1] (bottominfo) at (current page.center) {\begin{varwidth}{\linewidth}\baselineskip=3ex\@summary\end{varwidth}};
+        \end{pgfonlayer}
+        }
+        \node[text=white,left] at ([xshift=0cm,yshift=-.25\covershift]current page.north east) {%
+        \parbox{.6\linewidth}{\baselineskip=22.5pt
+        \raggedright
+        \sansa\fontsize{20}{23}\selectfont\@bookseries}
+        }; %系列丛书名称
+        \node[right,text=white,font=\rmfamily\Large,] at
+        ([shift={(-.5cm,1.5cm)}]current page.south west)  %
+    {\raisebox{-1.1cm}{\includegraphics[width=0.2\linewidth]{\@presslogo}}\hspace*{-3.5ex}\begin{varwidth}{.4\textwidth}\tikz\draw[white,line width=1.25pt] (0,0)--++(0,1cm);\,\raisebox{.25cm}{\@pressname} \end{varwidth}};%
+    \ifdefvoid{\@ISBNcode}{}{
+        \node[scale=1.5] (isbn) at ([shift={(-1.85\outermarginwidth,.5\covershift)}]current page.south east) {\@ISBNcode};%
+        \begin{pgfonlayer}{bottom}
+            \fill[white]  (isbn.north west) rectangle (isbn.south east);%
+        \end{pgfonlayer}
+    }
+\end{tikzpicture}%
+}
+\makeatother
+\endinput
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
