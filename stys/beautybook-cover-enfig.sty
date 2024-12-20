@@ -1,0 +1,88 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{stys/beautybook-cover-enfig}[2024/07/01,v2.0]
+\tikzfading[name=fade right,
+                    right color =transparent!100,
+                    left color=transparent!0]
+\tikzfading[name=fade left,
+                    left color =transparent!100,
+                    right color=transparent!50]
+\tikzfading[name=fade up,
+                    top color =transparent!100,
+                    bottom color=transparent!50]
+\tikzfading[name=fade down,
+                    bottom color =transparent!100,
+                    top color=transparent!50]
+\makeatletter
+\newcommand{\aivcover}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \begin{pgfonlayer}{bottom}
+            \node[opacity=0.8,inner sep=0pt] at (current
+            page.center){\includegraphics[width=\paperwidth,height=\paperheight]{\@coverimage}};
+        \end{pgfonlayer}
+        \shade[left color=coverbgcolor!70,right color=coverbgcolor!50,path fading=fade right,opacity=.5]
+        ([xshift=.5\outermarginwidth]current page.north west) rectangle ([xshift=4\outermarginwidth]current page.south west); % 背景大矩形虚化
+        \shade[left color=coverfgcolor,right color=coverfgcolor!60,opacity=.8]
+        ([xshift=\outermarginwidth,yshift=2\outermarginwidth]current page.west) rectangle (current page.south east); % 标题背景大矩形
+        \fill[coverbar,opacity=0.8]
+        ([yshift=2\outermarginwidth]current page.west) rectangle ([xshift=\outermarginwidth,yshift=-.2\outermarginwidth]current page.west); % 最左侧装饰矩形
+        \node[anchor=south] at ([xshift=.3\outermarginwidth,yshift=-.4\covershift]current page.north) {%
+        \parbox{.8\paperwidth}{
+        \filright
+        \color{white}\sc\fontsize{20}{23}\selectfont\@bookseries}
+        }; %系列丛书名称
+        \node[ anchor=south,below right] (covertitles) at ([xshift=1.8\outermarginwidth-0.2cm,yshift=2.7cm]current page.west)
+    {\parbox{.8\paperwidth}{%
+            \raggedright%
+ {\renewcommand\baselinestretch{1.1}\selectfont           \color{white}\sffamily\bfseries\fontsize{40}{40}\selectfont\@title\\[0.5ex]
+            \color{white}\sc\fontsize{30}{30}\selectfont
+            \ifdefvoid{\@subtitle}{}{\@subtitle}\par}
+        }};% 封面标题与副标题
+        \node[anchor=west,font=\sc\fontsize{23}{23}\selectfont,text=white] at ([shift={(-.4\paperwidth,-6cm)}]covertitles) {\@edition};
+    \node[anchor=west,font=\sffamily\Huge,text=white] at ([xshift=1.8\outermarginwidth-0.3cm,yshift=\covershift]current page.west) {\@author};
+    \node[left,text=white,font=\rmfamily\Large,] at
+    ([shift={(-2cm,2cm)}]current page.south east)  %
+    {\raisebox{-0.5cm}{\includegraphics[width=0.1\linewidth]{\@presslogo}}\hspace*{0ex}\begin{varwidth}{.4\textwidth}\tikz\draw[white,line width=1.25pt] (0,0)--++(0,1cm);\,\raisebox{.25cm}{\@pressname} \end{varwidth}};%
+    \end{tikzpicture}%
+    {\newpage\thispagestyle{empty}}
+}
+
+\newcommand{\lettercover}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \begin{pgfonlayer}{bottom}
+            \node[opacity=0.8,inner sep=0pt] at (current
+            page.center){\includegraphics[width=\paperwidth,height=\paperheight]{\@coverimage}};
+        \end{pgfonlayer}
+        \shade[left color=coverbgcolor!70,right color=coverbgcolor!50,path fading=fade right,opacity=.5]
+        ([xshift=.5\outermarginwidth]current page.north west) rectangle ([xshift=4\outermarginwidth]current page.south west); % 背景大矩形虚化
+        \shade[left color=coverfgcolor,right color=coverfgcolor!60,opacity=.8]
+        ([xshift=\outermarginwidth,yshift=2\outermarginwidth]current page.west) rectangle (current page.south east); % 标题背景大矩形
+        \fill[coverbar,opacity=0.8]
+        ([yshift=2\outermarginwidth]current page.west) rectangle ([xshift=\outermarginwidth,yshift=-.2\outermarginwidth]current page.west); % 最左侧装饰矩形
+        \node[anchor=south] at ([xshift=.3\outermarginwidth,yshift=-.4\covershift]current page.north) {%
+        \parbox{.8\paperwidth}{
+        \filright
+        \color{white}\sc\fontsize{20}{23}\selectfont\@bookseries}
+        }; %系列丛书名称
+        \node[ anchor=south,below right] (covertitles) at ([xshift=1.8\outermarginwidth-0.2cm,yshift=2.7cm]current page.west)
+    {\parbox{.8\paperwidth}{%
+            \raggedright%
+ {\renewcommand\baselinestretch{1.1}\selectfont           \color{white}\sffamily\bfseries\fontsize{40}{40}\selectfont\@title\\[0.5ex]
+            \color{white}\sc\fontsize{30}{30}\selectfont
+            \ifdefvoid{\@subtitle}{}{\@subtitle}\par}
+        }};% 封面标题与副标题
+        \node[anchor=west,font=\sc\fontsize{23}{23}\selectfont,text=white] at ([shift={(-.4\paperwidth,-6cm)}]covertitles) {\@edition};
+    \node[anchor=west,font=\sffamily\Huge,text=white] at ([xshift=1.8\outermarginwidth-0.3cm,yshift=\covershift]current page.west) {\@author};
+    \node[left,text=white,font=\rmfamily\Large,] at
+    ([shift={(-2cm,2cm)}]current page.south east)  %
+    {\raisebox{-0.5cm}{\includegraphics[width=0.1\linewidth]{\@presslogo}}\hspace*{0ex}\begin{varwidth}{.4\textwidth}\tikz\draw[white,line width=1.25pt] (0,0)--++(0,1cm);\,\raisebox{.25cm}{\@pressname} \end{varwidth}};%
+    \end{tikzpicture}%
+    {\newpage\thispagestyle{empty}}
+}
+
+\newcommand\makecover{
+    \thispagestyle{empty}
+        \ifaivpaper@TF{\aivcover}{\lettercover}
+    {\newpage\thispagestyle{empty}}
+}
+\makeatother
+\endinput

@@ -1,0 +1,428 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{stys/beautybook-ensettings}[2024/07/03,v5.0]
+\RequirePackage[utf8]{inputenc} % UTF-8编码
+\RequirePackage{times} % Times New Roman Font
+\RequirePackage[T1]{fontenc}
+\RequirePackage{microtype} % 字体间距调整
+
+% Set item list style
+\setlist[itemize]{itemsep=1pt, parsep=1pt} % 对所有itemize环境生效
+\setlist[enumerate]{itemsep=1pt, parsep=1pt} % 对所有enumerate环境生效
+\newcommand*{\eitemi}{\tikz \draw [baseline, ball color=outermarginfgcolor,draw=none] circle (3pt);}
+\newcommand*{\eitemii}{\tikz \draw [baseline, fill=outermarginfgcolor,draw=none,circular drop shadow] circle (3pt);}
+\newcommand*{\eitemiii}{\tikz \draw [baseline, fill=outermarginfgcolor,draw=none] circle (3pt);}
+\setlist[enumerate,1]{label=\color{outermarginfgcolor}\arabic*.}
+\setlist[enumerate,2]{label=\color{outermarginfgcolor}(\alph*).}
+\setlist[enumerate,3]{label=\color{outermarginfgcolor}\Roman*.}
+\setlist[enumerate,4]{label=\color{outermarginfgcolor}\Alph*.}
+\setlist[itemize,1]{label={\eitemi}}
+\setlist[itemize,2]{label={\eitemii}}
+\setlist[itemize,3]{label={\eitemiii}}
+\setlist[itemize]{%nosep,                     % 取消 itemize 的默认间距
+    before={\vspace*{-\parskip}},          % 取消 itemize 和后续段落之间的空白
+    leftmargin=*}		                    % 取消 itemize 的左边距
+\setlist[enumerate]{leftmargin=*}	        % 取消 enumerate 的左边距
+% /* -------------------------------------------------------------------------- */
+%% 定义第一种定理
+\mynewtheorem{
+    defi={\textbf{Definition}}[section]{interior style={left color=ReD!8,right color=ReD!5!CyaN!50}, borderline west={1.5mm}{0mm}{ReD}},
+    thm={\textbf{Theorem}}[section]{interior style={left color=CyaN!80!black!20,right color=CyaN!80!black!15!CyaN!50}, borderline west={1.5mm}{0mm}{CyaN!80!black}},
+    lem={\textbf{Lemma}}[section]{interior style={left color=BluE!8,right color=BluE!5!CyaN!50}, borderline west={1.5mm}{0mm}{BluE}},
+    prop={\textbf{Proposition}}[section]{interior style={left color=OrangE!8,right color=OrangE!5!CyaN!50}, borderline west={1.5mm}{0mm}{OrangE}},
+    exam={\textbf{Example}}[chapter]{interior style={left color=DarkGreen!8,right color=DarkGreen!5!CyaN!50}, borderline west={1.5mm}{0mm}{DarkGreen}},
+    cor={\textbf{Corollary}}[chapter]{interior style={left color=violet!8,right color=violet!5!CyaN!50}, borderline west={1.5mm}{0mm}{violet}},
+}
+\newtheorem*{remark}{\textbf{Remark}}
+%% 定义第二种定理
+%%  用法
+% % theorem 环境
+% overlay unbroken=\my@theorem@overlay@unbroken{\theorem@name\ \thetcbthm}{额外的选项}
+% overlay first=\my@theorem@overlay@first{\theorem@name\ \thetcbthm}{额外的选项}
+% % lemma 环境
+% overlay unbroken=\my@theorem@overlay@unbroken{\lemma@name\ \thetcblemma}{额外的选项}
+%% 用户接口区
+\makeatletter
+\definecolor{probcolor}{HTML}{43676b}
+\mynewtcbtheorem{
+    % 这个 theorem 是环境名
+    problem={
+        counter=tcbprob, 
+        the counter=\thesection.\arabic{tcbprob}, 
+        name=Problem, % 它保存到 \theorem@name 里
+        thmcolor=probcolor,
+        autoref name=\bfseries Problem, 
+        style={
+        arc=3pt,breakable,enhanced,interior style={top color=probcolor!9 ,middle color=probcolor!6, bottom color=probcolor!3},boxrule=0pt,top=8mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape, step={tcbprob},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@theorem@overlay@unbroken{Problem\ \thetcbprob}{probcolor},
+        overlay first=\my@theorem@overlay@first{Problem\ \thetcbprob}{probcolor},
+        overlay last=\my@theorem@overlay@last{probcolor},
+        }
+    },
+    lemma={
+        counter=tcblem,
+        the counter=\thesection.\arabic{tcblem},
+        name=Lemma, 
+        lemcolor=靛蓝, 
+        autoref name=\bfseries Lemma,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=靛蓝!9 ,middle color=靛蓝!6, bottom color=靛蓝!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape,step={tcblem},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{\lemma@name\ \thetcblem}{\lemma@lemcolor},
+        overlay first=\my@lemma@overlay@first{\lemma@name\ \thetcblem}{\lemma@lemcolor},
+        overlay last=\my@lemma@overlay@last{\lemma@lemcolor},
+        }
+    },
+    corollary={
+        counter=tcbcor,
+        the counter=\thesection.\arabic{tcbcor},
+        autoref name=\bfseries Corollary,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=茶色!9 ,middle color=茶色!6, bottom color=茶色!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape,step={tcbcor},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Corollary\ \thetcbcor}{茶色},
+        overlay first=\my@lemma@overlay@first{Corollary\ \thetcbcor}{茶色},
+        overlay last=\my@lemma@overlay@last{茶色},
+        }
+    },
+    proposition={
+        counter=tcbprop,
+        the counter=\thesection.\arabic{tcbprop},
+        autoref name=\bfseries Proposition,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=黛绿!9 ,middle color=黛绿!6, bottom color=黛绿!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape,step={tcbprop},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Proposition\ \thetcbprop}{黛绿},
+        overlay first=\my@lemma@overlay@first{Proposition\ \thetcbprop}{黛绿},
+        overlay last=\my@lemma@overlay@last{黛绿},
+        }
+    },
+    definition={
+        counter=tcbdefi,
+        the counter=\thesection.\arabic{tcbdefi},
+        autoref name=\bfseries Definition,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=茜色!9 ,middle color=茜色!6, bottom color=茜色!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcbdefi},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Definition\ \thetcbdefi}{茜色},
+        overlay first=\my@lemma@overlay@first{Definition\ \thetcbdefi}{茜色},
+        overlay last=\my@lemma@overlay@last{茜色},
+        }
+    },
+    example={
+        counter=tcbexam,
+        the counter=\thesection.\arabic{tcbexam},
+        autoref name=\bfseries Example,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=黛绿!9 ,middle color=黛绿!6, bottom color=黛绿!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcbexam},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Example\ \thetcbexam}{黛绿},
+        overlay first=\my@lemma@overlay@first{Example\ \thetcbexam}{黛绿},
+        overlay last=\my@lemma@overlay@last{黛绿},
+        }
+    },
+    Exercise={
+        counter=tcbexer,
+        the counter=\thechapter.\arabic{tcbexer},
+        autoref name=\bfseries Exercise,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=绛紫!9 ,middle color=绛紫!6, bottom color=绛紫!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.9,
+        fontupper=\normalsize,step={tcbexer},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Exercise\ \thetcbexer}{绛紫},
+        overlay first=\my@lemma@overlay@first{Exercise\ \thetcbexer}{绛紫},
+        overlay last=\my@lemma@overlay@last{绛紫},
+        }
+    },
+    theorem={
+        counter=tcbthm,
+        the counter=\thesection.\arabic{tcbthm},
+        autoref name=\bfseries Theorem,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=黛绿!9 ,middle color=黛绿!6, bottom color=黛绿!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape,step={tcbthm},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Theorem\ \thetcbthm}{黛绿},
+        overlay first=\my@lemma@overlay@first{Theorem\ \thetcbthm}{黛绿},
+        overlay last=\my@lemma@overlay@last{黛绿},
+        }
+    },
+    conjecture={
+        counter=tcbconj,
+        the counter=\thesection.\arabic{tcbconj},
+        name=Conjecture, 
+        lemcolor=靛蓝, 
+        autoref name=\bfseries Conjecture,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=靛蓝!9 ,middle color=靛蓝!6, bottom color=靛蓝!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 上
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%下
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape,step={tcbconj},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Conjecture\ \thetcblem}{靛蓝},
+        overlay first=\my@lemma@overlay@first{Conjecture\ \thetcblem}{靛蓝},
+        overlay last=\my@lemma@overlay@last{靛蓝},
+        }
+    },
+}
+\makeatother
+
+% proof
+\newcommand{\itbf}[1]{\textit{\textbf{#1}}}
+\declaretheoremstyle[
+    spaceabove=3pt,spacebelow=3pt,
+    headfont=\normalfont\bfseries,
+    notefont=\normalfont\bfseries,notebraces={(}{)},
+    bodyfont=\normalfont,
+    postheadspace=.5em,
+    headpunct={.},
+    qed=\color{cyan!40!black}$\blacksquare$,%\qedsymbol
+]{Proofstyle}
+\declaretheorem[style=Proofstyle,numbered=no,name={\itbf{Proof}}]{Proof}
+\renewenvironment{proof}{\begin{Proof} }{\end{Proof}}
+\declaretheorem[style=Proofstyle,numbered=no,name={\itbf{Solution}}]{solution}
+%
+
+
+%% --------参考文献
+\RequirePackage[
+backend=biber,
+style=numeric,
+sorting=nty
+]{biblatex}
+\addbibresource{ref.bib}
+
+\indexsetup{level=\chapter*,noclearpage}
+\makeindex[title={\sffamily References},columns=3,columnsep=15pt,columnseprule]
+\makeindex
+
+
+%用户设定
+
+ % /* --------------------------------- 特殊注释矩阵 --------------------------------- */
+ \newcommand\coolover[2]{\mathrlap{\smash{\overbrace{\phantom{%
+ \begin{matrix} #2 \end{matrix}}}^{\mbox{$#1$}}}}#2}
+ 
+ \newcommand\coolunder[2]{\mathrlap{\smash{\underbrace{\phantom{%
+ \begin{matrix} #2 \end{matrix}}}_{\mbox{$#1$}}}}#2}
+ 
+ \newcommand\coolleftbrace[2]{%
+ #1\left\{\vphantom{\begin{matrix} #2 \end{matrix}}\right.}
+ 
+ \newcommand\coolrightbrace[2]{%
+ \left.\vphantom{\begin{matrix} #1 \end{matrix}}\right\}#2}
+ \definecolor{lightergray}{gray}{0.99}
+
+
+% /* ---------------------------------- 圆圈数字 ---------------------------------- */
+ \newcommand*{\circled}[1]{\lower.7ex\hbox{\tikz\draw (0pt, 0pt)%
+ circle (.5em) node {\makebox[1em][c]{\small #1}};}}
+
+ 
+ % /* --------------------------------- 实心黑点圆圈 --------------------------------- */
+ \newcommand{\twicecircle}{\raisebox{.7ex}{
+ \begin{tikzpicture}[remember picture,overlay]
+     \draw[line width=0.6pt,black!60] (0,0) circle (3pt);
+     \fill[black]  (0,0) circle (1.6pt) ;
+ \end{tikzpicture}}
+ }
+
+ \usepackage{bm}
+ \newcommand{\bd}{\partial}
+\newcommand{\bdd}{\overline{\partial}}
+\newcommand{\Dif}[2]{\frac{\dd #1}{\dd #2}}
+\newcommand{\Diff}[2][]{\frac{\partial #1}{\partial #2}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\xu}{\sqrt{-1}}
+\newcommand{\lang}[1]{\left\langle #1\right\rangle}
+\newcommand{\Line}{\noindent\tikz\draw[line width=0.65pt,gray!80,dashed] (0,0)--++(.99\linewidth,0);\par}
+%---------------------------------
+\newcommand{\fraka}{{\mathfrak a}}
+\newcommand{\frakb}{{\mathfrak b}}
+\newcommand{\frakc}{{\mathfrak c}}
+\newcommand{\frakd}{{\mathfrak d}}
+\newcommand{\frake}{{\mathfrak e}}
+\newcommand{\frakf}{{\mathfrak f}}
+\newcommand{\frakg}{{\mathfrak g}}
+\newcommand{\frakh}{{\mathfrak h}}
+\newcommand{\fraki}{{\mathfrak i}}
+\newcommand{\frakj}{{\mathfrak j}}
+\newcommand{\frakk}{{\mathfrak k}}
+\newcommand{\frakl}{{\mathfrak l}}
+\newcommand{\frakm}{{\mathfrak m}}
+\newcommand{\frakn}{{\mathfrak n}}
+\newcommand{\frako}{{\mathfrak o}}
+\newcommand{\frakp}{{\mathfrak p}}
+\newcommand{\frakq}{{\mathfrak q}}
+\newcommand{\frakr}{{\mathfrak r}}
+\newcommand{\fraks}{{\mathfrak s}}
+\newcommand{\frakt}{{\mathfrak t}}
+\newcommand{\fraku}{{\mathfrak u}}
+\newcommand{\frakv}{{\mathfrak v}}
+\newcommand{\frakw}{{\mathfrak w}}
+\newcommand{\frakx}{{\mathfrak x}}
+\newcommand{\fraky}{{\mathfrak y}}
+\newcommand{\frakz}{{\mathfrak z}}
+%---------------------------------
+%---------------------------------
+\newcommand{\frakA}{{\mathfrak A}}
+\newcommand{\frakB}{{\mathfrak B}}
+\newcommand{\frakC}{{\mathfrak C}}
+\newcommand{\frakD}{{\mathfrak D}}
+\newcommand{\frakE}{{\mathfrak E}}
+\newcommand{\frakF}{{\mathfrak F}}
+\newcommand{\frakG}{{\mathfrak G}}
+\newcommand{\frakH}{{\mathfrak H}}
+\newcommand{\frakI}{{\mathfrak I}}
+\newcommand{\frakJ}{{\mathfrak J}}
+\newcommand{\frakK}{{\mathfrak K}}
+\newcommand{\frakL}{{\mathfrak L}}
+\newcommand{\frakM}{{\mathfrak V}}
+\newcommand{\frakN}{{\mathfrak N}}
+\newcommand{\frakO}{{\mathfrak O}}
+\newcommand{\frakP}{{\mathfrak P}}
+\newcommand{\frakQ}{{\mathfrak Q}}
+\newcommand{\frakR}{{\mathfrak R}}
+\newcommand{\frakS}{{\mathfrak S}}
+\newcommand{\frakT}{{\mathfrak T}}
+\newcommand{\frakU}{{\mathfrak U}}
+\newcommand{\frakV}{{\mathfrak V}}
+\newcommand{\frakW}{{\mathfrak W}}
+\newcommand{\frakX}{{\mathfrak X}}
+\newcommand{\frakY}{{\mathfrak Y}}
+\newcommand{\frakZ}{{\mathfrak Z}}
+%---------------------------------
+%---------------------------------
+\newcommand{\bA}{{\mathbb A}}
+\newcommand{\bB}{{\mathbb B}}
+\newcommand{\bC}{{\mathbb C}}
+\newcommand{\bD}{{\mathbb D}}
+\newcommand{\bE}{{\mathbb E}}
+\newcommand{\bF}{{\mathbb F}}
+\newcommand{\bG}{{\mathbb G}}
+\newcommand{\bH}{{\mathbb H}}
+\newcommand{\bI}{{\mathbb I}}
+\newcommand{\bJ}{{\mathbb J}}
+\newcommand{\bK}{{\mathbb K}}
+\newcommand{\bL}{{\mathbb L}}
+\newcommand{\bM}{{\mathbb M}}
+\newcommand{\bN}{{\mathbb N}}
+\newcommand{\bO}{{\mathbb O}}
+\newcommand{\bP}{{\mathbb P}}
+\newcommand{\bQ}{{\mathbb Q}}
+\newcommand{\bR}{{\mathbb R}}
+\newcommand{\bS}{{\mathbb S}}
+\newcommand{\bT}{{\mathbb T}}
+\newcommand{\bU}{{\mathbb U}}
+\newcommand{\bV}{{\mathbb V}}
+\newcommand{\bW}{{\mathbb W}}
+\newcommand{\bX}{{\mathbb X}}
+\newcommand{\bY}{{\mathbb Y}}
+\newcommand{\bZ}{{\mathbb Z}}
+%---------------------------------
+%---------------------------------
+\newcommand{\mA}{{\mathcal A}}
+\newcommand{\mB}{{\mathcal B}}
+\newcommand{\mC}{{\mathcal C}}
+\newcommand{\mD}{{\mathcal D}}
+\newcommand{\mE}{{\mathcal E}}
+\newcommand{\mF}{{\mathcal F}}
+\newcommand{\mG}{{\mathcal G}}
+\newcommand{\mH}{{\mathcal H}}
+\newcommand{\mI}{{\mathcal I}}
+\newcommand{\mJ}{{\mathcal J}}
+\newcommand{\mK}{{\mathcal K}}
+\newcommand{\mL}{{\mathcal L}}
+\newcommand{\mM}{{\mathcal V}}
+\newcommand{\mN}{{\mathcal N}}
+\newcommand{\mO}{{\mathcal O}}
+\newcommand{\mP}{{\mathcal P}}
+\newcommand{\mQ}{{\mathcal Q}}
+\newcommand{\mR}{{\mathcal R}}
+\newcommand{\mS}{{\mathcal S}}
+\newcommand{\mT}{{\mathcal T}}
+\newcommand{\mU}{{\mathcal U}}
+\newcommand{\mV}{{\mathcal V}}
+\newcommand{\mW}{{\mathcal W}}
+\newcommand{\mX}{{\mathcal X}}
+\newcommand{\mY}{{\mathcal Y}}
+\newcommand{\mZ}{{\mathcal Z}}
+%---------------------------------
+%---------------------------------
+\newcommand{\sA}{{\mathscr A}}
+\newcommand{\sB}{{\mathscr B}}
+\newcommand{\sC}{{\mathscr C}}
+\newcommand{\sD}{{\mathscr D}}
+\newcommand{\sE}{{\mathscr E}}
+\newcommand{\sF}{{\mathscr F}}
+\newcommand{\sG}{{\mathscr G}}
+\newcommand{\sH}{{\mathscr H}}
+\newcommand{\sI}{{\mathscr I}}
+\newcommand{\sJ}{{\mathscr J}}
+\newcommand{\sK}{{\mathscr K}}
+\newcommand{\sL}{{\mathscr L}}
+\newcommand{\sM}{{\mathscr V}}
+\newcommand{\sN}{{\mathscr N}}
+\newcommand{\sO}{{\mathscr O}}
+\newcommand{\sP}{{\mathscr P}}
+\newcommand{\sQ}{{\mathscr Q}}
+\newcommand{\sR}{{\mathscr R}}
+\newcommand{\sS}{{\mathscr S}}
+\newcommand{\sT}{{\mathscr T}}
+\newcommand{\sU}{{\mathscr U}}
+\newcommand{\sV}{{\mathscr V}}
+\newcommand{\sW}{{\mathscr W}}
+\newcommand{\sX}{{\mathscr X}}
+\newcommand{\sY}{{\mathscr Y}}
+\newcommand{\sZ}{{\mathscr Z}}
+%---------------------------------
+%------------------------- end list of symbols --------------
+\usepackage{joinbox} % images side by side
+\usepackage{physics}
+\RequirePackage{bropd}
+\setlist[itemize]{itemsep=1pt, parsep=1pt} % 对所有itemize环境生效
+\setlist[enumerate]{itemsep=1pt, parsep=1pt} % 对所有enumerate环境生效
+\usepackage{shadowtext}\shadowoffset{.65pt}
+% 定义紧密双内积符号
+\newcommand{\llangle}{\left\langle\!\left\langle}
+\newcommand{\rrangle}{\right\rangle\!\right\rangle}
+
+% Define a command for highlighted text using TikZ
+\newcommand{\highlight}[1]{%
+    \tikz[baseline=(X.base)] \node[rectangle, fill=outermarginfgcolor!10, rounded corners=2pt, inner sep=0.5mm] (X) {#1};%
+}
+
+
+\endinput
+
