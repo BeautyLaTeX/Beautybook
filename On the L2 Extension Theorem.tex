@@ -1,0 +1,561 @@
+\documentclass[lang=en,12pt]{beautybook}
+% ---------------------------------------------------------------------------- %
+%                            The Cover Theme Chosen                            %
+% ---------------------------------------------------------------------------- %
+\definecolor{coverbgcolor}{HTML}{bcd2cc}
+\definecolor{coverfgcolor}{HTML}{33545f} % The color of the background
+\definecolor{coverbar}{HTML}{517794} % The color of the left bar
+\definecolor{bottomcolor}{HTML}{2c4f54}
+\definecolor{nuanbai}{HTML}{f5f5f5}
+\pagecolor{nuanbai}
+\beautybookstyle={
+  cover-choose=en, % en/cn/enfig/birkar
+  math-font=plain, % plain/mtpro2
+  sidebar=off, % on/off
+}
+\usepackage{stys/beautybook-ensettings}
+% ---------------------------------------------------------------------------- %
+%                            The Cover Theme Chosen                            %
+% ---------------------------------------------------------------------------- %
+\begin{document}
+\thispagestyle{empty}
+\title{Notes for Articles}
+\subtitle{}
+\edition{First Edition}
+\bookseries{Research Notes}
+\author{Ethan Lu}
+\pressname{beautybook}
+\presslogo{beautybook-logo}
+\coverimage{hummingbird-8013214}
+\makecover
+
+\makeatletter
+% ---------------------------------------------------------------------------- %
+%                           The Sidebar Theme Chosen                           %
+% ---------------------------------------------------------------------------- %
+\definecolor{bg}{HTML}{e0e0e0}
+\definecolor{fg}{HTML}{2c4f54}
+\colorlet{outermarginbgcolor}{bg} % The foreground color of the sidebar
+\colorlet{outermarginfgcolor}{fg} % The background color of the sidebar
+% set the contents of the outer margin on even and odd pages for scrheadings, plain and scth
+% \oddoutermargin{\sffamily \leftmark} % Odd 奇数页
+% \evenoutermargin{\sffamily\@title} % Even 偶数页
+% ---------------------------------------------------------------------------- %
+%                           The Sidebar Theme Chosen                           %
+% ---------------------------------------------------------------------------- %
+
+% ---------------------------------------------------------------------------- %
+%                         The images used in the title                         %
+% ---------------------------------------------------------------------------- %
+% \titleimage{
+%   chapteroddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+% %
+%   partoddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+% %
+%   chapterevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+% %
+%   partevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+% }
+\titleimage{
+  chapteroddimage={c9,c10},
+%
+  partoddimage={c9,c10},
+%
+  chapterevenimage={c9,c10},
+%
+  partevenimage={c9,c10},
+}
+\chapimage{\beautybook@chapterimagename} % 会自动改变
+\partimage{\beautybook@partimagename}    % 会自动改变
+\makeatother
+% ---------------------------------------------------------------------------- %
+%                         The images used in the title                         %
+% ---------------------------------------------------------------------------- %
+
+% ---------------------------------------------------------------------------- %
+%                      The Color Chosen for The Magic Box                      %
+% ---------------------------------------------------------------------------- %
+\colorlet{framegolden}{fg} % The line color of the magic box
+\colorlet{framegray}{bg!50} % The background color of the magic box
+% ---------------------------------------------------------------------------- %
+%                      The Color Chosen for The Magic Box                      %
+% ---------------------------------------------------------------------------- %
+
+\frontmatter
+\pagenumbering{Roman}
+
+{% Preface
+\thispagestyle{empty}
+% \addcontentsline{toc}{chapter}{Preface}
+\chapter*{Preface}
+Here is a comprehensive list of the academic papers that I have perused.
+
+
+\hfill
+\begin{tabular}{lr}
+    &-- Ethan Lu\\ 
+    &2024-07-02
+\end{tabular}
+\clearpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+\tableofcontents\let\cleardoublepage\clearpage
+
+
+\mainmatter
+\pagenumbering{arabic}
+
+\partabstract{When using the above $L^2$-type Dolbeault isomorphism for $\Omega_X^p(\log D)\otimes \mathcal{O}_X(F\otimes L)\otimes \mathscr{I}(h)$ in this proof, 
+from the Lelong number condition, there exists a degree of freedom for the suitably chosen smooth Hermitian metric $h^F_Y$ on $F|_Y$ in the $L^2$ fine resolution $(\mathscr{L}^{p,\ast}_{F\otimes L,h^F_Y\otimes h,\omega_P},\overline{\partial})$, which directly becomes a degree of freedom for positivity.
+\\[1em]
+\hspace*{2em}
+Furthermore, we obtain analogous results to Theorem 1.4 and 2.8 for big line bundles in $\S 4.1$.
+And we establish logarithmic vanishing theorems for singular Hermitian metrics on holomorphic vector bundles with Griffiths positivity in $\S 4.2$.
+Here, one of them is as follows. Finally, a counterexample for the extension to Kodaira-Akizuki-Nakano type is given in $\S 4.3$.}
+\part{On the extension of Ohsawa-Takeo's \texorpdfstring{$L^2$}{}-extension theorem}
+
+
+\chapter{On the \texorpdfstring{$L^2$}{} Holomorphic Functions}\index{On the \texorpdfstring{$L^2$}{} Holomorphic Functions}
+
+\section{The original theorem first showned}\index{The original theorem first showned}
+
+\begin{theorem}[][$L^2$ extension theorem for holomorphic functions][thm:L2extension-origin]
+    Let $\Omega$ be a bounded pseudoconvex domain in $\mathbb{C}^n$, $\psi\colon \Omega\to\mathbb{R}\cup \{-\infty\}$ a
+    plurisubharmonic function and $H\subset \mathbb{C}^n$ a complex hyperplane. Then there exists a constant $C$ depending only on the diameter of $\Omega$ such that for any holomorphic function $f$ on $\Omega\cap H$ satisfying 
+    \[
+        \int_{\Omega\cap H} e^{-\psi} |f|^2 \dd V_{n-1}<+\infty,
+    \]
+    where $\dd V_{n-1}$ denotes the $(2n-2)$-dimensional Lebesgue measure, there exists a holomorphic function $F$ on $\Omega$ satisfying 
+    \[F|_{\Omega\cap H}=f\]
+     and 
+    \[
+        \int_{\Omega} e^{-\psi} |F|^2 \dd V_{n-1} \leqslant C \int_{\Omega\cap H} e^{-\psi} |f|^2 \dd V_{n-1}.
+    \]
+\end{theorem}
+
+\chapter{The extended version of the Ohsawa-Takegoshi Extension Theorem}
+\section{Preliminaries}
+
+\begin{theorem}[][The Extended Version][thm:extended]
+  Let $X$ be an $n$-dimensional Stein manifold with a continuous volume form $\dd V_X$ and $\Omega$ be a relatively compact complete K\"ahler domain in $X$. Let $H$ be a complex subspace of $X$ intersecting $\Omega$.  Suppose $L$ is a holomorphic line bundle over $\Omega$ and $h$ be a singular Hermitian metric on $L$ with semi-positive curvature current. Then for every holomorphic function $f$ on $\Omega\cap H$ such that 
+  \[
+    \int_{\Omega\cap H} \sqrt{-1}^{n^2} \{f,f\}<\infty,
+  \] 
+  there exists a holomorphic function $F$ on $\Omega$ such that 
+  \[
+    F|_{\Omega\cap H} = f,
+  \]
+  and 
+  \[\int_{\Omega} \sqrt{-1}^{n^2} \{F,F\}_h \leqslant  \textrm{const}_{\Omega,n,\dd V_X} \frac{\sqrt{-1}^{n^2} \{f,f\}_h}{\dd V_{H}}.\]
+\end{theorem}
+
+\partabstract{When using the above $L^2$-type Dolbeault isomorphism for $\Omega_X^p(\log D)\otimes \mathcal{O}_X(F\otimes L)\otimes \mathscr{I}(h)$ in this proof, 
+from the Lelong number condition, there exists a degree of freedom for the suitably chosen smooth Hermitian metric $h^F_Y$ on $F|_Y$ in the $L^2$ fine resolution $(\mathscr{L}^{p,\ast}_{F\otimes L,h^F_Y\otimes h,\omega_P},\overline{\partial})$, which directly becomes a degree of freedom for positivity.
+
+
+Furthermore, we obtain analogous results to Theorem 1.4 and 2.8 for big line bundles in $\S 4.1$.
+And we establish logarithmic vanishing theorems for singular Hermitian metrics on holomorphic vector bundles with Griffiths positivity in $\S 4.2$.
+Here, one of them is as follows. Finally, a counterexample for the extension to Kodaira-Akizuki-Nakano type is given in $\S 4.3$.}
+\part{\texorpdfstring{$L^2$}{}-type Dolbeault isomorphisms and vanishing theorems for logarithmic sheaves twisted by multiplier ideal sheaves}
+\chapter{The Problems}
+\section{Some Selections and their information}
+\subsection{First Ans.}
+
+\subsubsection*{Recent Problems in Complex Geometry}
+
+\subsubsection*{1. Kähler-Einstein Metrics on Fano Manifolds}
+
+\textbf{Description:} 
+Kähler-Einstein metrics are critical in complex differential geometry and algebraic geometry. Recent work focuses on finding these metrics on Fano manifolds, a type of algebraic variety with ample anticanonical bundle. Significant advances have been made in understanding the existence and uniqueness of Kähler-Einstein metrics, particularly through concepts such as K-stability.
+
+\textbf{Difficulty:} 
+High. The problem involves sophisticated tools from both complex differential geometry and algebraic geometry, including the study of partial differential equations (PDEs) and stability conditions.
+
+\textbf{Progress:} 
+Researchers like Chen, Donaldson, and Sun have made substantial progress by approximating these metrics with cone singularities and studying the limits as cone angles approach certain values\footnote{\href{https://link.springer.com/article/10.1134/S0040577924010112}{Recent progress in the theory of functions of several complex variables and complex geometry}}.
+
+\textbf{Significance:} 
+This work is pivotal for the classification theory of algebraic varieties and for understanding the geometric structure of Fano manifolds.
+
+\textbf{Applications:} 
+Applications span several areas in both pure and applied mathematics, including mirror symmetry and string theory.
+
+\subsubsection*{2. Optimal \(L^2\) Extension Theorem}
+
+\textbf{Description:} 
+The \(L^2\) extension theorem concerns extending holomorphic functions with \(L^2\) bounds from a subvariety to the whole space. This problem is central to complex analysis and algebraic geometry, particularly in understanding the structure of holomorphic sections and their applications.
+
+\textbf{Difficulty:} 
+Medium to High. It involves complex analytic techniques and requires deep understanding of pseudoconvex domains and subharmonic functions.
+
+\textbf{Progress:} 
+Recent advancements have been made in solving optimal \(L^2\) extension problems with precise estimates, furthering the understanding of multiplier ideal sheaves and their stability\footnote{\href{https://link.springer.com/article/10.1134/S0040577924010112}{Recent progress in the theory of functions of several complex variables and complex geometry}}.
+
+\textbf{Significance:} 
+These results enhance the understanding of complex geometry's fundamental aspects and provide powerful tools for algebraic geometers.
+
+\textbf{Applications:} 
+Applications include the study of vanishing theorems, effective results in algebraic geometry, and the theory of D-modules.
+
+\subsubsection*{3. Quantum Chaos in Complex Geometries}
+
+\textbf{Description:} 
+This area explores the interplay between quantum mechanics and complex geometry, focusing on how classical chaotic systems translate into the quantum regime. Topics include quantum many-body scarring, Hilbert space fragmentation, and anomalous transport.
+
+\textbf{Difficulty:} 
+High. Bridging concepts from classical dynamical systems, quantum mechanics, and complex geometry is extremely challenging.
+
+\textbf{Progress:} 
+Recent workshops have focused on understanding how systems approach thermal equilibrium and the anomalies that arise, using tools from spectral geometry and random matrix theory\footnote{\href{https://conferences.matheo.si/event/43/\#:\%7E:text=Save\%20\%0A\%0AEurope\%2FLjubljana\%20English\%20,\%E4\%B8\%AD\%E6\%96\%87\%20\%28\%E4\%B8\%AD\%E5\%9B\%BD\%29\%0A\%0A\%E3\%80\%905\%E2\%80\%A0L}{Complex Analysis, Geometry, and Dynamics III - Portorož 2024}}.
+
+\textbf{Significance:} 
+Understanding quantum chaos has profound implications for both theoretical physics and complex geometry, offering insights into fundamental processes in nature.
+
+\textbf{Applications:} 
+Applications range from quantum computing to advanced material science, where understanding quantum states' behavior is crucial.
+
+\subsubsection*{4. Noncommutative Harmonic Analysis and Representation Theory}
+
+\textbf{Description:} 
+This area examines the harmonic analysis on noncommutative spaces and its applications to representation theory. The quest for simplicity in this complex field has led to new approaches and results, impacting various areas of mathematics.
+
+\textbf{Difficulty:} 
+High. Noncommutative spaces introduce additional layers of complexity compared to their commutative counterparts, requiring advanced algebraic and analytical methods.
+
+\textbf{Progress:} 
+Recent conferences have highlighted new developments and innovative approaches, particularly in the context of automorphic forms and unitarizability\footnote{\href{https://euromathsoc.org/events}{EMS | Events}}.
+
+\textbf{Significance:} 
+The results have deep implications for number theory and algebraic geometry, enhancing the understanding of symmetry and structure in mathematics.
+
+\textbf{Applications:} 
+Applications include solving long-standing conjectures in number theory and providing new tools for studying automorphic representations.
+
+These recent problems and advancements in complex geometry demonstrate the field's dynamic nature and its interconnections with various mathematical disciplines, offering profound insights and tools with wide-ranging applications.
+
+
+\begin{fancybox}
+  \begin{flushleft}
+  \Large\bfseries  Topics:
+  \end{flushleft}
+  \bfseries
+\begin{enumerate}[font=\upshape\color{purple}\large\bfseries,label=\Roman*.]
+  \item Holomorphic approximation theory
+  
+  \item $L^2$ -techniques, plurisubharmonic functions, complex pluripotential theory
+  
+  \item Complex dynamics of one and several vairables
+  
+  \item Flexibility versus rigidity in complex geometry
+  
+  \item Cauchy-Riemann geometry
+  
+  \item Monge-Ampėre equations and Kähler manifolds
+\end{enumerate}
+\end{fancybox}
+
+\subsubsection*{Holomorphic Approximation Theory: Recent Advances and Progress}
+
+\textbf{Holomorphic approximation theory} deals with the approximation of holomorphic functions (complex-analytic functions) by simpler or more convenient classes of functions, such as polynomials or rational functions. This theory plays a significant role in complex analysis and functional analysis, particularly in understanding the behavior and properties of holomorphic functions on various domains.
+
+\subsubsection*{Recent Advances}
+
+\subsubsection*{1. Approximation Properties in Banach Spaces}
+Recent studies have focused on the approximation properties of holomorphic functions in Banach spaces. This includes exploring conditions under which certain Banach spaces of holomorphic functions possess the compact approximation property (CAP) or the bounded approximation property (BAP). Researchers have made significant progress in characterizing these properties in weighted Banach spaces of holomorphic functions, leading to a better understanding of how these spaces can be manipulated and approximated efficiently.
+
+\textbf{Progress:} 
+Advances include the development of new techniques for studying the compact approximation property for spaces of holomorphic mappings on Fréchet spaces and Banach spaces. Researchers like Caliskan and Rueda have contributed to this field by exploring the compact and bounded approximation properties in various settings\footnote{\href{https://link.springer.com/article/10.1007/s43036-022-00205-1}{Characterizations of approximation properties defined by operator ideals in weighted Banach spaces of holomorphic functions}}.
+
+\subsubsection*{2. Operator Ideals and Holomorphic Mappings}
+There has been substantial progress in understanding the relationship between holomorphic approximation theory and operator ideals. Studies have explored how certain operator ideals can define approximation properties in weighted spaces of holomorphic functions. This line of research helps in bridging functional analysis and complex analysis, offering new tools for approximating holomorphic functions.
+
+\textbf{Progress:} 
+Significant results have been obtained in characterizing approximation properties defined by operator ideals in Banach spaces of holomorphic functions. This includes work on the linearization of bounded holomorphic mappings on Banach spaces\footnote{\href{https://link.springer.com/article/10.1007/s43036-022-00205-1}{Characterizations of approximation properties defined by operator ideals in weighted Banach spaces of holomorphic functions}}.
+
+\subsubsection*{3. Holomorphic Foliations and Algebraic Geometry}
+The interplay between holomorphic approximation theory and foliation theory in algebraic geometry has seen notable developments. Holomorphic foliations, which are decompositions of complex manifolds into submanifolds, have been crucial in advancing the understanding of complex algebraic geometry. These advances have implications for how holomorphic functions can be approximated within the context of foliated structures.
+
+\textbf{Progress:} 
+Conferences such as the "Foliation Theory and Algebraic Geometry" held at IMPA in 2024 have highlighted new research on the moduli space of foliations and their approximation properties. This has led to deeper insights into the structure and behavior of holomorphic functions on complex manifolds\footnote{\href{https://impa.br/eventos-do-impa/2024-2/foliation-theory-and-algebraic-geometry/}{Foliation Theory and Algebraic Geometry | IMPA}}.
+
+\subsubsection*{Significance and Applications}
+
+\textbf{Significance:}
+The progress in holomorphic approximation theory has profound implications for both theoretical and applied mathematics. It enhances the understanding of how holomorphic functions can be approximated in various complex settings, which is crucial for many applications in mathematical analysis and geometry.
+
+\textbf{Applications:}
+\begin{enumerate}
+    \item \textbf{Complex Dynamics and Control Theory:} Improved approximation techniques can be applied to problems in complex dynamics, where understanding the behavior of holomorphic functions is essential.
+    \item \textbf{Mathematical Physics:} In quantum mechanics and other areas of mathematical physics, approximating holomorphic functions is crucial for solving complex differential equations and modeling physical phenomena.
+    \item \textbf{Algebraic Geometry:} Advances in holomorphic approximation are directly applicable to problems in algebraic geometry, such as studying the properties of algebraic varieties and their moduli spaces.
+\end{enumerate}
+
+The continuous development in holomorphic approximation theory showcases the dynamic nature of the field and its critical role in advancing mathematical knowledge and its applications.
+
+For further details, you can explore the latest research and reviews on this topic through academic journals and conferences dedicated to complex analysis and functional analysis.
+\footnote{\href{https://link.springer.com/article/10.1007/s43036-022-00205-1}{Characterizations of approximation properties defined by operator ideals in weighted Banach spaces of holomorphic functions}}
+\footnote{\href{https://impa.br/eventos-do-impa/2024-2/foliation-theory-and-algebraic-geometry/}{Foliation Theory and Algebraic Geometry | IMPA}}
+
+\chapter{The optimal constant}
+\section{Bergman Kernel form}
+
+\subsection{The product formula for Bergman kernel form}
+The Bergman kernel is a fundamental object in complex analysis and several complex variables. It is defined in terms of the orthonormal basis of holomorphic functions on a domain. The product formula for the Bergman kernel on certain domains can be particularly interesting and useful.
+
+For a domain \( D \subset \mathbb{C}^n \), the Bergman kernel \( K_D(z, w) \) can be expressed using the orthonormal basis \( \{\phi_j\} \) of the space of square-integrable holomorphic functions on \( D \). Specifically, if \( \{\phi_j\} \) is such a basis, the Bergman kernel is given by:
+
+\[ K_D(z, w) = \sum_{j} \phi_j(z) \overline{\phi_j(w)} \]
+
+This series converges absolutely and uniformly on compact subsets of \( D \times D \).
+
+For some specific domains, there are more explicit product formulas. For example, on the unit disk \( \mathbb{D} \subset \mathbb{C} \), the Bergman kernel has a well-known explicit form:
+
+\[ K_{\mathbb{D}}(z, w) = \frac{1}{\pi (1 - z\overline{w})^2} \]
+
+This is derived from the orthonormal basis of holomorphic functions on \( \mathbb{D} \), which are the monomials \( \left\{ \sqrt{n+1} z^n \right\} \) for \( n = 0, 1, 2, \ldots \).
+
+For the unit ball \( \mathbb{B}_n \subset \mathbb{C}^n \), the Bergman kernel is given by:
+
+\[ K_{\mathbb{B}_n}(z, w) = \frac{n!}{\pi^n} \frac{1}{(1 - \langle z, w \rangle)^{n+1}} \]
+
+where \( \langle z, w \rangle \) denotes the standard Hermitian inner product in \( \mathbb{C}^n \).
+
+In summary, the product formula for the Bergman kernel on a domain \( D \) in \( \mathbb{C}^n \) is generally given by:
+
+\[ K_D(z, w) = \sum_{j} \phi_j(z) \overline{\phi_j(w)} \]
+
+where \( \{\phi_j\} \) is an orthonormal basis for the space of square-integrable holomorphic functions on \( D \). For specific domains like the unit disk and the unit ball, more explicit forms are known and can be derived from the properties of these domains.
+
+\subsection{Basic a priori Inequality}
+\begin{lemma}[][Baisc a priori Inequality by Ohsawa][lem:priori-estimate]
+  Let $E$ be a hermitian vector bundle on a complex manifold $X$ equipped with a Kähler metric $\omega$. Let $\eta, \lambda>0$ be smooth functions on $X$. Then for every form $u \in \mathcal{D}\left(X, \Lambda^{p, q} T_X^{\star} \otimes E\right)$ with compact support we have
+$$
+\begin{aligned}
+\left\|\left(\eta^{\frac{1}{2}}+\lambda^{\frac{1}{2}}\right) D^{\prime \prime *} u\right\|^2 & +\left\|\eta^{\frac{1}{2}} D^{\prime \prime} u\right\|^2+\left\|\lambda^{\frac{1}{2}} D^{\prime} u\right\|^2+2\left\|\lambda^{-\frac{1}{2}} d^{\prime} \eta \wedge u\right\|^2 \\
+& \geqslant\left\langle\left\langle\left[\eta \mathrm{i} \Theta(E)-\mathrm{i} d^{\prime} d^{\prime \prime} \eta-\mathrm{i} \lambda^{-1} d^{\prime} \eta \wedge d^{\prime \prime} \eta, \Lambda\right] u, u\right\rangle\right\rangle .
+\end{aligned}
+$$
+\end{lemma}
+\begin{proof}
+Let us consider the "twisted" Laplace-Beltrami operators
+$$
+\begin{aligned}
+D^{\prime} \eta D^{\prime *}+D^{\prime *} \eta D^{\prime} & =\eta\left[D^{\prime}, D^{\prime *}\right]+\left[D^{\prime}, \eta\right] D^{\prime *}+\left[D^{\prime \star}, \eta\right] D^{\prime} \\
+& =\eta \Delta^{\prime}+\left(d^{\prime} \eta\right) D^{\prime *}-\left(d^{\prime} \eta\right)^* D^{\prime}, \\
+D^{\prime \prime} \eta D^{\prime \prime *}+D^{\prime \prime *} \eta D^{\prime \prime} & =\eta\left[D^{\prime \prime}, D^{\prime \prime *}\right]+\left[D^{\prime \prime}, \eta\right] D^{\prime \prime *}+\left[D^{\prime \prime *}, \eta\right] D^{\prime \prime} \\
+& =\eta \Delta^{\prime \prime}+\left(d^{\prime \prime} \eta\right) D^{\prime \prime *}-\left(d^{\prime \prime} \eta\right)^* D^{\prime \prime},
+\end{aligned}
+$$
+where $\eta,\left(d^{\prime} \eta\right),\left(d^{\prime \prime} \eta\right)$ are abbreviated notations for the multiplication operators $\eta_{\bullet}$, $\left(d^{\prime} \eta\right) \wedge \bullet,\left(d^{\prime \prime} \eta\right) \wedge \bullet$. By subtracting the above equalities and taking into account the Bochner-Kodaira-Nakano identity $\Delta^{\prime \prime}-\Delta^{\prime}=[\mathrm{i} \Theta(E), \Lambda]$, we get
+$$
+\begin{aligned}
+D^{\prime \prime} \eta D^{\prime \prime \star} & +D^{\prime \prime \star} \eta D^{\prime \prime}-D^{\prime} \eta D^{\prime \star}-D^{\prime \star} \eta D^{\prime} \\
+& =\eta[\mathrm{i} \Theta(E), \Lambda]+\left(d^{\prime \prime} \eta\right) D^{\prime \prime \star}-\left(d^{\prime \prime} \eta\right)^{\star} D^{\prime \prime}+\left(d^{\prime} \eta\right)^{\star} D^{\prime}-\left(d^{\prime} \eta\right) D^{\prime \star}
+\end{aligned}
+$$
+
+Moreover, the Jacobi identity yields
+$$
+\left[D^{\prime \prime},\left[d^{\prime} \eta, \Lambda\right]\right]-\left[d^{\prime} \eta,\left[\Lambda, D^{\prime \prime}\right]\right]+\left[\Lambda,\left[D^{\prime \prime}, d^{\prime} \eta\right]\right]=0,
+$$
+whilst $\left[\Lambda, D^{\prime \prime}\right]=-\mathrm{i} D^{\prime *}$ by the basic commutation relations 7.2 . A straightforward computation shows that $\left[D^{\prime \prime}, d^{\prime} \eta\right]=-\left(d^{\prime} d^{\prime \prime} \eta\right)$ and $\left[d^{\prime} \eta, \Lambda\right]=\mathrm{i}\left(d^{\prime \prime} \eta\right)^{\star}$. Therefore we get
+$$
+\mathrm{i}\left[D^{\prime \prime},\left(d^{\prime \prime} \eta\right)^{\star}\right]+\mathrm{i}\left[d^{\prime} \eta, D^{\prime *}\right]-\left[\Lambda,\left(d^{\prime} d^{\prime \prime} \eta\right)\right]=0,
+$$
+that is,
+$$
+\left[\mathrm{i} d^{\prime} d^{\prime \prime} \eta, \Lambda\right]=\left[D^{\prime \prime},\left(d^{\prime \prime} \eta\right)^{\star}\right]+\left[D^{\prime \star}, d^{\prime} \eta\right]=D^{\prime \prime}\left(d^{\prime \prime} \eta\right)^{\star}+\left(d^{\prime \prime} \eta\right)^{\star} D^{\prime \prime}+D^{\prime \star}\left(d^{\prime} \eta\right)+\left(d^{\prime} \eta\right) D^{\prime \star} .
+$$
+
+After adding this to (2.2), we find
+$$
+\begin{aligned}
+D^{\prime \prime} \eta D^{\prime \prime \star} & +D^{\prime \prime *} \eta D^{\prime \prime}-D^{\prime} \eta D^{\prime \star}-D^{\prime *} \eta D^{\prime}+\left[\mathrm{i} d^{\prime} d^{\prime \prime} \eta, \Lambda\right] \\
+& =\eta[\mathrm{i} \Theta(E), \Lambda]+\left(d^{\prime \prime} \eta\right) D^{\prime \prime \star}+D^{\prime \prime}\left(d^{\prime \prime} \eta\right)^{\star}+\left(d^{\prime} \eta\right)^{\star} D^{\prime}+D^{\prime *}\left(d^{\prime} \eta\right) .
+\end{aligned}
+$$
+
+We apply this identity to a form $u \in \mathcal{D}\left(X, \Lambda^{p, q} T_X^{\star} \otimes E\right)$ and take the inner bracket with $u$. Then
+$$
+\left\langle\left\langle\left(D^{\prime \prime} \eta D^{\prime \prime \star}\right) u, u\right\rangle\right\rangle=\left\langle\left\langle\eta D^{\prime \prime \star} u, D^{\prime \prime \star} u\right\rangle\right\rangle=\left\|\eta^{\frac{1}{2}} D^{\prime \prime \star} u\right\|^2,
+$$
+and likewise for the other similar terms. The above equalities imply
+$$
+\begin{aligned}
+& \left\|\eta^{\frac{1}{2}} D^{\prime \prime *} u\right\|^2+\left\|\eta^{\frac{1}{2}} D^{\prime \prime} u\right\|^2-\left\|\eta^{\frac{1}{2}} D^{\prime} u\right\|^2-\left\|\eta^{\frac{1}{2}} D^{\prime *} u\right\|^2= \\
+& \quad\left\langle\left[\eta \mathrm{i} \Theta(E)-\mathrm{i} d^{\prime} d^{\prime \prime} \eta, \Lambda\right] u, u\right\rangle+2 \operatorname{Re}\left\langle\left\langle D^{\prime \prime *} u,\left(d^{\prime \prime} \eta\right)^{\star} u\right\rangle\right\rangle+2 \operatorname{Re}\left\langle\left\langle D^{\prime} u, d^{\prime} \eta \wedge u\right\rangle .\right.
+\end{aligned}
+$$
+
+By neglecting the negative terms $-\left\|\eta^{\frac{1}{2}} D^{\prime} u\right\|^2-\left\|\eta^{\frac{1}{2}} D^{\prime *} u\right\|^2$ and adding the squares
+$$
+\begin{array}{r}
+\left\|\lambda^{\frac{1}{2}} D^{\prime \prime \star} u\right\|^2+2 \operatorname{Re}\left\langle\left\langle D^{\prime \prime \star} u,\left(d^{\prime \prime} \eta\right)^{\star} u\right\rangle\right\rangle+\left\|\lambda^{-\frac{1}{2}}\left(d^{\prime \prime} \eta\right)^{\star} u\right\|^2 \geqslant 0 \\
+\left\|\lambda^{\frac{1}{2}} D^{\prime} u\right\|^2+2 \operatorname{Re}\left\langle\left\langle D^{\prime} u, d^{\prime} \eta \wedge u\right\rangle\right\rangle+\left\|\lambda^{-\frac{1}{2}} d^{\prime} \eta \wedge u\right\|^2 \geqslant 0
+\end{array}
+$$
+we get
+$$
+\begin{aligned}
+\left\|\left(\eta^{\frac{1}{2}}+\lambda^{\frac{1}{2}}\right) D^{\prime \prime \star} u\right\|^2 & +\left\|\eta^{\frac{1}{2}} D^{\prime \prime} u\right\|^2+\left\|\lambda^{\frac{1}{2}} D^{\prime} u\right\|^2+\left\|\lambda^{-\frac{1}{2}} d^{\prime} \eta \wedge u\right\|^2+\left\|\lambda^{-\frac{1}{2}}\left(d^{\prime \prime} \eta\right)^{\star} u\right\|^2 \\
+& \geqslant\left\langle\left\langle\left[\eta \mathrm{i} \Theta(E)-\mathrm{i} d^{\prime} d^{\prime \prime} \eta, \Lambda\right] u, u\right\rangle .\right.
+\end{aligned}
+$$
+
+Finally, we use the identities
+$$
+\begin{gathered}
+\left(d^{\prime} \eta\right)^{\star}\left(d^{\prime} \eta\right)-\left(d^{\prime \prime} \eta\right)\left(d^{\prime \prime} \eta\right)^{\star}=\mathrm{i}\left[d^{\prime \prime} \eta, \Lambda\right]\left(d^{\prime} \eta\right)+\mathrm{i}\left(d^{\prime \prime} \eta\right)\left[d^{\prime} \eta, \Lambda\right]=\left[\mathrm{i} d^{\prime \prime} \eta \wedge d^{\prime} \eta, \Lambda\right], \\
+\left\|\lambda^{-\frac{1}{2}} d^{\prime} \eta \wedge u\right\|^2-\left\|\lambda^{-\frac{1}{2}}\left(d^{\prime \prime} \eta\right)^{\star} u\right\|^2=-\left\langle\left\langle\mathrm{i} \lambda^{-1} d^{\prime} \eta \wedge d^{\prime \prime} \eta, \Lambda\right] u, u\right\rangle,
+\end{gathered}
+$$
+
+The inequality asserted in \autoref{lem:priori-estimate} follows by adding the second identity to our last inequality.
+\end{proof}
+
+\begin{fancybox}
+In the special case of $(n, q)$-forms, the forms $D^{\prime} u$ and $d^{\prime} \eta \wedge u$ are of bidegree $(n+1, q)$, hence the estimate takes the simpler form
+(2.3) $\left\|\left(\eta^{\frac{1}{2}}+\lambda^{\frac{1}{2}}\right) D^{\prime \prime *} u\right\|^2+\left\|\eta^{\frac{1}{2}} D^{\prime \prime} u\right\|^2 \geqslant\left\langle\left\langle\left[\eta \mathrm{i} \Theta(E)-\mathrm{i} d^{\prime} d^{\prime \prime} \eta-\mathrm{i} \lambda^{-1} d^{\prime} \eta \wedge d^{\prime \prime} \eta, \Lambda\right] u, u\right\rangle\right\rangle$.
+\end{fancybox}
+
+\begin{lemma}[][$L^2$-existence theorem ][lem:L2existence]
+  Let $(X, \omega)$ be a complete Kähler manifold equipped with a (non-necessarily complete) Kähler metric $\omega$, and let $Q$ be a Hermitian vector bundle over $X$. Assume that $\tau$ and $A$ are smooth and bounded positive functions on $X$ and let $$\mathrm{B}:=\left[\tau \sqrt{-1} \Theta_Q-\sqrt{-1} \partial \bar{\partial} \tau-\sqrt{-1} A^{-1} \partial \tau \wedge \bar{\partial} \tau, \Lambda\right].$$ Assume that $\delta \geq 0$ is a number such that $\mathrm{B}+\delta \mathrm{I}$ is semi-positive definite everywhere on $\wedge^{n, q} T_X^* \otimes Q$ for some $q \geq 1$. Then given a form $g \in L^2\left(X, \wedge^{n, q} T_X^* \otimes Q\right)$ such that $\mathrm{D}^{\prime \prime} g=0$ and $$\int_X\left\langle(\mathrm{~B}+\delta \mathrm{I})^{-1} g, g\right\rangle_Q d V_X<+\infty,$$ there exists an approximate solution $u \in L^2\left(X, \wedge^{n, q-1} T_X^* \otimes Q\right)$ and a correcting term $h \in L^2\left(X, \wedge^{n, q} T_X^* \otimes Q\right)$ such that $\mathrm{D}^{\prime \prime} u+\sqrt{\delta} h=g$ and
+$$
+\int_X \frac{|u|_Q^2}{\tau+A} d V_X+\int_X|h|_Q^2 d V_X \leq \int_X\left\langle(\mathrm{~B}+\delta \mathrm{I})^{-1} g, g\right\rangle_Q d V_X .
+$$
+\end{lemma}
+
+\begin{proof}
+  By \autoref{lem:priori-estimate}, \autoref{lem:L2existence} can be obtained by almost the same arguments as in \cite{Demailly2000}, where the term $\int_X\left\langle(\mathrm{~B}+\delta \mathrm{I})^{-1} g, g\right\rangle_Q d V_X$ in the above inequality is written as $2 \int_X\left\langle(\mathrm{~B}+\delta \mathrm{I})^{-1} g, g\right\rangle_Q d V_X$.
+\end{proof}
+
+\begin{proof}[The proof in \cite{Demailly2000}]
+  Let $v \in L^2\left(X, \Lambda^{n, q} T_X^{\star} \otimes E\right)$ be an arbitrary element. Assume first that $\omega$ is complete, so that $\left(\operatorname{Ker} D^{\prime \prime}\right)^{\perp}=\overline{\operatorname{Im} D^{\prime \prime *}} \subset \operatorname{Ker} D^{\prime \prime *}$. Then, by using the decomposition $v=v_1+v_2 \in\left(\operatorname{Ker} D^{\prime \prime}\right) \oplus\left(\operatorname{Ker} D^{\prime \prime}\right)^{\perp}$ and the fact that $g \in \operatorname{Ker} D^{\prime \prime}$, we infer from Cauchy-Schwarz the inequality
+$$
+|\langle g, v\rangle|^2=\left|\left\langle g, v_1\right\rangle\right|^2 \leqslant \int_X\left\langle B^{-1} g, g\right\rangle d V_\omega \int_X\left\langle B v_1, v_1\right\rangle d V_\omega .
+$$
+
+We have $v_2 \in \operatorname{Ker} D^{\prime \prime *}$, hence $D^{\prime \prime *} v=D^{\prime \prime *} v_1$, and \autoref{lem:priori-estimate} implies
+$$
+\int_X\left\langle B v_1, v_1\right\rangle d V_\omega \leqslant\left\|\left(\eta^{\frac{1}{2}}+\lambda^{\frac{1}{2}}\right) D^{\prime \prime *} v_1\right\|^2+\left\|\eta^{\frac{1}{2}} D^{\prime \prime} v_1\right\|^2=\left\|\left(\eta^{\frac{1}{2}}+\lambda^{\frac{1}{2}}\right) D^{\prime \prime \star} v\right\|^2
+$$
+provided that $v \in \operatorname{Dom} D^{\prime \prime \star}$. Combining both, we find
+$$
+|\langle g, v\rangle|^2 \leqslant\left(\int_X\left\langle B^{-1} g, g\right\rangle d V_\omega\right)\left\|\left(\eta^{\frac{1}{2}}+\lambda^{\frac{1}{2}}\right) D^{\prime \prime *} v\right\|^2 .
+$$
+
+This shows the existence of an element $w \in L^2\left(X, \Lambda^{n, q} T_X^{\star} \otimes E\right)$ such that
+$$
+\begin{aligned}
+\|w\|^2 & \leqslant \int_X\left\langle B^{-1} g, g\right\rangle d V_\omega \quad \text { and } \\
+\langle\langle v, g\rangle\rangle & =\left\langle\left(\eta^{\frac{1}{2}}+\lambda^{\frac{1}{2}}\right) D^{\prime \prime \star} v, w\right\rangle \quad \forall g \in \operatorname{Dom} D^{\prime \prime} \cap \operatorname{Dom} D^{\prime \prime *} .
+\end{aligned}
+$$
+
+As $\left(\eta^{1 / 2}+\lambda^{\frac{1}{2}}\right)^2 \leqslant 2(\eta+\lambda)$, it follows that $f=\left(\eta^{1 / 2}+\lambda^{\frac{1}{2}}\right) w$ satisfies $D^{\prime \prime} f=g$ as well as the desired $L^2$ estimate. If $\omega$ is not complete, we set $\omega_{\varepsilon}=\omega+\varepsilon \widehat{\omega}$ with some complete Kähler metric $\widehat{\omega}$. The final conclusion is then obtained by passing to the limit and using a monotonicity argument (the integrals are monotonic with respect to $\varepsilon$ ). The technique is quite standard and entirely similar to the approach described in [Dem82a], so we will not give any detail here.
+\end{proof}
+\begin{lemma}[][The property of psh function]
+  Let $X$ be a Stein manifold and $\varphi$ be a plurisubharmonic function on $X$. Then there exists a decreasing sequence of smooth strictly plurisubharmonic functions $\left\{\varphi_j\right\}_{j=1}^{+\infty}$ such that $\lim _{j \rightarrow+\infty} \varphi_j=\varphi$
+\end{lemma}
+
+\begin{lemma}[][Theorem 1.5 in [9]]
+  Let $X$ be a Kähler manifold, and $Z$ be an analytic subset of $X$. Assume that $\Omega$ is a relatively compact open subset of $X$ possessing a complete Kähler metric. Then $\Omega \backslash Z$ carries a complete Kähler metric.
+\end{lemma}
+
+\begin{lemma}[][Theorem 4.4.2 in [19]]
+  Let $\Omega$ be a pseudoconvex open set in $\mathbb{C}^n$, and $\varphi$ be a plurisubharmonic function on $\Omega$. For every $h \in$ $L_{(p, q+1)}^2(\Omega, \varphi)$ with $\bar{\partial} h=0$ there is a solution $v \in L_{(p, q)}^2(\Omega$, loc $)$ of the equation $\bar{\partial} v=h$ such that
+$$
+\int_{\Omega} \frac{|v|^2}{\left(1+|z|^2\right)^2} e^{-\varphi} d V \leq \int_{\Omega}|h|^2 e^{-\varphi} d V
+$$
+\end{lemma}
+
+\begin{lemma}[][Lemma 6.9 in [9]]
+  Let $\Omega$ be an open subset of $\mathbb{C}^n$ and $Z$ be a complex analytic subset of $\Omega$. Assume that $v$ is a $(p, q-1)$-form with $L_{\text {loc }}^2$ coefficients and $h$ is a $(p, q)$-form with $L_{\text {loc }}^1$ coefficients such that $\bar{\partial} v=h$ on $\Omega \backslash Z$ (in the sense of distribution theory). Then $\bar{\partial} v=h$ on $\Omega$.
+\end{lemma}
+
+\begin{lemma}[][strong openness conjecture, see [17]]
+  Let $\varphi$ be a negative plurisubharmonic function on the unit polydisk $\Delta^n \subset \mathbb{C}^n$. Assume that $F$ is a holomorphic function on $\Delta^n$ satisfying
+  $$
+  \int_{\Delta^n}|F|^2 e^{-\varphi} d V_n<+\infty,
+  $$
+  where $d V_n$ is the $2 n$-dimensional Lebesgue measure on $\mathbb{C}^n$. Then there exists $r \in(0,1)$ and $\beta \in(0,+\infty)$ such that
+  $$
+  \int_{\Delta_r^n}|F|^2 e^{-(1+\beta) \varphi} d V_n<+\infty,
+  $$
+  where $\Delta_r^n:=\left\{\left(z^1, \cdots, z^n\right) \in \mathbb{C}^n:\left|z^k\right|<r, 1 \leq k \leq n\right\}$.
+\end{lemma}
+
+\begin{lemma}[][Lagrange's inequality]
+  Let $X$ be a complex manifold, $E$ be a Hermitian vector bundle over $X$ of rank $m$, and $\{\bullet, \bullet\}_E: \wedge^{p_1, q_1} T_X^* \otimes$ $E \times \wedge^{p_2, q_2} T_X^* \otimes E \longrightarrow \wedge^{p_1+q_2, q_1+p_2} T_X^*$ be the sesquilinear product which combines the wedge product $(u, v) \mapsto u \wedge \bar{v}$ on scalar valued forms with the Hermitian inner product on $E$. Then for any smooth section $s$ of $E$ over $X$ and any smooth section $w$ of $T_X^* \otimes E$ over $X$,
+\begin{equation}\label{eq:3.1}
+    \sqrt{-1}\{w, s\}_E \wedge\{s, w\}_E \leq|s|_E^2 \sqrt{-1}\{w, w\}_E .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+  Since $\{\bullet, \bullet\}_E$ is a pointwise product, it's sufficient to prove \eqref{eq:3.1}  at every fixed point of $X$. Hence, we can regard $T_X^*$ and $E$ as vector spaces. Then $s$ and $w$ are regarded as elements in $E$ and $T_X^* \otimes E$ respectively. If $s=0$, \eqref{eq:3.1} is trivial. If $s \neq 0$, without loss of generality, we can assume that $|s|_E=1$. Then we choose $e_2, \cdots, e_m \in E$ such that $s, e_2, \cdots, e_m$ form an orthonormal basis of $E$. Then $w$ can be written as
+  $$
+  w_1 \otimes s+\sum_{j=2}^m w_j \otimes e_j,
+  $$
+  for some $w_j \in T_X^*(1 \leq j \leq m)$. Then
+  $$
+  \sqrt{-1}\{w, s\}_E \wedge\{s, w\}_E=\sqrt{-1} w_1 \wedge \bar{w}_1,
+  $$
+  and
+  $$
+  |s|_E^2 \sqrt{-1}\{w, w\}_E=\sqrt{-1} \sum_{j=1}^m w_j \wedge \bar{w}_j \geq \sqrt{-1} w_1 \wedge \bar{w}_1 .
+  $$
+  
+  Hence, \eqref{eq:3.1} holds. The lemma is, thus, proved.
+\end{proof}
+
+Cartan's theorem B is a fundamental result in several complex variables, which provides a characterization of domains of holomorphy in \( \mathbb{C}^n \). The theorem is named after the French mathematician Henri Cartan, who formulated and proved it.
+
+
+\begin{theorem}[][Cartan's Theorem B][thm:cartan]
+  Let \( \Omega \subset \mathbb{C}^n \) be a domain (open connected subset) and \( f: \Omega \to \mathbb{C} \) a holomorphic function.
+  If \( f \) is holomorphic on \( \Omega \) and \( f \) has compact closure (i.e., \( \overline{\Omega} \) is compact), then \( f \) extends to a holomorphic function $\widetilde{f}$  on a neighborhood of \( \overline{\Omega} \) in \( \mathbb{C}^n \). (In other words, there exists a holomorphic function $\widetilde{f}$ on $\overline{\Omega}$ such that $\widetilde{f}|_\Omega=f$.  ) 
+\end{theorem}
+
+\begin{remark}
+  It is worth noting that if a manifold $X$ is stein, it is natural to obtain that by \autoref{thm:cartan},  there exists a holomorphic function $\widetilde{f}$ on $X$ such that $\widetilde{f}|_Y=f$, where $Y$ is  an analytic submanifold in $X$.  
+\end{remark}
+Intuition and Implications
+
+The theorem essentially says that if you have a holomorphic function \( f \) defined on a domain \( \Omega \) whose closure \( \overline{\Omega} \) is compact (meaning it is a compact set in \( \mathbb{C}^n \)), then \( f \) can be extended to a larger domain where it remains holomorphic. This larger domain typically includes a neighborhood of \( \overline{\Omega} \) in \( \mathbb{C}^n \).
+
+Importance
+
+Cartan's theorem B is crucial because it connects the local properties of holomorphic functions (defined on a domain \( \Omega \)) with their global extendability. It allows one to analyze the holomorphic behavior of functions on domains with compact closures, linking the geometric properties of the domain \( \Omega \) to the analytic properties of its holomorphic functions.
+
+Relation to Other Theorems
+
+Cartan's theorem B complements Cartan's theorem A, which characterizes domains of holomorphy as those domains where every holomorphic function can be uniformly approximated by holomorphic polynomials. Together, these theorems provide deep insights into the nature of holomorphic functions in several complex variables.
+
+In summary, Cartan's theorem B is a powerful tool in complex analysis, providing conditions under which holomorphic functions defined on certain domains can be extended holomorphically to larger domains in \( \mathbb{C}^n \).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\printbibliography[heading=bibintoc,title={Bibliography}]\printindex\thispagestyle{empty}
+\bottomimage{hummingbird-8013214}
+\ISBNcode{\EANisbn[ISBN=978-80-7340-097-2]} %
+\summary{A Research Notes Series For papers.}
+\makebottomcover
+\end{document} 

@@ -1,0 +1,664 @@
+%% This work is released under the LaTeX Project Public License, v1.3c or later.
+% This template is made by Ethan Lu.
+% Please use XeLaTeX engine!
+\documentclass[lang=cn,zihao=-4,a4paper,fontset=none]{beautybook}
+\definecolor{coverbgcolor}{HTML}{e0e0e0}
+\definecolor{coverfgcolor}{HTML}{1f3134} % The color of the background
+\definecolor{coverbar}{HTML}{7c9092} % The color of the left bar
+\definecolor{bottomcolor}{HTML}{2c4f54}
+\definecolor{nuanbai}{HTML}{f5f5f5}
+\pagecolor{nuanbai}
+\beautybookstyle={
+  cover-choose=en, % en/cn/enfig/birkar
+  math-font=plain, % plain/mtpro2
+  sidebar=on, % on/off
+}
+\usepackage{stys/beautybook-cnsettings} % 中文配置文件
+\begin{document}
+\thispagestyle{empty}
+\title{Notes for Demailly's Book}
+\subtitle{对于Demailly的书《Complex Analytic and Complex Algebraic Geometry》的详细阅读笔记}
+\edition{First Edition}
+\bookseries{Ilustrated by Ethan Lu}
+\author{Ethan Lu}
+\pressname{beautybook}
+\presslogo{inner_pics/beautybook-logo.png}
+\coverimage{inner_pics/coverimage.jpg}%ivy-ge998908f8_1280.jpg
+\makecover
+
+\makeatletter
+% ---------------------------------------------------------------------------- %
+%                           The Sidebar Theme Chosen                           %
+% ---------------------------------------------------------------------------- %
+\definecolor{bg}{HTML}{e0e0e0}
+\definecolor{fg}{HTML}{2c4f54}
+\colorlet{outermarginbgcolor}{bg}
+\colorlet{outermarginfgcolor}{fg}
+% set the contents of the outer margin on even and odd pages for scrheadings, plain and scth
+% \oddoutermargin{\sffamily \leftmark} % Odd
+% \evenoutermargin{\sffamily\@title} % Even
+% ---------------------------------------------------------------------------- %
+%                           The Sidebar Theme Chosen                           %
+% ---------------------------------------------------------------------------- %
+
+% ---------------------------------------------------------------------------- %
+%                         The images used in the title                         %
+% ---------------------------------------------------------------------------- %
+\titleimage{
+  chapteroddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  partoddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  chapterevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  partevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+}
+\chapimage{\beautybook@chapterimagename} % 会自动改变
+\partimage{\beautybook@partimagename}    % 会自动改变
+\makeatother
+% ---------------------------------------------------------------------------- %
+%                         The images used in the title                         %
+% ---------------------------------------------------------------------------- %
+
+% ---------------------------------------------------------------------------- %
+%                      The Color Chosen for The Magic Box                      %
+% ---------------------------------------------------------------------------- %
+\colorlet{framegolden}{fg} % The line color of the magic box
+\colorlet{framegray}{bg!50} % The background color of the magic box
+% ---------------------------------------------------------------------------- %
+%                      The Color Chosen for The Magic Box                      %
+% ---------------------------------------------------------------------------- %
+
+\frontmatter
+\pagenumbering{Roman}
+
+{% Preface
+\thispagestyle{empty}
+% \addcontentsline{toc}{chapter}{Preface}
+\chapter*{Preface}
+Introduction to Beatybook template.
+
+
+\hfill
+\begin{tabular}{lr}
+    &-- Ethan Lu\\ 
+    &2024-07-01
+\end{tabular}
+\clearpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+\tableofcontents%\let\cleardoublepage\clearpage
+
+
+\mainmatter
+\pagenumbering{arabic}
+
+\partabstract{\hspace*{2em} 对于Demailly的书《Complex Analytic and Complex Algebraic Geometry》的详细阅读笔记，仅供参考。}
+\part{Notes Tex}
+
+\chapter{For Chapter I}
+
+\section{Exteriror Derivative and Wedge Product}
+
+微分形式的 Leibniz 律是微分几何中的一个基本概念，特别是在处理 $(p,q)$ 型微分形式时。$(p,q)$ 型微分形式是指在复流形上具有 $p$ 个全纯（holomorphic）分量和 $q$ 个反全纯（anti-holomorphic）分量的微分形式。
+
+对于 $(p,q)$ 型微分形式，Leibniz 律描述了微分形式的外导数与楔积（wedge product）的关系。如果 $\alpha$ 是一个 $(p,q)$ 型微分形式，$\beta$ 是一个 $(r,s)$ 型微分形式，则他们的外导数 $d$ 和楔积遵循以下的 Leibniz 律：
+
+$$
+d(\alpha \wedge \beta) = d\alpha \wedge \beta + (-1)^{p+q} \alpha \wedge d\beta
+$$
+
+这里，$d\alpha$ 和 $d\beta$ 分别表示 $\alpha$ 和 $\beta$ 的外导数，$\alpha \wedge \beta$ 表示 $\alpha$ 和 $\beta$ 的楔积。符号 $(-1)^{p+q}$ 是由于楔积的反交换性质。
+
+Leibniz 律反映了微分和楔积运算的结合性质，是微分几何和复几何中计算和操作微分形式时的基本工具。
+
+当我们说积分 $\int_M d(f \wedge u) = 0$ 等于零时，通常有以下几种情况：
+
+1. \textbf{无边界的情况}：如果流形 $M$ 没有边界（即 $\partial M = \emptyset$），那么根据 Stokes 公式，$\int_{\partial M} \omega = 0$ 因为 $\partial M$ 是空的。在这种情况下，无论 $\omega$ 是什么，其在空集上的积分都是零。
+
+2. \textbf{紧支集微分形式}：如果微分形式 $f \wedge u$ 或其外导数 $d(f \wedge u)$ 在 $M$ 的边界附近为零（即它们在边界附近有紧支集），那么在边界上的积分自然为零。特别是，如果 $u \in \mathscr{D}^{m-q-1}(M)$ 有紧支集，那么它在 $M$ 的边界外为零，这意味着 $f \wedge u$ 也在边界外为零，从而其外导数在边界上的积分为零。
+
+3. \textbf{特定的微分形式性质}：某些特定的微分形式可能自然满足其外导数的积分为零的性质，这可能由它们的具体结构或流形的特定性质决定。
+
+4. \textbf{紧流形}：如果 $M$ 是一个紧流形但无边界，那么 Stokes 公式仍适用，并且因为没有边界，边界积分项自然为零。
+% 总之，$\int_M d(f \wedge u) = 0$ 的成立通常依赖于流形的边界性质、微分形式及其外导数在边界的行为，以及流形自身的拓扑结构。在具体的数学或物理背景下，这样的结果通常对理解某些守恒律或对称性有重要意义。
+\begin{fancybox}
+\begin{align*}
+    \lang{T_{df} ,u} &= \int_M df\wedge u=0,\\ 
+\lang{dT_f,u} &=(-1)^{q+1}\lang{T_f,du}=(-1)^{q+1}\int_M f\wedge du=0.
+\end{align*}
+    Where $df=du=0$, for the reason that $f\in {}^1\sE^q(M)$ and $u\in \sD^{m-q-1}(M)$.
+\end{fancybox}
+\begin{remark}
+    ${}^1\sE^q(M)$: $M$上具有给定半范数 $p^s_L$拓扑的一阶可微$p$形式所构成的空间;
+    $\sD^{m-q-1}(M)$ : ${}^0\sE^{m-q-1}(M)$的紧支子空间.
+
+从而因为$df$和 $du$ 超维数了($d$是$(1,1)$型,而$p$形式则是 $(0,p)$型)，从而只能为$0$.
+\end{remark}
+
+
+在这里，让我们解释一下为什么拉回映射$F^*$被描述为从密度形式空间$^s\mathscr{D}^p(M_2)$到光滑微分形式空间$^s\mathscr{E}^p(M_1)$的态射。
+
+1. 拉回映射的定义：
+
+   - 给定光滑映射$F: M_1 \to M_2$，拉回映射$F^*$作用于微分形式的定义如下：对于$\omega \in \mathscr{E}^p(M_2)$，$F^*(\omega)$是定义在$M_1$上的微分$p$-形式，通过以下方式定义：$$F^*(\omega)(v_1, \ldots, v_p) = \omega(F_*v_1, \ldots, F_*v_p),$$ 其中$F_*$是$F$的切映射。
+
+2. 密度形式空间和光滑微分形式空间：
+
+   - 在这里，$^s\mathscr{D}^p(M_2)$代表$M_2$上的光滑截断$p$-密度形式空间，而$^s\mathscr{E}^p(M_1)$代表$M_1$上的光滑截断$p$-形式空间。
+
+   - 密度形式与微分形式的主要区别在于它们如何变换。密度形式会根据雅可比行列式的绝对值进行变换，而微分形式则会根据切映射进行变换。
+
+3. 为什么$F^*$是从$^s\mathscr{D}^p(M_2)$到$^s\mathscr{E}^p(M_1)$的态射：
+
+   - 由于$F^*$将$M_2$上的微分$p$-形式映射到$M_1$上，因此$F^*$实际上是从$^s\mathscr{D}^p(M_2)$到$^s\mathscr{E}^p(M_1)$的映射。
+
+   - 这是因为$F^*$将$M_2$上的密度形式（即$^s\mathscr{D}^p(M_2)$中的元素）映射到$M_1$上的微分形式（即$^s\mathscr{E}^p(M_1)$中的元素），并且遵循了微分形式的变换规则。
+
+因此，综上所述，拉回映射$F^*$被描述为从$^s\mathscr{D}^p(M_2)$到$^s\mathscr{E}^p(M_1)$的态射，因为它将$M_2$上的光滑截断$p$-密度形式映射到$M_1$上的光滑截断$p$-形式，并且遵循了微分形式的变换规则。
+
+
+\begin{problem}[][$C^s$ 拓扑下态射连续性如何验证？][prob:seminorm-topology-continuous]
+    Let $M_1,M_2$ be two oriented differentiable manifolds of dimension $m_1,m_2$, respectively. Let $F\colon M_1\to M_2$ be a smooth map. Then the \textbf{Pull-Back morphism} $F^*$ is defined by 
+    \[
+        \begin{aligned}
+                    F^* \colon {}^s \sD^p(M_2) &\to {}^s\sE^p(M_1)\\ 
+                    u* &\mapsto F^* u.
+        \end{aligned}
+    \]
+    Here are the problems: 
+    \begin{enumerate}
+        \item     Why the pull-back morphism is \textbf{continuous} in the $C^s$-topology? 
+        \item Why $\supp F^* u\subset F^{-1}(\supp u)$?
+    \end{enumerate}
+\tcblower
+The following is the useful information. 
+\begin{description}
+    \item[$C^s$-topology] $C^s$-拓扑可以表示为：
+    如果 $M$ 是一个流形，$C^s(M)$ 表示 $M$ 上所有 $s$ 次连续可微的函数构成的函数空间。$C^s$-拓扑是定义在 $C^s(M)$ 上的拓扑结构，其\textbf{基本开集}可以表示为：
+    
+    $$ U_f = \{ g \in C^s(M) : \| g - f \|_s < \epsilon \} $$
+    
+    这里，$f$ 是 $C^s(M)$ 中的一个函数，$\epsilon > 0$ 是一个正实数，$\| \cdot \|_s$ 是 $s$ 阶 Sobolev 空间中的范数，用来度量函数之间的差异。
+    
+    通过这种基本开集的构造，$C^s$-拓扑定义了函数空间 $C^s(M)$ 上的拓扑结构，使得我们可以研究 $s$ 次连续可微函数的收敛性、连续性和其他重要性质。
+\end{description}
+在$C^s$拓扑下，一个映射$f: X \to Y$ 被称为在$C^s$拓扑下连续，如果对于$Y$中的每个开集$V$，其原像$f^{-1}(V)$是$X$中的$C^s$开集。这意味着对于$Y$中的每个开集$V$，存在一个$\epsilon > 0$，使得对于任意的$g \in C^s(X)$，如果$\| g - f \|_s < \epsilon$，则$g \in f^{-1}(V)$。
+
+换句话说，$f: X \to Y$ 在$C^s$拓扑下连续，意味着对于$Y$中的每个开集$V$，$f^{-1}(V)$是$X$中的$C^s$开集，即$f$将$C^s$开集映射到$Y$中的开集。
+
+这种连续性的定义确保了在$C^s$拓扑下，函数之间的连续性与它们的$C^s$性质相关联，从而在研究流形上的函数空间时，我们可以考虑函数的光滑性质和拓扑结构之间的关系。
+\end{problem}
+    
+\begin{proof}
+    As     
+    \begin{align*}
+        \norm{g-F^*u}_s<\varepsilon,
+    \end{align*}
+    we have
+\begin{align*}
+    \norm{(F^*)^{-1} g-u}_s &=\norm{(F^*)^{-1}\cdot \br{g-F^* u}}_s\\ 
+    &\leqslant  \norm{(F^*)^{-1}}_s\cdot \norm{g-F^* u}_s\\ 
+    &< \varepsilon \norm{(F^*)^{-1}}_s\\ 
+    &<\varepsilon.
+\end{align*}
+    Thus 1 is true.
+        
+\end{proof}
+    
+
+\begin{theorem}[][][thm:2.14]
+    For every $T\in {}^s\sD'_p(M_1)$ such that $F|_{\supp T}$ is \textbf{proper}, the direct image $F_\star T\in {}^s\sD'_p(M_2)$ is such that
+    \begin{enumerate}
+        \item $\supp F_\star T\subset F(\supp T)$;
+        \item $\dd (F_\star T)=F_\star (\dd T)$;
+        \item $F_\star (T\wedge F^\star g)=(F_\star T)\wedge g, \quad \forall g\in ^s\sE^q(M_2.\bR)$;
+        \item If $G\colon M_2\to M_1$ is a $C^\infty$ map such that $(G\circ F)|_{\supp T}$ is \textbf{proper}, then 
+        \[G_\star (F_\star T)=(G\circ F)_\star T.\]
+    \end{enumerate}
+\end{theorem}
+    
+\begin{definition}[][Immersion and Embedding]
+    在复几何和微分几何中，``immersion"（浸入）和 ``embedding"（嵌入）都是重要的概念，它们描述了一个流形到另一个流形的光滑映射的特性。尽管这些概念在复几何和微分几何中的基本思想相似，但它们在细节和上下文中可能有所不同，特别是考虑到复几何涉及的是复流形，它们的局部结构由复数坐标描述，而微分几何涉及的是实流形。
+
+    \textbf{微分几何中的定义:}
+    在微分几何中，一个映射 \(f: M \to N\) 被称为：
+    \begin{description}
+        \item[Immersion (浸入)] 如果 \(f\) 在每一点 \(x \in M\) 上的微分 \(df_x\) 是单射（即，\(df_x: T_xM \to T_{f(x)}N\) 是一个嵌入的线性映射）。这意味着局部地，\(f\) 将 \(M\) 的每一点的切空间 "浸入" 到 \(N\) 的相应切空间中。
+        \item[Embedding (嵌入)] 如果 \(f\) 是一个浸入，并且 \(f\) 是一个拓扑嵌入（即，\(f\) 是一个单射，并且 \(f\) 从 \(M\) 到 \(f(M)\) 是一个同胚映射）。这意味着 \(f\) 不仅在局部地保持结构（如浸入所做的那样），而且 \(f\) 也在全局上将 \(M\) 作为一个子流形嵌入到 \(N\) 中。
+    \end{description}
+    \tcblower
+    \textbf{复几何中的定义:}
+    在复几何中，考虑的是复流形，定义类似，但需要考虑到复结构。一个复映射 \(f: M \to N\) 被称为：
+    \begin{description}
+        \item[Immersion (浸入)] 如果对于所有 \(x \in M\)，映射的复微分（即雅可比矩阵的复数版本）\(df_x: T_xM \to T_{f(x)}N\) 是单射。这保证了在局部，\(M\) 的复结构可以嵌入到 \(N\) 的复结构中。
+        \item[Embedding (嵌入)] 如果 \(f\) 是一个浸入，并且 \(f\) 是一个全纯嵌入（即，\(f\) 既是单射也是全纯的，并且从 \(M\) 到 \(f(M)\) 是一个双全纯映射）。这意味着 \(f\) 不仅在局部保留复结构，而且在全局上以一种兼容的方式将 \(M\) 嵌入到 \(N\) 中。
+    \end{description}
+    尽管这些定义在形式上非常相似，主要区别在于考虑的是实流形还是复流形，以及相应的结构（如切空间、映射的微分）如何与流形的实或复结构相兼容。在具体教材或论文中，这些定义的表述可能略有不同，以适应特定的上下文和细节要求。例如，\textbf{对于复几何，强调全纯性（对于嵌入）是一个关键的区别}。
+\end{definition}
+
+在微分几何中，Constant Rank Theorem（常秩定理）是一个关于光滑映射的局部性质的定理。它说明了如果一个光滑映射在某点的微分具有恒定的秩，则在该点的邻域内，映射可以通过适当的坐标变换被简化为一个线性映射。这个定理有助于理解流形之间的映射的局部结构。
+
+在复几何中，一个类似的概念可以被考虑，但是需要考虑到复结构。如果一个全纯映射在某点的复微分具有恒定的秩，则在该点的邻域内，可以通过适当的全纯坐标变换将映射简化为一个线性映射。这有助于理解复流形之间的全纯映射的局部结构。
+
+具体地说，如果我们有一个全纯映射 \(f: M \to N\) 从一个复流形 \(M\) 到另一个复流形 \(N\)，并且在点 \(p \in M\) 处，映射的复微分 \(df_p\) 的秩是恒定的，那么在 \(p\) 的一个足够小的邻域 \(U\) 内，存在适当的全纯坐标系统 \((z_1, z_2, \ldots, z_m)\) 在 \(U\) 上和 \((w_1, w_2, \ldots, w_n)\) 在 \(f(U)\) 上，使得在这些坐标下，\(f\) 的表达式具有简化的线性形式。
+
+需要注意的是，虽然复几何中的常秩定理与微分几何中的相似，但是在复几何中，我们额外要求坐标变换和映射都是全纯的，以保持复流形的结构。
+
+在数学的微分几何与几何分析领域中，currents和differential forms（微分形式）的概念扮演着核心角色。它们之间的关系密切，且各自在理论和应用中有着重要意义。以下是这两个概念的更专业的学术定义，以及它们之间关系的描述。
+
+\subsection{微分形式 (Differential Forms)}
+
+微分形式是微分几何中用来描述流形上的几何和物理性质的基本工具。具体来说，一个\(k\)-微分形式是一个\(k\)-线性交错函数，它将\(k\)个向量作为输入并输出一个标量。数学上，这可以定义为：
+
+- 定义：在一个\(n\)-维光滑流形\(M\)上，一个\(k\)-微分形式\(\omega\)是一个\(C^\infty(M)\)的外代数\( \Lambda^k(T^*M) \)的元素，其中\(T^*M\)表示\(M\)上的余切丛。
+
+微分形式可以通过外微分算子\(d\)进行操作，产生更高阶的微分形式，形成所谓的外微分代数。
+
+\subsection{Currents (流形上的电流)}
+
+\textbf{Currents可以被看作是微分形式的一种广义化，或者说是对偶概念，它们可以理解为流形上的某种分布或测度，允许对微分形式进行积分。}
+
+- 定义：在\(n\)-维光滑流形\(M\)上，一个\(k\)-维current是一个连续线性泛函\(T\)，它作用于紧支撑的\((n-k)\)-微分形式\(\omega\)上，并返回一个实数，即\(T: \Omega_c^{n-k}(M) \rightarrow \mathbb{R}\)，其中\(\Omega_c^{n-k}(M)\)表示所有紧支撑的\((n-k)\)-微分形式的空间。
+
+关系
+
+微分形式和currents之间的关系主要体现在它们是对偶概念。微分形式是多重线性的映射，而currents则作为这些映射的泛函，可以对它们进行积分操作。这种对偶性在几何测度论、微分几何和数学物理等领域中非常重要，因为它允许使用几何和拓扑的方法来研究偏微分方程、最小曲面理论等问题。
+
+参考教材
+
+这些定义和概念的详细讨论可以在多种高等数学和微分几何的教材中找到，如：
+
+- Jeffrey M. Lee的《Manifolds and Differential Geometry》。
+- Loring W. Tu的《An Introduction to Manifolds》。
+
+这些教材提供了微分形式和currents的数学定义，以及这些概念在现代数学和物理中的应用。它们为理解微分几何和几何分析的高级主题提供了坚实的基础。
+
+\begin{theorem}[][Constant rank theorem][thm:constan rank theorem]
+    Let $N$ and $M$ be manifolds of dimensions $n$ and $m$ respectively. Suppose $f: N \rightarrow M$ has constant rank $k$ in a neighborhood of a point $p$ in $N$. Then there are charts $(U, \phi)$ centered at $p$ in $N$ and $(V, \psi)$ centered at $f(p)$ in $M$ such that for $\left(r^1, \ldots, r^n\right)$ in $\phi(U)$,
+    $$
+    \left(\psi \circ f \circ \phi^{-1}\right)\left(r^1, \ldots, r^n\right)=\left(r^1, \ldots, r^k, 0, \ldots, 0\right) .
+    $$
+\end{theorem}
+    \begin{proof}
+Choose a chart $(\bar{U}, \bar{\phi})$ about $p$ in $N$ and $(\bar{V}, \bar{\psi})$ about $f(p)$ in $M$. Then $\bar{\psi} \circ$ $f \circ \bar{\phi}^{-1}$ is a map between open subsets of Euclidean spaces. Because $\bar{\phi}$ and $\bar{\psi}$ are diffeomorphisms, $\bar{\psi} \circ f \circ \bar{\phi}^{-1}$ has the same constant rank $k$ as $f$ in a neighborhood of $\bar{\phi}(p)$ in $\mathbb{R}^n$. By the constant rank theorem for Euclidean spaces (Theorem B.4) there are a diffeomorphism $G$ of a neighborhood of $\bar{\phi}(p)$ in $\mathbb{R}^n$ and a diffeomorphism $F$ of a neighborhood of $(\bar{\psi} \circ f)(p)$ in $\mathbb{R}^m$ such that
+    $$
+    \left(F \circ \bar{\psi} \circ f \circ \bar{\phi}^{-1} \circ G^{-1}\right)\left(r^1, \ldots, r^n\right)=\left(r^1, \ldots, r^k, 0, \ldots, 0\right) .
+    $$
+    
+    Set $\phi=G \circ \bar{\phi}$ and $\psi=F \circ \bar{\psi}$.
+    \end{proof}
+    \begin{proposition}[][区分submersion和immersion][prop:difference between submersion and immersion]
+在微分几何中，\textbf{submersion}（浸没）和\textbf{immersion}（浸入）是描述流形之间的光滑映射（smooth maps）特性的两个基本概念。尽管这两个术语听起来很相似，但它们描述的是不同类型的映射，并且在微分几何和流形理论中有着重要的应用和区别。以下是它们的定义及区别：
+
+\textbf{Immersion (浸入)}
+\begin{itemize}
+    \item \textbf{定义}：如果有一个光滑映射 $f: M \rightarrow N$ 从流形 $M$ 到流形 $N$，且在 $M$ 的每一点 $p$ 上，映射的微分 $df_p: T_pM \rightarrow T_{f(p)}N$ 是单射（injective），则称 $f$ 为一个\textbf{immersion}。
+    \item \textbf{直观理解}：Immersion 允许 $M$ 局部地“嵌入”到 $N$ 中，但不要求 $f(M)$ 是 $N$ 中的一个子流形。这意味着 $f$ 可能会使 $M$ 在 $N$ 中自我相交。
+    \item \textbf{示例}：考虑从 $\mathbb{R}$ 到 $\mathbb{R}^2$ 的映射，它将实数线“浸入”平面中，如螺旋线或“无限符号”形状。
+\end{itemize}
+
+\textbf{Submersion (浸没)}
+\begin{itemize}
+    \item \textbf{定义}：如果有一个光滑映射 $f: M \rightarrow N$ 从流形 $M$ 到流形 $N$，且在 $M$ 的每一点 $p$ 上，映射的微分 $df_p: T_pM \rightarrow T_{f(p)}N$ 是满射（surjective），则称 $f$ 为一个\textbf{submersion}。
+    \item \textbf{直观理解}：Submersion 允许 $M$ 的局部结构在 $N$ 中“展开”。这通常意味着 $M$ 的维数大于或等于 $N$ 的维数，并且 $M$ 在 $N$ 中的每一点局部上都像一个“光滑的纸张”。
+    \item \textbf{示例}：考虑从 $\mathbb{R}^2$ 到 $\mathbb{R}$ 的投影映射，它将平面上的点投影到一条直线上。
+\end{itemize}
+\tcblower
+\textbf{区别}
+\begin{itemize}
+    \item \textbf{维数要求}：Immersion 不对 $M$ 和 $N$ 的维数有特定要求，而 submersion 通常要求 $\dim(M) \geq \dim(N)$。
+    \item \textbf{微分映射的性质}：对于 immersion，微分映射 $df_p$ 需要是单射，而对于 submersion，$df_p$ 需要是满射。
+    \item \textbf{局部结构和全局结构}：Immersion 更多关注于 $M$ 的局部结构如何嵌入到 $N$ 中，可能会导致 $M$ 在 $N$ 中自我相交；而 submersion 则关注于 $M$ 如何在局部上向 $N$ "投影" 或 "展开"。
+    \item \textbf{保秩性}： submersion（浸没映射）是保秩的，在微分几何中，这意味着对于映射 \( f: M \rightarrow N \) 从流形 \( M \) 到流形 \( N \)，在任何点 \( p \in M \) 上，映射的微分 \( df_p: T_pM \rightarrow T_{f(p)}N \) 是一个满射（surjective）。因此，微分 \( df_p \) 的秩（即线性映射的像的维数）在每一点 \( p \) 上等于目标空间 \( N \) 的维数。换句话说，submersion 的秩在整个映射过程中是恒定的，并且等于 \( N \) 的维数。
+
+    保秩的性质确保了从 \( M \) 到 \( N \) 的映射在局部上可以“展平”\( M \)，使得 \( M \) 在 \( N \) 的每一点局部上都类似于 \( N \) 的一个开集。这种性质在许多微分几何的应用中都非常重要，例如在流形的纤维化研究中，submersion 能够确保持良好的局部纤维结构。
+\end{itemize}
+    \end{proposition}
+        
+
+    \section{Poincar\'e型度量}
+    Poincaré型Kähler度量是数学中一个特别的概念，它出现在复几何和微分几何的交叉领域，特别是在研究Kähler流形时。这种度量具有一些特别的性质，使得它们在几何、代数几何以及理论物理中都有重要的应用。在这里，我将概述Poincaré型Kähler度量的一些关键性质：
+
+1. Kähler性质：Poincaré型Kähler度量首先是一个Kähler度量，这意味着它是一个复流形上的黎曼度量，且满足Kähler条件。具体来说，设$(M, g)$是一个复流形，其中$g$是流形上的黎曼度量，如果存在一个与$g$相容的复结构$J$（即$J^2 = -1$），并且满足$g(JX, JY) = g(X, Y)$对所有向量场$X, Y$成立，且$J$是协变恒定的（$\nabla J = 0$，其中$\nabla$是$g$的列维—奇维塔联络），那么$g$就是一个Kähler度量。
+
+2. Poincaré性质：Poincaré型度量还具有所谓的Poincaré性质，这意味着它在无穷远处的行为类似于双曲空间。这种度量通常定义在具有边界的复流形上，而在靠近边界的地方，度量以一种特定的方式趋向于无穷大，类似于Poincaré模型中双曲空间的行为。这一性质使得Poincaré型Kähler度量在研究流形的边界行为和模空间理论中非常有用。
+
+3. 完备性和非紧性：由于Poincaré型度量在边界附近的行为，这样的度量往往是完备的，但流形本身是非紧的。完备性意味着在这种度量下，所有的Cauchy序列都收敛，这是分析和几何研究中的一个重要性质。然而，非紧性意味着流形可能包含"无穷远处"的点，为研究提供了额外的复杂性和丰富性。
+
+4. 应用：Poincaré型Kähler度量在数学的许多分支中都有应用，包括但不限于代数几何中的模空间理论，特别是在研究紧化和去奇异化问题时；在理论物理中，特别是在弦理论和共形场论中，它们提供了研究空间的有力工具。
+
+Poincaré型Kähler度量的研究是高度专业化的，需要深厚的数学背景，特别是在复几何、微分几何和代数几何等领域。
+
+\subsection{如何判断？}
+判断一个给定的Kähler度量是否为Poincaré型主要依据它是否满足Poincaré型度量的特征性质，主要集中在其在流形边界附近的行为以及其对应的几何结构上。这些特征性质主要包括：
+
+1. 边界的行为：一个Poincaré型Kähler度量在流形的边界附近表现出特定的增长行为。具体来说，这种度量在靠近边界的地方，其度量张量的分量应当表现出一种特定速率的发散行为，这与双曲空间中的情形相似。这通常意味着度量在边界上是不受限的，但却能保证流形的完备性。
+
+2. 度量的完备性：Poincaré型Kähler度量必须是完备的，这意味着在这种度量下，流形上的任意Cauchy序列都有极限点。这是因为Poincaré型度量具有一种特殊的几何结构，使得流形在无穷远处表现得像是封闭的，尽管流形本身可能是非紧的。
+
+3. Kähler条件：虽然所有Poincaré型度量都是Kähler度量，但不是所有Kähler度量都是Poincaré型的。因此，给定度量首先需要满足Kähler条件，即它是一个复流形上的黎曼度量，且与一个复结构相容，满足特定的闭性条件（Kähler形式是闭的）。
+
+4. 特定的曲率行为：在某些情况下，Poincaré型Kähler度量可能会要求度量具有特定类型的曲率行为，如负曲率或在边界附近具有某种特定的曲率趋势。这些条件可以根据具体情况和研究的需求而变化。
+
+在实际操作中，判断一个给定的Kähler度量是否为Poincaré型通常需要深入分析其数学性质，包括计算其度量张量的具体表达式，检查其在边界附近的行为，以及研究其曲率等几何量。这通常需要专业的数学知识和技巧。在某些情况下，可以通过研究流形的边界条件和拓扑结构来间接推断度量的Poincaré型特性。
+
+确定一个给定的Kähler度量是否为Poincaré型，通常需要结合多种方法，包括直接的几何分析（比如度量的具体形式和边界行为）、拓扑结构考察，以及曲率等几何不变量的研究。虽然没有一个单一的“公式”能够适用于所有情况，但是以下几种方法是常见的检验手段：
+
+1. 度量的边界行为：首先，最直接的方法是检查度量在流形边界附近的行为。Poincaré型度量特有的是在边界附近具有类似于双曲空间的性质，即度量函数会在边界处趋向于无穷大，这种特性可以通过直接计算度量张量的分量并分析其在边界附近的行为来验证。
+
+2. 完备性：Poincaré型度量必须是完备的。可以通过检验给定度量下的任何Cauchy序列是否都收敛来间接验证这一点，尽管这在实际操作中可能相对困难。
+
+3. 曲率分析：虽然检查Ricci曲率的特征值是否全部非负（或具有某种特定的符号模式）可以提供关于度量性质的重要线索，但这并不是判断Poincaré型度量的决定性条件。Poincaré型度量通常要求在边界附近具有特定的曲率行为，这可能意味着度量具有负曲率或其他特定类型的曲率性质。例如，某些情况下可能要求度量的全纯截面曲率（holomorphic sectional curvature）在边界附近趋于负无穷大，这与Ricci曲率的符号有关，但需要更详细的分析。
+
+4. 复结构和Kähler形式的闭性：由于Poincaré型度量首先是Kähler度量，因此需要验证给定度量是否与一个复结构相容，以及其Kähler形式是否是闭的。这可以通过计算并分析度量与复结构的相容性以及Kähler形式的外微分来完成。
+
+总之，确定一个Kähler度量是否为Poincaré型需要综合考虑度量的具体表达、边界行为、完备性以及曲率等性质。在许多情况下，这需要深入的数学分析和复几何的专业知识。
+
+\subsection{如何构造？}
+在弱1完备Kähler流形上构造一个完备化Kähler度量的问题可以通过调整给定的Kähler度量$\omega$和利用plurisubharmonic exhaustion函数$f$来解决。这一过程涉及到数学分析和复几何的高级概念，下面是一个基本的构造思路：
+\paragraph{背景知识}
+\begin{itemize}
+    \item \textbf{Kähler流形}: 一个复流形，其上存在一个Kähler度量，即一个光滑的Hermitian度量，其相应的Kähler形式是闭的.
+    \item \textbf{Plurisubharmonic (PSH) 函数}: 在复流形上，一个光滑函数$f$如果满足$\color{purple}\sqrt{-1}\partial\bar{\partial}f \geq 0$（在任何坐标下），则称$f$为plurisubharmonic函数。
+    \item \textbf{弱1完备}: 如果一个复流形上存在一个PSH exhaustion函数，即这样一个光滑函数$f$，使得对于任何常数$c$，集合$\{z \in M : f(z) < c\}$是紧的，则称这个复流形是弱1完备的。
+\end{itemize}
+\paragraph{构造思路}
+\begin{enumerate}
+    \item 给定的Kähler度量：假设我们已经有了一个Kähler度量$\omega$和一个PSH exhaustion函数$f$。$\omega$的Kähler形式可以表示为$\omega = \sqrt{-1}g_{i\bar{j}}dz^i \wedge d\bar{z}^j$。
+    \item 调整Kähler度量：目标是构造一个新的Kähler度量$\tilde{\omega}$，它是完备的，并保留$\omega$的Kähler性质。\textbf{一种方法是通过调整$\omega$与$f$的关系来实现。具体而言，可以考虑利用$f$构造一个新的Kähler形式，比如$\tilde{\omega} = \omega + \sqrt{-1}\partial\bar{\partial}\phi(f)$，其中$\phi$是一个适当选择的光滑函数，使得$\phi(f)$增强了原始度量的性质以达到完备性。}
+    \item 确保完备性：选择$\phi$的关键在于确保新度量$\tilde{\omega}$是完备的。这通常意味着要使得在无穷远处，新度量的体积形式趋于无穷大。一个典型的选择是使$\phi$是一个关于$f$的快速增长函数，例如$\phi(f) = e^f$或更高阶的增长率。
+    \item 验证Kähler性：构造完$\tilde{\omega}$后，需要验证它确实是一个Kähler形式，即$\tilde{\omega}$是闭的（即$d\tilde{\omega} = 0$）。这一步通常利用$\omega$和$f$的性质，以及$\phi$的选取来保证。
+    \item 技术细节：实际的构造中，需要仔细选择$\phi$以确保$\tilde{\omega}$不仅是完备的，还要满足其他可能的几何或分析性质。此外，可能还需要考虑如何具体计算$\tilde{\omega}$以及如何处理边界或奇点问题。
+\end{enumerate}
+
+\paragraph{结论}
+构造过程涉及精确控制$\phi(f)$以调整原始Kähler度量$\omega$，确保新度量$\tilde{\omega}$在整个流形上是完备的，同时保留Kähler性质。这个过程需要对PSH函数、Kähler几何以及复分析有深入的理解。对于特定的$f$和$\omega$，具体构造可能会非常复杂，需要具体情况具体分析。
+
+是的，这种表示方式是合理的，在给定的上下文中，将 $i\partial\bar{\partial} e^\psi$ 表示为 $i\sum_j \lambda_j \eta_j\wedge \bar{\eta}_j$，这里的 $\lambda_j$ 可以被视为对应于基 $\{\eta_j\wedge \bar{\eta}_j\}$ 的特征值，是一种有效的方法来表述 $i\partial\bar{\partial} e^\psi$ 在Kähler度量 $\omega = i \sum_j \eta_j \wedge \bar{\eta}_j$ 下的展开。
+
+这种表示法反映了 $i\partial\bar{\partial} e^\psi$ 作为一个(1,1)-形式，可以通过Kähler度量的基底进行展开，并且每个基底元素 $\eta_j\wedge \bar{\eta}_j$ 的系数（即 $\lambda_j$）可以被理解为该形式在这个特定方向上的“权重”或“强度”。在这种情况下，$\lambda_j$ 可以被理解为表示 $e^\psi$ 函数的二阶偏导数对Kähler度量贡献的大小。
+
+具体地，$i\partial\bar{\partial} e^\psi$ 描述的是函数 $e^\psi$ 的凸性质在复流形上的体现，而将其按照Kähler度量 $\omega$ 的基底展开，则提供了一种量化这种凸性在各个特定方向上的方法。这样的表示方式不仅在技术上是可行的，而且在理论分析中非常有用，特别是当你需要理解和比较不同点处的几何性质或者分析几何对象的变化时。
+
+此外，从几何的角度来看，这种展开还暗示了 $i\partial\bar{\partial} e^\psi$ 的几何和拓扑性质可以通过分析这些特征值 $\lambda_j$ 来深入理解，因为这些特征值描述了在各个方向上的曲率或凸性。特别是在研究复几何和Kähler几何的上下文中，这样的分析方法是非常有力的。
+
+
+
+
+
+
+\section{Computation}
+
+For any differential form $\eta$, $e(\eta)$ denotes the multiplication operator $u\mapsto \eta\wedge u$ acting on the set of differential forms on $X$. And we have
+\begin{enumerate}
+    \item $\bar\partial^*_\varphi=-\bar*(\bar\partial-e(\bar\partial\varphi))\bar*$ and $\partial^*_\varphi=-\bar*(\partial-e(\partial\varphi))\bar*$,
+    \item $\partial_\varphi=\partial-e(\partial\varphi)$,
+    \item \emph{Formula I:} 
+    \[\begin{aligned}
+        \relax[e(\eta),\Lambda]&=ie(\bar\eta)^*,\\ 
+        [e(\bar\eta)] &=-ie(\eta)^*,
+    \end{aligned}\]
+    if $\eta$ is of type $(1,0)$.
+    \item \emph{Formula II:} If $\dd s^2$ is K\"alerian, 
+    \[
+        \begin{aligned}
+            \relax[\bar\partial,\Lambda] &=i\bar\partial^*,\\ 
+            [\partial-e(\partial\varphi),\Lambda] &=-i\bar\partial^*_\varphi,\\ 
+            \bar\partial\bar\partial^*_\varphi+\bar\partial^*_\varphi\bar\partial-(\partial_\varphi\partial^*+\partial^*\partial_\varphi) &=[ie(\partial\bar\partial\varphi),\Lambda].
+        \end{aligned}
+    \]
+\end{enumerate}
+
+Then we have 
+\begin{align*}
+    \bar\partial e(\eta) \bar\partial^*_\varphi+\bar\partial^*_\varphi e(\eta)\bar\partial-\partial_\varphi e(\eta) \partial^*-\partial^* e(\eta)\partial_\varphi=e(\eta) [ie(\partial\bar\partial\varphi),\Lambda]+e(\bar\partial\eta)\bar\partial^*_\varphi-e(\bar\partial\eta)^* \bar\partial-e(\partial \eta)\partial^*+e(\partial\eta)^*\partial_\varphi.
+\end{align*}
+    
+The computaion is the following. 
+\begin{align*}
+    \bar\partial e(\eta) \bar\partial^*_\varphi+\bar\partial^*_\varphi e(\eta)\bar\partial-\partial_\varphi e(\eta) \partial^*-\partial^* e(\eta)\partial_\varphi 
+    &=\\
+\end{align*}
+    
+Cauchy-Schwarz 不等式是一个强大的工具，可以应用于各种数学背景，包括积分。我们可以通过 Cauchy-Schwarz 不等式在积分形式上来展示如何作用在 $\int_X f(x)g(x) \, dx$ 上。
+
+Cauchy-Schwarz 不等式在积分形式中的表达如下：
+
+对于可积函数 $f(x)$ 和 $g(x)$，在测度空间 $(X, \mu)$ 上，我们有：
+
+$$
+\left| \int_X f(x) g(x) \, d\mu(x) \right| \leq \left( \int_X |f(x)|^2 \, d\mu(x) \right)^{1/2} \left( \int_X |g(x)|^2 \, d\mu(x) \right)^{1/2}
+$$
+
+在这个不等式中：
+- $f(x)$ 和 $g(x)$ 是定义在测度空间 $X$ 上的可积函数。
+- $\mu$ 是该测度空间上的测度（例如勒贝格测度）。
+
+证明该不等式的步骤如下：
+
+1. 首先，定义函数 $h(x) = f(x) - \lambda g(x)$，其中 $\lambda$ 是一个待确定的常数。
+
+2. 计算 $h(x)$ 的 $L^2$ 范数的平方：
+   $$
+   \int_X |h(x)|^2 \, d\mu(x) = \int_X |f(x) - \lambda g(x)|^2 \, d\mu(x).
+   $$
+
+3. 展开这个平方：
+   $$
+   \int_X |f(x) - \lambda g(x)|^2 \, d\mu(x) = \int_X \left( |f(x)|^2 - 2 \lambda f(x) g(x) + \lambda^2 |g(x)|^2 \right) \, d\mu(x).
+   $$
+
+4. 将积分拆分：
+   $$
+   \int_X |f(x)|^2 \, d\mu(x) - 2 \lambda \int_X f(x) g(x) \, d\mu(x) + \lambda^2 \int_X |g(x)|^2 \, d\mu(x).
+   $$
+
+5. 由于 $h(x)$ 的 $L^2$ 范数是非负的，我们有：
+   $$
+   \int_X |f(x)|^2 \, d\mu(x) - 2 \lambda \int_X f(x) g(x) \, d\mu(x) + \lambda^2 \int_X |g(x)|^2 \, d\mu(x) \geq 0.
+   $$
+
+6. 这是关于 $\lambda$ 的二次不等式。为了使其对所有 $\lambda$ 都成立，判别式必须小于等于零：
+   $$
+   (2 \int_X f(x) g(x) \, d\mu(x))^2 - 4 \left( \int_X |f(x)|^2 \, d\mu(x) \right) \left( \int_X |g(x)|^2 \, d\mu(x) \right) \leq 0.
+   $$
+
+7. 简化这个不等式得到：
+   $$
+   \left( \int_X f(x) g(x) \, d\mu(x) \right)^2 \leq \left( \int_X |f(x)|^2 \, d\mu(x) \right) \left( \int_X |g(x)|^2 \, d\mu(x) \right).
+   $$
+
+8. 取平方根得到最终结果：
+   $$
+   \left| \int_X f(x) g(x) \, d\mu(x) \right| \leq \left( \int_X |f(x)|^2 \, d\mu(x) \right)^{1/2} \left( \int_X |g(x)|^2 \, d\mu(x) \right)^{1/2}.
+   $$
+
+这个不等式表明了积分形式的 Cauchy-Schwarz 不等式。它告诉我们，如果两个函数 $f(x)$ 和 $g(x)$ 的平方积分是有限的，那么它们的乘积的积分绝对值也受到它们各自平方积分的控制。
+
+
+\texttt{test mono \textit{itshape} \textbf{bold font} \textbf{\textit{bolditalic font}} regular font}
+
+
+\begin{theorem}[][Akizuki-Kodaira-Nakano Vanishing Theorem][thm:AKN-thm]
+    If $F$ is a positive line bundle on a compact complex manifold $X$, then
+    $$
+    H^{p, q}(X, F)=H^q\left(X, \Omega_X^p \otimes F\right)=0 \quad \text { for } p+q \geqslant n+1 .
+    $$
+\end{theorem}
+    
+
+
+More generally, if $F$ is a Griffiths positive (or ample) vector bundle of rank $r \geqslant 1$, Le Potier [LP75] proved that $H^{p, q}(X, F)=0$ for $p+q \geqslant n+r$. The proof is not a direct consequence of the Bochner technique. A rather easy proof has been found by M. Schneider [Sch74], using the Leray spectral sequence associated to the projectivized bundle projection $\mathbb{P}(F) \rightarrow X$, using the following more or less standard notation.
+
+
+\begin{proposition}[][Notation.]
+    If $V$ is a complex vector space (resp. complex vector bundle), we let $P(V)$ be the projective space (resp. bundle) of lines of $V$, and $\mathbb{P}(V)=P\left(V^*\right)$ be the projective space (resp. bundle) of hyperplanes of $V$.
+\end{proposition}
+    
+% ---------------------------------------------------------------------------- %
+
+\begin{problem}[][问题1][prob:1]
+    已知有这样的定理：
+     Let $\pi: X \rightarrow S$ be a morphism between schemes. An $\mathbb{R}$-Cartier divisor $D$ on a scheme $X$ is said to be $k$-ample if $D$ is a finite $\mathbb{R}_{>0}$-linear combination of $k$-ample Cartier divisors on $X$. We simply say that $D$ is ample when $S$ is a point.
+
+    ，那么对于在weakly 1-complete kahler manifold上的$\mathbb{R}$-line bundle的ampleness如何定义？是否存在这样的定义？如果可能，请给出一些书籍参考，上面的定理来自mmp理论的著作.
+\end{problem}
+    
+
+
+% ---------------------------------------------------------------------------- %
+
+\begin{solution}
+     
+对于弱 $1$-完备的 Kähler 流形 $X$ 上的 $\mathbb{R}$-线丛（或者等价地，$\mathbb{R}$-Cartier 除子）的增广性（ampleness）定义，确实可以借鉴代数几何中的相关概念，尽管在解析和几何背景下需要一些调整。以下是更具体的讨论：
+
+
+ \textbf{1. 增广性在代数几何中的定义与解析几何背景的关联}
+
+代数几何中，$\mathbb{R}$-Cartier 除子 $D$ 被称为 $k$-增广的（$k$-ample），如果它是有限个 $k$-增广 Cartier 除子的正实数线性组合（如定义所示）。当 $k = \dim X$ 时，这是通常的增广性定义。
+
+在解析几何背景下，线丛的增广性可以用 $D$ 所对应的 $c_1(L)$ 类的几何性质刻画。例如，Kähler 流形上的 $\mathbb{R}$-线丛 $L$ 通常通过其第一陈类 $c_1(L) \in H^{1,1}(X, \mathbb{R})$ 来表示增广性。
+
+ \textbf{关联性：  }
+弱 $1$-完备的 Kähler 流形通常是非紧流形。增广性可以通过适当的严格正性条件来定义，与 $L$ 的 $c_1(L)$ 所代表的 $ (1,1) $-类的正性紧密相关。需要强调的是，由于弱 $1$-完备性不能保证紧致性，定义增广性时需要在局部或整体上仔细分析流形的几何性质。
+
+
+ \textbf{2. 增广性的定义在弱 $1$-完备 Kähler 流形上的扩展}
+
+在弱 $1$-完备 Kähler 流形 $X$ 上，我们可以定义 $\mathbb{R}$-线丛的增广性，方式如下：
+\begin{itemize}
+    \item  一个 $\mathbb{R}$-线丛 $L$ 被称为  \textbf{增广的（ample）}，如果存在一个 Hermitian 结构 $\phi$，使得 $c_1(L)$ 由某个严格正的闭 $(1,1)$-形式 $ \omega $ 表示。
+    \item 对于 $k$-增广（$k$-ample）的定义，可以采用类似代数几何的方式：如果 $L$ 的第一陈类 $c_1(L)$ 可以表示为有限多个 $k$-增广的 Cartier 除子或对应正的 $(1,1)$-形式的正实线性组合，则称其为 $k$-增广。
+\end{itemize}
+
+ \textbf{3. 是否存在这样的定义？}
+
+在弱 $1$-完备的 Kähler 流形上，$\mathbb{R}$-线丛的增广性可以通过其陈类在 $H^{1,1}(X, \mathbb{R})$ 的几何表示来定义。这种定义的关键在于：
+
+- 利用弱 $1$-完备性构造合适的 Kähler 测地或函数。
+- 保证增广性条件在非紧流形的背景下仍然成立。
+
+不过，在这一框架中应用时，可能需要额外约束，例如对流形的完备性进行局部加强。
+
+
+ \textbf{4. 参考文献}
+
+上述定义的思想可以从以下参考文献中找到相关背景：
+
+1. 关于 MMP 的来源：
+   - F. Ambro, A. Fujino, S. Mori, et al. 的相关文献，尤其是：
+     -  \textit{"Introduction to the Theory of MMP"}，见 Mori \& Matsuki 的书籍或教材。
+     -  \textit{"On abundance theorems"} by Fujino.
+   - 这些书中对 $k$-ample 的定义在代数几何背景下进行了详细阐述。
+
+2. 增广性的解析几何观点：
+   - Demailly 的经典教材，例如：
+     -  \textit{"Complex Analytic and Differential Geometry"}，可作为解析背景下的基本参考。
+   - Voisin 的  \textit{"Hodge Theory and Complex Algebraic Geometry"}，也讨论了增广性和 Kähler 流形的相关几何特性。
+
+3. 关于弱 $1$-完备流形的性质：
+   - H. Grauert, R. Remmert 的文献对非紧解析流形的完备性进行了讨论。
+   - K. Ohsawa 的  \textit{"Analysis of Several Complex Variables"} 也可能对非紧 Kähler 流形的几何分析有帮助。
+
+\end{solution}
+    
+
+
+% ---------------------------------------------------------------------------- %
+
+\begin{enumerate}
+    \item \textbf{Definition (Ampleness of $\mathbb{R}$-line bundles):}  
+    Let $X$ be a weakly $1$-complete Kähler manifold, and let $L$ be an $\mathbb{R}$-line bundle on $X$, represented by a real $(1,1)$-cohomology class $c_1(L) \in H^{1,1}(X, \mathbb{R})$. The $\mathbb{R}$-line bundle $L$ is said to be \emph{ample} if there exists a smooth, strictly plurisubharmonic potential $\phi: X \to \mathbb{R}$ and a smooth Kähler form $\omega$ such that:
+    \[
+    c_1(L) = [\omega] \quad \text{and} \quad \omega > 0 \text{ on } X.
+    \]
+    In other words, $L$ is ample if its first Chern class can be represented by a strictly positive $(1,1)$-form compatible with the weakly $1$-complete structure of $X$. This ampleness condition ensures that $L$ satisfies positivity conditions analogous to those for ample divisors in algebraic geometry.
+
+    \item \textbf{Definition ($k$-Ampleness of $\mathbb{R}$-line bundles):}  
+    Let $X$ and $L$ be as above. The $\mathbb{R}$-line bundle $L$ is said to be \emph{$k$-ample} if $c_1(L)$ can be expressed as a finite $\mathbb{R}_{>0}$-linear combination of the first Chern classes of $\mathbb{Q}$-Cartier divisors $D_1, \dots, D_r$ such that each $D_i$ is $k$-ample in the following sense:
+
+    For every coherent sheaf $\mathcal{F}$ on $X$, there exists an integer $m_0 > 0$ such that for all $m \geq m_0$, the higher cohomology groups $H^i(X, \mathcal{F} \otimes \mathcal{O}_X(mD_i)) = 0$ for all $i > k$.
+
+    Alternatively, in analytic terms, $L$ is $k$-ample if $c_1(L)$ can be represented by a $(1,1)$-form $\omega_k$ such that for any proper analytic subset $Z \subseteq X$ of codimension $\geq k+1$, $\omega_k|_Z > 0$.
+
+    \item \textbf{Discussion on Weakly $1$-Complete Kähler Manifolds}  
+    A weakly $1$-complete Kähler manifold $X$ allows for the definition of ampleness due to its weakly $1$-complete exhaustion function $\psi: X \to \mathbb{R}$, which is plurisubharmonic. While $X$ is not necessarily compact, the ampleness and $k$-ampleness of an $\mathbb{R}$-line bundle can be defined using local positivity conditions of $c_1(L)$, provided $c_1(L)$ is compatible with the geometry induced by $\psi$.
+
+    This definition aligns with the analytic perspective used in Kähler geometry while extending the algebraic notion of ampleness to the non-compact setting.
+
+\end{enumerate}
+
+
+\textbf{References}
+\begin{enumerate}
+    \item Demailly, J.-P. \emph{Complex Analytic and Differential Geometry}. Available online.  
+    \item Fujino, O. \emph{Foundation of the Minimal Model Program}.  
+    \item Voisin, C. \emph{Hodge Theory and Complex Algebraic Geometry I, II}.  
+    \item Grauert, H., and Remmert, R. \emph{Theory of Stein Spaces}.  
+    \item Ohsawa, T. \emph{Analysis of Several Complex Variables}.
+\end{enumerate}
+
+This definition bridges the analytic framework of Kähler geometry with the algebraic concept of ampleness in the context of the Minimal Model Program (MMP).
+
+
+
+\begin{problem}[][问题2][prob:2]
+    非射影流形上，可能存在very ample的对象吗？
+\end{problem}
+    
+\begin{solution}
+     
+在非射影流形上，**不存在传统意义上的 very ample 线性系统或对象**。这是因为 very ample 的定义本质上依赖于嵌入到射影空间的能力，而非射影流形无法通过任何线性系统或线性流形嵌入到射影空间中。以下是更详细的分析：
+
+1.  \textbf{Very ample 的定义 } 
+一个线性系统（或者更一般的一个 Cartier divisor $D$）被称为 very ample，意味着 $D$ 确定了一个嵌入 $\phi_{|D|}: X \to \mathbb{P}^N$，其中 $X$ 是一个射影多样体。换句话说：
+
+- $D$ 的全局截面生成了一个足够大的空间，能够给出 $X$ 到 $\mathbb{P}^N$ 的嵌入；
+
+- $X$ 必须是一致的代数几何对象，特别是射影性。
+
+2.  \textbf{非射影流形的情形} 
+非射影流形（如某些 Kähler 流形或一般复流形）没有足够的代数结构来支持射影嵌入，因此不存在非常丰富的线性系统，也就不能定义非常 ample 的对象。
+
+3.  \textbf{替代概念}  
+虽然 very ample 本身与非射影流形无关，但我们可以讨论与其类似的几何性质，如：
+
+-  \textbf{伪有效 (pseudo-effective) line bundles}: 定义弱极限意义上的正性；
+
+-  \textbf{广义丰富性 (bigness)}：是否有足够多的全局截面覆盖流形；
+
+-  \textbf{奇异极值流形 (quasi-projective embeddings)}: 在特定条件下，寻找嵌入可能的部分投影。
+
+结论是，在非射影流形上，严格意义上的 very ample 对象并不存在，但可以通过推广的正性和丰富性概念研究类似问题。
+\end{solution}
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% {\normalem
+% \printbibliography[
+% heading=bibintoc,
+% title={参考文献}
+% ]
+% \printindex
+% \thispagestyle{empty}}
+%-------------------封底 ---------------%
+\bottomimage{inner_pics/ivy-ge998908f8_1280.jpg}
+\ISBNcode{\EANisbn[ISBN=978-80-7340-097-2]} %
+\summary{封底信息.}
+\makebottomcover
+\end{document} 
