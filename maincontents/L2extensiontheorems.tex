@@ -1,0 +1,3011 @@
+\chapter{\texorpdfstring{$L^2$}{}-extension theorems}
+\section{\texorpdfstring{$L^2$}{}-extension theorems with optimal constant}
+
+\subsection{Some notations}
+\newcommand{\tmop}[1]{\operatorname{#1}}
+\NewTblrTheme{fancy}{
+  \SetTblrStyle{firsthead}{font=\bfseries}
+  \SetTblrStyle{firstfoot}{fg=purple2}
+  \SetTblrStyle{middlefoot}{\itshape}
+  \SetTblrStyle{caption-tag}{magenta2}
+}
+\begin{center}
+\begin{tblr}[long,theme = fancy,
+    caption = {Terminologies Interpretation},
+    entry = {Interpretation},
+    label = {tblr:Terminologies Interpretation 1},
+    % note{a} = {第一个表注。},
+    % note{$\dag$} = {第二个长长长长长长长的表注。},
+    %   remark{Attention!} = {For any \textit{fine sheaf} $\sS$, one has $H^q(X,\sS)=0$ for $q\geqslant 1$.},
+    % remark{来源} = {自力更生，自力更生，自力更生。},
+    ]
+    {
+    colspec = {X|[dashed]X}, % 这是本来传入 tblr 的参数
+    column{1}= {.22\linewidth,c},column{2}= {.73\linewidth}, rows = {m},
+    width = \linewidth,
+    row{odd} = {},
+    % col{odd} = {gray9},
+    row{1} = {1.3em,bg=cyan2,fg=white,font=\large\bfseries\sffamily},rowhead = 1, rowfoot = 1,
+    row{even} = {brown9!60}, row{Z} = {bg=gray9,fg=red2},
+    hline{1,2} = {0pt},
+    hline{2,Y} = {dashed},
+    hline{3-X} = {dashed,cyan2},
+}
+\textbf{Terminologies} & \textbf{Interpretations}\\ 
+$M$ & complex $n$-dimensional manifold \\
+  $S$ & a closed complex subvariety of $M$ \\ 
+  $S_{reg}$ & the regular part of $S$ . 在复流形 $M$ 上，如果 $S$ 是 $n$ 维复子代数簇，$S$ 的 regular part（正则部分）指的是 $S$ 的一个开子集，其中 $S$ 的正则函数（regular functions）定义良好且全纯。
+
+  更具体地说，如果 $U$ 是 $M$ 上的一个开集，$S \cap U$ 是 $U$ 上的闭复子代数簇，而 $S_{\text{reg}} \cap U$ 是 $S \cap U$ 中所有正则函数定义的开子集，那么 $S_{\text{reg}} \cap U$ 就是 $S \cap U$ 的正则部分。
+  
+  正则函数是在流形上定义的光滑函数的推广，但在复流形上，我们考虑的是全纯函数。正则部分是指在给定的开集上，$S$ 的子代数簇上的全纯函数的集合。这些函数在子代数簇上定义良好，没有奇点，从而构成了正则部分。
+  
+  正则部分的概念在复代数几何中很有用，特别是当我们研究代数簇的结构时。正则部分提供了一种更平滑、更良好定义的子代数簇的方式。 \\ 
+  $\dd V_M$ & a contionuous volume form on $M$\\  
+$\#_A (S)$   & the set of such a class of the upper-semi-continuous (polar) function $\Psi\colon M\to [-\infty,A) , A\in (-\infty,+\infty]$ such that 
+
+\begin{enumerate}
+    \item $\Psi^{-1}(-\infty)\supset S$ and $\Psi^{-1}(-\infty)$  is a closed subset of $M$;
+    \item  if $S$ is $l$-dimensional around a point $x\in S_{reg}$, there exists a local coordinate $(z_1,\ldots,z_n)$ on a neighborhood $U$ of $x$ such that $z_{l+1}=\cdots=z_n=0$ on $S\cap U$ and      \[\sup_{U\backslash S}\abs{\Psi(z)-(n-l)\log \sum_{l+1}^n \abs{z_j}^2}<+\infty.\]
+\end{enumerate}\\
+$\Delta_{A,h,\delta}(S)$ & the subset of functions $\Psi$ in
+$\#_{A}(S)$ which satisfies that both $he^{-\Psi}$ and
+$he^{-(1+\delta)\Psi}$ are semi-positive in the sense of Nakano on
+$M\setminus (X\cup S)$.\\
+
+$\Delta_{A}(S)$ & the subset of plurisubharmonic functions
+$\Psi$ in $\#_{A}(S)$\\
+\itbf{Terminologies} & \itbf{Interpretations}\\ 
+\end{tblr}
+\end{center}
+
+\begin{remark}
+在复几何中，$K_M \otimes E$ 上的连续截面 $u$ 可以理解为 $K_M \otimes E$ 上取值的连续函数 $u$。
+
+具体而言，$K_M$ 是主束 $M$ 上的规范线丛，$E$ 是另一个向量丛。$K_M \otimes E$ 表示它们的张量积，它是一个新的向量丛。连续截面 $u$ 是指在 $M$ 上的连续选择，其中每个选择都对应于 $K_M \otimes E$ 上的一个向量。
+
+因此，$u$ 是一个从 $M$ 到 $K_M \otimes E$ 的连续映射，其取值是 $K_M \otimes E$ 上的向量。你可以将其理解为 $u: M \rightarrow K_M \otimes E$，其中 $u(p)$ 是 $K_M \otimes E$ 上 $p\in M$ 处的截面值。
+\end{remark}
+
+For each $\Psi\in\#_{A}(S)$, one can associate a positive measure
+$dV_{M}[\Psi]$ on $S_{reg}$ as the minimum element of the partially
+ordered set of positive measures $d\mu$ satisfying
+
+$$\int_{S_{l}}fd\mu\geq\limsup_{t\to\infty}\frac{2(n-l)}
+{\sigma_{2n-2l-1}}\int_{M}fe^{-\Psi}\mathbb{I}_{\{-1-t<\Psi<-t\}}dV_{M}$$
+for any nonnegative continuous function $f$ with $\supp
+f\subset\subset M$, where $\mathbb{I}_{\{-1-t<\Psi<-t\}}$ is the
+characteristic function of the set $\{-1-t<\Psi<-t\}$. Here denote
+by $S_{l}$ the $l$-dimensional component of $S_{reg}$, denote by
+$\sigma_{m}$ the volume of the unit sphere in $\mathbb{R}^{m+1}$.
+
+Let $\omega$ be a K\"{a}hler metric on $M\setminus (X\cup S)$, where
+$X$ is a closed subset of $M$ such that $S_{sing}\subset X$
+($S_{sing}$ is the singular part of $S$).
+
+We can define measure $dV_{\omega}[\Psi]$ on $S\setminus X$ as the
+minimum element of the partially ordered set of positive measures
+$d\mu'$ satisfying
+$$\int_{S_{l}}fd\mu'\geq\limsup_{t\to\infty}\frac{2(n-l)}
+{\sigma_{2n-2l-1}}\int_{M\setminus (X\cup S)}fe^{-\Psi}\mathbb{I}_{\{-1-t<\Psi<-t\}}dV_{\omega}$$
+for any nonnegative continuous function $f$ with
+$\supp (f)\subset\subset M\setminus X$
+(As $$\supp(\mathbb{I}_{\{-1-t<\Psi<-t\}})\cap \supp(f)\subset\subset M\setminus (X\cup S),$$
+right hand side of the above inequality is well-defined).
+
+Let $u$ be a continuous section of $K_{M}\otimes E$, where $E$ is a holomorphic vector bundle
+equipped with a continuous metric $h$ on $M$.
+
+We define
+$$|u|^{2}_{h}|_{V}:=\frac{c_{n}h(e,e)v\wedge\bar{v}}{dV_{M}},$$
+and
+$$|u|^{2}_{h,\omega}|_{V}:=\frac{c_{n}h(e,e)v\wedge\bar{v}}{dV_{\omega}},$$
+where $u|_{V}=v\otimes e$ for an open set $V\subset M\setminus (X\cup S)$, $v$ is a continuous section of
+$K_{M}|_{V}$ and $e$ is a continuous
+section of $E|_{V}$ (especially, we define
+$$|u|^{2}|_{V}:=\frac{c_{n}u\wedge\bar{u}}{dV_{M}},$$
+when $u$ is a continuous section of $K_{M}$). It is clear that
+$|u|^{2}_{h}$ is independent of the choice of $V$.
+
+The following argument shows a relationship between
+$dV_{\omega}[\Psi]$ and $dV_{M}[\Psi]$ (resp. $dV_{\omega}$ and
+$dV_{M}$), precisely
+\begin{equation}
+\label{equ:9.1}
+\int_{M\setminus(X\cup S)}f|u|^{2}_{h,\omega}dV_{\omega}[\Psi]
+=\int_{M\setminus(X\cup S)}f|u|^{2}_{h}dV_{M}[\Psi],
+\end{equation}
+
+\begin{equation}
+\label{equ:9.2}
+(resp.
+\int_{M\setminus(X\cup S)}f|u|^{2}_{h,\omega}dV_{\omega}
+=\int_{M\setminus(X\cup S)}f|u|^{2}_{h}dV_{M})
+\end{equation}
+where $f$ is a continuous function with compact support on $M\setminus X$.
+
+
+Given $\delta>0$, let
+\begin{enumerate}
+  \item \itbf{Positivity:} $c_{A}(t)$ be a \textit{positive} function on
+$(-A,+\infty)$ $(A\in(-\infty,+\infty))$
+\item \itbf{smoothness:} $c_{A}(t)\in C^{\infty}((-A,+\infty))$
+\item \itbf{Integrablity:} $\int_{-A}^{\infty}c_{A}(t)e^{-t}dt<\infty$
+\item \itbf{Inequality:} \begin{equation}
+\label{equ:c_A_delta}
+\begin{split}
+&\br{\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{t}c_{A}(t_{1})e^{-t_{1}}dt_{1}}^{2}>\\&c_{A}(t)e^{-t}
+\br{\int_{-A}^{t}\br{\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{t_{2}}c_{A}(t_{1})e^{-t_{1}}dt_{1}}
+dt_{2}+\frac{1}{\delta^{2}}c_{A}(-A)e^{A}},
+\end{split}
+\end{equation}
+for any $t\in(-A,+\infty)$.
+\end{enumerate}
+
+\begin{definition}[][Condition (ab)]
+  Let $M$ be a complex manifold with a continuous volume form
+  $dV_{M}$, and $S$ be a closed complex subvariety of $M$. We call
+  $(M,S)$ satisfies condition $(ab)$ if $M$ and $S$ satisfy the
+  following conditions:
+  
+  There exists a closed subset $X\subset M$ such that:
+  
+  $(a)$ $X$ is locally negligible with respect to $L^2$ holomorphic
+  functions, i.e., for any local coordinate neighborhood $U\subset M$
+  and for any $L^2$ holomorphic function $f$ on $U\setminus X$, there
+  exists an $L^2$ holomorphic function $\tilde{f}$ on $U$ such that
+  $\tilde{f}|_{U\setminus X}=f$ with the same $L^{2}$ norm.
+  
+  $(b)$ $M\setminus X$ is a Stein manifold which intersects with every component of $S$,
+  such that $S_{sing}\subset X$.
+  \end{definition}
+
+If $c_{A}(t)e^{-t}$ is decreasing with respect to $t$, then
+inequality \ref{equ:c_A_delta} holds.
+
+We establish the following $L^{2}$ extension theorem with an optimal
+estimate as follows:
+
+\begin{theorem}[][main theorem 1][t:guan-zhou-semicontinu2]
+Let $(M,S)$ satisfy condition $(ab)$,
+$h$ be a smooth metric on a holomorphic vector bundle $E$ on $M$ with rank $r$.
+Let $\Psi\in \#_{A}(S)\cap C^{\infty}(M\setminus S)$, which satisfies
+
+\begin{enumerate}[label=\arabic*)]
+  \item $he^{-\Psi}$ is semi-positive in the sense of Nakano on
+$M\setminus (S\cup X)$ ($X$ is as in the definition of condition
+$(ab)$),
+\item there exists a continuous function $a(t)$ on $(-A,+\infty]$,
+such that $0<a(t)\leq s(t)$ and
+$a(-\Psi)\sqrt{-1}\Theta_{he^{-\Psi}}$ $+\sqrt{-1}\partial\bar\partial\Psi$
+is semi-positive in the sense of Nakano on $M\setminus (S\cup X)$,
+where $$s(t)=\frac{\int_{-A}^{t}(\frac{1}
+{\delta}c_{A}(-A)e^{A}+\int_{-A}^{t_{2}}c_{A}(t_{1})e^{-t_{1}}dt_{1})dt_{2}+\frac{1}{\delta^{2}}c_{A}(-A)e^{A}}
+{\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{t}c_{A}(t_{1})e^{-t_{1}}dt_{1}}.$$
+\end{enumerate}
+
+Then there exists a uniform constant $\mathbf{C}=1$, which is
+optimal, such that, for any holomorphic section $f$ of $K_{M}\otimes
+E|_{S}$ on $S$ satisfying
+\begin{equation}
+\label{equ:condition}
+\sum_{k=1}^{n}\frac{\pi^{k}}{k!}\int_{S_{n-k}}|f|^{2}_{h}dV_{M}[\Psi]<\infty,
+\end{equation}
+there
+exists a holomorphic section $F$ of $K_{M}\otimes E$ on $M$ satisfying $F = f$ on $ S$ and
+\begin{equation}
+\label{equ:optimal_delta}
+\int_{M}c_{A}(-\Psi)|F|^{2}_{h}dV_{M}
+\leq\mathbf{C}\br{\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{\infty}c_{A}(t)e^{-t}dt}
+\sum_{k=1}^{n}\frac{\pi^{k}}{k!}\int_{S_{n-k}}|f|^{2}_{h}dV_{M}[\Psi],
+\end{equation}
+where $c_{A}(t)$ satisfies $c_{A}(-A)e^{A}:=\lim_{t\to -A^{+}}c_{A}(t)e^{-t}<\infty$ and $c_{A}(-A)e^{A}\neq0$.
+\end{theorem}
+
+
+\begin{remark}
+  We need to clasify the following questions:
+  \begin{enumerate}[label=\roman*)]
+    \item What are the theorem say and its signification?
+  \end{enumerate}
+\end{remark}
+
+Now we consider a useful and simpler class of functions as follows:
+
+Let $c_{A}(t)$ be a positive function in $C^{\infty}((-A,+\infty))$
+$(A\in(-\infty,+\infty])$, satisfying
+$\int_{-A}^{\infty}c_{A}(t)e^{-t}dt<\infty$ and
+\begin{equation}
+\label{equ:c_A}
+\left(\int_{-A}^{t}c_{A}(t_{1})e^{-t_{1}}dt_{1}\right)^{2}>c_{A}(t)e^{-t}
+\int_{-A}^{t}\int_{-A}^{t_{2}}c_{A}(t_{1})e^{-t_{1}}dt_{1}dt_{2},
+\end{equation}
+for any $t\in(-A,+\infty)$.
+
+When $c_{A}(t)e^{-t}$ is decreasing with respect to $t$ and $A$ is finite, inequality \ref{equ:c_A} holds.
+
+For such a simpler and sufficiently useful class of functions, we
+establish the following $L^2$ extension theorem with an optimal
+estimate
+%, whose simpler version was announced in \cite{guan-zhou13a}:
+\begin{theorem}[][The simple version of the main theorem][t:guan-zhou-unify]
+  Let $(M,S)$ satisfy condition $(ab)$, and $\Psi$ be a
+plurisubharmonic function in $\Delta_{A}(S)\cap
+C^{\infty}(M\setminus (S\cup X))$ ($X$ is as in the definition of
+condition $(a,b)$), Let $h$ be a smooth metric on a holomorphic
+vector bundle $E$ on $M$ with rank $r$, such that $he^{-\Psi}$ is
+semi-positive in the sense of Nakano on $M\setminus (S\cup X)$,
+(when $E$ is a line bundle, $h$ can be chosen as a semipositive
+singular metric). Then there exists a uniform constant
+$\mathbf{C}=1$, which is optimal, such that, for any holomorphic
+section $f$ of $K_{M}\otimes E|_{S}$ on $S$ satisfying condition
+\ref{equ:condition}  there exists a holomorphic section $F$ of
+$K_{M}\otimes E$ on $M$ satisfying $F = f$ on $ S$ and
+\begin{eqnarray*}
+\int_{M}c_{A}(-\Psi)|F|^{2}_{h}dV_{M}
+\leq\mathbf{C}\int_{-A}^{\infty}c_{A}(t)e^{-t}dt\sum_{k=1}^{n}\frac{\pi^{k}}{k!}\int_{S_{n-k}}|f|^{2}_{h}dV_{M}[\Psi].
+\end{eqnarray*}
+\end{theorem}
+  
+
+\subsection{Proof of Lemma 4.2}
+
+在局部坐标系 \((z_1, \ldots, z_n)\) 下，一个 \((n, 1)\)-形式 \(\alpha\) 可以写作：
+
+\[
+\alpha = \sum_{j=1}^{n} f_j \, dz^1 \wedge \ldots \wedge dz^n \wedge d\bar{z}^j
+\]
+
+其中 \(f_j\) 是复数值函数。
+
+在给定的Kähler度量 \(\omega\) 下，Kähler形式可以局部表示为：
+
+\[
+\omega = \frac{i}{2} \sum_{k,l=1}^{n} g_{k\bar{l}} \, dz^k \wedge d\bar{z}^l
+\]
+
+其中 \(g_{k\bar{l}}\) 是Kähler度量的分量。
+
+Lefschetz对偶算子 \(\Lambda_\omega\) 的作用可以通过与 \(\omega\) 的外积后应用Hodge星算子 \(\ast\) 来定义。但是，对于 \(\Lambda_\omega\) 的具体作用，我们可以利用Kähler恒等式，它描述了 \(\Lambda_\omega\) 与外积 \(\omega \wedge\) 的对易关系：
+
+\[
+[\Lambda_\omega, \omega \wedge] = (n - p - q) \cdot \text{Id}
+\]
+
+对于 \((n, 1)\)-形式，这个对易关系变成：
+
+\[
+[\Lambda_\omega, \omega \wedge] = (n - n - 1) \cdot \text{Id} = -\text{Id}
+\]
+
+这意味着 \(\Lambda_\omega\) 与 \(\omega \wedge\) 是反对易的，即 \(\Lambda_\omega(\omega \wedge \alpha) = -\alpha\)。
+
+现在，我们可以写出 \(\Lambda_\omega\) 作用在 \((n, 1)\)-形式 \(\alpha\) 上的局部表达式。由于 \(\alpha\) 已经是最高次的全纯形式，与 \(\omega\) 的外积会得到一个 \((n+1, 1)\)-形式，这在 \(n\)-维复流形上是不存在的，因此我们直接应用反对易关系：
+
+\[
+\Lambda_\omega \alpha = -\alpha
+\]
+
+这是在局部坐标系下对 \(\Lambda_\omega\) 作用于 \((n, 1)\)-形式 \(\alpha\) 的具体表示。实际上，我们通常通过Kähler恒等式来操作 \(\Lambda_\omega\)，而不是直接计算星算子 \(\ast\)。在更一般的情况下，我们需要利用Hodge理论和Kähler流形上的特殊性质来计算 \(\Lambda_\omega\) 的作用。
+
+
+\subsubsection{对角化}
+如果 Kähler 形式 \(\omega\) 在局部坐标系 \((z_1, \ldots, z_n)\) 下是对角化的，即
+\[
+\omega = i \sum_{j=1}^{n} dz_j \wedge d\bar{z}_j
+\]
+那么我们可以计算 Lefschetz 对偶算子 \(\Lambda_\omega\) 在 \((n, 1)\)-形式 \(\alpha\) 上的作用。这里的 \(\alpha\) 可以写作：
+\[
+\alpha = \sum_{j=1}^{n} f_j \, dz^1 \wedge \ldots \wedge dz^n \wedge d\bar{z}^j
+\]
+由于 \(\omega\) 是对角化的，我们可以使用 Lefschetz 对偶算子的局部定义，它与 \((1,1)\)-形式的内积有关。在对角化的情况下，对于任意的 \((p,q)\)-形式 \(\beta\)，Lefschetz 对偶算子的作用可以表示为：
+\[
+\Lambda_\omega \beta = -\frac{1}{i} \sum_{j=1}^{n} g^{j\bar{j}} \frac{\partial}{\partial z_j} \lrcorner \left( \frac{\partial}{\partial \bar{z}_j} \lrcorner \beta \right)
+\]
+其中 \(g^{j\bar{j}}\) 是度量张量的逆矩阵分量，对于对角化的 \(\omega\) 来说，\(g^{j\bar{j}} = 1\)，而 \(\lrcorner\) 表示内积（即缩并操作）。
+
+现在我们可以计算 \(\Lambda_\omega\) 在 \(\alpha\) 上的作用：
+\[
+\Lambda_\omega \alpha = -\frac{1}{i} \sum_{j=1}^{n} \frac{\partial}{\partial z_j} \lrcorner \left( \frac{\partial}{\partial \bar{z}_j} \lrcorner \alpha \right)
+\]
+由于 \(\alpha\) 是 \((n,1)\)-形式，它只有一个 \(d\bar{z}^j\) 分量，所以缩并操作将会消去这个分量，并且留下一个 \((n-1,0)\)-形式。因此，对于每个 \(f_j\)，我们有：
+\[
+\frac{\partial}{\partial \bar{z}_j} \lrcorner (f_j \, dz^1 \wedge \ldots \wedge dz^n \wedge d\bar{z}^j) = f_j \, dz^1 \wedge \ldots \wedge dz^n
+\]
+然后，对于每个 \(dz^j\) 分量，我们执行另一个内积操作：
+\[
+\frac{\partial}{\partial z_j} \lrcorner (f_j \, dz^1 \wedge \ldots \wedge dz^n) = (-1)^{j-1} f_j \, dz^1 \wedge \ldots \wedge \widehat{dz^j} \wedge \ldots \wedge dz^n
+\]
+其中 \(\widehat{dz^j}\) 表示省略了 \(dz^j\) 分量。因此，对于每个 \(j\)，我们得到一个 \((n-1,0)\)-形式，当我们把这些结果加起来时，我们得到：
+\[
+\Lambda_\omega \alpha = -\frac{1}{i} \sum_{j=1}^{n} (-1)^{j-1} f_j \, dz^1 \wedge \ldots \wedge \widehat{dz^j} \wedge \ldots \wedge dz^n
+\]
+这是 \(\Lambda_\omega\) 作用在 \((n, 1)\)-形式 \(\alpha\) 上的结果，给定 Kähler 形式 \(\omega\) 在局部坐标系下是对角化的情况。注意，由于我们的 \(\omega\) 是单位对角形式，我们不需要担心 \(g^{j\bar{j}}\) 的分量，因为它们都是 1。
+\begin{align*}
+  \Lambda_\omega \alpha &=\alpha\llcorner (\xu \dd z_1\wedge\dd \bar{z}_1+\cdots+\xu \dd z_n\wedge\dd \bar{z}_n)^\sharp \\ 
+\implies \xu \dd z_1\wedge\dd \bar{z}_1\wedge \Lambda_\omega \alpha &=\xu \dd z_1\wedge\dd \bar{z}_1\wedge \left(\alpha\llcorner (\xu \dd z_1\wedge\dd \bar{z}_1+\cdots+\xu \dd z_n\wedge\dd \bar{z}_n)^\sharp\right)\\ 
+&=\xu \dd z_1\wedge\dd \bar{z}_1\wedge \left(\alpha\llcorner (\xu \dd z_1\wedge\dd \bar{z}_1)^\sharp\right)
+\end{align*}
+  如果设 
+  \[
+    \alpha_x=\alpha^j e_j=\sum_{k=1}^{n} \alpha_k^j \bigwedge_{l=1}^n \dd z_l\wedge \dd \bar{z}_k\otimes e_j
+  \]
+  这里$\{e_j\}$是$E_x$的一个正交基，则有
+  \begin{align*}
+    \left(\alpha\llcorner (\xu \dd z_1\wedge\dd \bar{z}_1)^\sharp\right)_x &=\xu \br{\sum_{k=1}^{n} \alpha_k^j \bigwedge_{l=1}^n \dd z_l\wedge \dd \bar{z}_k\otimes e_j} \llcorner (\dd z_1\wedge\dd \bar{z}_1)^\sharp\\ 
+&=\xu \br{\sum_{k=1}^{n} \alpha_k^j \bigwedge_{l=1}^n \dd z_l\wedge \dd \bar{z}_k} \llcorner (\dd z_1\wedge\dd \bar{z}_1)^\sharp \otimes e_j\\ 
+&=\xu \left(-\alpha_1^j (-1)^{n-1}\dd z_2\wedge \cdots\wedge\dd z_n\wedge (\dd z_1\wedge\dd \bar{z}_1)\llcorner (\dd z_1\wedge\dd \bar{z}_1)^\sharp \right.\\
+&\phantom{=}+\alpha_2^j \dd z_1\wedge\dd z_2\wedge \cdots\wedge\dd z_n\wedge\dd \bar{z}_2\llcorner (\dd z_1\wedge\dd \bar{z}_1)^\sharp+\cdots\\
+&\phantom{=}\left.+\alpha_n^j \dd z_1\wedge\dd z_2\wedge \cdots\wedge\dd z_n\wedge\dd \bar{z}_n\llcorner (\dd z_1\wedge\dd \bar{z}_1)^\sharp\right)\otimes e_j\\ 
+&=-\xu (-1)^{n-1}\alpha_1^j \dd z_2\wedge \cdots\wedge\dd z_n \otimes e_j
+  \end{align*}
+    从而
+    \begin{align*}
+      \xu \dd z_1\wedge\dd \bar{z}_1\wedge \Lambda_\omega \alpha 
+&=\xu \dd z_1\wedge\dd \bar{z}_1\wedge \left(\alpha\llcorner (\xu \dd z_1\wedge\dd \bar{z}_1)^\sharp\right)\\ 
+&=\xu \dd z_1\wedge \dd \bar{z}_1\wedge \br{-\xu (-1)^{n-1}\alpha_1^j \dd z_2\wedge \cdots\wedge\dd z_n \otimes e_j}\\ 
+&=\alpha_1^j\bigwedge_{l=1}^n \dd z_l \wedge\dd \bar{z}_1\otimes e_j
+    \end{align*}
+\begin{remark}
+      在这个表达式中，我们有一个 \((n,1)\)-形式 \(\alpha_2^j dz_1 \wedge dz_2 \wedge \cdots \wedge dz_n \wedge d\bar{z}_2\) 和一个 \((1,1)\)-形式 \(dz_1 \wedge d\bar{z}_1\)。当我们对这两个形式执行缩并（记作 \(\lrcorner\)）操作时，我们需要找到一个匹配的 \(dz\) 和 \(d\bar{z}\) 对。在这个例子中，\((1,1)\)-形式 \(dz_1 \wedge d\bar{z}_1\) 只包含 \(dz_1\) 和 \(d\bar{z}_1\)，而 \((n,1)\)-形式 \(\alpha_2^j dz_1 \wedge dz_2 \wedge \cdots \wedge dz_n \wedge d\bar{z}_2\) 并不包含 \(d\bar{z}_1\)，所以这两个形式无法匹配，因此缩并操作的结果为零。
+\end{remark}
+
+\subsection{Proof of Lemma 4.4}
+
+\begin{lemma}[][Lemma 4.4 \cite{Guan2015ASO}]
+Let $\Delta$ be the unit disc and $\Delta_r$ be the disc with radius $r$. Then for any holomorphic function $f$ on $\Delta$, which satisfies $\int_\Delta \abs{f}^2 \dd \lambda<\infty$, we have a uniformly constant $C_r=\frac{1}{1-r^2}$, which is only dependent on $r$, such that \[\int_\Delta \abs{f}^2\dd \lambda\leq C_r \int_{\Delta\backslash \Delta_r}\abs{f}^2\dd \lambda,\]
+where $\lambda$ is the Lebsgue measure on $\bC$.
+\end{lemma}
+\begin{proof}
+  
+为了理解并证明这个命题，我们首先需要理解其所表述的内容。这个命题断言对于在单位圆盘 \(\Delta\) 上全纯并且在 \(L^2\) 意义上可积的函数 \(f\)，其在整个圆盘上的 \(L^2\) 范数可以被其在圆盘的一个环形区域（即 \(\Delta \setminus \Delta_r\)）上的 \(L^2\) 范数控制。关键在于这个控制是均匀的，即只依赖于环形区域的内半径 \(r\)。
+
+要证明这个命题，我们按照以下步骤进行：
+\begin{enumerate}
+  \item 泰勒级数展开：对于圆盘 \(\Delta\) 上的全纯函数 \(f\)，在原点的泰勒级数展开是 \[f(z) = \sum_{j=0}^{\infty} a_j z^j.\]
+  \item 将 \(L^2\) 范数分解为级数：使用泰勒级数，我们可以将 \(L^2\) 范数 \(\int_\Delta |f|^2 d\lambda\) 和 \(\int_{\Delta \setminus \Delta_r} |f|^2 d\lambda\) 写为级数项的积分。
+  \item 单项计算和比较：对于每个单项 \(f(z) = a_j z^j\)，我们计算这些项在 \(\Delta\) 和 \(\Delta \setminus \Delta_r\) 上的 \(L^2\) 范数，并进行比较。
+  \item 找到均匀的比例常数 \(C_r\)：证明对于所有的 \(j\)，都存在一个比例常数 \(C_{r,j}\)，并且这个常数对于所有的 \(j\) 都小于等于一个与 \(r\) 相关但与 \(j\) 无关的常数 \(C_r\)。
+\end{enumerate}
+
+
+现在，让我们来计算对于单项 \(f(z) = a_j z^j\) 的 \(L^2\) 范数：
+\begin{itemize}
+  \item 在单位圆盘 \(\Delta\) 上的 \(L^2\) 范数为 \[\int_\Delta |a_j z^j|^2 d\lambda = |a_j|^2 \int_0^{2\pi} \int_0^1 r^{2j} r dr d\theta = |a_j|^2 \frac{2\pi}{2j+2},\]
+  \item 在圆环 \(\Delta \setminus \Delta_r\) 上的 \(L^2\) 范数为 \[\int_{\Delta \setminus \Delta_r} |a_j z^j|^2 d\lambda = |a_j|^2 \int_0^{2\pi} \int_r^1 r^{2j} r dr d\theta = |a_j|^2 \frac{2\pi}{2j+2}(1-r^{2j+2}).\]
+\end{itemize}
+
+
+所以，对于每个 \(j\)，我们可以找到一个比例常数 \(C_{r,j}\) 使得
+
+\[
+C_{r,j} = \frac{\frac{1}{2j+2}}{\frac{1}{2j+2}(1-r^{2j+2})} = \frac{1}{1-r^{2j+2}}
+\]
+
+注意到随着 \(j\) 的增大，\(C_{r,j}\) 趋于 \(\frac{1}{1-r^2}\)。因此，我们可以选取 \(C_r = \frac{1}{1-r^2}\) 作为一个均匀的比例常数。
+
+因此，对于全纯函数 \(f\) 的泰勒级数中的每个项 \(a_j z^j\)，我们都有
+
+\[
+\int_\Delta |a_j z^j|^2 d\lambda \leq \frac{1}{1-r^2} \int_{\Delta \setminus \Delta_r} |a_j z^j|^2 d\lambda
+\]
+
+由于这个不等式对于每个 \(j\) 都成立，我们可以通过级数相加得到整个函数 \(f\).
+\end{proof}
+
+\subsection{Proof of Lemma 4.5}
+
+Let 
+\[
+  L^2_h(M):=\biggl\{\alpha\mid \alpha\in \Omega^{n,0}_M(E),\int_E \{\alpha,\alpha\}_h<\infty\biggr\}.
+\]
+where $\{\alpha,\alpha\}_h=:\abs{\alpha}_h^2 \dd V_M$.
+\begin{proof}
+  We can choose a covering $\left\{U_i\right\}_{i=1,2, \ldots}$ of $M$, which satisfies
+  \begin{enumerate}[label=(\arabic*)]
+    \item $U_i \subset \subset M$, and $\exists K_i \subset \subset U_i$, such that $\bigcup_{i=1}^{\infty} K_i=M$;
+    \item $\left.E\right|_{U_i}$ is trivial with holomorphic basis $e_1^i, \ldots, e_r^i$;
+    \item $\left.K_M\right|_{U_i}$ is trivial with holomorphic basis $v^i$.
+  \end{enumerate}
+
+Then we may write $\left.F_j\right|_{U_i}=f_{j, i}^k e_k^i \otimes v^i$, where $f_{j, i}^k$ are holomorphic functions on $U_i$. As $h$ is a Hermitian metric and $U_i \subset \subset M$, there exists a constant $B_K>0$, such that
+$$
+\sum_{1 \leq k, l \leq r} h\left(e_k^i, e_l^i\right) f_{j, i}^k \bar{f}_{j, i}^l \geq B_K \sum_{k=1}^r\left|f_{j, i}^k\right|^2 .
+$$
+
+It may be computed by this way:
+\begin{align*}
+  \br{F_j|_{U_i},\bar{F}_j|_{U_i}}_h &= \br{f_{j, i}^k e_k^i \otimes v^i,\bar{f}_{j, i}^l e_l^i \otimes \bar{v}^i}_h\\ 
+  &=f_{j, i}^k\bar{f}_{j, i}^l  h(e_k^i \otimes v^i, e_l^i \otimes \bar{v}^i)\\ 
+  &=f_{j, i}^k\bar{f}_{j, i}^l  h(e_k^i , e_l^i )\otimes h(v^i,\bar{v}^i)\\ 
+  &=f_{j, i}^k\bar{f}_{j, i}^l  h(e_k^i , e_l^i ).
+\end{align*}
+  It is worth to note that $\br{F_j|_{U_i},\bar{F}_j|_{U_i}}_h=\abs{F_j|_{U_i}}^2_h$ and \[
+    \int_{U_j} \abs{F_{j}|_{U_j}}_h^2 \dd V_M =\int_{U_j} \abs{\sum_{k=1}^r f_{j,i}^k e_k^i \otimes v^i}_h^2 \dd V_M \leqslant C_K.  \]
+By inequality (4.2), it follows that
+\begin{align*}
+  \int_{U_j} \abs{\sum_{k=1}^r f_{j,i}^k e_k^i \otimes v^i}_h^2 \dd V_M &\leqslant\int_{U_j} \sum_{k=1}^r \abs{f_{j,i}^k e_k^i \otimes v^i}_h^2 \dd V_M \\
+  &=\sum_{k=1}^r\int_{U_j} \left\{f_{j,i}^k e_k^i \otimes v^i,f_{j,i}^k e_k^i \otimes v^i\right\}_h\\ 
+  &=\sum_{k=1}^r\int_{U_j} \left\{ v^i \otimes f_{j,i}^k e_k^i,v^i \otimes f_{j,i}^k e_k^i\right\}_h\\
+&=\sum_{k=1}^r\int_{U_j} \left\langle f_{j,i}^k e_k^i,f_{j,i}^k e_k^i\right\rangle_h \xu^{(\dim U_j)^2} v^i\wedge \bar{v}^i\\ 
+&=\sum_{k=1}^r\int_{U_j} \abs{f_{j,i}^k}^2_h c_n v^i\wedge \bar{v}^i
+\end{align*}
+  Then we have
+\begin{equation}
+  \label{eq:eq4.3}
+  \int_{U_j} \sum_{k=1}^r\left|f_{j, i}^k\right|^2 c_n v^i \wedge \bar{v}^i \leq \frac{C_K}{B_K}
+\end{equation}
+  
+for any $j=1,2, \ldots$.
+We can obtain a subsequence of $\left\{F_j\right\}_{j=1,2, \ldots}$ which is uniformly convergent on any compact subset of $M$ by the following steps:
+\begin{enumerate}[label=(\arabic*)]
+  \item On $U_1$, by inequality \eqref{eq:eq4.3}, we can obtain subsequence $\left\{F_{1_j}^{\prime}\right\}_{j=1,2, \ldots}$ of $\left\{F_j\right\}_{j=1,2, \ldots}$ which is uniformly convergent on $K_1$;
+  \item On $U_2$, by inequality \eqref{eq:eq4.3}, we can obtain subsequence $\left\{F_{2_j}^{\prime}\right\}_{j=1,2, \ldots}$ of $\left\{F_{1, j}^{\prime}\right\}_{j=1,2, \ldots}$ which is uniformly convergent on $K_2$;
+  \item On $U_3$, by inequality \eqref{eq:eq4.3}, we can obtain subsequence $\left\{F_{3_j}^{\prime}\right\}_{j=1,2, \ldots}$ of $\left\{F_{2, j}^{\prime}\right\}_{j=1,2, \ldots}$ which is uniformly convergent on $K_3 \ldots$.
+\end{enumerate}
+
+As the transition matrix of $E$ is invertible, we see that $\left\{F_{j_j}^{\prime}\right\}_{j=1,2, \ldots}$ is uniformly convergent on any compact subset of $M$. Thus we have proved the lemma.
+\end{proof}
+
+\subsection{Proof of Lemma 4.6}
+
+\begin{lemma}[][Lemma 4.6. of \cite{Guan2015ASO}][l:lim_unbounded]
+  Let $M$ be a complex manifold. Let $S$ be a closed complex submanifold of $M$. Let $\left\{U_j\right\}_{j=1,2, \ldots}$ be a sequence of open subsets on $M$, which satisfies
+$$
+U_1 \subset U_2 \subset \cdots \subset U_j \subset U_{j+1} \subset \cdots,
+$$
+and $\bigcup_{j=1}^{\infty} U_j=M \backslash S$. Let $\left\{V_j\right\}_{j=1,2, \ldots}$ be a sequence of open subsets on $M$, which satisfies
+\begin{enumerate}
+  \item $V_1 \subset V_2 \subset \cdots \subset V_j \subset V_{j+1} \subset \cdots$,
+  \item $V_j \supset U_j $, and $\bigcup_{j=1}^{\infty} V_j=M$.
+\end{enumerate}
+
+Let $\left\{g_j\right\}_{j=1,2, \ldots}$ be a sequence of positive Lebesgue measurable functions on $U_k$, which satisfies that $g_j$ are almost everywhere convergent to $g$ on any compact subset of $U_k(j \geq k)$, and $g_j$ have uniformly positive lower and upper bounds on any compact subset of $U_k(j \geq k)$, where $g$ is a positive Lebesgue measurable function on $M \backslash S$.
+
+Let $E$ be a holomorphic vector bundle on $M$, with Hermitian metric $h$. Let $\left\{F_j\right\}_{j=1,2, \ldots}$ be a sequence of holomorphic $(n, 0)$-form on $V_j$ with values in E. Assume that $\lim \limits_{j \rightarrow \infty} \int_{U_j}\left\{F_j, F_j\right\}_h g_j=C$, where $C$ is a positive constant.
+
+Then there exists a subsequence $\left\{F_{j_l}\right\}_{l=1,2, \ldots}$ of $\left\{F_j\right\}_{j=1,2, \ldots}$, which satisfies that $\left\{F_{j_l}\right\}$ is uniformly convergent to an $(n, 0)$-form $F$ on $M$ with value in $E$ on any compact subset of $M$ when $l \rightarrow+\infty$, such that
+$$
+\int_M\{F, F\}_h g \leq C .
+$$
+\end{lemma}
+
+\begin{proof}
+  As $\displaystyle\liminf_{j\to\infty}\int_{U_j}\{F_j,F_j\}_h g_j=C<\infty$, it follows that there exists a subsequence of $\{F_{j_k}\}$ such that \[\lim_{k\to\infty}\int_{U_{j_k}}\{F_{j_k},F_{j_k}\}_h g_{j_k}=C.\]
+
+  Then \itbf{by Lemma 4.4}, for any compact subset $K_k\subset U_k\subset M$, it follows that there exists $K_{j_k}\subset M\backslash S$ satisfying $K_{j_k}\subset U_{j_k}$, and 
+  \[
+    \int_{K_k}\{F_j,F_j\}_h \leqslant \int_{K_{j_k}} \{F_{j_k},F_{j_k}\}_h g_{j_k} \to \int_{K_{j_k}} \{F_{j},F_{j}\}_h g_{j} 
+  \]
+  when $j$ efficiently large enough, that is $j\geqslant j_k$. So by using \itbf{Lemma 4.5}, we have a subsequence of $\{F_j\}$ which is convergent on any compact subset $K^\bullet_k \subset M$. Without loose generality, we shall assume that 
+  \begin{enumerate}
+    \item $\bigcup_{k=1}^\infty K_k^\bullet=M$;
+    \item $K_k\subset K_{k+1}$.
+  \end{enumerate}
+Thus we have a subsequence $\{F_j\}$ which is convergent to a holomorphic $(n,0)$-form with values in $E$ on any compact subset of $M$.
+
+Given $K\subset M\backslash S$, as $\{F_j\}$ (resp. $g_j$) is uniformly convergent to $F$ (resp. $g$) for $j\geqslant k_K$, we have 
+\[
+  \int_K \{F,F\}_h g\leqslant \lim_{j\to\infty} \int_{U_j} \{F_j,F_j\}_h g_j, 
+\]
+where $k_K$ satisfies $U_{k_K}\subset K$. It is clear that 
+\[
+  \int_M \{F,F\}_h g\leqslant \lim_{j\to\infty} \int_{U_j} \{F_j,F_j\}_h g_j.
+\]
+
+\end{proof}
+  
+\subsection{Proof of Lemma 4.8}
+
+\begin{lemma}[][LEMMA 4.8. of \cite{Guan2015ASO}][l:lemma4.8]
+   Let $c_A(t)$ be a positive function in $C^{\infty}((-A,+\infty))$, which satisfies $\int_{-A}^{\infty} c_A(t) e^{-t} d t<\infty$ and inequality \eqref{equ:c_A}, for any $t \in(-A,+\infty)$. Then there exists a sequence of positive $C^{\infty}$ smooth functions $\left\{c_{A, m}(t)\right\}_{m=1,2, \ldots}$ on $(-A,+\infty)$, which satisfies
+   \begin{enumerate}[label=(\roman*),font=\upshape]
+    \item $c_{A, m}(t)$ are continuous near $+\infty$ and $\lim _{t \rightarrow+\infty} c_{A, m}(t)>0$;
+    \item $c_{A, m}(t)$ are uniformly convergent to $c_A(t)$ on any compact subset of $(-A,+\infty)$, when $m$ goes to $\infty$;
+    \item $\int_{-A}^{\infty} c_{A, m}(t) e^{-t} d t$ is convergent to $\int_{-A}^{\infty} c_A(t) e^{-t} d t$ when $m$ approaches to $\infty$;
+    \item for any $t \in(-A,+\infty)$,
+$$
+\left(\int_{-A}^t c_{A, m}\left(t_1\right) e^{-t_1} d t_1\right)^2>c_{A, m}(t) e^{-t} \int_{-A}^t \int_{-A}^{t_2} c_{A, m}\left(t_1\right) e^{-t_1} d t_1 d t_2
+$$
+holds.
+   \end{enumerate}
+
+\end{lemma}
+
+\begin{proof}
+  
+  \begin{fancybox}
+\begin{center}
+  \textbf{Construction of the function $c_{A,m}(t)$}
+\end{center}
+Let 
+\[
+  g_B(t)=\begin{cases}
+    c_A(t), & t\in (-A,-A+B],\\ 
+    g_B(t), & t\in (-A+B,+\infty)
+  \end{cases}
+\]
+satisfies the following conditions 
+\begin{enumerate}
+  \item $g_B(t)$ is \itbf{positive continuous decreasing function} on $t\in [-A+B,+\infty)$;
+  \item $g_B(t)$ is \itbf{smooth} on $t\in (-A+B,+\infty)$;
+  \item $\lim_{t\to\infty} g_B(t)>0$ and 
+\begin{equation}
+  \label{eq:4.4}
+      \int_{-A+B}^{\infty} g_B(t) e^{-t} \dd t<B^{-1},
+\end{equation}
+  where $B>0$.
+\end{enumerate}
+  \end{fancybox}
+When $t\in (-A,-A+B)$, by Inequality \eqref{equ:c_A} we have 
+\[g_B(t)=c_A(t)\]
+and 
+\begin{equation}
+  \label{equ:c_A_change}
+  (\int_{-A}^{t}g_{B}(t_{1})e^{-t_{1}}dt_{1})^{2}>g_{B}(t)e^{-t}
+  \int_{-A}^{t}\int_{-A}^{t_{2}}g_{B}(t_{1})e^{-t_{1}}dt_{1}dt_{2}
+  \end{equation}
+holds for any $t\in t\in (-A,-A+B)$.
+
+As $g_B(t)$ is decreasing on $[-A+B,+\infty)$, it implices that inequality \eqref{equ:c_A_change} holds for any $t\in (-A,+\infty)$ (cf. The property of Inequality \eqref{equ:c_A} of the situation that $c_A(t)e^{-t}$ is decreasing with respect to $t$.) and by Inequality \eqref{eq:4.4} we have
+\begin{align*}
+  \int_{-A}^\infty g_B(t) e^{-t}\dd t &=\int_{-A}^{-A+B} g_B(t) e^{-t}\dd t +\int_{-A+B}^\infty g_B(t) e^{-t}\dd t\\ 
+  &<\int_{-A}^\infty c_A(t) e^{-t}\dd t+B^{-1}\rightarrow \int_{-A}^\infty c_A(t) e^{-t}\dd t \;(B\to\infty).
+\end{align*}
+  Thus 
+  \[
+    \lim_{B\to\infty} \int_{-A}^\infty g_B(t) e^{-t}\dd t=\int_{-A}^\infty c_A(t) e^{-t}\dd t.
+  \]
+
+  Now we focus on the left problem : What is the situation in the neighborhood of the point $-A+B$? Fixing a small enough $\varepsilon_B>0$ such that $[(-A+B)-\varepsilon_B,(-A+B)+\varepsilon_B]\subset (-A,+\infty)$, one can find a sequence of functions
+  $\{g_{B,j}(t)\}_{j=1,2,\cdots}$ in $C^{\infty}(-A,+\infty)$,
+  satisfying $g_{B,j}(t)=g_{B}(t)$ when
+  $t\notin[-A+B-\varepsilon_{B},-A+B+\varepsilon_{B}]$, which is
+  uniformly convergent to $g_{B}(t)$. In other words, $\{g_{B,j}(t)\}_{j=1,2,\cdots}$ are almost everywhere equal to $g_B(t)$. Then it is clear that for $j$ big
+  enough
+  $$(\int_{-A}^{t}g_{B,j}(t_{1})e^{-t_{1}}dt_{1})^{2}
+  >g_{B,j}(t)e^{-t}\int_{-A}^{t}
+  \int_{-A}^{t_{2}}g_{B,j}(t_{1})e^{-t_{1}}dt_{1}dt_{2},
+  $$
+  holds for any $t\in(-A,+\infty)$.
+
+  For any given $B$, we can choose $j_{B}$ large enough such that
+\begin{equation}
+\begin{split}
+&1).\left|\int_{-A}^{\infty}g_{B,j_{B}}(t)e^{-t} \dd t-\int_{-A}^{\infty}g_{B}(t)\dd t \right|<B^{-1};
+\\
+&2).\max_{t\in(-A,+\infty)}|g_{B,j_{B}}(t)-g_{B}(t)|<B^{-1};
+\\
+&3).\br{\int_{-A}^{t}g_{B,j_{B}}(t_{1})e^{-t_{1}}dt_{1}}^{2}
+>g_{B,j_{B}}(t)e^{-t}\int_{-A}^{t}
+\int_{-A}^{t_{2}}g_{B,j_{B}}(t_{1})e^{-t_{1}}dt_{1}dt_{2},\; \forall t\in(-A,+\infty).
+\end{split}
+\end{equation}
+Let $c_{A,m}:=g_{m,j_{m}}$, thus we have proved the case that
+$A<+\infty$.
+
+Secondly, we consider the case that $A=+\infty$. Let
+$g_{B}(t):=c_{\infty}(t)$ when $t\in(-\infty,B)$,
+$g_{B}(t):=c_{\infty}(B)$ when $t\in[B,\infty)$, where $B>0$.
+
+Using the same construction as the case $A<+\infty$, we obtain the
+the case that $A=+\infty$.
+\end{proof}
+
+\subsection{Proof of Lemma 4.11}
+
+Now we introduce a relationship between inequality \ref{equ:c_A} and
+\ref{equ:c_A_delta}.
+
+\begin{lemma}[][][:relate_c_A_delta]
+  Let $c_{A}(t)$ satisfy
+$\int_{-A}^{+\infty}c_{A}(t)e^{-t}dt<\infty$ and inequality
+\ref{equ:c_A} $(A\in(-\infty,+\infty])$. For each $A'<A$, there
+exists $A''$ and $\delta''>0$, such that $A>A''>A'$ and there exists
+$c_{A''}(t)\in C^{0}([-A'',+\infty))$ satisfying
+\begin{enumerate}[label=\roman*)]
+  \item $c_{A''}(t)=c_{A}(t)|_{[-A',+\infty)}$;
+  \item $\int_{-A''}^{+\infty}c_{A''}(t)e^{-t}dt+\frac{1}{\delta''}c_{A''}(-A'')e^{A''}=
+\int_{-A}^{+\infty}c_{A}(t)e^{-t}dt$;
+\item $\int_{-A''}^{t}\left(\frac{1}{\delta''}c_{A''}(-A'')e^{A''}+\int_{-A''}^{t_{2}}c_{A''}(t_{1})e^{-t_{1}}dt_{1}\right)
+dt_{2}+\frac{1}{{\delta''}^{2}}c_{A''}(-A'')e^{A''}<\\\int_{-A}^{t}\left(\int_{-A}^{t_{2}}c_{A}(t_{1})e^{-t_{1}}dt_{1}\right)
+dt_{2}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Given $A'<A$. Let
+$g(t)|_{[-A',+\infty)}:=c_{A}(t)|_{[-A',+\infty)}$. As $c_{A}(t)$
+satisfies $\int_{-A}^{+\infty}c_{A}(t)e^{-t}dt<\infty$ and
+inequality \ref{equ:c_A} holds $(A\in(-\infty,+\infty])$, we can
+choose a continuous function $g(t)$ such that it's decreasing
+rapidly enough on $[A'',A']$ ($A''$ can be chosen near $A'$ enough),
+and the following holds:
+
+\noindent $i).$ $\int_{-A''}^{+\infty}c_{A''}(t)e^{-t}dt+\frac{1}{\delta''}c_{A''}(-A'')e^{A''}=
+\int_{-A}^{+\infty}c_{A}(t)e^{-t}dt$;\vspace{.2em}
+
+\noindent $ii).$
+$\int_{-A''}^{t}\left(\frac{1}{\delta''}c_{A''}(-A'')e^{A''}+\int_{-A''}^{t_{2}}c_{A''}(t_{1})e^{-t_{1}}dt_{1}\right)
+dt_{2}+\frac{1}{{\delta''}^{2}}c_{A''}(-A'')e^{A''}<\int_{-A}^{t}\left(\int_{-A}^{t_{2}}c_{A}(t_{1})e^{-t_{1}}dt_{1}\right)
+dt_{2}$.\vspace{.2em}
+
+Thus we have proved the lemma.
+\end{proof}
+
+\begin{remark}[TODO I]
+  How  can we do that? Why?
+\end{remark}
+
+\subsection{Proof of Remark 4.12}
+
+Since $A$ may be chosen as positive infinity, we have a sufficient
+condition for inequality \ref{equ:c_A} holding:
+
+\begin{remark}[Remark 4.12]\label{r:c_A3}
+Assume that 
+\[\frac{d}{dt}c_{+\infty}(t)e^{-t}
+  \begin{cases}
+    >0, & t\in (-\infty,a),\\
+    \leq 0, & t\in[a,+\infty).
+  \end{cases},
+\]
+where $a\neq -\infty$.
+Assume that $\frac{d^{2}}{dt^{2}}\log(c_{A}(t)e^{-t})=\Dif{t} \br{\frac{c'_A(t)}{c_A(t)}}<0$ for $t\in (-A,a)$.
+Then inequality \ref{equ:c_A} holds.
+\end{remark}
+
+\begin{proof}
+  Let
+  \begin{equation}
+    \label{eq:set_function}
+    H(t,f):=\left(\int_{-A}^{t}f(t_{1})dt_{1}\right)^{2}-f(t)\int_{-A}^{t}\left(\int_{-A}^{t_{2}}f(t_{1})dt_{1}\right)dt_{2},
+  \end{equation}
+  where $f(t)$ is a positive smooth function on $(-A,+\infty)$.
+  
+  Inequality \ref{equ:c_A} becomes $H(t,c_{A}(t)e^{-t})>0$ for any $t\in(-A,+\infty)$.
+  That is $\frac{H(t,c_{A}(t)e^{-t})}{c_{A}(t)e^{-t}}>0$ for any $t\in(-A,+\infty)$.
+  
+  It suffices to prove
+  $\frac{d}{dt}\frac{H(t,c_{A}(t)e^{-t})}{c_{A}(t)e^{-t}}>0$ for any
+  $t\in(-\infty,a)$, therefore $$H(t,\frac{d}{dt}(c_{A}(t)e^{-t}))>0$$
+  for any $t\in(-\infty,a)$.
+  
+  As $\frac{d}{dt}(c_{A}(t)e^{-t})>0$ for any $t\in(-\infty,a)$, it suffices to prove that
+  $$\frac{d}{dt}\frac{H(t,\frac{d}{dt}(c_{A}(t)e^{-t}))}{\frac{d}{dt}(c_{A}(t)e^{-t})}>0$$ for any $t\in(-\infty,a)$,
+  which is $H(t,\frac{d}{dt}\frac{d}{dt}(c_{A}(t)e^{-t}))>0$ for any $t\in(-\infty,a)$.
+  
+  Note that $H(t,\frac{d}{dt}\frac{d}{dt}(c_{A}(t)e^{-t}))=
+  -(c_{A}(t)e^{-t})^{2}\frac{d}{dt}\frac{d}{dt}\log(c_{A}(t)e^{-t})$.
+  Thus we have proved the present Remark.
+  \end{proof}
+
+\begin{remark}
+  这段证明中的逻辑是通过一系列的推理来证明最初的不等式 $H(t,c_{A}(t)e^{-t})>0$。这里，作者使用了一种称为“自举”的证明技术，即他们首先证明了一个较弱的结果，然后使用这个结果来证明一个更强的结论。
+
+具体来说，作者首先注意到由于 $\frac{d}{dt}(c_{A}(t)e^{-t})>0$ 对于任何 $t \in (-\infty,a)$ 都成立，因此，为了证明 $H(t,c_{A}(t)e^{-t})>0$，他们只需要证明 $H(t,\frac{d}{dt}(c_{A}(t)e^{-t}))>0$。这是因为如果 $H(t,\frac{d}{dt}(c_{A}(t)e^{-t}))>0$ 并且 $\frac{d}{dt}(c_{A}(t)e^{-t})>0$，那么 $H(t,c_{A}(t)e^{-t})$ 的增加速率是正的，这意味着 $H(t,c_{A}(t)e^{-t})$ 本身也是正的。
+
+然后，作者进一步推理说，为了证明 $H(t,\frac{d}{dt}(c_{A}(t)e^{-t}))>0$，他们实际上需要证明 
+$$\frac{d}{dt}\frac{H(t,\frac{d}{dt}(c_{A}(t)e^{-t}))}{\frac{d}{dt}(c_{A}(t)e^{-t})}>0.$$ 这是因为如果这个导数是正的，那么 $H(t,\frac{d}{dt}(c_{A}(t)e^{-t}))$ 作为一个函数是增加的，而在 $t \rightarrow -\infty$ 时，$H(t,\frac{d}{dt}(c_{A}(t)e^{-t}))$ 的初始值是0（因为积分的下限和上限会重合，导致积分为0），所以 $H(t,\frac{d}{dt}(c_{A}(t)e^{-t}))$ 会保持正值。
+
+最后，作者指出要证明 $$\frac{d}{dt}\frac{H(t,\frac{d}{dt}(c_{A}(t)e^{-t}))}{\frac{d}{dt}(c_{A}(t)e^{-t})}>0,$$  实际上等价于证明 $H(t,\frac{d}{dt}\frac{d}{dt}(c_{A}(t)e^{-t}))>0$。这是因为 $H$ 函数在这里是对其第二个参数求导数的操作，所以这个条件是说二阶导数 $\frac{d}{dt}\frac{d}{dt}(c_{A}(t)e^{-t})$ 对应的 $H$ 函数值需要是正的。
+
+总的来说，这段证明通过一系列的逻辑步骤，从一个较容易证明的结论出发，逐步推导出最终想要证明的不等式。每一步都建立在前一步的基础上，最终达到了证明的目的。
+
+这个证明的推导可以分为几个关键步骤，每一步都基于数学分析中的标准技术。我们可以一步步地解析这个证明的逻辑：
+
+1. 起始假设：假设 $\frac{d}{dt}(c_{A}(t)e^{-t})>0$ 对于任何 $t\in(-\infty,a)$。这意味着函数 $c_{A}(t)e^{-t}$ 在区间 $(-\infty,a)$ 上是单调递增的。
+
+2. 要证明的不等式：我们需要证明的是 $H(t,c_{A}(t)e^{-t})>0$ 对于任何 $t\in(-A,+\infty)$ 成立。
+
+3. 利用单调性：由于 $\frac{d}{dt}(c_{A}(t)e^{-t})>0$，为了证明 $H(t,c_{A}(t)e^{-t})>0$，我们首先关注 $H(t,\frac{d}{dt}(c_{A}(t)e^{-t}))$。这是因为如果函数的导数始终为正，那么原函数的值随着 $t$ 的增加而增加。
+
+4. 转换为导数形式：下一步是证明 $\frac{d}{dt}\frac{H(t,\frac{d}{dt}(c_{A}(t)e^{-t}))}{\frac{d}{dt}(c_{A}(t)e^{-t})}>0$。这个步骤基于一个数学技巧，即如果一个函数的导数始终为正，那么这个函数是增加的。因此，如果我们能证明这个比率的导数始终为正，那么 $H(t,\frac{d}{dt}(c_{A}(t)e^{-t}))$ 作为一个函数随 $t$ 的增加而增加。
+
+5. 进一步简化：作者接着声明这等价于证明 $H(t,\frac{d}{dt}\frac{d}{dt}(c_{A}(t)e^{-t}))>0$。这里的关键在于理解函数 $H$ 的定义以及它如何与其参数的导数相互作用。基本上，这个步骤是在说，如果 $H$ 函数相对于它的第二个参数的导数的导数始终为正，那么这个 $H$ 函数本身随着时间的增加而增加。
+
+6. 最终结论：证明最后的不等式 $H(t,\frac{d}{dt}\frac{d}{dt}(c_{A}(t)e^{-t}))>0$ 基于 $H$ 函数的具体定义以及 $\frac{d}{dt}\frac{d}{dt}(c_{A}(t)e^{-t})$ 的性质。这个过程涉及到复杂的计算和对 $H$ 函数性质的深入理解。
+
+总结一下，这个证明的关键在于将原始的问题转化为更容易处理的形式，并通过一系列的数学操作和逻辑推理逐步达到结论。每一步的证明都严密依赖于前一步的结果，构成了一个连贯的逻辑链。
+\end{remark}
+
+
+
+首先，我们有不等式 \[ H(t,c_{A}(t)e^{-t}) > 0 \] 要证明对于任何 $t\in(-A,+\infty)$，都有 \[ \frac{H(t,c_{A}(t)e^{-t})}{c_{A}(t)e^{-t}} > 0 \] 
+
+接下来，我们引入函数 $H(t,f)$，定义如下：
+\[ H(t,f):=(\int_{-A}^{t}f(t_{1})dt_{1})^{2}-f(t)\int_{-A}^{t}(\int_{-A}^{t_{2}}f(t_{1})dt_{1})dt_{2} \]
+
+现在我们要证明 \[ \frac{d}{dt}\frac{H(t,c_{A}(t)e^{-t})}{c_{A}(t)e^{-t}}>0 \] 可以等价于 \[ H(t,\frac{d}{dt}(c_{A}(t)e^{-t}))>0 \]
+
+为了完成这一步，我们计算左侧的导数：
+
+\begin{align*}
+\frac{d}{dt}\frac{H(t,c_{A}(t)e^{-t})}{c_{A}(t)e^{-t}} &= \frac{(\frac{d}{dt}H(t,c_{A}(t)e^{-t})(c_{A}(t)e^{-t})-(H(t,c_{A}(t)e^{-t}))(\frac{d}{dt}(c_{A}(t)e^{-t})))}{(c_{A}(t)e^{-t})^2} \\
+&= \frac{\frac{d}{dt}H(t,c_{A}(t)e^{-t})-(H(t,c_{A}(t)e^{-t}))(\frac{d}{dt}(c_{A}(t)e^{-t}))}{c_{A}(t)e^{-t}}
+\end{align*}
+
+
+现在我们要证明上式大于 $0$ 当且仅当 $H(t,\frac{d}{dt}(c_{A}(t)e^{-t}))>0$。
+
+为此，我们注意到 $\frac{d}{dt}(c_{A}(t)e^{-t}) > 0$，所以我们可以将上式乘以 $c_{A}(t)e^{-t}$，得到：
+\[ \frac{d}{dt}H(t,c_{A}(t)e^{-t})-(H(t,c_{A}(t)e^{-t}))(\frac{d}{dt}(c_{A}(t)e^{-t})) > 0 \]
+从而由
+\[
+  H(t,c_{A}(t)e^{-t})>0  \quad  \& \quad \frac{d}{dt}(c_{A}(t)e^{-t})>0
+\]
+可得
+\[
+  \frac{d}{dt}H(t,c_{A}(t)e^{-t})>(H(t,c_{A}(t)e^{-t}))(\frac{d}{dt}(c_{A}(t)e^{-t})) > 0.
+\]
+然后计算得
+\begin{equation}
+  \label{eq:inequality_used_here}
+  \begin{aligned}
+  \frac{d}{dt}H(t,c_{A}(t)e^{-t}) &= 2 \int_{-A}^t c_A(t_1) e^{-t_1} \dd t_1\cdot c_A(t)e^{-t} -\Dif{t}\br{c_A(t)e^{-t}}\cdot \int_{-A}^t  \int_{-A}^{t_2} c_A(t_1) e^{-t_1} \dd t_1\dd t_2\\
+  &\phantom{=}-c_A(t)e^{-t} \cdot \int_{-A}^t c_A(t_1) e^{-t_1} \dd t_1\\ 
+  &=\int_{-A}^t c_A(t_1) e^{-t_1} \dd t_1\cdot c_A(t)e^{-t} -\Dif{t}\br{c_A(t)e^{-t}}\cdot \int_{-A}^t  \int_{-A}^{t_2} c_A(t_1) e^{-t_1} \dd t_1\dd t_2\\
+  &>0.
+\end{aligned}
+\end{equation}
+  且
+  \begin{align*}
+    H(t,\Dif{t}\br{c_A(t)e^{-t}}) &=\br{c_A(t_1)e^{-t_1}|_{-A}^t}^2-\Dif{t}\br{c_A(t)e^{-t}}\int_{-A}^t  \int_{-A}^{t_2} c_A(t_1) e^{-t_1} \dd t_1\dd t_2\\ 
+    (\text{by \eqref{eq:inequality_used_here}})&>\br{c_A(t)e^{-t}-c_A(-A)e^{A}}^2-\int_{-A}^t c_A(t_1) e^{-t_1} \dd t_1\cdot c_A(t)e^{-t} \\ 
+    &>0.
+  \end{align*}
+    
+% ---------------------------------------------------------------------------- %
+%                                      解释                                      %
+% ---------------------------------------------------------------------------- %
+\begin{remark}
+  
+\end{remark}
+
+\subsection{Proof of Lemma 4.14}
+
+\begin{lem}\label{l:lem9}
+  Let $M$ be a complex manifold of dimension $n$ and $S$ be an
+  $(n-l)-$dimensional closed complex submanifold. Let
+  $\Psi\in\Delta(S)$. Assume that there exists a local coordinate
+  $(z_{1},\cdots,z_{n})$ on a neighborhood $U$ of $x\in M$ such that
+  \[
+    \{z_{n-l+1}=,\cdots,z_{n}=0\}=S\cap U \;\And\;\psi:=\Psi-l\log(|z_{n-l+1}|^{2}+\cdots+|z_{n}|^{2}) \text{ is continuous
+    on $U$.}
+  \]
+  Then we have $$d\lambda_{z}[\Psi]=e^{-\psi}d\lambda_{z'},$$
+  where $d\lambda_{z}$ and $d\lambda_{z'}$ denote the Lebesgue
+  measures on $U$ and $S\cap U$. Especially,
+  $$|f\wedge dz_{n-l+1}\wedge\cdots\wedge dz_{n}|^{2}_{h}d\lambda_{z}[\Psi]
+  =2^{l}\{f, f\}_{h}e^{-\psi},$$ where $f$ is a continuous $(n-l,0)$
+  form with value in the Hermitian vector bundle $(E,h)$ on $S\cap U$.
+  \end{lem}
+  
+  \begin{proof}
+  Note that $d\lambda_{z}[l\log(|z_{n-l+1}|^{2}+\cdots+|z_{n}|^{2})] =
+  d\lambda_{z'}$ for $z=(z',z_{n-l+1},\cdots,z_{n})$. According to the
+  definition of \itbf{\color{purple3} generalized residue volume form} $d\lambda_{z}[\Psi]$
+  and the continuity of $\psi$, the lemma follows.
+  \end{proof}
+
+\begin{remark}
+\begin{align*}
+  |f\wedge dz_{n-l+1}\wedge\cdots\wedge dz_{n}|^{2}_{h}d\lambda_{z}[\Psi] &\stackrel{\text{By def}}{=}  |f\wedge dz_{n-l+1}\wedge\cdots\wedge dz_{n}|^{2}_{h}\; (e^{-\psi} \dd \lambda_{z'})\\ 
+  &= e^{-\psi}  \cdot \{f,f\}^2_h \cdot |dz_{n-l+1}\wedge\cdots\wedge dz_{n}|^{2}\\ 
+  &= 2^l e^{-\psi}  \cdot \{f,f\}^2_h.
+\end{align*}
+  
+
+  等式 $|d z_{n-l+1} \wedge \cdots \wedge d z_n|_h^2 = 2^l$ 的正确性取决于 Hermitian 度量 $h$ 和外微分形式 $d z_{n-l+1}, \ldots, d z_n$ 的具体定义。在标准的复坐标系中，如果我们考虑的是标准的 Hermitian 度量，这个等式可以在某些情况下成立。
+
+  具体来说，如果我们在 $\mathbb{C}^n$ 上考虑标准的 Hermitian 度量，那么 $dz_i$ 和 $d\bar{z}_j$ 之间的内积是 $\delta_{ij}$，其中 $\delta_{ij}$ 是 Kronecker delta，它在 $i = j$ 时为 1，否则为 0。在这种情况下，$dz_i \wedge d\bar{z}_j$ 形式的范数将是 1，如果 $i = j$，否则为 0。这是因为在这种情况下，$dz_i$ 和 $d\bar{z}_j$ 是正交的。
+  
+  当我们考虑形式 $d z_{n-l+1} \wedge \cdots \wedge d z_n$ 的范数时，我们实际上是在考虑一个 $l$-形式的范数，其中每个 $dz_i$ 都是标准正交基的一部分。在这种情况下，每个 $dz_i$ 的范数是 $\sqrt{2}$，因为在 Hermitian 度量下，$|dz_i|^2 = dz_i \wedge d\bar{z}_i = 2$。因此，当你将 $l$ 个这样的形式通过楔积结合时，你会得到 $2^l$，因为每个 $dz_i$ 贡献一个因子 $\sqrt{2}$，并且有 $l$ 个这样的形式。
+  
+  所以，如果我们假设 $h$ 是标准的 Hermitian 度量，那么等式是正确的。但是，如果 Hermitian 度量 $h$ 不是标准的，或者如果我们不在 $\mathbb{C}^n$ 这样的标准空间中，那么我们需要更多的信息来验证这个等式。
+
+\end{remark}
+
+\subsection{Proof of Lemma 4.16}
+
+\begin{lemma}[][][l:extension.equ]
+  Let $d_{1}(t)$ and $d_{2}(t)$ be two
+  positive continuous functions on $(0,+\infty)$, which satisfy
+    $$\int_{0}^{+\infty}d_{1}(t)e^{-t}dt=\int_{0}^{+\infty}d_{2}(t)e^{-t}dt<\infty,$$
+    and 
+\begin{align*}
+  \begin{cases}
+    d_1(t)=d_2(t), & \{t<r_{3}\}\cup\{t>r_{1}\};\\
+    d_1(t)<d_2(t), & \{r_{3}<t<r_{2}\};\\
+    d_1(t)>d_2(t), & \{r_{2}<t<r_{1}\}.
+  \end{cases}
+\end{align*}
+  where $0<r_{3}<r_{2}<r_{1}<+\infty$.
+
+  Let $f$ be a holomorphic function on $\Delta$, then we have
+  $$\int_{\Delta}d_{1}(-\ln(|z|^{2}))|f|^{2}d\lambda\leq\int_{\Delta}d_{2}(-\ln(|z|^{2}))|f|^{2}d\lambda<+\infty,$$
+  where $\lambda$ is the Lebesgue measure on $\Delta$. Moreover, the
+  equality holds if and only if $f\equiv f(0)$.
+  \end{lemma}
+
+\begin{proof}
+  Set
+$$f(z)=\sum_{k=0}^{\infty}a_{k}z^{k},$$
+a Taylor expansion of $f$ at $0$,
+which is uniformly convergent on any given compact subset of
+$\Delta$.
+
+As
+$$\int_{\Delta}d_{1}(-\ln(|z|^{2}))z^{k_{1}}\bar{z}^{k_{2}}d\lambda=0$$
+when $k_{1}\neq k_{2}$, it follows that
+
+\begin{equation}
+  \label{equ:polar.0919.1.a}
+  \begin{split}
+    \int_{\Delta}d_{1}(-\ln(|z|^{2}))|f|^{2}d\lambda
+    &=\int_{\Delta}\sum_{k=0}^{\infty}d_{1}(-\ln(|z|^{2}))|a_{k}|^{2}|z|^{2k}d\lambda
+    \\
+    &=\int_{0}^{2\pi}\int_{0}^{+\infty}\sum_{k=0}^{\infty}d_{1}(-\ln(|z|^{2}))|a_{k}|^{2}|z|^{2k} \abs{z}\dd \abs{z} \dd \theta\\
+    &=\int_{0}^{2\pi}\dd \theta\int_{0}^{+\infty}\sum_{k=0}^{\infty}d_{1}(t)|a_{k}|^{2}e^{-kt}\sqrt{e^{-t}}\dd \abs{\sqrt{e^{-t}}}\\ 
+    &=\int_{0}^{2\pi}\dd \theta\int_{0}^{+\infty}\sum_{k=0}^{\infty}d_{1}(t)|a_{k}|^{2}e^{-kt}\sqrt{e^{-t}} \br{\abs{-\frac 12}\sqrt{e^{-t}}}\dd t\\ 
+    &=\pi\sum_{k=0}^{\infty}|a_{k}|^{2}\int_{0}^{+\infty}d_{1}(t)e^{-kt}e^{-t}dt,
+  \end{split}
+\end{equation}
+where $r=\abs{z}$,
+and
+\begin{equation}
+\label{equ:polar.0919.2.a}
+\begin{split}
+\int_{\Delta}d_{2}(-\ln(|z|^{2}))|f|^{2}d\lambda
+&=\int_{\Delta}\sum_{k=0}^{\infty}d_{2}(-\ln(|z|^{2}))|a_{k}|^{2}|z|^{2k}d\lambda
+\\&=\pi\sum_{k=0}^{\infty}|a_{k}|^{2}\int_{0}^{+\infty}d_{2}(t)e^{-kt}e^{-t}dt.
+\end{split}
+\end{equation}
+
+As
+$$\int_{0}^{+\infty}d_{1}(t)e^{-t}dt=\int_{0}^{+\infty}d_{2}(t)e^{-t}dt<\infty,$$
+
+$$d_{1}(t)|_{\{r_{2}<t<r_{1}\}}>d_{2}(t)|_{\{r_{2}<t<r_{1}\}},$$
+and
+$$d_{1}(t)|_{\{r_{3}<t<r_{2}\}}<d_{2}(t)|_{\{r_{3}<t<r_{2}\}},$$
+it follows that
+  \begin{align}
+  \int_{r_{3}}^{r_{2}}(d_{2}(t)-d_{1}(t))e^{-kt}e^{-t}dt
+  &>\int_{r_{3}}^{r_{2}}(d_{2}(t)-d_{1}(t))e^{-kr_{2}}e^{-t}dt,\label{eq:polar.0919.c.I}
+  \\
+  \int_{r_{2}}^{r_{1}}(d_{1}(t)-d_{2}(t))e^{-kr_{2}}e^{-t}dt
+  &>\int_{r_{2}}^{r_{1}}(d_{1}(t)-d_{2}(t))e^{-kt}e^{-t}dt, \label{eq:polar.0919.c.II}
+  \end{align}
+  thus by adding \eqref{eq:polar.0919.c.I} and \eqref{eq:polar.0919.c.II}
+ we have   
+ \[
+  \int_{r_{3}}^{r_{2}}(d_{2}(t)-d_{1}(t))e^{-kt}e^{-t}dt>\int_{r_{2}}^{r_{1}}(d_{1}(t)-d_{2}(t))e^{-kt}e^{-t}dt.
+ \]
+Then we have
+\begin{align*}
+  \int_{r_{3}}^{r_{2}}(d_{2}(t)-d_{1}(t))e^{-kt}e^{-t}dt&>\int_{r_{2}}^{r_{1}}(d_{1}(t)-d_{2}(t))e^{-kt}e^{-t}dt\\ 
+&\iff \text{split and reorganization}\\ 
+\int_{r_{3}}^{r_{2}}d_{2}(t)e^{-kt}e^{-t}dt -\int_{r_{3}}^{r_{2}}d_{1}(t)e^{-kt}e^{-t}dt&>\int_{r_{2}}^{r_{1}}d_{1}(t)e^{-kt}e^{-t}dt -\int_{r_{2}}^{r_{1}}d_{2}(t)e^{-kt}e^{-t}dt\\ 
+\int_{r_{3}}^{r_{2}}d_{2}(t)e^{-kt}e^{-t}dt +\int_{r_{2}}^{r_{1}}d_{2}(t)e^{-kt}e^{-t}dt&>\int_{r_{2}}^{r_{1}}d_{1}(t)e^{-kt}e^{-t}dt +\int_{r_{3}}^{r_{2}}d_{1}(t)e^{-kt}e^{-t}dt\\ 
+\end{align*}
+
+ Therefore 
+  $$\int_{r_{3}}^{r_{1}}d_{1}(t)e^{-kt}e^{-t}dt<\int_{r_{3}}^{r_{1}}d_{2}(t)e^{-kt}e^{-t}dt,$$
+  for every $k\geq1$.
+
+
+
+\end{proof}
+
+\begin{remark}
+  \begin{align*}
+    \int_{\Delta}d_{1}(-\ln(|z|^{2}))z^{k_{1}}\bar{z}^{k_{2}}d\lambda=\begin{cases}
+      0, & k_1\neq k_2,\\ 
+      \abs{z}^{2k}, & k_1=k_2=k.
+    \end{cases}
+  \end{align*}
+  The equation $$\int_\Delta z^{k_1}\cdot \bar{z}^{k_2} \, d\lambda = 0$$ is generally true when $k_1 \neq k_2$, especially under certain specific conditions and for appropriate integration regions $\Delta$. This equation relies on principles of \itbf{orthogonality} in complex analysis, involving integrals of analytic functions and their conjugates over specific domains.
+
+  In the complex plane, $z^{k_1}$ and $\bar{z}^{k_2}$ represent the $k_1$-th power of $z$ and the complex conjugate of $z$ raised to the $k_2$-th power, respectively. \emph{When $k_1 \neq k_2$, these functions are orthogonal over the entire region, meaning that the integral of their product over that region is zero. This orthogonality arises due to the oscillatory nature of these functions in the complex plane, resulting in mutual cancellation over the entire region.}
+  
+  % This property is particularly significant in Fourier analysis and orthogonal function systems, where different frequencies of sine and cosine waves integrate to zero over certain intervals. Similarly, in complex analysis, the product of different powers of $z$ and $\bar{z}$ integrates to zero over certain intervals.
+  
+  % It's important to note that this conclusion depends on the choice of the integration region $\Delta$ and the specific form of the functions involved. In different scenarios, this conclusion may not hold. For instance, if the integration region is the entire complex plane or is not symmetric, the conclusion might not apply.
+
+\end{remark}
+
+
+\subsection{Proof of Lemma 4.17}
+
+Let $\Omega$ be an open Riemann surface.
+Let $z_{0}\in\Omega$,
+and $V_{z_0}$ be a neighborhood of $z_{0}$ with local coordinate $w$,
+such that $w(z_{0})=0$.
+
+Using the lemma \ref{l:extension.equ}, we have the following lemma on open Riemann
+surfaces:
+
+\begin{lemma}[][][:extension_equ.2]
+  Assume that there is a negative
+subharmonic function $\Psi$ on $\Omega$, such that
+$\Psi|_{V_{z_0}}=\ln|w|^{2}$, and $\Psi|_{\Omega\setminus
+V_{z_0}}\geq\sup_{z\in V_{z_0}}\Psi(z)$. Let $d_{1}(t)$ and
+$d_{2}(t)$ be two positive continuous functions on $(0,+\infty)$ as
+in lemma \ref{l:extension.equ}. Assume that
+${\color{purple}\{\Psi<-r_{3}+1\}\subset\subset V_{z_0}}$ is a disc with the
+coordinate $z$. Let $F$ be a holomorphic $(1,0)$ form, which
+satisfies ${\color{violet} F|_{z_{0}}=\dd w}$, then we have
+$$\int_{\Omega}d_{1}(-\Psi)\sqrt{-1}F\wedge\bar{F}\leq\int_{\Omega}d_{2}(-\Psi)\sqrt{-1}F\wedge\bar{F}<+\infty,$$
+Moreover, the equality holds if and only if $F|_{V_{z_0}}=dw$.
+\end{lemma}
+
+\begin{proof}
+  It is clear that
+  \begin{equation}
+  \label{equ:polar.0921.1}
+  \begin{split}
+  &\int_{\Omega}d_{1}(-\Psi)\sqrt{-1}F\wedge\bar{F}
+  =
+  \\&\int_{\{\log|w|^{2}<-r_{3}+1\}}d_{1}(-\Psi)\sqrt{-1}|\frac{F}{dw}|^{2}dw\wedge d\bar{w}+
+  \int_{\Omega\setminus\{\log|w|^{2}<-r_{3}+1\}}d_{1}(-\Psi)\sqrt{-1}F\wedge\bar{F},
+  \end{split}
+  \end{equation}
+  \begin{equation}
+  \label{equ:polar.0921.2}
+  \begin{split}
+  &\int_{\Omega}d_{2}(-\Psi)\sqrt{-1}F\wedge\bar{F}
+  =
+  \\&\int_{\{\log|w|^{2}<-r_{3}+1\}}d_{2}(-\Psi)\sqrt{-1}|\frac{F}{dw}|^{2}dw\wedge d\bar{w}+
+  \int_{\Omega\setminus\{\log|w|^{2}<-r_{3}+1\}}d_{2}(-\Psi)\sqrt{-1}F\wedge\bar{F}.
+  \end{split}
+  \end{equation}
+  Note that $-\Psi|_{\Omega\setminus\{\log|w|^{2}<-r_{3}+1\}}<r_{3}-1<r_3$,
+  then by the definition we have $d_1(t)=d_2(t), t\in \{t<r_3\}\cup \{t>r_1\}$, then
+  $$\int_{\Omega\setminus\{\log|w|^{2}<-r_{3}+1\}}d_{1}(-\Psi)\sqrt{-1}F\wedge\bar{F}
+  =\int_{\Omega\setminus\{\log|w|^{2}<-r_{3}+1\}}d_{2}(-\Psi)\sqrt{-1}F\wedge\bar{F}.$$
+  
+  Applying Lemma \ref{l:extension.equ} to the rest parts of equalities
+  \ref{equ:polar.0921.1} and \ref{equ:polar.0921.2}, we get the
+  present lemma.
+  \end{proof}
+  
+\subsection{Proof of Lemma 4.18}
+
+Using Lemma \ref{l:extension.equ}, we obtain the following lemma.
+
+\begin{lemma}[][][l:extension_equ.extended] 
+  { \color{violet} Let $\Omega$ be an open Riemann
+surface with Green function $G_{\Omega}$.} Let $z_{0}\in\Omega$, and
+$V_{z_0}$ be a neighborhood of $z_{0}$ with local coordinate $w$,
+such that $w(z_{0})=0$. Assume that there is a negative subharmonic
+function $\Psi$ on $\Omega$, such that $\Psi|_{V_{z_0}}=\ln|w|^{2}$
+and $\Psi|_{\Omega\setminus V_{z_0}}\geq\sup_{z\in V_{z_0}}\Psi(z)$.
+Let $d_{1}(t)$ and $d_{2}(t)$ be two positive continuous functions
+on $(0,+\infty)$ as in Lemma \ref{l:extension.equ}. Assume that
+${\color{purple}\{\Psi<-r_{3}+1\}\subset\subset V_{z_0}}$, which is a disc with the
+coordinate $w$. Let $F$ be a holomorphic $(1,0)$ form, which
+satisfies $${ \color{violet} ((p_{j})_{*}(f_{-h,j}))F|_{z_{0}}=\dd w},$$ then we have
+$$\int_{\Omega}d_{1}(-\Psi)\sqrt{-1}\rho F\wedge\bar{F}\leq\int_{\Omega}d_{2}(-\Psi)\sqrt{-1}\rho F\wedge\bar{F},$$
+Moreover, the equality holds if and only if $((p_{j})_{*}(f_{-h,j}))F|_{V_{z_0}}=\dd w$.
+\end{lemma}
+The proof is the same as above lemma, they are all the corollaries of \ref{l:extension.equ}.
+
+\section{The proof of the main theorem I}
+  
+\begin{definition}
+  Let $M$ be a complex manifold with a continuous volume form
+  $dV_{M}$, and $S$ be a closed complex subvariety of $M$. We call
+  $(M,S)$ satisfies condition $(ab)$ if $M$ and $S$ satisfy the
+  following conditions:
+  
+  There exists a closed subset $X\subset M$ such that:
+  
+  $(a)$ $X$ is \textbf{locally negligible with respect to $L^2$ holomorphic
+  functions}, i.e., for any local coordinate neighborhood $U\subset M$
+  and for any $L^2$ holomorphic function $f$ on $U\setminus X$, there
+  exists an $L^2$ holomorphic function $\tilde{f}$ on $U$ such that
+  $\tilde{f}|_{U\setminus X}=f$ with the same $L^{2}$ norm.
+  
+  $(b)$ $M\setminus X$ is a \textbf{Stein manifold} which intersects with every component of $S$,
+  such that $S_{sing}\subset X$.
+  \end{definition}
+  
+  When $S$ is smooth, the condition $(ab)$ is the same as condition 1)
+  in Theorem 4 in \cite{ohsawa5}. There are the following examples
+  satisfying condition $(ab)$:
+  
+  $1).$ $M$ is a Stein manifold (including open Riemann surfaces),
+  and $S$ is any closed complex subvariety of $M$;
+  
+  $2).$ $M$ is a complex projective algebraic manifold (including
+  compact Riemann surfaces), and $S$ is any closed complex subvariety
+  of $M$;
+  
+  $3).$ $M$ is a projective family (see \cite{siu00}),
+  and $S$ is any closed complex subvariety of $M$.
+
+\begin{proposition}[][][r:extend]
+  Let $(M,S)$ satisfy condition $(ab)$, $h$ be a
+  singular metric on a holomorphic line bundle $L$ on $M$ (resp.
+  continuous metric on holomorphic vector bundle $E$ on $M$ with rank
+  $r$) such tah $h$ has locally a positive lower bound. Let $F$ be a
+  holomorphic section of $K_{M\setminus X}\otimes E|_{M\setminus X}$,
+  which satisfies $\int_{M\setminus X}|F|^{2}_{h}<\infty$. As $h$ has
+  locally a positive lower bound and \textcolor{purple4}{$M$ satisfies $(a)$ of condition
+  $(ab)$, there is a holomorphic section $\widetilde{F}$ of $K_{M}\otimes
+  L$ on $M$ (resp. $K_{M}\otimes E$), such that
+  $\widetilde{F}|_{M\setminus X}=F$.}
+  \end{proposition}
+
+When $M$ is a Stein Manifold, by Proposition \ref{r:extend} , it can be proved that the theorem is true. the reason is that 
+
+\begin{description}
+  \item[答：] 要理解为什么在证明这个定理时，可以归结到证明\(M\)是Stein流形的情形，我们需要考虑两个关键点：Stein流形的性质以及Remark \ref{r:extend}的内容。
+
+首先，Stein流形是复分析中的一个重要概念。一个Stein流形是一个复流形，它满足类似于复数域上的仿射空间的一些关键性质。最重要的是，Stein流形上的全纯函数和全纯向量丛有很好的性质，例如，它们允许全局的全纯截面的存在。这使得在Stein流形上的分析和构造变得更加可行和简单。
+
+其次，Remark \ref{r:extend}中提到的内容是关键的。它指出，对于满足特定条件的流形\(M\)和全纯截面\(F\)，如果我们在\(M\setminus X\)上有一个全纯截面\(F\)，那么我们可以将这个截面扩展到整个\(M\)上。这是一种全纯延拓的性质，它是Stein流形理论中的一个重要结果。特别地，这个remark说明了在某些条件下，我们可以从局部到全局地延拓全纯截面。
+
+综合这两点，当我们要证明原始定理时，如果我们能证明\(M\)是一个Stein流形，那么就可以利用Stein流形上全纯截面的特性和Remark \ref{r:extend}中提到的全纯延拓性质。这样一来，我们就可以更容易地处理和证明那些涉及全纯截面和其性质的问题，因为Stein流形为这些问题提供了一个更为友好和可控的环境。
+
+换句话说，将问题简化为在Stein流形上的情形，可以利用Stein流形特有的性质和已知的结果（如Remark \ref{r:extend}），从而简化问题的证明过程。
+\item[问：] 我有点理解你的意思了，也就是说，在Stein流形上，自然地满足了这个定理所要求的一些条件，故而通过限定在Stein流形上讨论，可以大大简化证明的工作量是吗？但是这样一来，这就把定理的适用范围缩小了，这貌似并不能证明定理成立啊？所以你能从专业学术角度谈谈，这样做的原因吗？作者为何要这么限定讨论范围在Stein流形上？
+\item[答：] 您的理解是正确的。限定在Stein流形上讨论确实可以简化证明过程，因为Stein流形自然满足定理中的一些关键条件。但您也指出了一个重要的问题：这种方法似乎限制了定理的适用范围。让我们从专业学术角度深入探讨这一点。
+\begin{enumerate}
+  \item 逐步推广的策略：在数学研究中，特别是在复杂的领域如复几何和复分析中，首先在一个特定的、更容易处理的情形下证明定理是常见的策略。一旦在这些“理想”的情况下得到了定理的证明，研究人员会尝试将这些结果推广到更一般的情形。在您的例子中，首先在Stein流形上证明定理，然后考虑如何将证明扩展到更一般的复流形上，是一种逐步推广的策略。
+  \item 利用已知的结果：Stein流形上全纯函数和向量丛的性质已经被深入研究，并且有许多成熟的结果。通过将讨论范围限制在Stein流形上，作者可以直接利用这些现有的理论和技术，从而避免重新发展复杂的理论框架。
+  \item 为更广泛的结果奠定基础：在特定的情形（如Stein流形）下得到的结果和技术往往为解决更一般情形下的问题提供了有价值的洞察和工具。在很多情况下，这些特定情形的证明提供了重要的思想、技术和方法，这些可以被适当修改和扩展，以适应更一般的情况。
+  \item Remark \ref{r:extend}的重要性：这个备注可能暗示着在特定条件下，从Stein流形上的结果可以推广到更一般的复流形。也就是说，虽然初始证明是在Stein流形上完成的，但是通过某种方法（可能是在备注中提到的），这些结果可以被扩展到更广泛的情境中。
+\end{enumerate}
+
+总之，将讨论范围限定在Stein流形上是一个策略性的决定，旨在首先在一个更易处理的环境中建立定理，然后逐步推广到更广泛的情形。这是数学研究中常见的做法，特别是在面对复杂的理论和证明时。
+\end{description}
+
+
+
+
+\begin{remark}
+  Stein流形的定义：
+
+一个Stein流形是一个复流形 \(M\)，其上存在一组Stein坐标图，即存在一组坐标图 \(\{\phi_i: U_i \rightarrow \mathbb{C}^n\}\)，其中 \(\{U_i\}\) 是 \(M\) 的开覆盖，使得：
+
+1. 每个 \(\phi_i\) 是从开集 \(U_i\) 到 \(\mathbb{C}^n\) 的同胚映射。
+2. 任意两个坐标图 \(\phi_i\) 和 \(\phi_j\) 的转换函数 \(\phi_i \circ \phi_j^{-1}\) 是解析的。
+
+Stein流形的性质：
+
+1. 局部均值最小性质： Stein流形上的Stein坐标图的选取是与局部极小估计有关的，这使得在Stein流形上可以方便地进行一些解析运算。
+
+2. 解析函数的存在性： 由于坐标变换是解析的，Stein流形上可以定义解析函数，这使得复变函数理论在该流形上成立。
+
+3. Oka-Cartan定理： Stein流形上的Oka-Cartan定理表明，对于Stein流形上的任意解析函数，存在一个整函数序列逐点收敛到该解析函数。这是Stein流形在复分析中的一个重要性质。
+
+4. 正合层： Stein流形上可以构造正合层，这是与流形上解析函数相关的代数结构，对于复几何学和复变函数论有重要意义。
+
+需要注意的是，Stein流形是一个相对专业化的数学概念，详细的理论需要深入研究复流形、复变函数、解析函数等领域。以上是一个简化的描述，实际的定义和性质可能会更加详细和抽象。你可能需要查阅相关的数学文献，例如Grauert 和 Remmert 的《Coherent Analytic Sheaves》等，以获得更深入的理解。
+\end{remark}
+
+\section{Proof of the main Theorem}
+\begin{Remark}
+  \label{r:extendl} Let $(M,S)$ satisfy condition $(ab)$, $h$ be a
+singular metric on a holomorphic line bundle $L$ on $M$ (resp.
+continuous metric on holomorphic vector bundle $E$ on $M$ with rank
+$r$) such tah $h$ has locally a positive lower bound. Let $F$ be a
+holomorphic section of $K_{M\setminus X}\otimes E|_{M\setminus X}$,
+which satisfies $\int_{M\setminus X}|F|^{2}_{h}<\infty$. As $h$ has
+locally a positive lower bound and $M$ satisfies $(a)$ of condition
+$(ab)$, there is a holomorphic section $\tilde{F}$ of $K_{M}\otimes
+L$ on $M$ (resp. $K_{M}\otimes E$), such that
+$\tilde{F}|_{M\setminus X}=F$.
+\end{Remark}
+By Remark \ref{r:extendl}, it suffices to prove the case that $M$ is a Stein manifold.
+
+\begin{Remark}
+  \label{r:c_A_lim}
+  Let $c_{A}(t)$ be the positive function in Theorem \ref{t:guan-zhou-semicontinu2} and \ref{t:guan-zhou-semicontinu}.
+  By the construction in the proof of the lemma \ref{l:lemma4.8},
+  one can \textcolor{azure3}{\itbf{choose a sequence of positive smooth functions $\{c_{A,m}(t)\}_{m=1,2,\cdots}$
+  on $(-A,+\infty)$,
+  which are continuous on $[-A,+\infty]$
+  and uniformly convergent to $c_{A}(t)$ on any compact subset of $(-A,+\infty)$,
+  and satisfying the same conditions as $c_{A}(t)$ in Theorem \ref{t:guan-zhou-semicontinu2}
+  and \ref{t:guan-zhou-semicontinu},
+  such that
+  $\int_{-A}^{\infty}c_{A,m}(t)e^{-t}dt+\frac{1}{\delta}c_{A,m}(-A)e^{A}$ are convergent to
+  $\int_{-A}^{\infty}c_{A}(t)e^{-t}dt+\frac{1}{\delta}c_{A}(-A)e^{A}$
+  when $m$ goes to $\infty$.}}
+  \end{Remark}
+
+By Lemma \ref{l:lim_unbounded} and Remark \ref{r:c_A_lim},
+it suffices to prove the case that $c_{A}$ is smooth on $(A,+\infty)$ and continuous on $[A,+\infty]$,
+such that $\lim_{t\to+\infty}c_{A}(t)>0$.
+
+Since $M$ is a Stein manifold, there is a sequence of Stein
+manifolds $\{D_m\}_{m=1}^\infty$ satisfying $D_m\subset\subset
+D_{m+1}$ for all $m$ and
+$\overset{\infty}{\underset{m=1}{\cup}}D_m=M$. It's known that all
+$D_{m}\setminus S$ are complete K\"{a}hler (\cite{grauert}).
+
+Since $M$ is Stein, there is a holomorphic section $\tilde{F}$ of
+$K_{M}$ on $M$ such that $\tilde{F}|_{S}={f}$.
+
+\begin{note}
+Let $ds_{M}^{2}$ be a K\"{a}hler metric on $M$, and $dV_{M}$ be the
+volume form with respect to $ds_{M}^{2}$.
+
+Let
+$\{v_{t_0,\varepsilon}\}_{t_{0}\in\mathbb{R},\varepsilon\in(0,\frac{1}{4})}$
+be a family of smooth increasing convex functions on $\mathbb{R}$,
+such that:
+
+$1).$ $v_{t_{0},\varepsilon}(t)=t$, for $t\geq-t_{0}-\varepsilon$;
+$v_{t_{0},\varepsilon}(t)$ is a constant depending on $t_{0}$ and
+$\varepsilon$, for
+ $t<-t_{0}-1+\varepsilon$;
+
+$2).$ the sequence $v''_{t_0,\varepsilon}(t)$ is pointwise
+convergent to $\mathbb{I}_{\{-t_{0}-1< t<-t_{0}\}}$
+ when $\varepsilon\to 0$, and
+ $0\leq v''_{t_0,\varepsilon}(t)\leq 2$ for any $t\in \mathbb{R}$;
+
+$3).$ the sequence $v_{t_0,\varepsilon}(t)$ is $C^{1}$ convergent to
+$b_{t_{0}}(t)$
+
+($$b_{t_{0}}(t):=\int_{-\infty}^{t}(\int_{-\infty}^{t_{2}}\mathbb{I}_{\{-t_{0}-1<
+t_{1}<-t_{0}\}}dt_{1})dt_{2}-\int_{-\infty}^{0}
+(\int_{-\infty}^{t_{2}}\mathbb{I}_{\{-t_{0}-1<t_{1}<-t_{0}\}}dt_{1})dt_{2}$$
+is also a $C^1$ function on $\mathbb{R}$) when $\varepsilon\to 0$,
+and $0\leq v'_{t_0,\varepsilon}(t)\leq1$ for any $t\in \mathbb{R}$.
+\end{note}
+\noindent $\bullet$ \textbf{The Construction of the family $\{v_{t_0,\varepsilon}\}_{t_{0}\in\mathbb{R},\varepsilon\in(0,\frac{1}{4})}$}
+
+
+We can construct the family
+$\{v_{t_0,\varepsilon}\}_{t_{0}\in\mathbb{R},\varepsilon\in(0,\frac{1}{4})}$
+by setting
+\begin{equation}
+\label{}
+\begin{split}
+v_{t_0,\varepsilon}(t)&:=\int_{-\infty}^{t}\int_{-\infty}^{t_{1}}\frac{1}
+{1-2\varepsilon}\mathbb{I}_{\{-t_{0}-1+\varepsilon< s<-t_{0}-\varepsilon\}}
+*\rho_{\frac{1}{4}\varepsilon}dsdt_{1}
+\\&-\int_{-\infty}^{0}\int_{-\infty}^{t_{1}}\frac{1}{1-2\varepsilon}
+\mathbb{I}_{\{-t_{0}-1+\varepsilon< s<-t_{0}-\varepsilon\}}*\rho_{\frac{1}{4}\varepsilon}dsdt_{1},
+\end{split}
+\end{equation}
+where $\rho_{\frac{1}{4}\varepsilon}$ is the kernel of convolution satisfying $supp(\rho_{\frac{1}{4}\varepsilon})
+\subset (-\frac{1}{4}\varepsilon,\frac{1}{4}\varepsilon)$.
+\begin{remark}
+  这个数学表达式构建了一个函数族 \(\{v_{t_0,\varepsilon}\}_{t_{0}\in\mathbb{R},\varepsilon\in(0,\frac{1}{4})}\)，这个族中的每个函数都是通过一个特定的积分表达式定义的。我们来分析一下这个构造的巧妙之处和 \(\rho_{\frac{1}{4}\varepsilon}\) 的含义。
+\begin{description}
+  \item[1. 函数族的定义：] 这里定义的 \(v_{t_0,\varepsilon}(t)\) 是通过对某个函数（在这里是特征函数 \(\mathbb{I}\) 与一个卷积核 \(\rho_{\frac{1}{4}\varepsilon}\) 的卷积）的二重积分来构造的。这种构造方式在数学中常用于\textbf{生成平滑函数}，特别是在概率论和偏微分方程中。
+  \item[2. 特征函数：] \(\mathbb{I}_{\{-t_{0}-1+\varepsilon< s<-t_{0}-\varepsilon\}}\) 是一个特征函数，它在给定的区间 \((-t_{0}-1+\varepsilon, -t_{0}-\varepsilon)\) 内取值为 1，而在区间外取值为 0。这种函数通常用于\textbf{“选取”或“突出”特定区间内的值}。
+  \item[3. 卷积核：] \(\rho_{\frac{1}{4}\varepsilon}\) 是一个卷积核，通常用于平滑函数或信号。卷积核的支集（support）被限制在 \((-{\frac{1}{4}\varepsilon}, {\frac{1}{4}\varepsilon})\)，这意味着它只在这个小区间内有非零值。\textbf{这种局部性质使得卷积操作能够平滑函数，同时保持对函数整体形状的影响最小化。}
+  \item[4. 巧妙之处：] \begin{itemize}
+    \item \textbf{平滑性：} 通过卷积操作，原本可能是不连续的特征函数被转化为一个平滑函数。这对于后续的分析和应用可能是必要的，特别是在需要考虑函数的微分性质时。
+    \item \textbf{局部调整：} 通过调整 \(t_0\) 和 \(\varepsilon\)，可以在不同的区间上构造出不同的平滑函数，这为探索函数的局部性质提供了灵活性。
+    \item \textbf{减去常数项：} 减去的积分项 \(\int_{-\infty}^{0}\int_{-\infty}^{t_{1}}...\) 可能是为了调整 \(v_{t_0,\varepsilon}(t)\) 的基线或确保某些特定的性质，如使得 \(v_{t_0,\varepsilon}(0) = 0\)。
+  \end{itemize}
+\end{description}
+总的来说，这种构造方法通过卷积和积分操作，生成了一个平滑、可调整且具有特定局部特征的函数族，这在数学分析中是一个非常有用的技巧。
+\end{remark}
+Then we have
+$$v'_{t_0,\varepsilon}(t)=\int_{-\infty}^{t}\frac{1}{1-2\varepsilon}
+\mathbb{I}_{\{-t_{0}-1+\varepsilon<
+s<-t_{0}-\varepsilon\}}*\rho_{\frac{1}{4}\varepsilon}ds,$$
+and
+$$v''_{t_0,\varepsilon}(t)=
+\frac{1}{1-2\varepsilon}\mathbb{I}_{\{-t_{0}-1+\varepsilon<
+t<-t_{0}-\varepsilon\}}*\rho_{\frac{1}{4}\varepsilon}.$$
+
+Let $s$ and $u$ be two undetermined real functions which will be
+determined later on after doing calculations based on Lemma
+4.1 and Lemma 4.2. Let
+$\eta=s(-v_{t_{0},\varepsilon}\circ\Psi)$ and
+$\phi=u(-v_{t_{0},\varepsilon}\circ\Psi)$, where $s\in
+C^{\infty}((-A,+\infty))$ satisfying $s\geq \frac{1}{\delta}$ and
+$u\in C^{\infty}((-A,+\infty))$ satisfying $\lim_{t\to+\infty}u(t)$
+exists (which will be determined to be
+$=-\log(\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{\infty}c_{A}(t)e^{-t}dt)$).
+Let $\tilde{h}=he^{-\Psi-\phi}$.
+
+Now let $\alpha\in \mathcal{D}(X,\Lambda^{n,1}T_{D_{m}\setminus
+S}^{*}\otimes E)$ be an $E$-valued smooth $(n,1)$- form with compact
+support on $D_{m}\setminus S$. Using Lemma 4.1 and Lemma
+4.2 and the assumption $\sqrt{-1}\Theta_{he^{-\Psi}}\geq
+0$ on $D_{m}\setminus S$, we get
+\begin{align*}
+  \Theta_{\tilde{h}} =-\bd\bdd\log (\tilde{h})=-\bd\bdd\log(he^{-\Psi})-\bd\bdd\log(e^{-\phi}) 
+  =\Theta_{he^{-\Psi}}+\bd\bdd\phi,
+\end{align*}
+and
+\begin{equation}
+\label{equ:smooth.3.31.1}
+\begin{split}
+&\|(\eta+g^{-1})^{\frac{1}{2}}D''^{*}\alpha\|^{2}_{D_m\setminus S,\tilde{h}}
++\|\eta^{\frac{1}{2}}D''\alpha\|^{2}_{D_m\setminus S,\tilde{h}}
+\\&\geq\ll[\eta\sqrt{-1}\Theta_{\tilde{h}}-\sqrt{-1}\partial\bar\partial\eta-
+\sqrt{-1}g\partial\eta\wedge\bar\partial\eta,\Lambda_{\omega}]\alpha,\alpha\gg_{D_m\setminus S,\tilde{h}}
+\\&=\ll[\eta\sqrt{-1}\partial\bar\partial\phi+\eta\sqrt{-1}\Theta_{he^{-\Psi}}-\sqrt{-1}\partial\bar\partial\eta-
+\sqrt{-1}g\partial\eta\wedge\bar\partial\eta,\Lambda_{\omega}]\alpha,\alpha\gg_{D_m\setminus S,\tilde{h}}.
+\end{split}
+\end{equation}
+where $g$ is a positive continuous function on $D_{m}\setminus S$.
+We need some calculations to determine $g$. We have
+\begin{equation}
+\partial\bar{\partial}\eta=-s'(-v_{t_0,\varepsilon}\circ \Psi)\partial\bar{\partial}(v_{t_0,\varepsilon}\circ \Psi)
++s''(-v_{t_0,\varepsilon}\circ \Psi)\partial(v_{t_0,\varepsilon}\circ \Psi)\wedge
+\bar{\partial}(v_{t_0,\varepsilon}\circ \Psi),
+\end{equation}
+and
+\begin{equation}
+\partial\bar{\partial}\phi=-u'(-v_{t_0,\varepsilon}\circ \Psi)\partial\bar{\partial}(v_{t_0,\varepsilon}\circ \Psi)
++
+u''(-v_{t_0,\varepsilon}\circ \Psi)\partial(v_{t_0,\varepsilon}\circ \Psi)
+\wedge\bar{\partial}(v_{t_0,\varepsilon}\circ \Psi).
+\end{equation}
+这里的计算是这样的，重点是链式法则和Leibniz律。我们要计算的是一个复合函数 \(s(-v_{t_0,\varepsilon} \circ \Psi)\) 的复Hessian（\(\partial\bar{\partial}\)），其中 \(s\) 是一个实数值函数，\(v_{t_0,\varepsilon}\) 和 \(\Psi\) 是复变函数。计算涉及到链式法则和Leibniz法则。
+
+首先，设 \(u = -v_{t_0,\varepsilon} \circ \Psi\)。然后我们有 \(s(u)\)。我们需要计算 \(\partial\bar{\partial}s(u)\)。
+
+1. 应用链式法则：
+   \[
+   \partial s(u) = s'(u) \partial u
+   \]
+   其中 \(s'(u)\) 是函数 \(s\) 关于 \(u\) 的导数。注意，\(\partial u = -\partial(v_{t_0,\varepsilon} \circ \Psi)\)。
+
+2. 对上述结果应用 \(\bar{\partial}\)：
+   \[
+   \bar{\partial}(\partial s(u)) = \bar{\partial}(s'(u) \partial u)
+   \]
+   这里我们需要应用Leibniz法则（乘积法则），因为我们对两个函数的乘积进行微分：\(s'(u)\) 和 \(\partial u\)。
+
+3. 应用Leibniz法则：
+   \[
+   \bar{\partial}(s'(u) \partial u) = \bar{\partial}(s'(u)) \wedge \partial u + s'(u) \bar{\partial}\partial u
+   \]
+   其中，\(\bar{\partial}(s'(u))\) 表示 \(s'(u)\) 的外微分。
+
+4. 进一步展开 \(\bar{\partial}(s'(u))\)：
+   \[
+   \bar{\partial}(s'(u)) = s''(u) \bar{\partial}u
+   \]
+   因为 \(s'(u)\) 是关于 \(u\) 的函数，所以它的导数 \(s''(u)\) 乘以 \(\bar{\partial}u\)。
+
+5. 替换回原始变量：
+   \[
+   \bar{\partial}(\partial s(u)) = s''(u) \bar{\partial}u \wedge \partial u + s'(u) \bar{\partial}\partial u
+   \]
+   其中 \(u = -v_{t_0,\varepsilon} \circ \Psi\)，所以 \(\partial u = -\partial(v_{t_0,\varepsilon} \circ \Psi)\) 和 \(\bar{\partial}u = -\bar{\partial}(v_{t_0,\varepsilon} \circ \Psi)\)。
+
+6. 得到最终表达式：
+   \[
+   \partial\bar{\partial}(s(-v_{t_0,\varepsilon} \circ \Psi)) = -s'(-v_{t_0,\varepsilon} \circ \Psi) \partial\bar{\partial}(v_{t_0,\varepsilon} \circ \Psi) + s''(-v_{t_0,\varepsilon} \circ \Psi) \partial(v_{t_0,\varepsilon} \circ \Psi) \wedge \bar{\partial}(v_{t_0,\varepsilon} \circ \Psi)
+   \]
+
+这个计算表明，第二项 \(s''(-v_{t_0,\varepsilon} \circ \Psi) \partial(v_{t_0,\varepsilon} \circ \Psi) \wedge \bar{\partial}(v_{t_0,\varepsilon} \circ \Psi)\) 是从函数 \(s(u)\) 的二阶导数 \(s''(u)\) 乘以两个一阶导数的外积中得到的。这体现了在复分析中处理复合函数导数时链式法则和Leibniz法则的结合应用。这里记得分步逐次计算即可，耐心。
+\[\bdd[s(f\circ g)=s'(f\circ g)\cdot \bdd(f\circ g),]\]
+and
+\[\bd[\bdd(f\circ g)]=\bd[s'(f\circ g)\cdot \bdd(f\circ g)]=s''(f\circ g)\cdot \bd(f\circ g)\wedge \bdd (f\circ g)+s'(f\circ g)\cdot \bd\bdd(f\circ g).\]
+Therefore,
+\begin{equation}
+\label{equ:smooth.vector1}
+\begin{split}
+&\eta\sqrt{-1}\partial\bar\partial\phi-\sqrt{-1}\partial\bar\partial\eta-
+\sqrt{-1}g\partial\eta\wedge\bar\partial\eta
+\\=&(s'-su')\sqrt{-1}\partial\bar{\partial}(v_{t_0,\varepsilon}\circ \Psi)
++((u''s-s'')-gs'^{2})\sqrt{-1}\partial(v_{t_0,\varepsilon}\circ \Psi)
+\wedge\bar{\partial}(v_{t_0,\varepsilon}\circ \Psi)
+\\=&
+(s'-su')((v'_{t_0,\varepsilon}\circ\Psi)\sqrt{-1}\partial\bar{\partial}
+\Psi+(v''_{t_0,\varepsilon}\circ \Psi)\sqrt{-1}\partial(\Psi)\wedge\bar{\partial}(\Psi))
+\\+&((u''s-s'')-gs'^{2})\sqrt{-1}\partial(v_{t_0,\varepsilon}\circ \Psi)
+\wedge\bar{\partial}(v_{t_0,\varepsilon}\circ \Psi).
+\end{split}
+\end{equation}
+
+We omit composite item $(-v_{t_0,\varepsilon}\circ \Psi)$ after $s'-su'$ and $(u''s-s'')-gs'^{2}$
+in the above equalities.
+
+It's natural to let $u''s-s''>0$. Let
+$g=\frac{u''s-s''}{s'^{2}}\circ(-v_{t_0,\varepsilon}\circ \Psi)$. We
+have
+$\eta+g^{-1}=(s+\frac{s'^{2}}{u''s-s''})\circ(-v_{t_0,\varepsilon}\circ
+\Psi)$.
+
+Since $\sqrt{-1}\Theta_{he^{-\Psi}}\geq0$,
+$a(-\Psi)\sqrt{-1}\Theta_{he^{-\Psi}}+\sqrt{-1}\partial\bar\partial\Psi\geq0$
+on $M\setminus S$, and $0\leq v'_{t_{0},\varepsilon}\circ\Psi\leq1$,
+we have
+\begin{equation}\label{eq:5.6}
+\eta(1-v'_{t_0,\varepsilon}\circ\Psi)\sqrt{-1}\Theta_{he^{-\Psi}}+
+(v'_{t_0,\varepsilon}\circ\Psi)(\eta\sqrt{-1}\Theta_{he^{-\Psi}}+\sqrt{-1}\partial\bar\partial\Psi)\geq 0,
+\end{equation}
+on $M\setminus S$ for $t_{0}$ big enough, which means that
+\begin{equation}
+\label{equ:smooth.vector2}
+\eta\sqrt{-1}\Theta_{he^{-\Psi}}+(v'_{t_0,\varepsilon}\circ\Psi)\sqrt{-1}\partial\bar{\partial}\Psi\geq 0,
+\end{equation}
+on $M\setminus S$.
+\begin{remark}
+  The reason is that by the condition of the main theorem, we know that $0\leqslant a(t)\leqslant s(t)$ is a continous fuction on $(-A,+\infty)$, then let $t=-\Psi$, we obtain $0\leqslant a(-\Psi)\leqslant s(-\Psi)$. And by the definition of $\eta$, we have $\eta=s(-v_{t_0,\varepsilon}\circ \Psi)\in \{s(-\Psi)\}_{\Psi\in \#_A(S)}$, which implices that $\eta \geqslant a(-\Psi)\geqslant 0$. Thus we gain the conclusion that \ref{eq:5.6} is hold.
+\end{remark}
+
+
+From equality  \ref{equ:smooth.vector1}, in order to do $L^2$
+estimate, it's natural to let $s'-su'>0$; since to find $s$ and $u$
+is an extremal problem, it's natural to let $s'-su'$ be a constant;
+by the boundary condition, the constant should be $1$.
+
+Using the inequality $v'_{t_0,\varepsilon}\geq 0$, Lemma
+4.2, equality \ref{equ:smooth.vector1}, and inequalities
+\ref{equ:smooth.3.31.1} and \ref{equ:smooth.vector2}, one has
+\begin{equation}
+\label{equ:smooth.vector3}
+\begin{split}
+\langle B\alpha, \alpha\rangle_{\tilde{h}}=
+&\langle[\eta\sqrt{-1}\Theta_{\tilde{h}}-\sqrt{-1}\partial\bar\partial\eta-\sqrt{-1}g
+\partial\eta\wedge\bar\partial\eta,\Lambda_{\omega}]
+\alpha,\alpha\rangle_{\tilde{h}}
+\\\geq&
+\langle[(v''_{t_0,\varepsilon}\circ \Psi)\sqrt{-1}\partial\Psi\wedge\bar{\partial}
+\Psi,\Lambda_{\omega}]\alpha,\alpha\rangle_{\tilde{h}}
+=\langle (v''_{t_{0},\varepsilon}\circ \Psi)
+\bar\partial\Psi\wedge (\alpha\llcorner(\bar\partial\Psi)^\sharp),\alpha\rangle_{\tilde{h}}.
+\end{split}
+\end{equation}
+
+\begin{remark}
+  $|\langle a\gamma,b\rangle_h|^2\leqslant \langle a\gamma,a\gamma\rangle_h\cdot \langle b,b\rangle_h$，请问这个不等式对吗？这里可以考虑下Cauchy-Schwarz不等式，并且$h$是Hermitian度量. 
+
+  \textbf{答：}这个不等式是正确的，并且它实际上是Cauchy-Schwarz不等式在Hermitian度量下的一个特例。在Hermitian度量中，我们考虑的是向量（或在更一般的情况下是张量）之间的内积。这个内积是用Hermitian度量 \( h \) 来定义的。
+
+  给定两个向量 \( a \) 和 \( b \)，以及一个向量 \( \gamma \)，Hermitian度量 \( h \) 下的Cauchy-Schwarz不等式表述为：
+  \[ |\langle a\gamma, b\rangle_h|^2 \leq \langle a\gamma, a\gamma\rangle_h \cdot \langle b, b\rangle_h \]
+  
+  这里的内积 \( \langle \cdot, \cdot \rangle_h \) 是通过Hermitian度量 \( h \) 定义的。不等式的含义是，两个向量的内积的模的平方不大于各自内积的乘积。
+  
+  解释如下：
+  
+  1. 内积的模的平方：左侧的 \( |\langle a\gamma, b\rangle_h|^2 \) 表示向量 \( a\gamma \) 和 \( b \) 通过度量 \( h \) 形成的内积的模的平方。
+  
+  2. 向量的内积：右侧的 \( \langle a\gamma, a\gamma\rangle_h \) 和 \( \langle b, b\rangle_h \) 分别表示向量 \( a\gamma \) 和 \( b \) 与自身的内积。
+  
+  3. Cauchy-Schwarz不等式：这个不等式的核心是指出，在任何内积空间中，两个向量的内积的绝对值的平方总是小于或等于这两个向量各自的内积乘积。在Hermitian空间中，这个不等式保持成立，因为Hermitian度量本质上定义了一个内积。
+  
+  总结来说，这个不等式是正确的，并且它是Hermitian度量空间中Cauchy-Schwarz不等式的直接应用。
+\end{remark}
+
+Using the definition of contraction, Cauchy-Schwarz inequality and
+the inequality \ref{equ:smooth.vector3}, we have
+\begin{equation}
+  \label{eq:eq5.9}
+  \begin{split}
+  |\langle (v''_{t_{0},\varepsilon}\circ \Psi)\bar\partial\Psi\wedge \gamma,\tilde{\alpha}\rangle_{\tilde{h}}|^{2}
+  =&|\langle (v''_{t_{0},\varepsilon}\circ \Psi)
+  \gamma,\tilde{\alpha}\llcorner(\bar\partial\Psi)^\sharp\big \rangle_{\tilde{h}}|^{2}
+  \\\leq&\langle( v''_{t_{0},\varepsilon}\circ \Psi) \gamma,\gamma\rangle_{\tilde{h}}
+  (v''_{t_{0},\varepsilon}\circ \Psi)|\tilde{\alpha}\llcorner(\bar\partial\Psi)^\sharp\big|_{\tilde{h}}^{2}
+  \\=&\langle (v''_{t_{0},\varepsilon}\circ \Psi)\gamma,\gamma\rangle_{\tilde{h}}
+  \langle (v''_{t_{0},\varepsilon}\circ \Psi) \bar\partial\Psi\wedge
+  (\tilde{\alpha}\llcorner(\bar\partial\Psi)^\sharp\big ),\tilde{\alpha}\rangle_{\tilde{h}}
+  \\\leq&\langle (v''_{t_{0},\varepsilon}\circ \Psi )\gamma,\gamma\rangle_{\tilde{h}}
+  \langle B\tilde{\alpha},\tilde{\alpha}\rangle_{\tilde{h}},
+  \end{split}
+  \end{equation}
+for any $(n,0)$ form $\gamma$ and $(n,1)$ form $\tilde{\alpha}$.
+\begin{remark}
+  这个等式涉及到微分几何中的缩并操作和楔积操作，以及它们与Hermitian度量的关系。要解释为什么这个等式成立，我们需要理解缩并操作、楔积操作以及Hermitian度量下的内积。
+
+1. 缩并操作（Contraction）：在微分几何中，缩并操作是一种将一个向量场（或张量场）与一个微分形式结合的操作。具体来说，如果 \( \alpha \) 是一个 \( k \)-形式，而 \( b^\sharp \) 是一个向量场（这里表示为 \( b \) 的对偶向量），那么 \( \alpha \llcorner b^\sharp \) 表示 \( \alpha \) 沿 \( b^\sharp \) 方向的缩并。这个操作降低了形式的阶数。
+
+2. 楔积操作（Wedge Product）：楔积是微分形式之间的一种乘法，用于构建更高阶的微分形式。在这个等式中，\( \bar\partial\Psi \wedge (\alpha\llcorner(\bar\partial\Psi)^\sharp) \) 表示将 \( \bar\partial\Psi \) 与 \( \alpha \llcorner (\bar\partial\Psi)^\sharp \) 通过楔积组合起来。
+
+3. Hermitian度量下的内积：在Hermitian度量 \( h \) 下，内积 \( \langle \cdot, \cdot \rangle_h \) 是在向量或形式之间定义的。它允许我们计算两个对象之间的角度和长度。
+
+4. 等式的含义：等式
+   \[ \langle \alpha \llcorner (\bar\partial\Psi)^\sharp, \alpha \llcorner (\bar\partial\Psi)^\sharp \rangle_h = \langle \bar\partial\Psi \wedge (\alpha \llcorner (\bar\partial\Psi)^\sharp), \alpha \rangle_h \]
+   表示缩并后的形式 \( \alpha \llcorner (\bar\partial\Psi)^\sharp \) 与自身的内积等于 \( \bar\partial\Psi \) 与缩并形式 \( \alpha \llcorner (\bar\partial\Psi)^\sharp \) 的楔积与原始形式 \( \alpha \) 的内积。
+
+这个等式的成立基于缩并和楔积操作在Hermitian度量下的特定性质，特别是这些操作是如何影响内积的。在具体的几何背景下，这种关系通常涉及到形式和向量场之间复杂的相互作用。这个等式在具体的几何和拓扑问题中可能有特定的应用，例如在研究复流形或Hermitian流形的几何结构时。要理解这个等式为何成立，我们需要考虑微分几何中的缩并操作和楔积操作，以及它们与Hermitian度量下的内积之间的关系。缩并操作和楔积操作都是微分形式之间的运算，它们在复几何和Hermitian几何中非常重要。
+
+1. 缩并操作：\( a \llcorner b^\sharp \) 表示的是缩并操作，其中 \( a \) 是一个微分形式，\( b^\sharp \) 是一个向量场。缩并操作可以看作是向量场与微分形式之间的一种内积操作，它减少了形式的阶数。在这个具体的例子中，\( \alpha \llcorner (\bar\partial\Psi)^\sharp \) 表示将形式 \( \alpha \) 与向量 \( (\bar\partial\Psi)^\sharp \) 缩并。
+
+2. 楔积操作：楔积操作是微分形式之间的一种乘法。在这里，\( \bar\partial\Psi \wedge (\alpha \llcorner (\bar\partial\Psi)^\sharp) \) 表示将微分形式 \( \bar\partial\Psi \) 与缩并结果 \( \alpha \llcorner (\bar\partial\Psi)^\sharp \) 通过楔积组合起来。
+
+3. Hermitian度量下的内积：Hermitian度量 \( h \) 提供了一种计算向量或形式之间内积的方式。在这种度量下，内积 \( \langle \cdot, \cdot \rangle_h \) 考虑了复结构的影响。
+
+4. 等式的含义：等式
+   \[ \langle \alpha \llcorner (\bar\partial\Psi)^\sharp, \alpha \llcorner (\bar\partial\Psi)^\sharp \rangle_h = \langle \bar\partial\Psi \wedge (\alpha \llcorner (\bar\partial\Psi)^\sharp), \alpha \rangle_h \]
+   表示缩并操作的结果 \( \alpha \llcorner (\bar\partial\Psi)^\sharp \) 与自身的Hermitian内积等于楔积操作的结果 \( \bar\partial\Psi \wedge (\alpha \llcorner (\bar\partial\Psi)^\sharp) \) 与原始形式 \( \alpha \) 的Hermitian内积。
+
+这个等式的成立基于缩并和楔积操作在Hermitian度量下的特定性质，尤其是这些操作如何影响形式之间的内积。这种关系在复几何和Hermitian几何中非常重要，尤其是在研究复流形或Hermitian流形的几何和拓扑性质时。
+\end{remark}
+Take
+$\lambda=\bar{\partial}[(1-v'_{t_0,\varepsilon}(\Psi)){\tilde{F}}]$,
+$\gamma=\tilde{F}$, and $\tilde{\alpha}=B^{-1}\bar\partial\Psi\wedge
+\tilde{F}$, it follows that
+$$\langle B^{-1}\lambda,\lambda\rangle_{\tilde{h}} \leq (v''_{t_0,\varepsilon}\circ{\Psi})| \tilde{F}|^2_{\tilde{h}},$$
+ and therefore
+ $$\int_{D_m\setminus S}\langle B^{-1}\lambda,\lambda\rangle_{\tilde{h}} dV_{M}\leq \int_{D_m\setminus S}
+ (v''_{t_0,\varepsilon}
+ \circ{\Psi})| \tilde{F}|^2_{\tilde{h}}dV_{M}.$$
+ 
+\begin{remark}
+  As $\widetilde{F}\in L_h^2(M)$ is a $(n,0)$-form (cf. P1160), we have $$\lambda=\bdd [(1-v_{t_0,\varepsilon}'\circ\Psi)\widetilde{F}]=0+\bdd[(-v_{t_0,\varepsilon}'\circ\Psi)\widetilde{F}]=-(v_{t_0,\varepsilon}''\circ\Psi)\bdd\Psi\wedge\widetilde{F},$$ 
+  where $\bdd \widetilde{F}=0, \bdd[(-v_{t_0,\varepsilon}'\circ\Psi)\widetilde{F}]=-v_{t_0,\varepsilon}''(\Psi)\cdot \bdd\Psi\wedge \widetilde{F}$.
+  Thus $\widetilde{\alpha}=B^{-1}\bdd \Psi\wedge \widetilde{F}=-\frac{B^{-1}\lambda}{(v_{t_0,\varepsilon}''\circ\Psi)}$. Then the inequality \eqref{eq:eq5.9} will become
+  \begin{align*}
+\abs{\lang{-\lambda,-\frac{B^{-1}\lambda}{(v_{t_0,\varepsilon}''\circ\Psi)}}_{\tilde{h}}}^2 &\leqslant \abs{\widetilde{F}}^2_{\tilde{h}}\cdot \lang{-\lambda,-\frac{B^{-1}\lambda}{(v_{t_0,\varepsilon}''\circ\Psi)}}_{\tilde{h}}\\ 
+\iff\\
+\lang{-\lambda,-\frac{B^{-1}\lambda}{(v_{t_0,\varepsilon}''\circ\Psi)}}_{\tilde{h}}\cdot \lang{-\lambda,-\frac{B^{-1}\lambda}{(v_{t_0,\varepsilon}''\circ\Psi)}}_{\tilde{h}} & \leqslant \abs{\widetilde{F}}^2_{\tilde{h}}\cdot \lang{-\lambda,-\frac{B^{-1}\lambda}{(v_{t_0,\varepsilon}''\circ\Psi)}}_{\tilde{h}}\\ 
+\iff\\ 
+\lang{-\lambda,-\frac{B^{-1}\lambda}{(v_{t_0,\varepsilon}''\circ\Psi)}}_{\tilde{h}}& \leqslant \abs{\widetilde{F}}^2_{\tilde{h}}\\ 
+\implies\\ 
+\lang{B^{-1}\lambda,\lambda}_{\tilde{h}}=\lang{\lambda,B^{-1}\lambda}_{\tilde{h}}& \leqslant (v_{t_0,\varepsilon}''\circ\Psi)\abs{\widetilde{F}}^2_{\tilde{h}}.
+  \end{align*}
+\end{remark}
+
+By Lemma 4.3, there exists an $(n,0)$-form
+$\gamma_{m,t_0,\varepsilon}$ with value in $E$ on $D_{m}\setminus S$
+satisfying
+$$\bar{\partial}\gamma_{m,t_0,\varepsilon}=\lambda,$$
+and
+
+\begin{equation}
+ \label{equ:smooth.vector3.2}
+ \begin{split}
+ &\int_{ D_m\setminus S}|\gamma_{m,t_0,\varepsilon}|^{2}_{\tilde{h}}(\eta+g^{-1})^{-1}dV_{M}
+  \leq\int_{D_m\setminus S}(v''_{t_0,\varepsilon}\circ{\Psi})| \tilde{F}|^2_{\tilde{h}}dV_M.
+  \end{split}
+\end{equation}
+
+Let $\mu_{1}=e^{v_{t_0,\varepsilon}\circ\Psi}$,
+$\mu=\mu_{1}c_{A}(-v_{t_0,\varepsilon}\circ\Psi)e^{\phi}$.
+
+It's natural to ask $\eta$ and $\phi$ to satisfy $\mu\leq
+\mathbf{C}(\eta+g^{-1})^{-1}$, which will be discussed at the end of
+this subsection, where $\mathbf{C}$ is just the constant in Theorem
+\ref{t:guan-zhou-semicontinu2}.
+
+As $v_{t_0,\varepsilon}(\Psi)\geq\Psi$, we have
+\begin{equation}
+\label{equ:smooth.vector3.8}
+\begin{split}
+\int_{ D_m\setminus S}|\gamma_{m,t_0,\varepsilon}|^{2}_{h}c_{A}(-v_{t_0,\varepsilon}\circ\Psi)dV_{M}
+\leq\int_{ D_m\setminus S}
+|\gamma_{m,t_0,\varepsilon}|^{2}_{\tilde{h}}c_{A}(-v_{t_0,\varepsilon}\circ\Psi)\mu_{1}e^{\phi} dV_{M}.
+\end{split}
+\end{equation}
+
+From inequalities \ref{equ:smooth.vector3.2} and
+\ref{equ:smooth.vector3.8}, it follows that
+$$\int_{D_m\setminus S}|\gamma_{m,t_0\varepsilon}|^{2}_{h}c_{A}(-v_{t_0,\varepsilon}\circ\Psi)dV_{M}
+\leq\mathbf{C}\int_{D_m\setminus S}
+(v''_{t_0,\varepsilon}\circ{\Psi})| \tilde{F}|^2_{\tilde{h}}dV_M,$$
+under the assumption $\mu\leq\mathbf{C} (\eta+g^{-1})^{-1}$.
+
+For any given $t_{0}$ there exists a neighborhood $U_{0}$ of
+$\{\Psi=-\infty\}\cap \overline{D_{m}}$ on $M$, such that for any
+$\varepsilon$, $v''_{t_0,\varepsilon}\circ\Psi|_{U_{0}}=0$.
+Therefore $\bar\partial\gamma_{m,t_0,\varepsilon}|_{U_0\setminus
+S}=0$. The computation is
+\[
+\begin{aligned}
+\bar\partial\gamma_{m,t_0,\varepsilon}|_{U_0\setminus
+S} &=\bar\partial\left[(1-v_{t_0,\varepsilon'\circ \Psi})\tilde{F}\right]\big|_{U_0\backslash S}\\ 
+&=\left[\bar\partial(1-v_{t_0,\varepsilon'\circ \Psi})\wedge\tilde{F}+(1-v_{t_0,\varepsilon'\circ \Psi})\wedge\bar\partial\tilde{F}\right]\big|_{U_0\backslash S} \quad\text{$\tilde{F}$ is a holomorphic, thus $\bar\partial\tilde{F}=0$.}\\ 
+&=\left[(-v_{t_0,\varepsilon}''\circ \Psi)\wedge \tilde{F}\right]\big|_{U_0\backslash S}\quad \text{Since $v_{t_0,\varepsilon}''\circ \Psi$ is a \textbf{Real} function, it has no complex part.}\\ 
+&=0.
+\end{aligned}
+\]
+It shows that $\gamma_{m,t_0,\varepsilon}$ is a constant in $U_0\backslash S$.
+
+As $\Psi$ is upper-semicontinuous and $\phi$ is bounded on $D_{m}$,
+it is easy to see that $\gamma_{m,t_0,\varepsilon}$ is locally
+$L^{2}$ integrable along $S$. Note that a holomorphic function is clearly $L^2$-integrable on a closed complex subvariety (or submanifold). Then $\gamma_{m,t_0,\varepsilon}$ can
+be extended to $U_{0}$ as a holomorphic function, which is denoted
+by $\tilde{\gamma}_{m,t_0,\varepsilon}$.
+
+\begin{remark}
+As $\gamma_{m,t_0,\varepsilon}$ is a constant in $U_0\backslash S$, it is easy to check that it is $L^2$-integrable on $U_0\backslash S$. Then combining the above conclusion that $\gamma_{m,t_0,\varepsilon}$ is locally
+$L^{2}$ integrable along $S$, we have the $L^2$-extenbsion of $\gamma_{m,t_0,\varepsilon}$, denoted by $\tilde{\gamma}_{m,t_0,\varepsilon}$.
+\end{remark}
+
+It follows from $\Psi\in \#(S)$ that $e^{-\Psi}$ is disintegrable
+near $S$. Then $\tilde{\gamma}_{m,t_0,\varepsilon}$ satisfies
+$$\tilde{\gamma}_{m,t_0,\varepsilon}|_{S}=0,$$ and
+\begin{equation}
+\label{equ:smooth.vector3.3}\int_{ D_m}|\tilde{\gamma}_{m,t_0,\varepsilon}|^{2}_{h}c_{A}
+(-v_{t_0,\varepsilon}\circ\Psi)dV_{M}
+\leq\frac{\mathbf{C}}{e^{A_{t_0}}}\int_{D_m}
+(v''_{t_0,\varepsilon}\circ{\Psi})| \tilde{F}|^2_{he^{-\Psi}}dV_M,
+\end{equation}
+where $A_{t_0}:=\inf_{t\geq t_0}\{u(t)\}$.
+
+As
+$$\lim_{t\to+\infty}u(t)=-\log(\frac{1}{\delta}c_{A}(-A)e^A+\int_{-A}^{+\infty}c_{A}(t)e^{-t}dt),$$
+it is easy to see that
+$$\lim_{t_{0}\to\infty}\frac{1}{e^{A_{t_0}}}=\frac{1}{\delta}c_{A}(-A)e^A+\int_{-A}^{+\infty}c_{A}(t)e^{-t}dt.$$
+
+Let
+$F_{m,t_0,\varepsilon}:=(1-v'_{t_0,\varepsilon}\circ\Psi)\widetilde{F}-\tilde{\gamma}_{m,t_0,\varepsilon}$.
+By $\tilde{\gamma}_{m,t_0,\varepsilon}|_{S}=0$, then
+$F_{m,t_0,\varepsilon}$ is a holomorphic $(n,0)$-form with value in
+$E$ on $D_{m}$ satisfying
+$$F_{m,t_0,\varepsilon}|_{S}=\tilde{F}|_{S},$$
+where $\Psi\in \#(S)$ satisfies that $\Psi^{-1}(-\infty)\supset S$, which implices that $\Psi(S)=-\infty$.
+When substituting it into
+$$v'_{t_0,\varepsilon}(t)=\int_{-\infty}^{t}\frac{1}{1-2\varepsilon}
+\mathbb{I}_{\{-t_{0}-1+\varepsilon<
+s<-t_{0}-\varepsilon\}}*\rho_{\frac{1}{4}\varepsilon}ds,$$
+one can be obtained that 
+\[
+  v'_{t_0,\varepsilon}(\Psi(S))=\int_{-\infty}^{\Psi(S)}\frac{1}{1-2\varepsilon}
+\mathbb{I}_{\{-t_{0}-1+\varepsilon<
+s<-t_{0}-\varepsilon\}}*\rho_{\frac{1}{4}\varepsilon}ds=\int_{-\infty}^{-\infty}\ldots=0.
+\]
+Thus we have 
+\begin{align*}
+    F_{m,t_0,\varepsilon}&=(1-v'_{t_0,\varepsilon}\circ\Psi)\widetilde{F}-\tilde{\gamma}_{m,t_0,\varepsilon}\\ 
+    &=\widetilde{F}|_S-[(v'_{t_0,\varepsilon}\circ\Psi)\widetilde{F}]|_S\\
+    &=\widetilde{F}|_S.
+\end{align*}
+
+Then inequality \ref{equ:smooth.vector3.3} can be reformulated
+as follows:
+\begin{equation}
+\label{equ:smooth.vector3.5}
+\begin{split}
+\int_{D_m}|F_{m,t_{0},\varepsilon}-(1-v'_{t_{0},\varepsilon}\circ\Psi)
+\tilde{F}|^{2}_{h}c_{A}(-v_{t_0,\varepsilon}\circ\Psi)dV_{M}
+\leqslant\frac{\mathbf{C}}{e^{A_{t_0}}}\int_{D_m}(v''_{t_0,\varepsilon}\circ\Psi)|\tilde{F}|^{2}_{he^{-\Psi}}dV_{M}.
+\end{split}
+\end{equation}
+
+{\color{purple} Given $t_0$ and $D_{m}$, it is easy to check that
+$(v''_{t_0,\varepsilon}\circ\Psi)|\tilde{F}|^{2}_{he^{-\Psi}}$ has a
+\textbf{uniform bound} on $D_{m}$ independent of $\varepsilon$. (Sol. As $t_0$ and $D_m$ are fixed, $(v''_{t_0,\varepsilon}\circ\Psi)$ will only depends on $\varepsilon$. When $\varepsilon\to 0$, $(v''_{t_0,\varepsilon}\circ\Psi)$ is pointwise convergent to $\mathbb{I}_{\{-t_0-1<t<-t_0\}}$ and $0\leqslant (v''_{t_0,\varepsilon}\circ\Psi)\leqslant 2$, cf the settings of family $\{v_{t_0,\varepsilon}\}_{t_0\in \mathbb{R},\varepsilon\in (0,\frac 14)}$. It follows that $\abs{v''_{t_0,\varepsilon}\circ\Psi}\leqslant 1$, which shows that $\abs{(v''_{t_0,\varepsilon}\circ\Psi)|\tilde{F}|^2_{he^\Psi}}\leqslant |\tilde{F}|^2_{he^\Psi}\leqslant N$. Here $N>0$ as the uniform bound is independent of $\varepsilon$.) Then
+$$\int_{D_m}|(1-v'_{t_0,\varepsilon}\circ\Psi)\tilde{F}|^{2}_{h}c_{A}(-v_{t_0,\varepsilon}\circ\Psi)dV_{M}$$
+and
+$$\int_{D_m}(v''_{t_0,\varepsilon}\circ\Psi) |\tilde{F}|^{2}_{he^{-\Psi}}dV_{M}$$
+has a \textbf{uniform bound} independent of $\varepsilon$, for any given
+$t_0$ and $D_m$.}
+
+Using $\bar\partial F_{m,t_{0},\varepsilon}=0$ ($\iff$ holomorphic) and Lemma
+4.5, we can choose a subsequence of
+$\{F_{m,t_0,\varepsilon}\}_{\varepsilon}$, such that the chosen
+sequence is uniformly convergent on any compact subset of $D_m$,
+still denoted by $\{F_{m,t_0,\varepsilon}\}_{\varepsilon}$ without
+ambiguity.
+
+For any compact subset $K$ on $D_m$, it is easy to check that
+$F_{m,t_0,\varepsilon}$,
+$(1-v'_{t_0,\varepsilon}\circ\Psi)\tilde{F}$ and
+$(v''_{t_0,\varepsilon}\circ\Psi)|\tilde{F}|^{2}_{he^{-\Psi}}$ have
+uniform bounds on $K$ independent of $\varepsilon$.
+\begin{remark}
+  As $\{F_{m,t_0,\varepsilon}\}_{\varepsilon}$  the chosen
+  sequence is uniformly \textbf{convergent} on any compact subset $K$ of $D_m$, i.e., $\{F_{m,t_0,\varepsilon}\}_{\varepsilon}$ the chosen
+  sequence is uniformly \textbf{bound} on any compact subset $K$ of $D_m$. And by the purple part above, we have $$\int_{D_m}|(1-v'_{t_0,\varepsilon}\circ\Psi)\tilde{F}|^{2}_{h}c_{A}(-v_{t_0,\varepsilon}\circ\Psi)dV_{M}$$
+  and
+  $$\int_{D_m}(v''_{t_0,\varepsilon}\circ\Psi) |\tilde{F}|^{2}_{he^{-\Psi}}dV_{M}$$
+  has a \textbf{uniform bound} independent of $\varepsilon$, for any given
+  $t_0$ and $D_m$. Which implices that for any compact subset $K$ of $D_m$, the assertions hold.
+\end{remark}
+By the \textcolor{purple}{\textbf{dominated convergence theorem on any compact subset $K$ of
+$D_m$}} and inequality \ref{equ:smooth.vector3.5}, it follows that
+\begin{equation}
+\begin{split}
+\int_{K}|F_{m,t_0}-(1-b'_{t_0}(\Psi))\tilde{F}|^{2}_{h}c_{A}(-b_{t_0}(\Psi))dV_{M}
+\leq\frac{\mathbf{C}}{e^{A_{t_0}}}\int_{D_m}
+(\mathbb{I}_{\{-t_{0}-1< t<-t_{0}\}}\circ\Psi)|\tilde{F}|^{2}_{he^{-\Psi}}dV_{M},
+\end{split}
+\end{equation}
+which implies that
+\begin{equation}
+\label{equ:smooth.vector3.4}
+\begin{split}
+\int_{ D_m}|F_{m,t_0}-(1-b'_{t_0}(\Psi))\tilde{F}|^{2}_{h}c_{A}(-b_{t_0}(\Psi))dV_{M}
+\leq\frac{\mathbf{C}}{e^{A_{t_0}}}\int_{D_m}(\mathbb{I}_{\{-t_{0}-1< t<-t_{0}\}}
+\circ\Psi)|\tilde{F}|^{2}_{he^{-\Psi}}dV_{M}.
+\end{split}
+\end{equation}
+When reducing the neighborhood  from $D_m$ to any compact subset $K\subset D_m$, cf the settings of the family $\{v_{t_0,\varepsilon}\}$, it follows that by item (2), $v''_{t_0,\varepsilon}(\Psi)$ is pointwise convergent to $\mathbb{I}_{\{-t_0-1<t<-t_0\}}$ when $\varepsilon\to 0$, and by item (3), $v_{t_0,\varepsilon}(\Psi),v'_{t_0,\varepsilon}(\Psi)$ is convergent to $b_{t_0}(\Psi),b'_{t_0}(\Psi)$ when $\varepsilon\to 0$. Here is the progress using dominated convergence theorem on a compact subset $K\subset D_m$.
+\begin{remark}
+  \begin{description}
+    \item[Dominated convergence theorem:] ``Dominated Convergence Theorem"（受控收敛定理）是实分析和测度论中的一个重要定理，常用于交换极限和积分的顺序。这个定理在处理函数序列的极限与积分时尤为重要，特别是在处理那些\textbf{逐点收敛}的函数序列时。
+\begin{enumerate}
+  \item \textbf{定理陈述：}
+    设 \((f_n)_{n\in\mathbb{N}}\) 是定义在测度空间 \((X, \mathcal{M}, \mu)\) 上的一列可测函数，这些函数几乎处处（除了一个零测集）收敛到一个函数 \(f\)。如果存在一个可积函数 \(g\)，使得对于所有 \(n\) 和几乎所有 \(x\)，都有 \(|f_n(x)| \leq g(x)\)，则 \(f\) 是可积的，并且：
+    \[ \lim_{n \to \infty} \int_X |f_n - f| \, d\mu = 0 \]
+    \[ \lim_{n \to \infty} \int_X f_n \, d\mu = \int_X f \, d\mu \]
+    \item \textbf{关键点：}
+    \item \begin{itemize}
+      \item \textbf{可测函数序列：}\(f_n\) 是一列可测函数，意味着每个 \(f_n\) 都与给定的测度空间兼容。
+      \item \textbf{逐点收敛：}函数序列 \(f_n\) 逐点收敛到 \(f\)，即对于几乎所有的 \(x\)，\(f_n(x)\) 随 \(n\) 的增加趋向于 \(f(x)\)。
+      \item \textbf{控制函数 \(g\)：}存在一个“控制函数” \(g\)，它是可积的，并且对于所有的 \(n\)，它都在几乎所有点上界定了 \(|f_n|\) 的大小。这意味着无论 \(n\) 的值如何，\(f_n\) 的绝对值都不会超过 \(g\)。
+      \item  \textbf{积分的极限：}在这些条件下，可以将极限操作和积分操作互换。
+    \end{itemize}
+    \item  \textbf{应用：}
+    受控收敛定理在分析中非常有用，尤其是在处理含有参数的积分、期望值的极限，以及概率论和偏微分方程中的问题时。它提供了一种在极限过程中保持积分运算有效性的方法。
+\end{enumerate}
+  \end{description}
+\end{remark}
+From the definition of $dV_{M}[\Psi]$ and the inequality
+$\sum_{k=1}^{n}\frac{\pi^{k}}{k!}\int_{S_{n-k}}|f|^{2}_{h}dV_{M}[\Psi]<\infty$,
+it follows that
+
+\begin{equation}
+\label{equ:smooth.vector3.6}
+\begin{split}
+&\limsup_{t_{0}\to+\infty}\int_{D_m}
+(\mathbb{I}_{\{-t_{0}-1< t<-t_{0}\}}\circ\Psi_{v})|\tilde{F}|^{2}_{he^{-\Psi}}dV_{M}
+\\\leq&
+\limsup_{t_{0}\to+\infty}\int_{M}\mathbb{I}_{\overline{D}_{m}}
+(\mathbb{I}_{\{-t_{0}-1<t<-t_{0}\}}\circ\Psi)|\tilde{F}|^{2}_{he^{-\Psi}}dV_{M}
+\\\leq&\sum_{k=1}^{n}\frac{\pi^{k}}{k!}\int_{S_{n-k}}\mathbb{I}_{\overline{D}_{m}}|f|^{2}_{h}dV_{M}[\Psi]
+\leq\sum_{k=1}^{n}\frac{\pi^{k}}{k!}\int_{S_{n-k}}|f|^{2}_{h}dV_{M}[\Psi]<\infty
+\end{split}
+\end{equation}
+
+Then $\int_{D_m}(\mathbb{I}_{\{-t_{0}-1<
+t<-t_{0}\}}\circ\Psi)|\tilde{F}|^{2}_{he^{-\Psi}}dV_{M}$ have
+uniform bounds independent of $t_{0}$ for any given $D_m$, and
+\begin{equation}
+\label{equ:smooth.vector3.7}
+\begin{split}
+\limsup_{t_{0}\to+\infty}\int_{D_m}
+(\mathbb{I}_{\{-t_{0}-1< t<-t_{0}\}}\circ\Psi)|\tilde{F}|^{2}_{he^{-\Psi}}dV_{M}
+\leq\sum_{k=1}^{n}\frac{\pi^{k}}{k!}\int_{S_{n-k}}|f|^{2}_{h}dV_{M}[\Psi]<\infty.
+\end{split}
+\end{equation}
+
+By \eqref{equ:smooth.vector3.4}, it is clear that
+$$\int_{ D_m}|F_{m,t_0}-(1-b'_{t_0}(\Psi))\tilde{F}|^{2}_{h}c_{A}(-b_{t_0}(\Psi))dV_{M}$$
+has a uniform bound independent of $t_{0}$, for any given $D_m$.
+
+Using the fact that
+$$\int_{ D_m}|(1-b'_{t_0}(\Psi))\tilde{F}|^{2}_{h}c_{A}(-b_{t_0}(\Psi))dV_{M}$$
+has a uniform bound independent of $t_{0}$, inequality
+\ref{equ:smooth.vector3.4}, and the following inequality
+
+\begin{equation}
+\label{equ:smooth.vector3.9}
+\begin{split}
+&(\int_{ D_m}|F_{m,t_0}-(1-b'_{t_0}(\Psi))\tilde{F}|^{2}_{h}c_{A}(-b_{t_0}(\Psi))dV_{M})^{\frac{1}{2}}
+\\+&(\int_{ D_m}|(1-b'_{t_0}(\Psi))\tilde{F}|^{2}_{h}c_{A}(-b_{t_0}(\Psi))dV_{M})^{\frac{1}{2}}
+\\\geq&
+(\int_{ D_m}|F_{m,t_0}|^{2}_{h}c_{A}(-b_{t_0}(\Psi))dV_{M})^{\frac{1}{2}},
+\end{split}
+\end{equation}
+we obtain that $\int_{
+D_m}|F_{m,t_0}|^{2}_{h}c_{A}(-b_{t_0}(\Psi))dV_{M}$ has a uniform
+bound independent of $t_{0}$.
+
+Using $\bar\partial F_{m,t_{0}}=0$ and Lemma
+\ref{l:uniform_converg_compact}, we can choose a subsequence of
+$\{F_{m,t_{0}}\}_{t_{0}}$, such that the chosen subsequence is
+uniformly convergent on any compact subset of $D_m$, still denoted
+by $\{F_{m,t_0}\}_{t_{0}}$ without ambiguity.
+
+For any compact subset $K$ on $D_m$, it is clear that both
+$F_{m,t_0}$ and $(1-b'_{t_0}\circ\Psi)\tilde{F}$ have uniform bounds
+on $K$ independent of $t_0$.
+
+By inequality \ref{equ:smooth.vector3.4}, inequality
+\ref{equ:smooth.vector3.7}, the equality
+$$\lim_{t_{0}\to\infty}\frac{1}{e^{A_{t_0}}}=\frac{1}{\delta}c_{A}(-A)e^A+\int_{-A}^{+\infty}c_{A}(t)e^{-t}dt,$$
+and the dominated convergence theorem on any compact subset $K$ of
+$D_m$, it follows that
+\begin{equation}
+\begin{split}
+\int_{D_m}\mathbb{I}_{K}|F_{m}|^{2}_{h}c_{A}(-\Psi)dV_{M}
+\leq\mathbf{C}(\frac{1}{\delta}c_{A}(-A)e^A+\int_{-A}^{+\infty}c_{A}
+(t)e^{-t}dt)\sum_{k=1}^{n}\frac{\pi^{k}}{k!}\int_{S_{n-k}}|f|^{2}_{h}dV_{M}[\Psi],
+\end{split}
+\end{equation}
+which implies that
+\begin{equation}
+\begin{split}
+\int_{ D_m}|F_{m}|^{2}_{h}c_{A}(-\Psi)dV_{M}
+\leq\mathbf{C}(\frac{1}{\delta}c_{A}(-A)e^A+
+\int_{-A}^{+\infty}c_{A}(t)e^{-t}dt)\sum_{k=1}^{n}\frac{\pi^{k}}{k!}\int_{S_{n-k}}|f|^{2}_{h}dV_{M}[\Psi],
+\end{split}
+\end{equation}
+where the Lebesgue measure of $\{\Psi=-\infty\}$ is zero.
+
+Define $F_m=0$ on $M\backslash D_m$. Then the weak limit of some
+weakly convergent subsequence of $\{F_m\}_{m=1}^\infty$ gives a
+holomorphic section $F$ of $K_{M}\otimes E$ on $M$ satisfying
+$F|_{S}=\tilde{F}|_{S}$, and
+$$\int_{ M}|F|^{2}_{h}c_{A}(-\Psi)dV_{M}
+\leq\mathbf{C}(\frac{1}
+{\delta}c_{A}(-A)+\int_{-A}^{+\infty}c_{A}(t)e^{-t}dt)\sum_{k=1}^{n}
+\frac{\pi^{k}}{k!}\int_{S_{n-k}}|f|^{2}_{h}dV_{M}[\Psi].$$
+
+To finish the proof of Theorem \ref{t:guan-zhou-semicontinu2}, it
+suffices to determine $\eta$ and $\phi$ such that 
+$$(\eta+g^{-1})\leq
+\mathbf{C}c^{-1}_{A}(-v_{t_0,\varepsilon}\circ\Psi)e^{-v_{t_0,\varepsilon}\circ\Psi}e^{-\phi}=\mathbf{C}\mu^{-1}$$
+on $D_m$.
+
+Recall that $\eta=s(-v_{t_0,\varepsilon}\circ\Psi)$ and
+$\phi=u(-v_{t_0,\varepsilon}\circ\Psi)$. So we have 
+$$(\eta+g^{-1})
+e^{v_{t_0,\varepsilon}\circ\Psi}e^{\phi}=(s+\frac{s'^{2}}{u''s-s''})e^{-t}e^{u}\circ(-v_{t_0,\varepsilon}\circ\Psi).$$
+
+Summarizing the above discussion about $s$ and $u$, we are naturally
+led to a system of ODEs:
+\begin{equation}
+\label{equ:unify2.GZ_unify}
+\begin{split}
+&1).\,\,(s+\frac{s'^{2}}{u''s-s''})e^{u-t}=\frac{\mathbf{C}}{c_{A}(t)}, \\
+&2).\,\,s'-su'=1,
+\end{split}
+\end{equation}
+where $t\in(-A,+\infty)$ and $\mathbf{C}=1$; $s\in
+C^{\infty}((-A,+\infty))$ satisfies $s\geq \frac{1}{\delta}$ and
+$u\in C^{\infty}((-A,+\infty))$ satisfies
+$\lim_{t\to+\infty}u(t)=-\log(\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{\infty}c_{A}(t)e^{-t}dt)$
+such that $u''s-s''>0$.
+
+We solve the above system of ODEs in subsection \ref{subsec:ODE} and
+get the solution of the system of ODEs \ref{equ:unify2.GZ_unify}:
+\begin{equation}
+\begin{cases}
+u=-\log(\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{t}c_{A}(t_{1})e^{-t_{1}}dt_{1}),
+\\
+s=\frac{\int_{-A}^{t}(\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{t_{2}}c_{A}
+(t_{1})e^{-t_{1}}dt_{1})dt_{2}+\frac{1}{\delta^{2}}c_{A}(-A)e^{A}}
+{\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{t}c_{A}(t_{1})e^{-t_{1}}dt_{1}},
+\end{cases}
+\end{equation}
+
+One can check that $s\in C^{\infty}((-A,+\infty)),$ and $u\in
+C^{\infty}((-A,+\infty))$ with
+$$\lim_{t\to+\infty}u(t)=-\log(\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{+\infty}c_{A}(t_{1})e^{-t_{1}}dt_{1}).$$
+
+It follows from $u''s-s''=-s'u'$ and $u'<0$ that $u''s-s''>0$ is
+equivalent to $s'>0$. It's easy to see that the inequality
+\ref{equ:c_A_delta} is just $s'>0$. Therefore $u''s-s''>0$.
+
+In conclusion, we have proved Theorem \ref{t:guan-zhou-semicontinu2}
+with the constant $\mathbf{C}=1$.
+
+\begin{Remark}\label{r:guan-zhou-unify-exa2}
+Both $\mathbf{C}$ and the power of $\delta$ in Theorems
+\ref{t:guan-zhou-semicontinu2} and \ref{t:guan-zhou-semicontinu} are
+optimal on the ball $\mathbb{B}^{m}(0,e^{\frac{A}{2m}})$ with
+trivial holomorphic line bundle when $S=\{0\}$.
+\end{Remark}
+\subsection{A simple abstract of the above progress}
+
+By the following settings, we will obttain a simple model of the main theorem. 
+\[
+  \begin{cases}
+    \text{Remark 4.7} \implies (\text{The main theorem} \iff  \text{$M$ is a Stein manifold.})\\ 
+    \text{Lemma 4.6 and Remark 4.9} \implies (\text{The main theorem} \\\iff  \text{$c_A(t)$ is smooth on $(-A,+\infty)$ and continuous on $[-A,+\infty]$ such that $\lim_{t\to\infty}u(t)>0$.})
+  \end{cases}
+\]
+Then by the simpler setting : $M$ is a Stein manifold, 
+\begin{enumerate}
+  \item there is a sequence of Stein manifolds $\{D_m\}_{m=1}^\infty$ satisfying $D_m\subset D_{m+1}$ for all $m$ and $\bigcup_{m=1}^\infty D_{m}=M$, which is the conclusion of ?
+  \item all $D_m\backslash S$ is complete K\"ahler manifolds by H. Grauert's paper,
+  \item there is a holomorphic section $\widetilde{F}\in K_M$ such that $\widetilde{F}|_S=f$.
+\end{enumerate}
+
+\subsubsection{Some basic settings}
+Let 
+\begin{itemize}
+  \item $\dd s_M^2$ be a K\"ahler metric on $M$;
+  \item $\dd V_M$ be the volume form w.r.t $\dd s_M^2$;
+  \item $\{v_{t_0,\varepsilon}(t)\}_{t_0\in\mathbb{R},\varepsilon\in (0,\frac 14)}$ be a family of smooth increasing convex functions on $\bR$ such that 
+  \begin{enumerate}[label=(\arabic*)]
+    \item $v_{t_0,\varepsilon}(t)=\begin{cases}
+      t, & t\geqslant -t_0-\varepsilon;\\ 
+      C(t_0,\varepsilon), & t<-t_0-\varepsilon.
+    \end{cases}$
+    \item $v''_{t_0,\varepsilon}(t)\xLongrightarrow{\text{ pointwise converge to }} \bI_{\{-t_0-1<t<-t_0\}} \text{ as } \varepsilon\to 0$ and $v''_{t_0,\varepsilon}(t)\in [0,2]$;
+    \item $v'_{t_0,\varepsilon}(t)\to b_{t_0}(t) \text{ as } \varepsilon\to 0$ and $v_{t_0,\varepsilon}(t)\in [0,1]$.
+  \end{enumerate}
+\end{itemize}
+\subsubsection{Construction of the family \texorpdfstring{$\{v_{t_0,\varepsilon}(t)\}_{t_0\in\mathbb{R},\varepsilon\in (0,\frac 14)}$ }{}}
+Let 
+\begin{equation}
+  \label{}
+  \begin{split}
+  v_{t_0,\varepsilon}(t)&:=\int_{-\infty}^{t}\int_{-\infty}^{t_{1}}\frac{1}
+  {1-2\varepsilon}\mathbb{I}_{\{-t_{0}-1+\varepsilon< s<-t_{0}-\varepsilon\}}
+  *\rho_{\frac{1}{4}\varepsilon}dsdt_{1}
+  \\&-\int_{-\infty}^{0}\int_{-\infty}^{t_{1}}\frac{1}{1-2\varepsilon}
+  \mathbb{I}_{\{-t_{0}-1+\varepsilon< s<-t_{0}-\varepsilon\}}*\rho_{\frac{1}{4}\varepsilon}dsdt_{1},
+  \end{split}
+  \end{equation}
+  where $\rho_{\frac{1}{4}\varepsilon}$ is the kernel of convolution satisfying $\supp(\rho_{\frac{1}{4}\varepsilon})
+  \subset (-\frac{1}{4}\varepsilon,\frac{1}{4}\varepsilon)$.
+Then we obtain $v'_{t_0,\varepsilon}(t)$ and $v''_{t_0,\varepsilon}(t)$.
+\subsubsection{Smooth real functions \texorpdfstring{$s$}{} and \texorpdfstring{$u$}{} in \texorpdfstring{$(-A,+\infty)$}{}}
+$s,u$ satisfies that $s\geqslant \frac{1}{\delta}$, and $\lim_{t\to\infty} u(t)$ exists. Moreover, we have
+\[
+  \lim_{t\to\infty} u(t)=-\log(\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{\infty}c_{A}(t)e^{-t}\dd t).
+\]
+
+\subsubsection{Finding the optimal lower bound for the equation in Lemma 4.1}
+
+Let $\tilde{h}=he^{-\Psi-\phi}$ be the complete K\"ahler metric on $D_m\backslash S$.
+
+By \eqref{equ:smooth.vector2}, we obtain \eqref{equ:smooth.vector3}, which then implices that $B$ is positive definite everywhere on the space of $(n,1)$-forms on $X$  with valued in $E$ for some $q\geqslant 1$. Thus using Lemma 4.3, there exists an $(n,0)$-form
+$\gamma_{m,t_0,\varepsilon}$ with value in $E$ on $D_{m}\setminus S$
+satisfying
+$$\bar{\partial}\gamma_{m,t_0,\varepsilon}=\lambda,$$
+and
+
+\begin{equation*}
+ \begin{split}
+ &\int_{ D_m\setminus S}|\gamma_{m,t_0,\varepsilon}|^{2}_{\tilde{h}}(\eta+g^{-1})^{-1}dV_{M}
+  \leq\int_{D_m\setminus S}(v''_{t_0,\varepsilon}\circ{\Psi})| \tilde{F}|^2_{\tilde{h}}dV_M.
+  \end{split}
+\end{equation*}
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{A singular metric version of Theorem \ref{t:guan-zhou-semicontinu2}}
+
+In this subsection, we formulate and prove the following singular
+metric version of Theorem \ref{t:guan-zhou-semicontinu2}:
+
+\begin{theorem}[][][t:guan-zhou-semicontinu]
+Let $(M,S)$ satisfy condition $(ab)$, $h$ be a singular metric on a
+holomorphic line bundle $L$ on $M$, which is locally integrable on
+$M$. Then, for any function $\Psi$ on $ M$ such that $\Psi\in
+\Delta_{A,h,\delta}(S)$, there exists a uniform constant
+$\mathbf{C}=1$, which is optimal, such that, for any holomorphic
+section $f$ of $K_{M}\otimes L|_{S}$ on $S$ satisfying $L^2$
+integrable condition \ref{equ:condition}, there exists a holomorphic
+section $F$ of $K_{M}\otimes L$ on $M$ satisfying $F = f$ on $ S$
+and optimal estimate \ref{equ:optimal_delta}.
+\end{theorem}
+
+\begin{proof}
+By Remark \ref{r:extend}, it suffices to prove the case that $M$ is a Stein manifold.
+
+By Lemma \ref{l:lim_unbounded} and Lemma \ref{l:c_A},
+it suffices to prove the case that $c_{A}$ is smooth on $(A,+\infty)$ and continuous on $(A,+\infty]$,
+such that $\lim_{t\to +\infty}c_{A}(t)>0$.
+
+Since $M$ is a Stein manifold, we can find a sequence of Stein manifolds $\{D_m\}_{m=1}^\infty$
+satisfying $D_m\subset\subset D_{m+1}$ for all $m$ and
+$\overset{\infty}{\underset{m=1}{\cup}}D_m=M$.
+
+As $\varphi+\Psi$ and $\varphi+(1+\delta)\Psi$ are plurisubharmonic functions on $M$,
+then by Lemma \ref{l:FN1}, we have smooth functions $\varphi_{k}$ and $\Psi_{k}$ on $M$,
+such that $\varphi_{k}+\Psi_{k}$ and $\varphi_{k}+(1+\delta)\Psi_{k}$ are plurisubharmonic functions on $M$,
+which are deceasing convergent to $\varphi+\Psi$ and $\varphi+(1+\delta)\Psi$ respectively.
+
+Since $M$ is Stein, there is a holomorphic section $\tilde{F}$ of
+$K_{M}$ on $M$ such that $\tilde{F}|_{S}={f}$. Let $ds_{M}^{2}$ be a
+K\"{a}hler metric on $M$ and $dV_{M}$ be the volume form with
+respect to $ds_{M}^{2}$.
+
+Let
+$\{v_{t_0,\varepsilon}\}_{t_{0}\in\mathbb{R},\varepsilon\in(0,\frac{1}{4})}$
+be a family of smooth increasing convex functions on $\mathbb{R}$,
+such that:
+
+ $1).$ $v_{t_{0},\varepsilon}(t)=t$ for $t\geq-t_{0}-\varepsilon$, $v_{t_{0},\varepsilon}(t)$ is a constant
+ for $t<-t_{0}-1+\varepsilon$ depending
+ on $t_{0},\varepsilon$;
+
+ $2).$ $v''_{t_0,\varepsilon}(t)$ is pointwise convergent to $\mathbb{I}_{\{-t_{0}-1< t<-t_{0}\}}$
+ when $\varepsilon\to 0$, and
+ $0\leq v''_{t_0,\varepsilon}(t)\leq 2$ for any $t\in \mathbb{R}$;
+
+ $3).$ $v_{t_0,\varepsilon}(t)$ is $C^{1}$ convergent to
+ $b_{t_{0}}(t)$ ($$b_{t_{0}}(t):=
+ \int_{-\infty}^{t}(\int_{-\infty}^{t_{2}}\mathbb{I}_{\{-t_{0}-1< t_{1}<-t_{0}\}}dt_{1})dt_{2}-\int_{-\infty}^{0}
+ (\int_{-\infty}^{t_{2}}\mathbb{I}_{\{-t_{0}-1< t_{1}<-t_{0}\}}dt_{1})dt_{2}$$ is also a
+ $C^1$ function on $\mathbb{R}$) when
+ $\varepsilon\to 0$, and $0\leq v'_{t_0,\varepsilon}(t)\leq1$ for any $t\in \mathbb{R}$.
+
+As before, let $\eta=s(-v_{t_{0},\varepsilon}\circ\Psi_{k})$ and
+$\phi=u(-v_{t_{0},\varepsilon}\circ\Psi_{k})$, where $s\in
+C^{\infty}((-A,+\infty))$ satisfies $s\geq \frac{1}{\delta}$, and
+$u\in C^{\infty}((-A,+\infty))\cap C^{\infty}([-A,+\infty))$
+satisfies
+$$\lim_{t\to+\infty}u(t)=-\log(\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{\infty}c_{A}(t)e^{-t}dt),$$
+such that $u''s-s''>0$ and $s'-u's=1$. Let
+$\tilde{h}=e^{-\varphi_{k}-\Psi_{k}-\phi}$.
+
+Now let $\alpha\in \mathcal{D}(X,\Lambda^{n,1}T_{D_{m}}^{*})$ be a
+smooth $(n,1)$- form with compact support on $D_{m}$. Using Lemma
+\ref{l:vector} and Lemma \ref{l:positve}, the inequality $s\geq
+\frac{1}{\delta}$ and the fact that $\varphi_{k}+\Psi_{k}$ is
+plurisubharmonic on $D_{m}$, we get
+
+\begin{equation}
+\label{equ:10.1}
+\begin{split}
+&\|(\eta+g^{-1})^{\frac{1}{2}}D''^{*}\alpha\|^{2}_{D_{m},\tilde{h}}
++\|\eta^{\frac{1}{2}}D''\alpha\|^{2}_{D_{m},\tilde{h}}
+\\&\geq\ll[\eta\sqrt{-1}\Theta_{\tilde{h}}-\sqrt{-1}\partial\bar\partial\eta-
+\sqrt{-1}g\partial\eta\wedge\bar\partial\eta,\Lambda_{\omega}]\alpha,\alpha\gg_{D_{m},\tilde{h}}
+\\&\geq\ll[\eta\sqrt{-1}\partial\bar\partial\phi+\frac{1}
+{\delta}\sqrt{-1}\partial\bar\partial(\varphi_{k}+\Psi_{k})-\sqrt{-1}\partial\bar\partial\eta-
+\sqrt{-1}g\partial\eta\wedge\bar\partial\eta,\Lambda_{\omega}]\alpha,\alpha\gg_{D_{m},\tilde{h}}.
+\end{split}
+\end{equation}
+where $g$ is a positive continuous function on $D_{m}$.
+We need some calculations to determine $g$.
+
+We have
+\begin{equation}
+\label{}
+\begin{split}
+&\partial\bar{\partial}\eta=
+-s'(-v_{t_0,\varepsilon}\circ \Psi_{k})\partial\bar{\partial}(v_{t_0,\varepsilon}\circ \Psi_{k})
++s''(-v_{t_0,\varepsilon}\circ \Psi_{k})\partial(v_{t_0,\varepsilon}\circ \Psi_{k})\wedge
+\bar{\partial}(v_{t_0,\varepsilon}\circ \Psi_{k}),
+\end{split}
+\end{equation}
+
+and
+\begin{equation}
+\label{}
+\begin{split}
+&\partial\bar{\partial}\phi=
+-u'(-v_{t_0,\varepsilon}\circ \Psi_{k})\partial\bar{\partial}v_{t_0,\varepsilon}\circ \Psi_{k}
++
+u''(-v_{t_0,\varepsilon}\circ \Psi_{k})\partial(v_{t_0,\varepsilon}\circ \Psi_{k})
+\wedge\bar{\partial}(v_{t_0,\varepsilon}\circ \Psi_{k}).
+\end{split}
+\end{equation}
+
+Therefore
+\begin{equation}
+\label{equ:vector1}
+\begin{split}
+&\eta\sqrt{-1}\partial\bar\partial\phi-\sqrt{-1}\partial\bar\partial\eta-
+\sqrt{-1}g\partial\eta\wedge\bar\partial\eta
+\\=&(s'-su')\sqrt{-1}\partial\bar{\partial}(v_{t_0,\varepsilon}\circ \Psi_{k})
++((u''s-s'')-gs'^{2})\sqrt{-1}\partial(v_{t_0,\varepsilon}\circ \Psi_{k})\wedge\bar{\partial}
+(v_{t_0,\varepsilon}\circ \Psi_{k})
+\\=&
+(s'-su')((v'_{t_0,\varepsilon}\circ\Psi_{k})\sqrt{-1}\partial\bar{\partial}\Psi_{k}+
+(v''_{t_0,\varepsilon}\circ \Psi_{k})\sqrt{-1}\partial(\Psi_{k})
+\wedge\bar{\partial}(\Psi_{k}))
+\\+&((u''s-s'')-gs'^{2})\sqrt{-1}\partial(v_{t_0,\varepsilon}\circ \Psi_{k})
+\wedge\bar{\partial}(v_{t_0,\varepsilon}\circ \Psi_{k}).
+\end{split}
+\end{equation}
+We omit composite item $(-v_{t_0,\varepsilon}\circ \Psi_{k})$ after $s'-su'$ and $(u''s-s'')-gs'^{2}$
+in the above equalities.
+
+Let $g=\frac{u''s-s''}{s'^{2}}\circ(-v_{t_0,\varepsilon}\circ \Psi_{k})$.
+We have $\eta+g^{-1}=(s+\frac{s'^{2}}{u''s-s''})\circ(-v_{t_0,\varepsilon}\circ \Psi_{k})$.
+
+Since $\varphi_{k}+\Psi_{k}$ and $\varphi_{k}+(1+\delta)\Psi_{k}$ are plurisubharmonic on $M$ and
+$0\leq v'_{t_{0},\varepsilon}\circ\Psi_{k}\leq1$,
+we have
+\begin{equation}
+(1-v'_{t_0,\varepsilon}\circ\Psi_{k})\sqrt{-1}\partial\bar\partial(\varphi_{k}+\Psi_{k})+
+(v'_{t_0,\varepsilon}\circ\Psi_{k})\sqrt{-1}\partial\bar\partial(\varphi_{k}+(1+\delta)\Psi_{k})\geq 0,
+\end{equation}
+on $M\setminus S$, which means that
+\begin{equation}
+\label{equ:semi.vector2}
+\frac{1}{\delta}\sqrt{-1}\partial\bar\partial(\varphi_{k}+\Psi_{k})+(v'_{t_0,\varepsilon}
+\circ\Psi_{k})\partial\bar{\partial}\Psi_{k}\geq 0,
+\end{equation}
+on $M$.
+
+As $v'_{t_0,\varepsilon}\geq 0$  and $s'-su'=1$, using Lemma
+\ref{l:positve}, equality \ref{equ:vector1}, and inequalities
+\ref{equ:10.1} and \ref{equ:semi.vector2}, we have
+\begin{equation}
+\label{equ:semi.vector3}
+\begin{split}
+\langle B\alpha, \alpha\rangle_{\tilde{h}}=&\langle[\eta\sqrt{-1}\Theta_{\tilde{h}}-\sqrt{-1}\partial\bar\partial
+\eta-\sqrt{-1}g\partial\eta\wedge\bar\partial\eta,\Lambda_{\omega}]
+\alpha,\alpha\rangle_{\tilde{h}}
+\\\geq&
+\langle[(v''_{t_0,\varepsilon}\circ \Psi_{k})
+\sqrt{-1}\partial\Psi_{k}\wedge\bar{\partial}\Psi_{k},\Lambda_{\omega}]\alpha,\alpha\rangle_{\tilde{h}}
+\\=&\langle (v''_{t_{0},\varepsilon}\circ \Psi_{k}) \bar\partial\Psi_{k}\wedge
+(\alpha\llcorner(\bar\partial\Psi_{k})^\sharp\big ),\alpha\rangle_{\tilde{h}}.
+\end{split}
+\end{equation}
+
+Using the definition of contraction, Cauchy-Schwarz inequality and
+the inequality \ref{equ:semi.vector3}, we have
+\begin{equation}
+\label{}
+\begin{split}
+|\langle (v''_{t_{0},\varepsilon}\circ \Psi_k)\bar\partial\Psi_k\wedge \gamma,\tilde{\alpha}\rangle_{\tilde{h}}|^{2}
+=&|\langle (v''_{t_{0},\varepsilon}\circ \Psi_k) \gamma,\tilde{\alpha}\llcorner(\bar\partial\Psi_k)^\sharp\big
+\rangle_{\tilde{h}}|^{2}
+\\\leq&\langle( v''_{t_{0},\varepsilon}\circ \Psi_k) \gamma,\gamma\rangle_{\tilde{h}}
+(v''_{t_{0},\varepsilon}\circ \Psi_k)|\tilde{\alpha}\llcorner(\bar\partial\Psi_k)^\sharp\big|_{\tilde{h}}^{2}
+\\=&\langle (v''_{t_{0},\varepsilon}\circ \Psi_k) \gamma,\gamma\rangle_{\tilde{h}}
+\langle (v''_{t_{0},\varepsilon}\circ \Psi_k) \bar\partial\Psi_k\wedge
+(\tilde{\alpha}\llcorner(\bar\partial\Psi_k)^\sharp\big ),\tilde{\alpha}\rangle_{\tilde{h}}
+\\\leq&\langle (v''_{t_{0},\varepsilon}\circ \Psi_k )\gamma,\gamma\rangle_{\tilde{h}}
+\langle B\tilde{\alpha},\tilde{\alpha}\rangle_{\tilde{h}},
+\end{split}
+\end{equation}
+for any $(n,q)$ form $\gamma$ and $(n,q+1)$ form $\tilde{\alpha}$ with values in $E$.
+
+Take $\lambda=\bar{\partial}[(1-v'_{t_0,\varepsilon}(\Psi_k)){\tilde{F}}]$, $\gamma=\tilde{F}$, and
+$\tilde{\alpha}=B^{-1}\bar\partial\Psi_k\wedge \tilde{F}$,
+we have
+$$\langle B^{-1}\lambda,\lambda\rangle_{\tilde{h}} \leq (v''_{t_0,\varepsilon}\circ{\Psi_k})| \tilde{F}|^2_{\tilde{h}},$$
+ then it is easy to see that
+ $$\int_{D_m}\langle B^{-1}\lambda,\lambda\rangle_{\tilde{h}} dV_{M}
+ \leq \int_{D_m}(v''_{t_0,\varepsilon}\circ{\Psi_k})| \tilde{F}|^2_{\tilde{h}}dV_{M}.$$
+
+From Lemma \ref{l:vector7}, it follows that there exists an
+$(n,0)$-form $\gamma_{m,t_0,\varepsilon,k}$ on $D_{m}$ satisfying
+$\bar{\partial}\gamma_{m,t_0,\varepsilon,k}=\lambda$ and
+
+\begin{equation}
+ \label{equ:semi.vector3.2}
+ \begin{split}
+ &\int_{ D_m}|\gamma_{m,t_0,\varepsilon,k}|^{2}_{\tilde{h}}(\eta+g^{-1})^{-1}dV_{M}
+  \leq\int_{D_m}(v''_{t_0,\varepsilon,k}\circ{\Psi_{k}})| \tilde{F}|^2_{\tilde{h}}dV_M.
+  \end{split}
+\end{equation}
+
+Let $\mu_{1}=e^{v_{t_0,\varepsilon}\circ\Psi_{k}}$, $\mu=\mu_{1}c_{A}(-v_{t_0,\varepsilon}\circ\Psi_{k})e^{\phi}$.
+
+Claim that we can choose $\eta$ and $\phi$ satisfying $\mu\leq
+\mathbf{C}(\eta+g^{-1})^{-1}$, which will be discussed at the end of
+this subsection, where $\mathbf{C}$ is just the constant in Theorem
+\ref{t:guan-zhou-semicontinu}.
+
+Let $F_{m,t_0,\varepsilon,k}:=(1-v'_{t_0,\varepsilon}\circ\Psi_{k})\widetilde{F}-\gamma_{m,t_0,\varepsilon,k}$.
+Then inequality \ref{equ:semi.vector3.2} means that
+
+\begin{equation}
+ \label{equ:semi.3.30}
+ \begin{split}
+ \int_{ D_m}|F_{m,t_0,\varepsilon,k}-(1-v'_{t_0,\varepsilon}\circ\Psi_{k})\widetilde{F}|^{2}e^{-\varphi_{k}-
+ \Psi_{k}+v_{t_0,\varepsilon}\circ\Psi_{k}}c_{A}(-v_{t_0,\varepsilon}\circ\Psi_{k})dV_{M}
+\leq\int_{D_m}(v''_{t_0,\varepsilon}\circ{\Psi_{k}})| \tilde{F}|^2_{\tilde{h}}dV_M.
+  \end{split}
+\end{equation}
+
+Note that for any compact subset $K$ of $D_{m}$, we obtain
+\begin{equation}
+ \label{equ:semi.3.30.2}
+ \begin{split}
+ &(\int_{K}|F_{m,t_0,\varepsilon,k}-(1-v'_{t_0,\varepsilon}\circ\Psi_{k})\widetilde{F}|^{2}
+ e^{-\varphi_{k}-\Psi_{k}+v_{t_0,\varepsilon}\circ\Psi_{k}}c_{A}(-v_{t_0,\varepsilon}\circ\Psi_{k})dV_{M})^{1/2}
+ \\&+(\int_{K}|(v'_{t_0,\varepsilon}\circ\Psi_{k})\widetilde{F}|^{2}
+ e^{-\varphi_{k}-\Psi_{k}+v_{t_0,\varepsilon}\circ\Psi_{k}}c_{A}(-v_{t_0,\varepsilon}\circ\Psi_{k})dV_{M})^{1/2}
+  \\&\geq(\int_{K}|F_{m,t_0,\varepsilon,k}-\widetilde{F}|^{2}
+ e^{-\varphi_{k}-\Psi_{k}+v_{t_0,\varepsilon}\circ\Psi_{k}}c_{A}(-v_{t_0,\varepsilon}\circ\Psi_{k})dV_{M})^{1/2},
+  \end{split}
+\end{equation}
+
+Note that:
+\begin{tcolorbox}[colback=Emerald!10,colframe=cyan!40!black,left=2mm,right=2mm,title=\textbf{NOTATION!!!}]
+  \begin{enumerate}[label=(\arabic*)]
+  \item $e^{-\varphi_{k}-\Psi_{k}}$,
+$e^{v_{t_{0},\varepsilon}\circ\Psi_{k}}$ and
+$c_{A}(-v_{t_{0},\varepsilon}\circ\Psi_{k})$ have uniform positive
+lower bounds independent of $k$;
+\item $|(v'_{t_{0},\varepsilon}\circ\Psi_{k})\widetilde{F}|^{2}e^{-\Psi}$
+and $\int_{D_m}(v''_{t_0,\varepsilon}\circ{\Psi_{k}})|
+\tilde{F}|^2_{\tilde{h}}dV_M$ have uniform positive upper bounds
+independent of $k$; (Let it be $P$.)
+\item $e^{-\varphi}$ is locally integrable on $M$ and the sequence
+$\varphi_{k}+\Psi_{k}$ is decreasing with respect to $k$.
+\end{enumerate}
+\tcblower
+    \begin{remark}
+  \begin{enumerate}[label=(\roman*)]
+    \item As $e^x>0$ and $c_A(t)$ is a positive function on $(-A,+\infty)$, thus (1) is clear. 
+    \item From the settings of the family $\{v_{t_0,\varepsilon}\}$, it follows that it is a sequence of increasing convex functions. 
+    \item The sequence $\varphi_{k}+\Psi_{k}$ is decreasing convergent to
+    $\varphi+\Psi$ with respect to $k$.
+  \end{enumerate}
+\end{remark}
+  \end{tcolorbox}
+
+  \begin{tcolorbox}[title=\textbf{Analysis},colback=SeaGreen!10!CornflowerBlue!10,colframe=RoyalPurple!55!Aquamarine!100!,breakable]
+    By (3), $e^{-\varphi}$ is locally integrable on $M$, then $\int_K e^{-\varphi}\dd V_M<+\infty$. Then by the setting of $c_A(t)$, we obttain that $e^{v_{t_0,\varepsilon}\circ\Psi_{k}}c_{A}(-v_{t_0,\varepsilon}\circ\Psi_{k})$ is locally integrable on $M$, i.e, 
+    \begin{equation*}
+      \int_K e^{v_{t_0,\varepsilon}\circ\Psi_{k}}c_{A}(-v_{t_0,\varepsilon}\circ\Psi_{k}) \dd V_M\leqslant \int_{-A}^{+\infty} e^{-t} c_A(t)\dd t<+\infty,
+    \end{equation*}
+      where $t=v_{t_0,\varepsilon}\circ \Psi_k$. Thus 
+      \begin{align*}
+                &\left(\int_{K}|F_{m,t_0,\varepsilon,k}-\widetilde{F}|^{2}
+        e^{-\varphi_{k}-\Psi_{k}+v_{t_0,\varepsilon}\circ\Psi_{k}}c_{A}(-v_{t_0,\varepsilon}\circ\Psi_{k})dV_{M}\right)^{1/2}\\
+        &\leqslant P\cdot \int_K  e^{-\varphi} \cdot \left(e^{v_{t_0,\varepsilon}\circ\Psi_{k}}c_{A}(-v_{t_0,\varepsilon}\circ\Psi_{k}\right)\dd V_M <+\infty.
+      \end{align*}
+\tcblower
+Without loosing generality, we let the uniform positive
+lower bounds of $e^{-\varphi_{k}-\Psi_{k}}$,
+$e^{v_{t_{0},\varepsilon}\circ\Psi_{k}}$ and
+$c_{A}(-v_{t_{0},\varepsilon}\circ\Psi_{k})$ independent of $k$ be $0<L<+\infty$. Then we have
+\[
+  \left(\int_{K}|F_{m,t_0,\varepsilon,k}-\widetilde{F}|^{2}
+ e^{-\varphi_{k}-\Psi_{k}+v_{t_0,\varepsilon}\circ\Psi_{k}}c_{A}(-v_{t_0,\varepsilon}\circ\Psi_{k})\dd V_{M}\right)^{1/2}\geqslant L^{\frac 32}\left(\int_{K}|F_{m,t_0,\varepsilon,k}-\widetilde{F}|^{2} \dd V_{M}\right)^{1/2}.
+\]
+  \end{tcolorbox}
+
+  % \begin{tcolorbox}
+  %   [title = \textbf{Proposition}, colback=Salmon!20, colframe=Salmon!90!Black]
+  %   \end{tcolorbox}
+
+According to inequality \eqref{equ:semi.3.30} and \eqref{equ:semi.3.30.2}, it follows that
+$\int_{K}|F_{m,t_0,\varepsilon,k}-\widetilde{F}|^{2}dV_{M}$ has a
+uniform bound independent of $k$ for any compact subset $K$ of
+$D_{m}$.
+
+Using Lemma 4.5, we have a subsequence
+of $\{F_{m,t_0,\varepsilon,k}\}_{k}$, still denoted by
+$\{F_{m,t_0,\varepsilon,k}\}_{k}$, which is uniformly convergent to
+a holomorphic $(n,0)$ form $F_{m,t_0,\varepsilon}$ on any compact
+subset of $D_{m}$.
+
+As all terms $e^{v_{t_{0},\varepsilon}\circ\Psi_{k}}$,
+$c_{A}(-v_{t_{0},\varepsilon}\circ\Psi_{k})$,
+$(1-v'_{t_{0},\varepsilon}\circ\Psi_{k})\widetilde{F}$, and
+$(v''_{t_0,\varepsilon}\circ\Psi_{k})|
+\tilde{F}|^2e^{-\varphi_{k}-\Psi_{k}-\phi}$ have uniform positive
+upper bounds independent of $k$, and
+$v_{t_0,\varepsilon}(\Psi_{k})\geq\Psi_{k}$, it follows from the
+dominated convergence theorem that
+\begin{equation}
+ \label{equ:semi.3.30.3}
+ \begin{split}
+ &\int_{K}|F_{m,t_0,\varepsilon}-(1-v'_{t_0,\varepsilon}\circ\Psi)\widetilde{F}|^{2}
+ e^{-\varphi_{k}-\Psi_{k}+v_{t_0,\varepsilon}\circ\Psi}c_{A}(-v_{t_0,\varepsilon}\circ\Psi)dV_{M}
+ \\&\leq
+ \int_{D_m}(v''_{t_0,\varepsilon}\circ{\Psi})| \tilde{F}|^2e^{-\varphi-\Psi-u(-v_{t_{0},\varepsilon}(\Psi))}dV_M,
+ \end{split}
+\end{equation}
+ for any compact subset $K$ of $D_{m}$.
+
+As the sequence $\varphi_{k}+\Psi_{k}$ is decreasing convergent to
+$\varphi+\Psi$, it follows from Levi's theorem that
+\begin{equation}
+ \label{equ:semi.3.30.4}
+ \begin{split}
+ &\int_{K}|F_{m,t_0,\varepsilon}-(1-v'_{t_0,\varepsilon}\circ\Psi)\widetilde{F}|^{2}
+ e^{-\varphi-\Psi+v_{t_0,\varepsilon}\circ\Psi}c_{A}(-v_{t_0,\varepsilon}\circ\Psi)dV_{M}
+ \\&\leq
+ \int_{D_m}(v''_{t_0,\varepsilon}\circ{\Psi})| \tilde{F}|^2e^{-\varphi-\Psi-u(-v_{t_{0},\varepsilon}(\Psi))}dV_M.
+ \end{split}
+\end{equation}
+for any compact subset $K$ of $D_{m}$, which means
+\begin{equation}
+ \label{equ:semi.3.30.5}
+ \begin{split}
+ &\int_{D_{m}}|F_{m,t_0,\varepsilon}-(1-v'_{t_0,\varepsilon}\circ\Psi)\widetilde{F}|^{2}
+ e^{-\varphi-\Psi+v_{t_0,\varepsilon}\circ\Psi}c_{A}(-v_{t_0,\varepsilon}\circ\Psi)dV_{M}
+ \\&\leq
+ \int_{D_m}(v''_{t_0,\varepsilon}\circ{\Psi})| \tilde{F}|^2e^{-\varphi-\Psi-u(-v_{t_{0},\varepsilon}(\Psi))}dV_M.
+ \end{split}
+\end{equation}
+
+Note that $e^{-\Psi}$ is not integrable along $S$, and
+$F_{m,t_0,\varepsilon}$ and
+$(1-v'_{t_0,\varepsilon}\circ\Psi)\widetilde{F}$ are both
+holomorphic near $S$.
+
+Then
+$F_{m,t_0,\varepsilon}-(1-v'_{t_0,\varepsilon}\circ\Psi)\widetilde{F}|_{S}=0$,
+therefore $F_{m,t_0,\varepsilon}|_{S}=\widetilde{F}|_{S}$. It is
+clear that $F_{m,t_0,\varepsilon}$ is an extension of $f$.
+
+Note that $v_{t_0,\varepsilon}(\Psi)\geq\Psi$. Then the inequality
+\ref{equ:semi.3.30.5} becomes
+\begin{equation}
+\label{equ:semi.vector3.31.1}
+\begin{split}
+ &\int_{D_{m}}|F_{m,t_0,\varepsilon}-(1-v'_{t_0,\varepsilon}\circ\Psi)\widetilde{F}|^{2}
+ e^{-\varphi}c_{A}(-v_{t_0,\varepsilon}\circ\Psi)dV_{M}
+ \\&\leq
+ \int_{D_m}(v''_{t_0,\varepsilon}\circ{\Psi})| \tilde{F}|^2e^{-\varphi-\Psi-u(-v_{t_{0},\varepsilon}(\Psi))}dV_M
+ \\&\leq\frac{1}{e^{A_{t_0}}}(v''_{t_0,\varepsilon}\circ{\Psi})| \tilde{F}|^2e^{-\varphi-\Psi}dV_{M},
+\end{split}
+\end{equation}
+where $A_{t_0}:=\inf_{t\geq t_0}\{u(t)\}$.
+
+As
+$$\lim_{t\to+\infty}u(t)=-\log(\frac{1}{\delta}c_{A}(-A)+\int_{-A}^{+\infty}c_{A}(t)e^{-t}dt),$$
+it is clear that
+$$\lim_{t_{0}\to\infty}\frac{1}{e^{A_{t_0}}}=\frac{1}{\delta}c_{A}(-A)+\int_{-A}^{+\infty}c_{A}(t)e^{-t}dt.$$
+
+Given $t_0$ and $D_{m}$,
+$$(v''_{t_0,\varepsilon}\circ\Psi)|\tilde{F}|^{2}e^{-\varphi-\Psi}$$
+has a uniform bound on $D_{m}$ independent of $\varepsilon$. Then
+both
+$$\int_{D_m}|(1-v'_{t_0,\varepsilon}\circ\Psi)\tilde{F}|^{2}e^{-\varphi}c_{A}(-v_{t_0,\varepsilon}\circ\Psi)dV_{M}$$
+and
+$$\int_{D_m}v''_{t_0,\varepsilon}\circ\Psi|\tilde{F}|^{2}e^{-\varphi-\Psi}dV_{M}$$
+have uniform bounds independent of $\varepsilon$ for any given $t_0$
+and $D_m$.
+
+Using the equation $\bar\partial F_{m,t_0,\varepsilon}=0$ and Lemma
+\ref{l:uniform_converg_compact}, we can choose a subsequence of
+$\{F_{m,t_0,\varepsilon}\}_{\varepsilon}$, such that the chosen
+sequence is uniformly convergent on any compact subset of $D_m$,
+still denoted by $\{F_{m,t_0,\varepsilon}\}_{\varepsilon}$ without
+ambiguity.
+
+For any compact subset $K$ on $D_m$, all terms
+$F_{m,t_0,\varepsilon}$,
+$(1-v'_{t_0,\varepsilon}\circ\Psi)\tilde{F}$,
+$c_{A}(-v_{t_0,\varepsilon}\circ\Psi)$ and
+$(v''_{t_0,\varepsilon}\circ\Psi)|\tilde{F}|^{2}e^{-\varphi-\Psi}$
+have uniform bounds on $K$ independent of $\varepsilon$.
+
+Using the dominated convergence theorem on any compact subset $K$ of
+$D_m$ and inequality \ref{equ:semi.vector3.31.1}, we have
+\begin{equation}
+\begin{split}
+\int_{K}|F_{m,t_0}-(1-b'_{t_0}(\Psi))\tilde{F}|^{2}e^{-\varphi}c_{A}(-b_{t_0}(\Psi))dV_{M}
+\leq\frac{\mathbf{C}}{e^{A_{t_0}}}\int_{D_m}(\mathbb{I}_{\{-t_{0}-1< t<-t_{0}\}}
+\circ\Psi)|\tilde{F}|^{2}e^{-\varphi-\Psi}dV_{M},
+\end{split}
+\end{equation}
+which implies
+\begin{equation}
+\label{equ:vector3.4}
+\begin{split}
+\int_{ D_m}|F_{m,t_0}-(1-b'_{t_0}(\Psi))\tilde{F}|^{2}e^{-\varphi}c_{A}(-b_{t_0}(\Psi))dV_{M}
+\leq\frac{\mathbf{C}}{e^{A_{t_0}}}\int_{D_m}(\mathbb{I}_{\{-t_{0}-1< t<-t_{0}\}}
+\circ\Psi)|\tilde{F}|^{2}e^{-\varphi-\Psi}dV_{M}.
+\end{split}
+\end{equation}
+According to the definition of $dV_{M}[\Psi]$ and the assumption
+$\sum_{k=1}^{n}\frac{\pi^{k}}{k!}\int_{S_{n-k}}|f|^{2}_{h}dV_{M}[\Psi]<\infty$,
+it follows that
+\begin{equation}
+\label{equ:vector3.6}
+\begin{split}
+&\limsup_{t_{0}\to+\infty}\int_{D_m}(\mathbb{I}_{\{-t_{0}-1< t<-t_{0}\}}
+\circ\Psi)|\tilde{F}|^{2}e^{-\varphi-\Psi}dV_{M}
+\\\leq&
+\limsup_{t_{0}\to+\infty}\int_{M}\mathbb{I}_{\overline{D}_{m}}(\mathbb{I}_{\{-t_{0}-1<t<-t_{0}\}}
+\circ\Psi)|\tilde{F}|^{2}e^{-\varphi-\Psi}dV_{M}
+\\\leq&\sum_{k=1}^{n}\frac{\pi^{k}}{k!}\int_{S_{n-k}}\mathbb{I}_{\overline{D}}|f|^{2}_{h}dV_{M}[\Psi]
+\leq\sum_{k=1}^{n}\frac{\pi^{k}}{k!}\int_{S_{n-k}}|f|^{2}_{h}dV_{M}[\Psi]<\infty
+\end{split}
+\end{equation}
+
+Then
+$$\int_{D_m}(\mathbb{I}_{\{-t_{0}-1< t<-t_{0}\}}\circ\Psi)|\tilde{F}|^{2}e^{-\varphi-\Psi}dV_{M}$$
+has a uniform bound independent of $t_{0}$ for any given $D_m$, and
+\begin{equation}
+\label{equ:vector3.7}
+\begin{split}
+&\limsup_{t_{0}\to+\infty}\int_{D_m}(\mathbb{I}_{\{-t_{0}-1< t<-t_{0}\}}
+\circ\Psi)|\tilde{F}|^{2}e^{-\varphi-\Psi}dV_{M}
+\\\leq&\sum_{k=1}^{n}\frac{\pi^{k}}{k!}\int_{S_{n-k}}|f|^{2}e^{-\varphi}dV_{M}[\Psi]<\infty.
+\end{split}
+\end{equation}
+
+Therefore
+$$\int_{ D_m}|F_{m,t_0}-(1-b'_{t_0}(\Psi))\tilde{F}|^{2}e^{-\varphi}c_{A}(-b_{t_0}(\Psi))dV_{M}$$
+has a uniform bound independent of $t_{0}$ for any given $D_m$.
+
+Since
+$$\int_{ D_m}|(1-b'_{t_0}(\Psi))\tilde{F}|^{2}e^{-\varphi}c_{A}(-b_{t_0}(\Psi))dV_{M}$$
+has a uniform bound independent of $t_{0}$,  and
+\begin{equation}
+\label{equ:vector3.9}
+\begin{split}
+&(\int_{ D_m}|F_{m,t_0}-(1-b'_{t_0}(\Psi))\tilde{F}|^{2}e^{-\varphi}c_{A}(-b_{t_0}(\Psi))dV_{M})^{\frac{1}{2}}
+\\+&(\int_{ D_m}|(1-b'_{t_0}(\Psi))\tilde{F}|^{2}e^{-\varphi}c_{A}(-b_{t_0}(\Psi))dV_{M})^{\frac{1}{2}}
+\\\geq&
+(\int_{ D_m}|F_{m,t_0}|^{2}e^{-\varphi}c_{A}(-b_{t_0}(\Psi))dV_{M})^{\frac{1}{2}},
+\end{split}
+\end{equation}
+it follows from inequality \ref{equ:vector3.4} that
+$\int_{D_m}|F_{m,t_0}|^{2}e^{-\varphi}c_{A}(-b_{t_0}(\Psi))dV_{M}$
+has a uniform bound independent of $t_{0}$.
+
+Using the equation $\bar\partial F_{m,t_{0}}=0$ and Lemma
+\ref{l:uniform_converg_compact}, we can choose a subsequence of
+$\{F_{m,t_{0}}\}_{t_{0}}$, such that the chosen sequence is
+uniformly convergent on any compact subset of $D_m$, still denoted
+by $\{F_{m,t_0}\}_{t_{0}}$ without ambiguity.
+
+For any compact subset $K$ on $D_m$, both $F_{m,t_0}$ and
+$(1-b'_{t_0}\circ\Psi)\tilde{F}$ have uniform bounds on $K$
+independent of $t_0$.
+
+Using inequalities \ref{equ:vector3.4} and \ref{equ:vector3.7}, the
+following equality
+$$\lim_{t_{0}\to\infty}\frac{1}{e^{A_{t_0}}}=\int_{-A}^{+\infty}c_{A}(t)e^{-t}dt,$$
+and the dominated convergence theorem on any compact subset $K$ of
+$D_m$, we have
+\begin{equation}
+\begin{split}
+\int_{D_m}\mathbb{I}_{K}|F_{m}|^{2}e^{-\varphi}c_{A}(-\Psi)dV_{M}
+\leq\mathbf{C}(\int_{-A}^{+\infty}c_{A}(t)e^{-t}dt)\sum_{k=1}^{n}\frac{\pi^{k}}{k!}
+\int_{S_{n-k}}|f|^{2}e^{-\varphi}dV_{M}[\Psi],
+\end{split}
+\end{equation}
+which implies
+\begin{equation}
+\begin{split}
+\int_{ D_m}|F_{m}|^{2}e^{-\varphi}c_{A}(-\Psi)dV_{M}
+\leq\mathbf{C}(\int_{-A}^{+\infty}c_{A}(t)e^{-t}dt)\sum_{k=1}^{n}
+\frac{\pi^{k}}{k!}\int_{S_{n-k}}|f|^{2}e^{-\varphi}dV_{M}[\Psi],
+\end{split}
+\end{equation}
+where the Lebesgue measure of $\{\Psi=-\infty\}$ is zero.
+
+Define $F_m=0$ on $M\backslash D_m$. Then the weak limit of some
+weakly convergent subsequence of $\{F_m\}_{m=1}^\infty$ gives a
+holomorphic section $F$ of $K_{M}\otimes E$ on $M$ satisfying
+$F|_{S}=\tilde{F}|_{S}$, and
+\begin{equation}
+\begin{split}
+\int_{ M}|F|^{2}e^{-\varphi}c_{A}(-\Psi)dV_{M}
+\leq\mathbf{C}(\frac{1}{\delta}c_{A}(-A)e^{A}+
+\int_{-A}^{+\infty}c_{A}(t)e^{-t}dt)\sum_{k=1}^{n}\frac{\pi^{k}}{k!}\int_{S_{n-k}}|f|^{2}e^{-\varphi}dV_{M}[\Psi].
+\end{split}
+\end{equation}
+
+To finish the proof of Theorem \ref{t:guan-zhou-semicontinu}, it
+suffices to determine $\eta$ and $\phi$ such that $(\eta+g^{-1})\leq
+\mathbf{C}c^{-1}_{A}(-v_{t_0,\varepsilon}\circ\Psi)e^{-v_{t_0,\varepsilon}\circ\Psi}e^{-\phi}=\mathbf{C}\mu^{-1}$
+on $D_v$.
+
+As $\eta=s(-v_{t_0,\varepsilon}\circ\Psi)$ and
+$\phi=u(-v_{t_0,\varepsilon}\circ\Psi)$, we have $(\eta+g^{-1})
+e^{v_{t_0,\varepsilon}\circ\Psi}e^{\phi}=(s+\frac{s'^{2}}{u''s-s''})e^{-t}e^{u}\circ(-v_{t_0,\varepsilon}\circ\Psi)$.
+
+We naturally obtain the system of ODEs \ref{equ:unify2.GZ_unify},
+where $t\in(-A,+\infty)$, $\mathbf{C}=1$, $s\in
+C^{\infty}((-A,+\infty))$ satisfying $s\geq \frac{1}{\delta}$, $u\in
+C^{\infty}((-A,+\infty))$ satisfying
+$\lim_{t\to+\infty}u(t)=-\log(\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{\infty}c_{A}(t)e^{-t}dt)$,
+and $u''s-s''>0$.
+
+We solve the system of ODEs \ref{equ:unify2.GZ_unify} in subsection
+\ref{subsec:ODE} and get the solution
+\begin{equation}
+\begin{split}
+&1).u=-\log(\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{t}c_{A}(t_{1})e^{-t_{1}}dt_{1}),
+\\&
+2).s=\frac{\int_{-A}^{t}(\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{t_{2}}c_{A}(t_{1})e^{-t_{1}}dt_{1})dt_{2}
++\frac{1}{\delta^{2}}c_{A}(-A)e^{A}}
+{\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{t}c_{A}(t_{1})e^{-t_{1}}dt_{1}}.
+\end{split}
+\end{equation}
+
+One can check that $s\in C^{\infty}((-A,+\infty))$,
+$\lim_{t\to+\infty}u(t)=-\log(\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{+\infty}c_{A}(t_{1})e^{-t_{1}}dt_{1}),$
+and $u\in C^{\infty}((-A,+\infty))$.
+
+As $su''-s''=-s'u'$ and $u'<0$, it is clear that $u''s-s''>0$ is
+equivalent to $s'>0$, and inequality \ref{equ:c_A_delta} means that
+$s'>0$, then we obtain $u''s-s''>0$.
+
+In conclusion, we have proved Theorem \ref{t:guan-zhou-semicontinu}.
+\end{proof}
+
+Using Remark \ref{r:c_A_continu} and Lemma \ref{l:c_A}, we may
+replace smoothness of $c_{A}$ by continuity.
+
+When we take $c_{A}=1$, using the above Theorem
+\ref{t:guan-zhou-semicontinu2} and Theorem
+\ref{t:guan-zhou-semicontinu}, one obtains main results in
+\cite{guan-zhou12a} and \cite{guan-zhou12p}, which are the optimal
+estimate versions of main theorems in \cite{ohsawa4,ohsawa5}.
+%%%------------------------------------------------------------------------
+
+\subsection{Proof of Theorem \ref{t:guan-zhou-unify}}
+
+By Remark \ref{r:extend}, it suffices to prove the case that $M$ is a Stein manifold.
+
+By Lemma \ref{l:lim_unbounded} and Lemma \ref{l:c_A}, it is enough
+to prove the case that $c_{A}$ is smooth on $(A,+\infty)$ and
+continuous on $(A,+\infty]$, such that $\lim_{t\to +\infty}c_{A}(t)$
+exists and bigger than $0$.
+
+Since $M$ is a Stein manifold, we can find a sequence of Stein
+manifolds $\{D_m\}_{m=1}^\infty$ satisfying $D_m\subset\subset
+D_{m+1}$ for all $m$ and
+$\overset{\infty}{\underset{m=1}{\cup}}D_m=M$. All $D_{m}\setminus
+S$ are complete K\"{a}hler (\cite{grauert}).
+
+As $\Psi$ is a plurisubharmonic function on $M$,
+then
+
+$(1).$ when $A<+\infty$, $\sup_{z\in D_{m}}\Psi(z)<A-\varepsilon$,
+where $\varepsilon>0$.
+
+$(2).$ when $A=+\infty$, $\sup_{z\in D_{m}}\Psi(z)<A_{m}$,
+where $A_{m}<+\infty$ is sufficient large.
+
+We just consider our proof for the condition $(1)$ (the case under
+the condition $(2)$ can be proved similarly), By Lemma
+\ref{l:relate_c_A_delta}, for any given $A'<A$, it follows that
+there exists $c_{A''}$ and $\delta''>0$ satisfying conditions 1),
+2), 3) in Lemma \ref{l:relate_c_A_delta}, where $A''<A$ and
+$A''>A-\varepsilon$.
+
+Note that $\sqrt{-1}\partial\bar\partial\Psi\geq0$, and
+$\sqrt{-1}\Theta_{he^{-\Psi}}\geq0$ on $M\setminus S$ implies
+conditions $1)$ and $2)$ in Theorem \ref{t:guan-zhou-semicontinu2}
+for any $\delta''>0$.
+
+Using Theorem \ref{t:guan-zhou-semicontinu2}, we obtain a
+holomorphic $(n,0)$ form $F_{m,A''}$ with value in $E$ on $D_{m}$,
+which satisfies $F_{m}|_{S}=f$ and
+$$\int_{D_{m}}c_{A''}(-\Psi)|F_{m,A''}|^{2}_{h}
+\leq\mathbf{C}\int_{-A}^{\infty}c_{A}(t)e^{-t}dt\sum_{k=1}^{n}\frac{\pi^{k}}{k!}\int_{S_{n-k}}|f|^{2}_{h}dV_{M}[\Psi].$$
+
+Note that $c_{A''}(-\Psi)$ is uniformly convergent to $c_{A}(-\Psi)$
+on any compact subset of $D_{m}$, as $A''\to A$. Let $A'\to A$
+($A''\to A$), and then let $m\to+\infty$, using Lemma
+\ref{l:lim_unbounded}, we prove the present theorem.
+
+\begin{Remark}\label{r:guan-zhou-unify-exa1}
+$\mathbf{C}$ is optimal on the ball $\mathbb{B}^{m}(0,e^{\frac{A}{2m}})$ for trivial
+holomorphic line bundle when $S=\{0\}$, and $\Psi=2m\log|z|$.
+When $A=+\infty$, $\mathbb{B}^{m}(0,e^{\frac{A}{2m}}):=\mathbb{C}^{m}$.
+\end{Remark}
+
+Using Theorem \ref{t:guan-zhou-unify} and Corollary
+\ref{l:extension_equ.2} by taking $d_{2}=1$, we obtain
+
+\begin{corollary}[][][c:unify.1]
+  Let $\Omega$ be an open Riemann surface which
+admits a Green function $G$, and $\Psi:=2G(z,z_{0})$. Let $V_{z_0}$
+be a neighborhood of $z_0$ with a local coordinate $z$, which
+satisfies $\Psi|_{V_{z_0}}\leq\Psi|_{\Omega\setminus V_{z_0}}$ and
+$\Psi|_{V_{z_0}}=\log|z|^{2}$.
+
+If there is a unique holomorphic $(1,0)$ form $F$, such that
+$F|_{z_0}=dz$ and
+$$\int_{\Omega}\sqrt{-1}F\wedge\bar{F}\leq\pi\int_{z_{0}}|dz|^{2}dV_{\Omega}[\Psi],$$
+then we have
+$F|_{V_{z_0}}=dz$.
+\end{corollary}
+
+\subsection{Solution of the ODE system \ref{equ:unify2.GZ_unify}}
+\label{subsec:ODE}
+
+We now solve the equations \ref{equ:unify2.GZ_unify} as follows:
+
+By $2)$ of equation \ref{equ:unify2.GZ_unify}, it follows that
+$su''-s''=-s'u'$. Then $1)$ of equation \ref{equ:unify2.GZ_unify}
+can be reformulated to
+$$(s-\frac{s'}{u'})e^{u-t}=\frac{\mathbf{C}}{c_{A}(t)},$$
+i.e.
+$$\frac{su'-s'}{u'}e^{u-t}=\frac{\mathbf{C}}{c_{A}(t)}.$$
+
+By $2)$ of equation \ref{equ:unify2.GZ_unify} again, it follows that
+$$\frac{\mathbf{C}}{c_{A}(t)}=\frac{su'-s'}{u'}e^{u-t}=\frac{-1}{u'}e^{u-t},$$
+therefore
+$$\frac{de^{-u}}{dt}=-u'e^{-u}=\frac{c_{A}(t)e^{-t}}{\mathbf{C}}.$$
+Note that $2)$ of equation \ref{equ:unify2.GZ_unify} is equivalent to
+$\frac{d(se^{-u})}{dt}=e^{-u}$.
+
+As $s\geq 0$, we obtain the solution
+\begin{displaymath}
+     \begin{cases}
+      u=-\log(a+\int_{-A}^{t}c_{A}(t_{1})e^{-t_{1}}dt_{1}), \\
+      s=\frac{\int_{-A}^{t}(a+\int_{-A}^{t_{2}}c_{A}(t_{1})e^{-t_{1}}dt_{1})dt_{2}+b}
+      {a+\int_{-A}^{t}c_{A}(t_{1})e^{-t_{1}}dt_{1}},
+      \end{cases}
+\end{displaymath}
+when $\mathbf{C}=1$, where $a\geq 0$ and $b\geq0$.
+
+As
+$\lim_{t\to+\infty}u(t)=-\log(\frac{1}{\delta}c_{A}(-A)e^{A}+\int_{-A}^{+\infty}c_{A}(t_{1})e^{-t_{1}}dt_{1})$,
+we have $a=\frac{1}{\delta}c_{A}(-A)e^{A}$. As
+$s\geq\frac{1}{\delta}$, we have $\frac{b}{a}\geq\frac{1}{\delta}$.
+
+As $u'<0$ and $su''-s''=-s'u'$, it is clear that $u''s-s''>0$ is
+equivalent to $s'>0$. By inequality $s'>0$, it follows that
+$a^{2}\geq c_{A}(-A)e^{A}b$. Then we get $b=\frac{1}{\delta}a$.
+
+%%%------------------------------------------------------------------------
+
+\subsection{Verifications of Remark \ref{r:guan-zhou-unify-exa2} and Remark \ref{r:guan-zhou-unify-exa1}}
+
+Let $\mathbb{B}^{m}(0,{e^{\frac{A}{2m}}})$ be the unit ball with
+radius $e^{\frac{A}{2m}}$ on $\mathbb{C}^{m}$
+($\mathbb{B}^{m}(0,+\infty):=\mathbb{C}^{m}$), with coordinate
+$z=\{z_{1},\cdots,z_{m}\}$. Let
+$$\varphi(z)=(1+\delta)m\max\{\log|z|^{2},\log|a|^{2}\},$$ and
+$$\Psi(z)=-m\max\{\log|z|^{2},\log|a|^{2}\}+m\log|z|^{2}+A-\varepsilon,$$
+where $a\in(0,+\infty)$ and $\varepsilon>0$.
+
+As both $\varphi$ and $\varphi+(1+\delta)\Psi$ are plurisubharmonic,
+and
+$$\varphi+\Psi=\frac{\delta\varphi+(\varphi+(1+\delta)\Psi)}{1+\delta},$$ it is clear that
+$\Psi(z)\in \Delta_{\varphi,\delta}(S)$, where $S=\{z=0\}$.
+
+For any $f(0)\neq 0$, it suffices to prove
+\begin{equation}
+\label{equ:opt1}
+\begin{split}
+&\lim_{a\to 0}\frac{\min_{F\in Hol(\mathbb{B}^{m}(0,{e^{\frac{A}{2m}}}))}
+\int_{\mathbb{B}^{m}(0,{e^{\frac{A}{2m}}})} |F|^{2}c_{A}
+(-\Psi)e^{-\varphi}d\lambda}{a^{-2\delta}e^{\varepsilon-A}|F(0)|^{2} }
+\\&=\frac{\pi^{m}}{m!}(\int_{-A+\varepsilon}^{+\infty}c_{A}(t)e^{-t}dt+
+\frac{1}{\delta}c_{A}(-A+\varepsilon)e^{A-\varepsilon}),
+\end{split}
+\end{equation}
+where $F(0)=f(0)$.
+
+Because
+$e^{-\varphi}d\lambda[\Psi]=a^{-2\delta}e^{\varepsilon}\delta_{0}$
+(by Lemma \ref{l:lem9}), where $\delta_{0}$ is the dirac function at
+$0$, let $\varepsilon$ go to zero, then we see that the constant of
+Theorem \ref{t:guan-zhou-unify} is optimal.
+
+Set Taylor expansion of at $0\in\mathbb{C}^{m}$ of
+$F(z)=\sum_{k=0}^{\infty}a_{k}z^{k}$, where
+$k=\{k_{1},\cdots,k_{m}\}$, $a_{k}$ are complex constants, and
+$z^{k}=z_{1}^{k_{1}}\cdots z_{m}^{k_{m}}$.
+
+Note that
+$\int_{\Delta}z^{k_{1}}\bar{z}^{k_{2}}e^{-\varphi}d\lambda=0$ when
+$k_{1}\neq k_{2}$, and
+$\int_{\Delta}z^{k_{1}}\bar{z}^{k_{2}}e^{-\varphi}d\lambda>0$ when
+$k_{1}= k_{2}$, it is clear that
+$$\min_{F\in Hol(\mathbb{B}^{m}(0,{e^{\frac{A}{2m}}}))}\int_{\mathbb{B}^{m}
+(0,{e^{\frac{A}{2m}}})}c_{A}(-\Psi)|F|^{2}e^{-\varphi}d\lambda
+=\int_{\mathbb{B}^{m}(0,{e^{\frac{A}{2m}}})}c_{A}(-\Psi)|F(0)|^{2}e^{-\varphi}d\lambda.$$
+\begin{remark}
+  上面的表述涉及复分析和几何分析的高级概念，特别是在多复变量的环境中。这里，目标是理解在一个具有指定半径的多维复数球 $\mathbb{B}^{m}(0, e^{\frac{A}{2m}})$ 上的一个全纯函数（holomorphic function）$F(z)$ 的最小能量的性质，其中能量是通过给定的积分形式衡量的。我们逐步解析：
+
+1. 多维复数球 $\mathbb{B}^{m}(0, e^{\frac{A}{2m}})$： 这是在复数空间 $\mathbb{C}^m$ 中心在原点，半径为 $e^{\frac{A}{2m}}$ 的球体。它是所有满足 $||z|| < e^{\frac{A}{2m}}$ 的 $z \in \mathbb{C}^m$ 的集合，其中 $||z||$ 是 $z$ 的范数（或距离原点的距离）。
+
+2. Taylor展开： $F(z) = \sum_{k=0}^{\infty}a_k z^k$ 是函数 $F$ 在原点的泰勒级数展开。这里的指数 $k$ 和底数 $z$ 都是向量形式，代表多重指数和多复变量的幂。
+
+3. 积分性质： 给出的积分性质 $\int_{\Delta}z^{k_{1}}\bar{z}^{k_{2}}e^{-\varphi}d\lambda=0$ 当 $k_{1} \neq k_{2}$ 以及 $\int_{\Delta}z^{k_{1}}\bar{z}^{k_{2}}e^{-\varphi}d\lambda>0$ 当 $k_{1}=k_{2}$ 指的是在某种测度（例如 Lebesgue 测度）下，只有当幂指数相同时，这类积分才为正。这反映了正交性和归一化条件，类似于傅里叶级数中的性质。
+
+4. 最小能量的计算： 表达式 $$\min_{F\in Hol(\mathbb{B}^{m}(0, e^{\frac{A}{2m}}))}\int_{\mathbb{B}^{m}(0, e^{\frac{A}{2m}})}c_{A}(-\Psi)|F|^2e^{-\varphi}d\lambda = \int_{\mathbb{B}^{m}(0, e^{\frac{A}{2m}})}c_{A}(-\Psi)|F(0)|^2e^{-\varphi}d\lambda$$ 表明，在所有可能的全纯函数 $F$ 中，使给定能量形式达到最小值的是 $F$ 在原点的值 $F(0)$。这反映了在某种约束条件（如权重 $e^{-\varphi}$ 和正则化项 $c_A(-\Psi)$）下，函数在原点处的值在能量意义上具有特殊的重要性。
+
+这个结论是基于复分析和多变量微积分的深入理解，特别是全纯函数的性质，以及在特定条件下的积分正交性和最小化问题。简而言之，这说明了在特定的几何和分析条件下，函数在某点的能量可以代表整个函数在该几何区域内的能量最小化问题的解。
+
+当我们谈论最小化能量表达式时，通常是在寻找某个函数空间内使得能量泛函达到最小值的函数。这里的能量泛函是通过对某个特定的积分表达式进行评估来定义的。我们来详细解析和推导这个过程：
+
+1. 能量泛函的定义： 
+   
+   在这个场景中，能量泛函定义为：
+
+   $$
+   E[F] = \int_{\mathbb{B}^m(0, e^{\frac{A}{2m}})} c_A(-\Psi) |F(z)|^2 e^{-\varphi} d\lambda,
+   $$
+
+   其中 $F$ 是定义在 $\mathbb{B}^m(0, e^{\frac{A}{2m}})$ 上的全纯函数。我们的目标是找到一个特定的函数 $F$ 使得 $E[F]$ 达到最小。
+
+2. 利用全纯函数的性质：
+
+   全纯函数（复分析中的可微函数）的一个关键性质是它们可以通过其在某一点（这里是原点）的泰勒级数展开完全确定。对于 $F(z)$，其在原点的泰勒展开是：
+
+   $$
+   F(z) = \sum_{k=0}^{\infty} a_k z^k,
+   $$
+
+   其中每个 $a_k$ 是与 $z^k$ 对应的复数系数。
+
+3. 计算能量泛函：
+
+   插入 $F(z)$ 的泰勒展开，我们可以重新写能量泛函：
+
+   $$
+   E[F] = \int_{\mathbb{B}^m(0, e^{\frac{A}{2m}})} c_A(-\Psi) \left|\sum_{k=0}^{\infty} a_k z^k\right|^2 e^{-\varphi} d\lambda.
+   $$
+
+   使用积分的线性和全纯函数系数在球上的积分性质（即 $z^{k_1} \bar{z}^{k_2}$ 的积分仅当 $k_1 = k_2$ 时不为零），我们可以发现，当 $F(z) = F(0) = a_0$ 时，能量泛函达到最小值，因为所有高阶项的贡献消失，并且剩余的项最小。
+
+   因此，最小化能量的函数 $F(z)$ 实际上是其在原点处的值，即：
+
+   $$
+   \min_{F \in Hol(\mathbb{B}^{m}(0, e^{\frac{A}{2m}}))} E[F] = E[a_0] = \int_{\mathbb{B}^m(0, e^{\frac{A}{2m}})} c_A(-\Psi) |a_0|^2 e^{-\varphi} d\lambda,
+   $$
+
+   这里 $a_0$ 是 $F(z)$ 在原点的值。
+
+4. 结论：
+
+   通过这个推导，我们看到，对于给定的全纯函数空间和特定的能量泛函，最小化这个能量的全纯函数是一个常数函数，即在球 $\mathbb{B}^m(0, e^{\frac{A}{2m}})$ 上处处等于其在原点的值的函数。
+
+这个过程体现了复分析中全纯函数性质的强大之处：它们在局部信息（如在一个点的值或者展开）中蕴含了整体信息。在这种情况下，它说明了在某种能量意义上，最优的全纯函数是简单的常数函数，反映了该函数在原点的值。
+\end{remark}
+It is not hard to see that
+$$\int_{\mathbb{B}^{m}(0,{e^{\frac{A}{2m}}})}c_{A}(-\Psi)e^{-\varphi}d\lambda
+=\frac{\pi^{m}}{m!}(a^{-2\delta}e^{-A+\varepsilon}\int_{-A+\varepsilon}^{+\infty}c_{A}(t)e^{-t}dt
++c_{A}(-A+\varepsilon)\frac{a^{-2\delta}-e^{-\delta A}}{\delta}),$$
+and by L' Hospital's rule, we have 
+$$\lim_{a\to0}\frac{a^{-2\delta}-e^{-\delta A}}{\delta a^{-2\delta}}=\frac{1}{\delta}.$$
+\begin{tcolorbox}[colback=Emerald!10,colframe=cyan!40!black]
+\begin{align*}
+  \int_{\mathbb{B}^{m}(0,{e^{\frac{A}{2m}}})}c_{A}(-\Psi)e^{-\varphi}d\lambda
+&=\\
+\end{align*}
+  
+  \end{tcolorbox}
+
+\begin{remark}
+  Ask: What is the expression of Dirac function at $0$?
+
+  Sol: The Dirac delta function, denoted as δ(x), is a generalized function that is zero everywhere except at \(x = 0\), where it is infinitely tall and its integral over the entire real line is 1. Mathematically, it can be expressed as:
+
+  \[ \delta(x) = \begin{cases} \infty, & \text{if } x = 0 \\ 0, & \text{otherwise} \end{cases} \]
+  
+  However, this is a formal expression. In practice, the Dirac delta function is not actually a function in the conventional sense, but rather a distribution, and its "value" at \(x = 0\) is defined through its integral properties, specifically:
+  
+  \[ \int_{-\infty}^{\infty} \delta(x) \, dx = 1 \]
+  
+  And for any continuous function \(f(x)\) that is well-behaved around \(x = 0\), the integral
+  
+  \[ \int_{-\infty}^{\infty} f(x) \delta(x) \, dx = f(0) \]
+  
+  This integral property is often used to define the behavior of the Dirac delta function at \(x = 0\).
+\end{remark}
+As $\int_{-A}^{\infty}c_{A}(t)e^{-t}dt<\infty$,
+$c_{A}(-A)e^{A}<\infty$ and $c_{A}(-A)e^{A}\neq0$, then we have
+proved the equality \ref{equ:opt1}. Now we finishing proving Remark
+\ref{r:guan-zhou-unify-exa2}.
+
+Let $\varphi=0$ and $\Psi=m\log|z|^{2}$, then we obtain Remark
+\ref{r:guan-zhou-unify-exa1} on
+$\mathbb{B}^{m}(0,{e^{\frac{A}{2m}}})$, where
+$A\in(-\infty,+\infty]$.
+
+%%%------------------------------------------------------------------------ 
+
+\section{The applications of the main theorem}
+\subsection{The Suita's conjecture}
+
+\begin{remark}
+假设 \(\Omega\) 是一个非紧的黎曼曲面，则确实存在一个全纯函数 \(g_0\) 定义在 \(\Omega\) 上，满足 \(d g_0|_{z_0} \neq 0, g_0|_{z_0} = 0, g_0|_{\Omega \backslash \{z_0\}} \neq 0\)。
+
+这个命题的成立基于几个重要的数学理论和概念：
+
+1. 非紧性：非紧的黎曼曲面意味着该曲面不是紧致的。紧致性是拓扑空间的一个属性，直观上可以理解为一个空间既是封闭的又是有界的。非紧黎曼曲面允许在其上构造一些特殊的全纯函数，这些函数在某些点上具有特定的性质。
+
+2. 全纯函数：全纯函数（或解析函数）是复分析中的一个基本概念，指在复平面上处处可微的复值函数。全纯函数具有一些重要的性质，例如局部幂级数展开和最大模原理。
+
+3. 构造方法：在非紧黎曼曲面上，我们可以通过适当的构造方法来找到一个全纯函数 \(g_0\)，它在某一点 \(z_0\) 上为零，且其导数 \(d g_0|_{z_0}\) 不为零。这意味着 \(g_0\) 在 \(z_0\) 点附近不恒等于零（局部非平凡），并且 \(z_0\) 是 \(g_0\) 的一个简单零点。
+
+4. 自动形式理论和覆盖映射：在一些情况下，我们可以使用覆盖映射和自动形式理论来构造这样的函数。覆盖映射是一种特殊的连续函数，它可以将一个拓扑空间“覆盖”到另一个上面，而自动形式则提供了一种构造全纯函数的方法，尤其是在黎曼曲面和复流形的研究中。
+
+因此，给定非紧黎曼曲面 \(\Omega\) 和点 \(z_0 \in \Omega\)，我们可以找到一个全纯函数 \(g_0\)，使得 \(g_0(z_0) = 0\) 且 \(d g_0|_{z_0} \neq 0\)，且除 \(z_0\) 之外的 \(\Omega\) 上的任何点都不是 \(g_0\) 的零点。这样的函数可以通过构造或使用现有的数学理论来找到。
+\end{remark}
+
+要理解为什么可以选择这样的一个双全纯映射 \( p: \Delta \to \Omega \)，需要借助几个重要的数学定理和概念：
+
+1. 全纯覆盖定理（Riemann Mapping Theorem）：这个定理表明，任意两个简单连通域之间存在双全纯映射。简单连通域是指没有孔洞的连通开集。在这种情况下，\( \Delta \) 和 \( \Omega \) 都是简单连通域，因此存在一个全纯双全映射 \( p: \Delta \to \Omega \)。
+
+2. 通用覆盖映射：通用覆盖映射是一个覆盖映射，可以覆盖整个黎曼曲面。对于一个非紧黎曼曲面 \( \Omega \)，我们可以选择一个通用覆盖映射 \( p: \Delta \to \Omega \)，其中 \( \Delta \) 是一个简单连通域。
+
+综合以上两点，我们可以得出结论：
+
+由全纯覆盖定理，存在一个全纯双全映射 \( p: \Delta \to \Omega \)，其中 \( \Delta \) 是一个简单连通域。然后，由于 \( \Omega \) 是一个非紧黎曼曲面，我们可以选择一个足够小的连通分量 \( V_{z_{0}} \)，使得 \( p \) 在 \( p^{-1}(V_{z_{0}}) \) 的每个连通分量上仍然是双全映射。
+
+因此，基于全纯覆盖定理和通用覆盖映射的性质，我们可以保证存在一个这样的双全纯映射 \( p: \Delta \to \Omega \)，并且可以选择一个足够小的连通分量 \( V_{z_{0}} \)，使得 \( p \) 在 \( p^{-1}(V_{z_{0}}) \) 的每个连通分量上仍然是双全映射。
+
+
+\begin{tcolorbox}[colback=Emerald!10,colframe=cyan!40!black,breakable,title=\textbf{ANNOTATION}]
+  这段提到了一个关于调和函数和全纯函数之间关系的重要结论。让我们来解释这个结论：
+
+1. 调和函数和全纯函数的关系：
+
+   - 调和函数是指满足拉普拉斯方程的实部。如果一个函数是调和函数，那么它可以作为某个全纯函数的实部。
+
+   - 具体来说，如果 $u$ 是定义在区域 $\Delta$ 上的一个调和函数，那么存在一个全纯函数 $f$，使得 $u = \text{Re}(f)$。这意味着 $u$ 可以通过某个全纯函数的实部来表示。
+
+2. 证明思路：
+
+   - 在给定的情况下，$p^{*}(G_{\Omega}(z,z_{0})-\log|g_{0}(z)|)$ 是一个调和函数，这是根据引用的引理 \ref{r:green_harmonic} 得出的。
+
+   - 根据上述关系，我们知道存在一个全纯函数 $f_{1}$，使得 $u = \text{Re}(f_{1})$，其中 $u$ 是 $p^{*}(G_{\Omega}(z,z_{0})-\log|g_{0}(z)|)$。
+
+3. 结论：
+
+   - 因此，根据这个结论，我们可以确信存在一个全纯函数 $f_{1}$，其实部就是 $p^{*}(G_{\Omega}(z,z_{0})-\log|g_{0}(z)|)$。
+
+综上所述，对于一个调和函数，总是存在一个全纯函数，其实部等于该调和函数。这个结论是复变函数论中重要的结果，它揭示了调和函数与全纯函数之间的密切联系。
+
+
+为什么对于一个调和函数，总是存在一个全纯函数，其实部等于该调和函数？
+
+这个结论可以通过以下方式解释：
+
+1. 关于调和函数和全纯函数的联系：
+
+   - 调和函数是实部满足拉普拉斯方程的函数。在二维复平面上，调和函数是复平面上的实函数的实部。
+
+   - \textbf{复平面上的任何调和函数都可以看作是某个全纯函数的实部。这是因为全纯函数的实部和虚部都是调和函数。}
+
+2. 解释：
+
+   - 任何全纯函数都可以写成 $f(z) = u(x, y) + iv(x, y)$ 的形式，其中 $u$ 和 $v$ 是调和函数。
+
+   - 因此，如果我们考虑一个调和函数 $u(x, y)$，它实际上可以是某个全纯函数的实部。
+
+3. 结论：
+
+   - 因此，对于任何给定的调和函数，我们可以找到一个对应的全纯函数，其实部就是这个调和函数。
+
+综上所述，这个结论的原因在于全纯函数的实部是调和函数，因此任何调和函数都可以被看作是某个全纯函数的实部。这种联系使得我们可以将调和函数和全纯函数联系起来，从而得出结论：对于一个调和函数，总是存在一个全纯函数，其实部等于该调和函数。
+  \end{tcolorbox}
+
+\begin{proof}[Proof of Suita's Conjecture]
+  It is well-known that if $\Omega$ is conformally equivalent to the unit disc less
+a (possible) closed set of inner capacity zero,
+then
+$$\pi B_{\Omega}(z_{0})= c^{2}_{\beta}(z_{0}).$$
+
+It suffices to prove that if $\pi B_{\Omega}(z_{0})= c^{2}_{\beta}(z_{0})$ holds,
+then $\Omega$ is conformally equivalent to the unit disc less
+a (possible) closed set of inner capacity zero.
+
+As $\Omega$ is a noncompact Riemann surface,
+there exists a holomorphic function $g_{0}$ on $\Omega$,
+which satisfies $dg_{0}|_{z_{0}}\neq 0$, $g_{0}|_{z_{0}}=0$,
+and $g_{0}|_{\Omega\setminus \{z_{0}\}}\neq 0$.
+
+Let $p:\Delta\to \Omega$ be the universal covering of $\Omega$. We
+can choose a connected component $V_{z_{0}}$ small enough, such that
+$p$ is biholomorphic on any connected component of
+$p^{-1}(V_{z_{0}})$.
+
+Since $p^{*}(G_{\Omega}(z,z_{0})-\log|g_{0}(z)|)$ is a harmonic function on
+$\Delta$ (by Lemma \ref{r:green_harmonic}),
+then there exists a holomorphic function $f_{1}$ on
+$\Delta$,
+such that the real part of $f_{1}$ is $p^{*}(G_{\Omega}(z,z_{0})-\log|w|)$.
+
+We want to show that for any $z_{1}\in\Omega$,
+$p^{*}(g_{0})\exp f_{1}$ is constant along the fibre $p^{-1}(z_{1})$.
+
+Note that
+$$\log|p_{*}((p^{*}(g_{0})\exp f_{1})|_{U^{0}})|=G_{\Omega}(z,z_{0})|_{V_{z_{0}}},$$
+where $U^{0}$ is a fixed connected component of $p^{-1}(V_{z_{0}})$.
+By assumption $\pi B_{\Omega}(z_{0})= c^{2}_{\beta}(z_{0})$, and by
+Remark \ref{r:minimal}, there is a unique holomorphic $(1,0)$ form
+$F$ on $\Omega$, which satisfies
+$F|_{z_{0}}=dp_{*}((p^{*}(g_{0})\exp f_{1})|_{U^{0}})|_{z_{0}}$, and
+$$\sqrt{-1}\int_{\Omega}F\wedge\bar{F}\leq\pi\int_{z_{0}}|dp_{*}
+((p^{*}(g_{0})\exp f_{1})|_{U^{0}})|^{2}dV_{\Omega}[2 G_{\Omega}(z,z_{0})].$$
+
+Using Proposition \ref{p:unique}, we have
+$$dp_{*}(p^{*}(g_{0})\exp
+f_{1}|_{U^{0}})=F|_{V_{z_0}},$$
+therefore
+$$d(p^{*}(g_{0})\exp
+f_{1}|_{U^{0}})=(p^{*}F)|_{U^{0}}.$$
+\begin{remark}
+  The computation is that 
+  \begin{align*}
+    \dd p_* [p^*(g_0) \exp f_1|_{U^0}] &=d [g_{0}  \exp (p^* f_1|_{U^0})]\\
+    &=\dd (g_0 \exp f_1|_{U^0})\\ 
+    &=\dd g_0\cdot \exp f_1|_{U^0}+g_0\cdot \dd (\exp f_1|_{U^0})\\ 
+    &=F|_{V_{z_0}}.
+  \end{align*}
+    Then 
+    \begin{align*}
+      p^*[\dd g_0\cdot \exp f_1|_{U^0}+g_0\cdot \dd (\exp f_1|_{U^0})]
+      &=\dd p^*(g_0)\cdot \exp f_1|_{U^0}+p^*(g_0)\cdot \dd (\exp f_1|_{U^0})\\
+      &=d[p^*(g_0) \exp f_1|_{U^0}]\\
+      &=p^* (F|_{V_{z_0}})=(p^*F)|_{U^0}.
+    \end{align*}
+
+\end{remark}
+Using Lemma \ref{l:identity}, we have $d(p^{*}(g_{0})\exp
+f_{1})=p^{*}F$.
+
+For $z_{1}\in\Omega$,
+there exists $V_{z_{1}}$, a connected neighborhood small enough,
+such that $p$ is biholomorphic on any connected
+component of $p^{-1}(V_{z_{1}})$,
+and $U_{1}$ and $U_{2}$ are any two connected components of $p^{-1}(V_{z_{1}})$.
+
+Denote by
+$$g_{1}=(p|_{U_{1}})_{*}((p^{*}(g_{0})\exp f_{1})|_{U_{1}}),$$
+and
+$$g_{2}=(p|_{U_{2}})_{*}((p^{*}(g_{0})\exp f_{1})|_{U_{2}}),$$
+they are holomorphic functions on $V_{z_1}$.
+
+As $d(p^{*}(g_{0})\exp f_{1})=p^{*}F$,
+therefore
+\begin{align*}
+  \dd g_1&=\dd (p|_{U_{1}})_{*}((p^{*}(g_{0})\exp f_{1})|_{U_{1}})=(p|_{U_{1}})_{*}(\dd (p^{*}(g_{0})\exp f_{1})|_{U_{1}})\\ 
+&=(p|_{U_{1}})_{*} p^* F=F.
+\end{align*}
+  Thus we have
+$$(p|_{U_{1}})_{*}(d(p^{*}(g_{0})\exp f_{1})|_{U_{1}})=(p|_{U_{2}})_{*}((dp^{*}(g_{0})\exp f_{1})|_{U_{2}}),$$
+i.e.
+$$dg_{1}=dg_{2}(=F).$$
+As $|p^{*}(g_{0})\exp f_{1}|=\exp (p^{*}G_{\Omega}(\cdot,z_{0}))$,
+which restricted on ${p^{-1}(z)}$ takes the same value,
+we have $|g_{1}|=|g_{2}|$, which are not constant on $V_{z_1}$.
+
+Using Lemma \ref{l:identity_function}, we have $g_{1}=g_{2}$,
+therefore $(p^{*}(g_{0})\exp f_{1})|_{p^{-1}(z)}$ is constant for
+any $z\in\Omega$. Then we obtain a well-defined holomorphic function
+$$g(z):=(p^{*}(g_{0})\exp f_{1})|_{p^{-1}(z)}$$
+on $\Omega$,
+which satisfies $|g(z)|=\exp G_{\Omega}(z,z_{0})$.
+
+Using Lemma \ref{l:c_beta.c_B}, we have
+$c_{B}(z_{0})=c_{\beta}(z_{0})$. By the assumption $\pi
+B_{\Omega}(z_{0})= c^{2}_{\beta}(z_{0})$, it follows that $\pi
+B_{\Omega}(z_{0})=c^{2}_{B}(z_{0})$.
+
+Using Lemma \ref{l:suita}, we obtain that $\Omega$ is conformally
+equivalent to the unit disc less a (possible) closed set of inner
+capacity zero.
+
+
+%%%------------------------------------------------------------------------
+\end{proof}
+  
+\subsection{\texorpdfstring{$L$}{}-conjecture}
+
+Let $\Omega$ be an open Riemann surface which admits a nontrivial
+Green function $G_{\Omega}$ and is not biholomorphic to the unit
+disc less a (possible) closed set of inner capacity zero.
+
+Assume that $G_{\Omega}(\cdot,t)$ is an exhaustion function for any
+$t\in\Omega$. Associated to the Bergman kernel
+$\kappa_{\Omega}(z,\bar{t})$, one may define the adjoint $L$-kernel
+$$L_{\Omega}(z,t):=\frac{2}{\pi}\frac{\partial^{2}G_{\Omega}(z,t)}{\partial
+z \partial t}$$ (see \cite{schiffer}). In \cite{yamada98}, there is a
+conjecture on the zero points of the adjoint $L$-kernel as follows:
+\[
+\text{\emph{\textbf{$L$-Conjecture (LC)}:
+For any $t\in\Omega$, $\exists z\in\Omega$, we have $L_{\Omega}(z,t)=0$.}}
+\]
+It is known that, for finite Riemann surface $\Omega$,
+$G_{\Omega}(\cdot,t)$ is an exhaustion function for any $t\in\Omega$
+(see \cite{yamada98}).
+
+By Theorem 6 in \cite{yamada98}, $L$-conjecture for finite Riemann
+surfaces is deduced from the above conjecture of Suita.
+
+Using Theorem (Suita conjecture), we solve the $L-$conjecture for any
+open Riemann surface with exhaustion Green function:
+
+\begin{theorem}[][][c:L_conj_proof]
+  The above $L-$conjecture holds.
+\end{theorem}
+
+The following example shows that the assumption that
+$G_{\Omega}(\cdot,t)$ is an exhaustion function for any $t\in\Omega$
+is necessary.
+
+Let $m$ and $p$ denote the numbers of the boundary contours and the
+genus of $\Omega$, respectively (see \cite{suita76}). In fact, for
+any finite Riemann surface $\Omega$, which is not simply connected,
+the Bergman kernel $\kappa_{\Omega}(z,\bar{t})$ of $\Omega$ has
+exactly $2p+m-1$ zeros for suitable $t$ (see \cite{suita76}).
+
+Let $\Omega$ be an annulus, then we have $2p+m-1=1$ (see page 93,
+\cite{schiffer}). It is known that
+$\#\{z|L_{\Omega}(z,t)=0\}+\#\{z|\kappa_{\Omega}(z,\bar{t})=0\}\leq4p+2m-2=2$
+for all $t\in\Omega$, (see \cite{suita76}). Note that
+$\kappa_{\Omega}(z,\bar{t})$ has exactly $2p+m-1=1$ zeros for
+suitable $t$. Using Theorem \ref{c:L_conj_proof}, we have
+$\#\{z|L_{\Omega}(z,t)=0\}=1=4p+2m-2-1$ for suitable $t\in\Omega$.
+Let $t_{1}\in\Omega$ satisfy $\#\{z|L_{\Omega}(z,t_{1})=0\}=1$.
+Assume that $z_{1}\in\{z|L_{\Omega}(z,t_{1})=0\}$. Note that
+$z_{1}\neq t_{1}$. As
+$G_{\Omega\setminus\{z_{1}\}}=G_{\Omega}|_{\Omega\setminus\{z_{1}\}}$,
+then we have $\#\{z|L_{\Omega\setminus\{z_{1}\}}(z,t_{1})=0\}=0$.
+
+
+\begin{proposition}[][疑难解答]
+  在拓扑学和复变函数理论中，"universal covering"（通用覆盖或万有覆盖）是一个重要的概念。对于给定的空间（在你的例子中是开放的黎曼面 $\Omega$），其万有覆盖是一个覆盖空间，具有特定的性质，使得它能以某种方式代表所有其他的覆盖空间。
+
+\textbf{万有覆盖的定义}
+
+给定一个拓扑空间 $X$，一个万有覆盖是一个覆盖空间 $p\colon \widetilde{X} \to X$，其中 $\widetilde{X}$ 是单连通的（这意味着 $\widetilde{X}$ 中的任何循环都可以连续地收缩到一点，不留任何“洞”或“障碍”）。对于你的问题，$\Delta$（单位圆盘）充当 $\Omega$（开放的黎曼面）的万有覆盖空间。
+
+万有覆盖的一个关键特征是它能够“解开”基空间的所有“洞”。在你的例子中，$\Delta$ 是单连通的，意味着它没有洞，而 $\Omega$ 可能有洞（即它可能是非单连通的）。万有覆盖映射 $p\colon \Delta \to \Omega$ 允许我们从一个简单的空间（$\Delta$）研究复杂的空间（$\Omega$）的性质，因为 $\Delta$ 通过 $p$ 映射到 $\Omega$，在某种意义上包含了 $\Omega$ 的所有本质拓扑信息。
+\tcblower
+  问：我在看的文章提到，这样的映射$p$是从$\Delta$上的局部连通区域到$\Omega$上的局部连通区域的"biholomorphic"映射，这是为何？还有，请为我解答下，倘若$p$是biholomorphic的，那么是否会形成一个全纯向量丛？因为，这篇文章提到了fibre $p^{-1}_{z_0}, z_0\in \Omega$.
+
+  答：当文章提到映射 $p\colon \Delta \to \Omega$ 是从 $\Delta$ 上的局部连通区域到 $\Omega$ 上的局部连通区域的双全纯（biholomorphic）映射时，它强调了几个重要的性质和概念。
+
+\textbf{\circled{1} 双全纯映射的含义}
+
+双全纯映射是指一个全纯（holomorphic）函数，即复平面上的一类光滑且复可微的函数，它同时也具有全纯的逆函数。在这个上下文中，如果 $p\colon \Delta \to \Omega$ 是局部双全纯的，这意味着对于 $\Delta$ 中的每一点，存在一个邻域，使得 $p$ 在这个邻域内是双全纯的，即 $p$ 和它的逆映射 $p^{-1}$ 都是全纯的。这表明，局部地，$p$ 保持了复结构，即它既保持了角度也保持了大小。
+
+\textbf{\circled{2} 全纯向量丛}
+
+一个全纯向量丛是指基空间和纤维空间都是复流形，且向量丛的投影映射是全纯的，纤维间的过渡函数也是全纯的。在你提到的情况下，\textbf{如果 $p\colon \Delta \to \Omega$ 是双全纯的，我们主要关注的是其如何定义一个纤维化结构（fibration），而不是一个向量丛结构。}
+
+\textbf{\circled{3} 纤维结构和向量丛}
+
+当文章提到纤维 $p^{-1}_{z_0}, z_0\in \Omega$ 时，它实际上是在描述覆盖空间 $p\colon \Delta \to \Omega$ 的纤维化（fibration）结构，其中对于 $\Omega$ 中的每一点 $z_0$，其逆像 $p^{-1}(z_0)$ 是 $\Delta$ 中的一组点，这组点构成了 $z_0$ 上的纤维。\textbf{\color{purple} 这与全纯向量丛的概念有所不同，因为在向量丛的情况下，每个纤维是一个向量空间，而在覆盖空间的情况下，纤维仅仅是基空间中一点的逆像。}
+
+总之，尽管 $p\colon \Delta \to \Omega$ 的局部双全纯性质与向量丛的全纯性有关，但在这种情况下，它更多地定义了一个覆盖空间的纤维化结构，而不是一个全纯向量丛。这种结构的重点在于理解和研究基空间的局部与全局性质，特别是当考虑到复结构和全纯函数理论时。
+\end{proposition}
+  
+\part{Series of ``On the Extension of \texorpdfstring{$L^2$}{} Holomorphic Functions'' By Takeo Ohsawa}
+
+\chapter{On the Extension of \texorpdfstring{$L^2$}{} Holomorphic Functions I}
+
+\section{Preliminaries}
+
+在复数域上，一个复高维平面（complex hyperplane）通常指的是复射影空间 $\mathbb{CP}^n$ 中的一个维度为 $n-1$ 的子空间。这是因为在复射影空间中，一个“平面”的概念通过线性方程来定义，而这样的一个方程通常会在空间中划出一个维度比整个空间低一维的子集。
+
+举个具体的例子，如果我们考虑 $\mathbb{CP}^2$（二维复射影空间），那么一个复高维平面就是一个一维的复子空间，可以想象成一条线。如果我们考虑 $\mathbb{CP}^3$（三维复射影空间），那么一个复高维平面就是一个二维的复子空间，可以想象成一个平面，等等。
+
+因此，如果一个复高维平面位于 $\mathbb{CP}^n$ 中，其维数为 $n-1$。需要注意的是，这里讨论的“维数”是在复数意义上的，即每个维度都是复数维度。这意味着，从实数的角度来看，这样的平面的维度将是 $2(n-1)$，因为每个复数维度等价于两个实数维度。
+\newcommand{\cutoff}{\noindent\tikz\draw[dashed,thick,gray!60] (0,0)--++(.99\linewidth,0);\par}
+
+\cutoff
+\textbf{Integration by Parts}
+\begin{align*}
+  (i[e(\bd \eta),\Lambda]u,\bdd^*_\varphi u)_\varphi &= \int_X e^{-\varphi} (i[e(\bd \eta),\Lambda]u) \wedge \bar* (\bdd^*_\varphi u)\\
+  &=(i\bdd_\varphi [e(\bd \eta),\Lambda]u,u)_\varphi.
+\end{align*}
+\cutoff
+由$ST=0$, 我们有$(ST)^*=T^* S^*=0$, 则$\mathrm{Dom} T^*\supset \mathrm{Ran}(S^*)$, 而基于下面的分析知 $\mathrm{Ran}(S^*)=[\mathrm{Ker}(S)]^\bot$, 从而对于任意的$k\in\mathrm{Dom} T^*$, 有$k=k_1+k_2$, 其中 $k_1\in \ker S, k_2\in [\mathrm{Ker}(S)]^\bot$.
+
+在 Hilbert 空间中，$\ker S$ 表示算子 $S$ 的核（kernel），即由所有映射到零的向量组成的集合。而 $R(S^*)$ 表示 $S$ 的伴随算子 $S^*$ 的值域（range），即由所有 $S^*$ 对某个向量的作用得到的向量组成的集合。
+
+首先，我们来看为什么 $\ker S$ 的正交补是 $R(S^*)$ 的闭包。
+
+假设 $x \in \ker S$，即 $Sx = 0$。我们要证明 $x$ 与 $R(S^*)$ 中的所有向量正交。
+
+考虑 $y \in R(S^*)$，则存在向量 $z$ 使得 $y = S^* z$。现在，我们来计算内积 $\langle x, y \rangle$：
+\[\langle x, y \rangle = \langle x, S^* z \rangle = \langle Sx, z \rangle = \langle 0, z \rangle = 0\]
+
+所以，$\ker S$ 中的任意向量与 $R(S^*)$ 中的任意向量都正交。这意味着 $\ker S$ 的正交补包含了 $R(S^*)$。
+
+接下来，我们来证明 $\ker S$ 的正交补是 $R(S^*)$ 的闭包。
+
+设 $y$ 是 $R(S^*)$ 的闭包中的一个向量，我们需要证明 $y$ 也属于 $\ker S$ 的正交补。
+
+由于 $y$ 是 $R(S^*)$ 的闭包中的一个向量，那么存在序列 $\{y_n\}$ 使得 $y_n \rightarrow y$，其中 $y_n \in R(S^*)$。
+
+由于 $y_n \in R(S^*)$，则存在向量 $z_n$ 使得 $y_n = S^* z_n$。考虑内积 $\langle x, y_n \rangle$：
+\[\langle x, y_n \rangle = \langle x, S^* z_n \rangle = \langle Sx, z_n \rangle\]
+
+由于 $Sx \in R(S)$，则存在向量 $w_n$ 使得 $Sx = Sw_n$。于是上式可以写成：
+\[\langle Sx, z_n \rangle = \langle Sw_n, z_n \rangle = \langle x, S^* z_n \rangle = \langle x, y_n \rangle\]
+
+因此，我们有 $\langle x, y_n \rangle = \langle x, y_n \rangle$。这意味着对于任意 $n$，$\langle x, y_n \rangle$ 都相等。由于 $\{y_n\}$ 是收敛序列，所以它的极限也应该满足相同的性质。即：
+\[\langle x, y \rangle = \lim_{n \to \infty} \langle x, y_n \rangle\]
+
+由于 $\langle x, y_n \rangle = 0$，因为 $y_n$ 是 $R(S^*)$ 中的向量，而 $x$ 是 $\ker S$ 中的向量，它们正交。因此，$\langle x, y \rangle = 0$。这表明 $x$ 与 $y$ 正交。
+
+综上所述，$\ker S$ 的正交补是 $R(S^*)$ 的闭包。
+
+
+
+\begin{conjecture}[][选题猜想][thm:xuanticaixiang]
+  Let $X$ be an $n$-dimensional complete K\"ahler manifold with a (not necessarily complete) K\"ahler metric $\omega$ . Let $E$ be a holomorphic vector bundle and  $L$ be a holomorphic line bundle over $X$ with a singular Hermitian metric $h$ which is pesudo-effective. Suppose there are bounded $C^{\infty}$ functions $\eta$, $\lambda>0$ on $X$ such that
+\begin{equation}\label{ineq: curvature condition}
+  \eta\sqrt {-1}\Theta_h(L)-\sqrt{-1}\partial\bar{\partial}\eta-\lambda^{-1}\sqrt{-1}\partial\eta\wedge \bar{\partial}\eta\ge \Theta
+\end{equation}
+in the sense of currents, where $\Theta$ is a continuous positive $(1,1)$-form on $X$. Then for every integer $q\geq 1$ and $\bar{\partial}$-closed $v\in L^2_{\rm loc}(X,\, \Lambda^{n,\, q} T^{\ast}X \otimes \mathcal{O}_X (E\otimes L)\otimes \mathcal{I}(h))$ such that
+  $$
+  \int_X \big\langle[\Theta, \Lambda_{\omega}]^{-1}v,\, v\big\rangle_{\omega,\,h}\,dV_{\omega}<\infty,
+  $$
+there exists $u\in L^2(X,\, \Lambda^{n,\, q-1} T^{\ast}X \otimes \mathcal{O}_X (E\otimes L)\otimes \mathcal{I}(h);\, \omega, h)$ such that $\bar{\partial}u=v$ and
+\begin{equation}\label{ineq:L^2 estimate for solution}
+  \int_X (\eta+\lambda)^{-1}|u|^2_{\omega,\,h}\,dV_{\omega}\leq \int_X \big\langle[\Theta, \Lambda_{\omega}]^{-1}v,\, v\big\rangle_{\omega,\,h}\,dV_{\omega}.
+\end{equation}
+\end{conjecture}
+

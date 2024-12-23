@@ -1,0 +1,15 @@
+\contentsline {part}{I\hspace {1em}On the extension of Ohsawa-Takeo's $L^2$-extension theorem}{1}{part.1}%
+\contentsline {chapter}{\numberline {1}On the $L^2$ Holomorphic Functions}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}The original theorem first showned}{3}{section.1.1}%
+\contentsline {chapter}{\numberline {2}The extended version of the Ohsawa-Takegoshi Extension Theorem}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Preliminaries}{4}{section.2.1}%
+\contentsline {part}{II\hspace {1em}$L^2$-type Dolbeault isomorphisms and vanishing theorems for logarithmic sheaves twisted by multiplier ideal sheaves}{5}{part.2}%
+\contentsline {chapter}{\numberline {3}The Problems}{7}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Some Selections and their information}{7}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}First Ans.}{7}{subsection.3.1.1}%
+\contentsline {chapter}{\numberline {4}The optimal constant}{11}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Bergman Kernel form}{11}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}The product formula for Bergman kernel form}{11}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Basic a priori Inequality}{12}{subsection.4.1.2}%
+\contentsline {chapter}{Bibliography}{17}{chapter*.3}%
+\contentsfinish 

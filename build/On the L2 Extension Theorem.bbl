@@ -1,0 +1,90 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{Demailly2000}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=eca6b7dd74245c117dc5e7b0449c9463}{%
+           family={Demailly},
+           familyi={D\bibinitperiod},
+           given={Jean-Pierre},
+           giveni={J\bibinithyphendelim P\bibinitperiod}}}%
+      }
+      \name{editor}{5}{}{%
+        {{hash=7289b0b633071695467a61fe8774b553}{%
+           family={Dolbeault},
+           familyi={D\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=acfe2e31b9440fb58871d861b9259cb3}{%
+           family={Iordan},
+           familyi={I\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=6b1d33399f1bb2733352ac49595a8dc9}{%
+           family={Henkin},
+           familyi={H\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=30c41eebe98ee069ff50bbedc9628960}{%
+           family={Skoda},
+           familyi={S\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod}}}%
+        {{hash=b0811d3072adf1e28c1fb9f184dba220}{%
+           family={Trépreau},
+           familyi={T\bibinitperiod},
+           given={J.-M.},
+           giveni={J\bibinithyphendelim M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Basel}%
+      }
+      \list{publisher}{1}{%
+        {Birkhäuser Basel}%
+      }
+      \strng{namehash}{eca6b7dd74245c117dc5e7b0449c9463}
+      \strng{fullhash}{eca6b7dd74245c117dc5e7b0449c9463}
+      \strng{fullhashraw}{eca6b7dd74245c117dc5e7b0449c9463}
+      \strng{bibnamehash}{eca6b7dd74245c117dc5e7b0449c9463}
+      \strng{authorbibnamehash}{eca6b7dd74245c117dc5e7b0449c9463}
+      \strng{authornamehash}{eca6b7dd74245c117dc5e7b0449c9463}
+      \strng{authorfullhash}{eca6b7dd74245c117dc5e7b0449c9463}
+      \strng{authorfullhashraw}{eca6b7dd74245c117dc5e7b0449c9463}
+      \strng{editorbibnamehash}{189e230560d7583f7cd14e5e0f735b4b}
+      \strng{editornamehash}{189e230560d7583f7cd14e5e0f735b4b}
+      \strng{editorfullhash}{e7732230d0cc075d767f17f65c216858}
+      \strng{editorfullhashraw}{e7732230d0cc075d767f17f65c216858}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{One of the goals of this work is to demonstrate in several different ways the strength of the fundamental tools introduced by Pierre Lelong for the study of Complex Analysis and Analytic or Algebraic Geometry. We first give a detailed presentation of the Ohsawa-Takegoshi L2 extension theorem, inspired by a geometric viewpoint introduced by L. Manivel in 1993. Meanwhile, we simplify the original approach of the above authors, and point out a difficulty (yet to be overcome) in the regularity argument invoked by Manivel in bidegree (0, q), q ≥ 1. We then derive some striking consequences of the L2 extension theorem. In particular, we give an approximation theorem of plurisubharmonic functions by logarithms of holomorphic functions, preserving as much as possible the singularities and Lelong numbers of the given function. The study of plurisubharmonic singularities is pursued, leading to a new Briançon-Skoda type result concerning Nadel `s multiplier ideal sheaves. Using this result and some ideas of R Lazarsfeld, we finally give a new proof of a recent result of T. Fujita: the growth of the number of sections of multiples of a big line bundle is given by the highest power of the first Chern class of the numerically effective part in the line bundle Zariski decomposition.}
+      \field{booktitle}{Complex Analysis and Geometry}
+      \field{isbn}{978-3-0348-8436-5}
+      \field{title}{On the Ohsawa-Takegoshi-Manivel L2 extension theorem}
+      \field{year}{2000}
+      \field{pages}{47\bibrangedash 82}
+      \range{pages}{36}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

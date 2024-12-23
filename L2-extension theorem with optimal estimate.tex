@@ -1,0 +1,363 @@
+%% This work is released under the LaTeX Project Public License, v1.3c or later.
+% This template is made by Ethan Lu.
+% Please use XeLaTeX engine!
+\documentclass[lang=cn,zihao=-4,a4paper,fontset=none]{beautybook}
+\definecolor{coverbgcolor}{HTML}{e0e0e0}
+\definecolor{coverfgcolor}{HTML}{1f3134} % The color of the background
+\definecolor{coverbar}{HTML}{7c9092} % The color of the left bar
+\definecolor{bottomcolor}{HTML}{2c4f54}
+\definecolor{nuanbai}{HTML}{f5f5f5}
+\pagecolor{nuanbai}
+\beautybookstyle={
+  cover-choose=birkar, % en/cn/enfig/birkar
+  math-font=plain, % plain/mtpro2
+  sidebar=on, % on/off
+}
+\usepackage{stys/beautybook-cnsettings} % 中文配置文件
+\begin{document}
+\thispagestyle{empty}
+\title{课题调研与选题探讨}
+\subtitle{上同调学习笔记}
+\edition{First Edition}
+\bookseries{Ilustrated by Ethan Lu}
+\author{Ethan Lu}
+\pressname{beautybook}
+\presslogo{beautybook-logo}
+\coverimage{mystery-1599527}%ivy-ge998908f8_1280.jpg
+\makecover
+
+
+\definecolor{bg}{HTML}{e0e0e0}
+\definecolor{fg}{HTML}{274659}
+\colorlet{outermarginbgcolor}{bg}
+\colorlet{outermarginfgcolor}{fg}
+\colorlet{framegolden}{fg}
+\colorlet{framegray}{bg!50}
+
+\makeatletter
+% set the contents of the outer margin on even and odd pages for scrheadings, plain and scth
+% \oddoutermargin{\sffamily \leftmark} % Odd 奇数页
+% \evenoutermargin{\sffamily\@title} % Even 偶数页
+%
+\titleimage{
+  chapteroddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  partoddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  chapterevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  partevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+}
+\chapimage{\beautybook@chapterimagename} % 会自动改变
+\partimage{\beautybook@partimagename}    % 会自动改变
+\makeatother
+%
+\frontmatter
+\pagenumbering{Roman}
+
+{% Preface
+\thispagestyle{empty}
+% \addcontentsline{toc}{chapter}{Preface}
+\chapter*{Preface}
+Introduction to Beatybook template.
+
+
+\hfill
+\begin{tabular}{lr}
+    &-- Ethan Lu\\ 
+    &2024-07-01
+\end{tabular}
+\clearpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+\tableofcontents\let\cleardoublepage\clearpage
+
+
+\mainmatter
+\pagenumbering{arabic}
+\partabstract{}
+\part{Blow-up 与Dolbeault 上同调学习笔记}
+\input{maincontents/blowup}
+\part{带最优常数估计的\texorpdfstring{$L^2$}{}延拓定理及其应用}
+\input{maincontents/L2extensiontheorems}
+
+
+
+\appendix
+\part{Some Complements about the main results}
+
+\chapter{Complements}
+\section{Pseudoconvexity}
+
+It is a vital fact that pseudoconvex domains on $\bC^n$ are holomorphically convex.
+
+在代数几何中， dualizing sheaf 是一个非常重要的概念，它在研究复代数簇（尤其是非平滑或维数大于1的情形）的性质时起着核心作用。对于一个复代数簇（或更一般的，一个概形），dualizing sheaf提供了一个工具来研究其上的正则函数和微分形式，特别是在考虑Serre对偶和Grothendieck对偶理论时。
+
+对于一个平滑的复代数簇$X$，其 dualizing sheaf  $\omega_X$通常定义为$X$上的典范丛（canonical bundle）。如果$X$是$n$维的，那么$\omega_X$可以具体地描述为$X$上全纯$n$-形式的线性空间，即$X$的Kähler微分的最高次外积的丛。在这种情况下，如果$X$是平滑的，$\omega_X$就是$X$上的全纯余切丛的最高次外幂，记为$\Omega_X^n$，其中$\Omega_X^1$是$X$上的全纯余切丛。
+\begin{itemize}
+    \item Serre对偶：对于一个平滑的复射影簇$X$，dualizing sheaf在Serre对偶定理中扮演着关键角色。Serre对偶提供了$X$上的凝聚层上同调群与其对偶上同调群之间的一个深刻联系，特别是涉及到$\omega_X$的时候。
+    \item Grothendieck对偶：在更一般的情况下，Grothendieck对偶理论扩展了Serre对偶，处理可能非平滑或非射影的概形。在这个理论中，dualizing complex是一个更为复杂的对象，用于描述对偶性质，但对于平滑射影簇，它的行为与dualizing sheaf紧密相关。
+    \item Riemann-Roch定理：对于平滑的复射影簇，其dualizing sheaf与簇的算术性质，如Euler特征数和Chern类，有着深刻的联系。Riemann-Roch定理（特别是其高维版本，即Hirzebruch-Riemann-Roch定理）利用dualizing sheaf描述了簇上线性丛的全局截面的数目。
+    \item 典范丛与典范类：对于一个平滑的复代数簇，其dualizing sheaf $\omega_X$直接与簇的典范类相关联，这是代数几何中的一个中心概念。典范类是研究簇的几何性质（如簇的最小模型程序）的基础。
+\end{itemize}
+总结来说，dualizing sheaf在复代数几何中是一个基本且强大的工具，它关联了簇的几何、拓扑和算术性质。对于平滑簇，它提供了一个研究全纯微分形式的自然框架，并且在对偶性理论中扮演着核心角色。
+
+\begin{problem}
+Why the dimension of $N$ is equal to the codimension of $[R_T]$ in $N_S$?
+\end{problem}
+\newpage
+\begin{proof}
+  We can deduce from $ST=0$ the fact that $[R_T]\subset N_S$ and $[R_{S^*}]\subset N_{T^*}$. As 
+   \begin{align*}
+        H_2 &=N_S\oplus [R_{S^*}]\\
+                &=[R_T]\oplus N\oplus [R_{S^*}],
+   \end{align*}
+      one has 
+      \[
+      N_S=[R_T]\oplus N,
+      \]
+      which shows that $\dim N=\textrm{codim}_{N_S} [R_T]$.
+\end{proof}
+
+\begin{proposition}[][Hormander Prop 1.2.3]
+Let $U$ be an open set in $\mathbf{R}^N$, let $\varphi \in C^1(U)$ be real valued, and assume that $\operatorname{grad} \varphi \neq 0$ when $\varphi=0$. Set $U ^\pm=\{x ; x \in U, \varphi(x) \geqq 0\}$. Suppose we have a solution of (1.2.3) in the interior of $U^{-}$, such that the components of $u$ and of $f$ are in $L^2\left(U^{-}\right)$and vanish outside a compact subset of $U^{-}$. The coefficients of $A$ are assumed to be Lipschitz continuous and those of $B$ bounded measurable in $U$. Then there is a sequence $u^\nu \in C^{\infty}\left(U^{-}\right)$, vanishing outside a fixed compact subset of $U^{-}$, such that
+$$
+\left\|u^v-u\right\|_{L^2(U)} \rightarrow 0, \quad\left\|A u^v+B u^v-f\right\|_{L^2\left(U^{-}\right)} \rightarrow 0 \quad \text { when } \quad v \rightarrow \infty .
+$$
+
+If the Cauchy data of $u$ on the surface $\varphi=0$ with respect to the system (1.2.3) vanish in the sense that $A u+B u=f$ in $U$ if $u$ and $f$ are defined as 0 in $U \cap \mathrm{C} U^{-}$, one can choose $u^v$ with support in the interior of $U^{-}$.
+\end{proposition}
+
+\begin{proof}
+ First assume that there is an open convex set $\Gamma$ with $0 \in \bar{\Gamma}$ such that
+$$
+\varphi(x)=0, \quad x \in \operatorname{supp} u \Rightarrow x \pm y \in U ^\pm, \quad y \in \Gamma .
+$$
+
+Extend $u$ and $f$ to be 0 in $U$ outside $U^-$ . Then
+$$
+A u+B u=f+g,
+$$
+where the support of $g$ lies in $$\{x ; x \in \operatorname{supp} u, \varphi(x)=0\}$$; the hypothesis in the latter part of the theorem is that $g=0$. Now choose $\mu \in C_0^{\infty}(\Gamma)$, which implies that $\mu_{\varepsilon} \in C_0^{\infty}(\Gamma), 0<\varepsilon<1$. Then $u_j * \mu_{\varepsilon} \in C_0^{\infty}(U)$ and by Lemma 1.2.2
+$$
+A\left(u * \mu_{\varepsilon}\right)+B\left(u * \mu_{\varepsilon}\right)-f * \mu_{\varepsilon}-g * \mu_{\varepsilon} \rightarrow 0 \text { in } L^2(U) \text { when } \varepsilon \rightarrow 0 .
+$$
+
+But $g * \mu_{\varepsilon}=0$ in $U^{-}$in view of (1.2.4), and $\left\|f * \mu_{\varepsilon}-f\right\|_{L^2 \rightarrow 0}$ when $\varepsilon \rightarrow 0$ so $u^y=u * \mu_{1 / \nu}$ has the required properties. To prove the last statement we choose $\varepsilon$ between -1 and 0 . Then the support of $u * \mu_{\varepsilon}$ lies in the interior of $U^{-}$if $\varepsilon$ is small enough, again by (1.2.4), and since $g=0$ by hypothesis now, we have $\left\|A\left(u * \mu_{\varepsilon}\right)+B\left(u * \mu_{\varepsilon}\right)-f\right\|_{L^2(U)} \rightarrow 0$.
+
+In general there is no convex set $\Gamma$ with the required properties, but for every point $x \in \operatorname{supp} u$ one can choose a set $\Gamma$ which can be used in a neighborhood of $x$. By using a partition of unity we can therefore decompose $u$ into a sum of a finite number of terms such that the hypotheses in the first part of the proof are fulfilled for each term. This completes the proof.
+\end{proof}
+\begin{remark}
+这个命题的描述是数学分析和偏微分方程领域的一个具体结果。为了理解这个定理，我们需要逐步拆解其中的概念和假设条件。这个定理关注的是偏微分方程（PDEs）的解及其逼近性质。下面是对这个定理的逐点解释：
+
+背景和术语解释
+\begin{enumerate}
+  \item 开集 $U$ 在 $\mathbf{R}^N$ 中: 这意味着 $U$ 是 $\mathbf{R}^N$ 的一个子集，其中任意一点的周围都有一些空间，这些空间也包含在 $U$ 中。例如，在一维空间（直线）中，一个开集可以是一个开区间，如 $(0,1)$。
+
+\item $\varphi \in C^1(U)$: 函数 $\varphi$ 是定义在开集 $U$ 上的，并且连续可微。$C^1$ 表示函数及其一阶导数都是连续的。
+
+\item $\operatorname{grad} \varphi \neq 0$ 当 $\varphi=0$: 这意味着在 $\varphi$ 等于 0 的地方，$\varphi$ 的梯度（或导数向量）不为零。在直观上，这意味着 $\varphi=0$ 定义的表面不是“平坦”的，在这些点上 $\varphi$ 正在变化。
+
+\item $U^+$ 和 $U^-$: 这些是根据 $\varphi$ 的符号划分的 $U$ 的子集。$U^-$ 包含了那些 $\varphi$ 非正（即 $\varphi(x) \geq 0$）的点的集合。
+\end{enumerate}
+
+定理的主要内容
+\begin{itemize}
+  \item  这个定理讨论了在 $U^-$ 内部有解的某个偏微分方程系统（1.2.3），其中 $u$ 和 $f$ 的分量在 $L^2(U^-)$ 中（即它们是平方可积的），并且这些函数在 $U^-$ 的一个紧子集外为零。
+
+\item 系统的系数满足一定的条件：$A$ 的系数是 Lipschitz 连续的，$B$ 的系数是有界可测的。
+
+\item 定理断言存在一个序列 $u^\nu$，它们在 $U^-$ 中是光滑的（$C^\infty$），并且在 $U^-$ 的一个固定的紧子集外为零，这样当 $\nu \rightarrow \infty$ 时，$u^\nu$ 以 $L^2$ 范数的意义下逼近 $u$，并且 $A u^\nu + B u^\nu - f$ 在 $L^2(U^-)$ 范数中趋于零。
+\end{itemize}
+对 Cauchy 数据的附加假设
+
+如果 $u$ 在 $\varphi=0$ 定义的表面上的 Cauchy 数据满足特定条件（即如果我们在 $U$ 和 $U^- \cap C^-$ 中定义 $u$ 和 $f$ 为零，则 $A u + B u = f$），则可以选择 $u^\nu$ 仅在 $U^-$ 的内部有支撑。
+
+理解和解释
+
+\textbf{这个定理基本上是说，在给定的条件下，对于一个特定的偏微分方程系统，我们可以找到一个解的序列，这个序列在一个特定的范数意义下逼近原始的解，并且这个逼近在 $U^-$ 的内部是光滑的，并且可以在一定条件下局限于 $U^-$ 的内部。}这对理解和解决偏微分方程提供了重要的理论工具，特别是在涉及边界和初始条件的复
+\end{remark}
+
+对于(3.9)的由来：By definition \[\norm{u}_{\omega,h}:=\br{\int_X \abs{u}^2_{\omega,h}\dd V_{\omega}}<+\infty,\] then we have 
+\begin{align*}
+    \|(\eta+\lambda)^{-\frac 12}v_j\|^2 &=\int_X(\eta+\lambda)^{-1}|u|_{\omega, h}^2 d V_\omega \\ 
+\langle\langle[\Theta,\Lambda]^{-1}(\bar\partial\chi_j\wedge v),\bar\partial\chi_j\wedge v)\rangle\rangle &=\int_X\left\langle\left.[\Theta, \Lambda_\omega\right]^{-1} v, v\right\rangle_{\omega, h} d V_\omega
+\end{align*}
+    by induction hypothesis that theorem is true for all $\bdd$-closed $(n,q+1)$-forms with the integrability, thus we can find such an $(n,q)$-form $v$ such that by theorem 3.2, $\bdd \chi_j v=\bdd v_j$ and \[\int_X(\eta+\lambda)^{-1}|u|_{\omega, h}^2 d V_\omega \leq \int_X\left\langle\left[\Theta, \Lambda_\omega\right]^{-1} v, v\right\rangle_{\omega, h} d V_\omega.\]
+
+There is a vital problem about the Hodge Decomposition Theorem, i.e., 
+\begin{fancybox}
+    For every $w \in \operatorname{Dom} \bar{\partial}_k^*$ we have the orthogonal decomposition $w=w_1+w_2$, where $w_1 \in \operatorname{Ker} \bar{\partial} \quad$ and $\quad w_2 \in(\operatorname{Ker} \bar{\partial})^{\perp} \subset \operatorname{Ker} \bar{\partial}_k^*$.
+\end{fancybox}
+\begin{proof}
+
+在讨论复几何或者微分几何中的算子理论时，这样的结论常常出现在所谓的 Hodge 理论的框架内。特别是在处理 $\bar{\partial}$ 算子及其伴随算子 $\bar{\partial}_k^*$ 时，Hodge 分解提供了函数空间的一个非常有用的正交分解。下面是对这个结论的一些解释和背景。
+
+\textbf{背景和定义}
+
+1. \textbf{$\bar{\partial}$ 算子和 $\bar{\partial}_k^*$：}
+   \begin{itemize}
+       \item 在复流形上，$\bar{\partial}$ 算子是从 $(p, q)$-形式到 $(p, q+1)$-形式的映射，它是外微分 $d$ 的一个分量。
+       \item $\bar{\partial}_k^*$ 是 $\bar{\partial}$ 的伴随算子，定义依赖于某个内积（通常是 $L^2$ 内积），它作用于 $(p, q)$-形式。
+   \end{itemize}
+
+2. \textbf{定义域（Dom）和核（Ker）：}
+   \begin{itemize}
+       \item $\operatorname{Dom} \bar{\partial}_k^*$ 是 $\bar{\partial}_k^*$ 的定义域，包括那些使 $\bar{\partial}_k^*$ 能够良好定义的 $(p, q)$-形式。
+       \item $\operatorname{Ker} \bar{\partial}$ 是 $\bar{\partial}$ 的核，包括所有 $\bar{\partial} w = 0$ 的形式 $w$。
+   \end{itemize}
+
+3. \textbf{正交和正交补：}
+   \begin{itemize}
+       \item 正交补 $(\operatorname{Ker} \bar{\partial})^\perp$ 是指所有与 $\operatorname{Ker} \bar{\partial}$ 中元素正交的 $(p, q)$-形式的集合。
+   \end{itemize}
+
+\textbf{正交分解}
+
+给定上述定义，我们的目标是证明每个 $w \in \operatorname{Dom} \bar{\partial}_k^*$ 都可以唯一分解为两个部分：一个属于 $\operatorname{Ker} \bar{\partial}$，另一个属于 $(\operatorname{Ker} \bar{\partial})^\perp$ 的部分。
+
+\begin{itemize}
+    \item \textbf{属于 $\operatorname{Ker} \bar{\partial}$ 的部分 $w_1$：}
+    这部分满足 $\bar{\partial} w_1 = 0$。
+    
+    \item \textbf{属于 $(\operatorname{Ker} \bar{\partial})^\perp$ 的部分 $w_2$：}
+    这部分与 $\operatorname{Ker} \bar{\partial}$ 中的所有元素正交。根据 Hodge 理论，这个部分还需要属于 $\operatorname{Ker} \bar{\partial}_k^*$，这意味着 $\bar{\partial}_k^* w_2 = 0$。
+\end{itemize}
+
+\textbf{为何 $w_2 \in \operatorname{Ker} \bar{\partial}_k^*$}
+
+此部分的证明依赖于 Hodge 理论中的一些更深层的结果，特别是关于 $\bar{\partial}$ 和 $\bar{\partial}_k^*$ 的互补性质和它们在 L2 内积下的行为。基本思路是，如果 $w_2$ 与 $\operatorname{Ker} \bar{\partial}$ 中的所有元素正交，则根据 $\bar{\partial}$ 和 $\bar{\partial}_k^*$ 的定义及其相互关系，可以推导出 $\bar{\partial}_k^* w_2 = 0$。
+
+\textbf{总结}
+
+这个结论的核心是正交分解定理的一个应用，该定理在 Hodge 理论中是关键工具之一，用于分析和解决涉及复微分形式的问题。这种类型的分解有助于理解和处理各种复几何和分析问题，特别是在研究复流形上的调和形式和他们的性质时。
+
+确实，直接从 $w \in \operatorname{Dom} \bar{\partial}_k^*$ 这个条件出发，并不直接显现正交分解的必要性。这里的正交分解涉及到一些额外的假设和 Hodge 理论中更深层的结构。下面我将详细解释为何可以得到这种分解，并阐明背后的数学原理。
+
+正交分解的数学背景
+
+1. Hilbert 空间和闭算子：
+   在复流形上，考虑的 $(p, q)$-形式空间通常配备了一个 $L^2$ 内积，使之成为一个 Hilbert 空间。在这个设置中，$\bar{\partial}$ 和 $\bar{\partial}_k^*$ 是定义在 Hilbert 空间上的闭线性算子。
+
+2. 闭算子的伴随：
+   对于任意闭线性算子 $T$，其伴随算子 $T^*$ 的定义域 $\operatorname{Dom} T^*$ 包括所有满足 $\langle Tx, y \rangle = \langle x, T^* y \rangle$ 对所有 $x \in \operatorname{Dom} T$ 成立的 $y$。这个定义使得 $T^*$ 的作用良好定义。
+
+3. Hodge 理论的基本结果：
+   Hodge 理论告诉我们，对于紧致 Kähler 流形，每个 $(p, q)$-形式 $w$ 都可以唯一分解为 $\bar{\partial}$ 的核的部分和这个核的正交补的部分。即：
+   $$
+   w = w_1 + w_2, \quad w_1 \in \operatorname{Ker} \bar{\partial}, \quad w_2 \in (\operatorname{Ker} \bar{\partial})^\perp
+   $$
+   其中，$w_1$ 是调和部分，满足 $\bar{\partial} w_1 = 0$ 和 $\bar{\partial}_k^* w_1 = 0$；$w_2$ 是正交部分，与 $\operatorname{Ker} \bar{\partial}$ 中的所有元素正交。
+
+4. 关键性质和正交补：
+
+你的理解基本上是正确的，但有一处小错误需要更正和澄清，特别是关于$\operatorname{Im} \bar{\partial}^*$与$\operatorname{Im} \bar{\partial}$的关系。
+
+1. \textbf{关于$\operatorname{Ker} \bar{\partial}$的正交补}：
+正确地说，$\operatorname{Ker} \bar{\partial}$的正交补是$\operatorname{Im} \bar{\partial}^*$。在Hodge分解中，$\operatorname{Ker} \bar{\partial}$的正交补包含了所有这样的形式$\omega$，其中$\omega = \bar{\partial}^* \eta$，对某些$\eta$成立。这是因为内积$\langle \omega, \phi \rangle = 0$对所有$\phi \in \ker \bar{\partial}$成立，且根据$\bar{\partial}$和$\bar{\partial}^*$之间的伴随关系，这确保$\omega \in \operatorname{Im} \bar{\partial}^*$。
+
+2. \textbf{关于$\operatorname{Im} \bar{\partial}^*$与$\operatorname{Im} \bar{\partial}$的交集}：
+在典型的Hodge分解中，并没有直接提及$\operatorname{Im} \bar{\partial}^*$与$\operatorname{Im} \bar{\partial}$的交集。实际上，根据Hodge分解，形式空间$\mathcal{A}^{p,q}(X)$可以分解为$\mathcal{H}_{\bar{\partial}}^{p,q}$、$\operatorname{Im} \bar{\partial}$和$\operatorname{Im} \bar{\partial}^*$的直和：
+     $$
+     \mathcal{A}^{p,q}(X) = \mathcal{H}_{\bar{\partial}}^{p,q} \oplus \operatorname{Im} \bar{\partial} \oplus \operatorname{Im} \bar{\partial}^*
+     $$
+   这意味着$\operatorname{Im} \bar{\partial}^*$和$\operatorname{Im} \bar{\partial}$事实上是正交的，而不是有交集。因此，$\operatorname{Ker} \bar{\partial}$的正交补确实是$\operatorname{Im} \bar{\partial}^*$，但并不涉及与$\operatorname{Im} \bar{\partial}$的交集。
+
+3. \textbf{关于闭算子的理解}：
+如果$\omega = \bar{\partial}^* \eta$，那么确实有$\bar{\partial}^* \omega = 0$，因为根据Laplace算子的定义和算子的性质，这符合调和形式的特性。
+
+因此，正确的表述应该是$(\operatorname{Ker} \bar{\partial})^\perp = \operatorname{Im} \bar{\partial}^*$，并且形式空间中的每个元素可以唯一地分解为调和部分、$\operatorname{Im} \bar{\partial}$的部分，以及$\operatorname{Im} \bar{\partial}^*$的部分。
+
+总结
+
+从 $w \in \operatorname{Dom} \bar{\partial}_k^*$ 到正交分解的推理需要依赖于 Hodge 理论的结构和紧致 Kähler 流形上 $\bar{\partial}$ 及 $\bar{\partial}_k^*$ 算子的特性。这个分解不是显而易见的，而是建立在复几何的深层理论之上。这也体现了现代数学中许多理论如何相互关联，共同构建出复杂的数学框架。
+\end{proof}
+    
+
+\begin{theorem}[][Hodge Decomposition Theorem][thm:Hodge-Decomposition]
+Let $(X, g)$ be a compact hermitian manifold. Then there exist two natural orthogonal decompositions
+$$
+\mathcal{A}^{p, q}(X)=\partial \mathcal{A}^{p-1, q}(X) \oplus \mathcal{H}_{\partial}^{p, q}(X, g) \oplus \partial^* \mathcal{A}^{p+1, q}(X)
+$$
+and
+$$
+\mathcal{A}^{p, q}(X)=\bar{\partial} \mathcal{A}^{p, q-1}(X) \oplus \mathcal{H}_{\bar{\partial}}^{p, q}(X, g) \oplus \bar{\partial}^* \mathcal{A}^{p, q+1}(X) .
+$$
+
+The spaces $\mathcal{H}^{p, q}(X, g)$ are finite-dimensional. If $(X, g)$ is assumed to be Kähler then $\mathcal{H}_{\partial}^{p, q}(X, g)=\mathcal{H}_{\tilde{\partial}}^{p, q}(X, g)$.
+\end{theorem}
+在Hodge理论中，对于紧致复流形（特别是在Kähler流形的情况），$\mathcal{H}_{\bar{\partial}}^{p, q}(X, g)$ 通常定义为同时位于 $\bar{\partial}$ 和 $\bar{\partial}^*$ 的核中的 $(p, q)$-形式的空间。这意味着：
+
+$$
+\mathcal{H}_{\bar{\partial}}^{p, q}(X, g) = \ker \bar{\partial} \cap \ker \bar{\partial}^*
+$$
+
+这些形式被称为调和形式，因为它们同时满足 $\bar{\partial}$ 和 $\bar{\partial}^*$ 的闭性（即在这些算子的核中）。在Kähler流形上，由于 $\bar{\partial}$ 和 $\bar{\partial}^*$ 的特殊性质，这些调和形式具有重要的几何和拓扑含义，通常与流形的某些拓扑不变量（如Hodge数）直接相关。
+
+在Hodge理论中，我们关注的是$\bar{\partial}$算子在不同形式空间上的作用。对于一个复流形上的$(p,q)$-形式，核心的Hodge分解定理指出$\mathcal{A}^{p, q}(X)$可以分解为$\bar{\partial}$的像、$\bar{\partial}^*$的像以及调和形式的直和。为了理解核的正交补与$\bar{\partial}$的像的关系，我们需要使用到Laplace算子和闭形式的一些特性。
+
+让我们逐步分析：
+
+1. 核与像：
+\begin{itemize}
+   \item 对于线性算子$\bar{\partial}$，核（$\ker \bar{\partial}$）包含所有在此算子作用下映射到0的元素。如果$\omega \in \ker \bar{\partial}$，则$\bar{\partial} \omega = 0$。
+   \item $\bar{\partial}$的像（$\operatorname{Im} \bar{\partial}$）则是所有形式$\bar{\partial} \eta$的集合，其中$\eta$是一个形式。
+\end{itemize}
+
+2. 核的正交补：
+
+   在Hodge理论中，核的正交补是指所有与核中元素在给定的内积下正交的元素的集合。对于$\ker \bar{\partial}$而言，其正交补是由所有满足$\langle \omega, \eta \rangle = 0$对所有$\eta \in \ker \bar{\partial}$的$\omega$构成的集合。
+
+3. 算子的伴随与Laplace算子：
+\begin{itemize}
+   \item $\bar{\partial}^*$是$\bar{\partial}$的伴随算子，根据定义，$\langle \bar{\partial} \eta, \omega \rangle = \langle \eta, \bar{\partial}^* \omega \rangle$。这意味着$\operatorname{Im} \bar{\partial}^*$包括所有形式$\bar{\partial}^* \zeta$，其中$\zeta$是任意形式。
+   \item Laplace算子定义为$\Delta_{\bar{\partial}} = \bar{\partial}\bar{\partial}^* + \bar{\partial}^*\bar{\partial}$，对于调和形式（$\mathcal{H}_{\bar{\partial}}$），$\Delta_{\bar{\partial}} \omega = 0$，这意味着$\omega \in \ker \bar{\partial} \cap \ker \bar{\partial}^*$。
+\end{itemize}
+
+4. 正交补与像的关系：
+
+    $\ker \bar{\partial}$的正交补实际上由$\operatorname{Im} \bar{\partial}^*$构成，因为$\langle \omega, \eta \rangle = 0$对所有$\eta \in \ker \bar{\partial}$时，根据定义$\omega$必须在$\bar{\partial}$的伴随的像中。这是因为伴随算子$\bar{\partial}^*$的定义确保了任何不在$\ker \bar{\partial}$中的元素可以由$\bar{\partial}^*$映射至$\omega$。
+
+因此，$\ker \bar{\partial}$的正交补是$\operatorname{Im} \bar{\partial}^*$，这意味着任何不属于$\ker \bar{\partial}$的形式必然可以由$\bar{\partial}^*$生成。这是理解Hodge分解和复流形上形式的分析中非常重要的一
+
+那么如何由$w\in \operatorname{Dom} \bar\partial^*_k$得到$w_1\in \ker \bar\partial$呢？
+\begin{solution}
+    在处理这个问题时，我们需要利用Hodge分解的性质以及$\bar{\partial}$和$\bar{\partial}^*$的相关性质。我们的目标是将一个给定的形式$w \in \operatorname{Dom} \bar{\partial}^*_k$分解，以找到它在$\ker \bar{\partial}$中的分量$w_1$。
+
+1. Hodge 分解：
+    根据Hodge分解定理，在紧致Kähler流形上，任何形式$w$都可以唯一地表示为调和形式、$\operatorname{Im} \bar{\partial}$和$\operatorname{Im} \bar{\partial}^*$的直和：
+     $$
+     w = w_h + \bar{\partial} \alpha + \bar{\partial}^* \beta
+     $$
+   其中$w_h \in \mathcal{H}_{\bar{\partial}}^{p,q}$是调和形式（因此满足$\bar{\partial} w_h = 0$和$\bar{\partial}^* w_h = 0$），$\alpha$和$\beta$是适当的形式。
+
+2. 求解$\ker \bar{\partial}$中的分量：
+    在Hodge分解中，$\ker \bar{\partial}$由调和形式和$\operatorname{Im} \bar{\partial}$的元素组成。由于调和形式已经是$\bar{\partial}$的核的一部分，$\bar{\partial} \alpha$是$\bar{\partial}$作用的结果，这意味着它自然是闭的（即$\bar{\partial}^2 = 0$），因此$\bar{\partial} \alpha \in \ker \bar{\partial}$。
+    于是$w_1 = w_h + \bar{\partial} \alpha$，这是$w$在$\ker \bar{\partial}$中的分量。
+
+3. 如何实际计算：
+    在实践中，为了找到$\alpha$和$\beta$，需要使用内积和投影方法。如果知道$w$，可以通过解相应的$\bar{\partial}$和$\bar{\partial}^*$方程来求得$\alpha$和$\beta$。在某些情况下（特别是在具体问题中），这可能需要数值方法或者特定的解析技巧。
+
+4. 结论：
+    $w_1 = w_h + \bar{\partial} \alpha$给出了$w$在$\ker \bar{\partial}$中的分量，这是通过Hodge分解得到的。
+
+理解并应用这些概念通常需要对微分形式、复几何和部分微分方程有深入的了解，特别是在具体的计算和实现中。如果你需要更具体的计算或者例子，可以提供更多的背景和细节。
+\end{solution}
+    
+
+
+
+{\normalem
+\printbibliography[
+heading=bibintoc,
+title={参考文献}
+]
+\printindex
+\thispagestyle{empty}}
+%-------------------封底 ---------------%
+\bottomimage{inner_pics/mystery-1599527.jpg}
+\ISBNcode{\EANisbn[ISBN=978-80-7340-097-2]} %
+\summary{仅供选题参考，错误及遗漏众多，须慎之又慎切忌不懂装懂，自我欺骗. 每日三省吾身！}
+\makebottomcover
+\end{document} 

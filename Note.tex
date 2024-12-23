@@ -1,0 +1,2021 @@
+\documentclass[lang=en,12pt]{beautybook}
+% ---------------------------------------------------------------------------- %
+%                            The Cover Theme Chosen                            %
+% ---------------------------------------------------------------------------- %
+\definecolor{coverbgcolor}{HTML}{e0e0e0}
+\definecolor{coverfgcolor}{HTML}{203744} % The color of the background
+\definecolor{coverbar}{HTML}{7c9092} % The color of the left bar
+\definecolor{bottomcolor}{HTML}{2c4f54}
+\definecolor{nuanbai}{HTML}{f5f5f5}
+\pagecolor{nuanbai}
+\beautybookstyle={
+  cover-choose=en, % en/cn/enfig/birkar
+  math-font=plain, % plain/mtpro2
+  sidebar=on, % on/off
+}
+\usepackage{stys/beautybook-ensettings}
+% ---------------------------------------------------------------------------- %
+%                            The Cover Theme Chosen                            %
+% ---------------------------------------------------------------------------- %
+\UseTblrLibrary{booktabs} % 定义 \toprule、 \midrule、\bottomrule 和 \cmidrule 命令，这些命令可以直接用于 tblr环境中
+\newcommand{\pr}{'}
+\newcommand{\prr}{''}
+\begin{document}
+\thispagestyle{empty}
+\title{Notes for Articles}
+\subtitle{}
+\edition{First Edition}
+\bookseries{Research Notes}
+\author{Ethan Lu}
+\pressname{beautybook}
+\presslogo{beautybook-logo}
+\coverimage{hummingbird-8013214}
+\makecover
+
+\makeatletter
+% ---------------------------------------------------------------------------- %
+%                           The Sidebar Theme Chosen                           %
+% ---------------------------------------------------------------------------- %
+\definecolor{bg}{HTML}{e0e0e0}
+\definecolor{fg}{HTML}{2c4f54}
+\colorlet{outermarginbgcolor}{bg} % The foreground color of the sidebar
+\colorlet{outermarginfgcolor}{fg} % The background color of the sidebar
+% When sidebar=off, you must comment the following two lines!
+% % set the contents of the outer margin on even and odd pages for scrheadings, plain and scth
+\oddoutermargin{\sffamily Vanishing theorems} % Odd 奇数页
+\evenoutermargin{\sffamily\@title} % Even 偶数页
+% ---------------------------------------------------------------------------- %
+%                           The Sidebar Theme Chosen                           %
+% ---------------------------------------------------------------------------- %
+
+% ---------------------------------------------------------------------------- %
+%                         The images used in the title                         %
+% ---------------------------------------------------------------------------- %
+\titleimage{
+  chapteroddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  partoddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  chapterevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  partevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+}
+\chapimage{\beautybook@chapterimagename} % 会自动改变
+\partimage{\beautybook@partimagename}    % 会自动改变
+\makeatother
+% ---------------------------------------------------------------------------- %
+%                         The images used in the title                         %
+% ---------------------------------------------------------------------------- %
+
+% ---------------------------------------------------------------------------- %
+%                      The Color Chosen for The Magic Box                      %
+% ---------------------------------------------------------------------------- %
+\colorlet{framegolden}{fg} % The line color of the magic box
+\colorlet{framegray}{bg!50} % The background color of the magic box
+% ---------------------------------------------------------------------------- %
+%                      The Color Chosen for The Magic Box                      %
+% ---------------------------------------------------------------------------- %
+
+\frontmatter
+\pagenumbering{Roman}
+
+{% Preface
+\thispagestyle{empty}
+% \addcontentsline{toc}{chapter}{Preface}
+\chapter*{Preface}
+Here is a comprehensive list of the academic papers that I have perused.
+
+
+\hfill
+\begin{tabular}{lr}
+    &-- Ethan Lu\\ 
+    &2024-07-06
+\end{tabular}
+\clearpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+\tableofcontents\let\cleardoublepage\clearpage
+
+
+\mainmatter
+\pagenumbering{arabic}
+
+\partabstract{\fontsize{15pt}{15pt}\selectfont This notes are mainly about some vanishing theorems and their proofs.}
+\part{Research Notes For Articles}
+
+
+\chapter{Vector Bundles with Semidefinite Curvature and Cohomology Vanishing Theorems}\index{Vector Bundles with Semidefinite Curvature and Cohomology Vanishing Theorems}
+
+\section{Preliminaries}\index{Preliminaries}
+
+\begin{theorem}[][Kodaira vanishing theorem\cite[P196]{Huybrechts2010Complex}][thm:kodaira-vanishing]
+	Let $\mL$ be a positive (ample) line bundle on a compact K\"ahler manifold $X$ with $\dim X=n$. Then 
+	\begin{equation}
+		H^q (X,\Omega_X^p \otimes \mL)=0,\quad \text{for  }p+q>n.
+	\end{equation}
+\end{theorem}
+
+\begin{definition}[][Chern classes\cite[P196]{Huybrechts2010Complex}][def:Chern classes]
+    Let $\{\widetilde{P}_k\}$ be the homogeneous polynomials with $\deg (\widetilde{P}_k)=k$ defined by 
+    \[\det(\textrm{Id}+B)=1+\widetilde{P}_1(B)+\ldots+\widetilde{P}_r(B).\]
+    Clearly, these $\widetilde{P}_k$ are \textit{invariant}. 
+
+    The Chern classes of a complex manifold $X$ are \[c_k(X):=c_k(\mT_X)\in H^{2k}(X,\bR),\]
+    where $\mT_X$ is the holomorphic tangent bundle.
+\end{definition}
+\begin{definition}[][Chern forms\cite[P196]{Huybrechts2010Complex}][def:Chern forms]
+    The \textit{Chern forms} of a vector bundle $E$ of rank $k$ endowed with a connection $\nabla$ are \[c_k(E,\nabla):=\widetilde{P}_k\br{\frac{i}{2\pi}F_\nabla}\in\mA_C^{2k}(M).\]
+    The \textit{$k$-th Chern class} of the vector bundle $E$ is induced cohomology class \[c_k(E):=[c_k(E,\nabla)]\in H^{2k}(M,\bC).\]
+\end{definition}
+    
+\begin{theorem}[][Another description of Kodaira vanishing theorem\cite[Introduction]{gigante1981vector}]
+	Let $F$ be a holomorphic line bundle over a compact K\"ahler manifold $M$. If the Chern class $\mC_{\bR}(F)\in H^2(M,\bR)$ contains a negative definite form $\mX (\mX<0)$ then all cohomology groups $$H^q(M,\Omega(F))=0$$ when $q\leqslant n-1$.
+\end{theorem}
+
+\begin{theorem}[][Akizuki-Nakano Vanishing Theorem\cite[Introduction]{gigante1981vector}]
+	\textbf{(The generalization of Kodaira vanishing theorem by Akizuki-Nakano)}
+
+	If $\mX<0$, then 
+	\[H^q(M,\Omega^p(F))=0\]
+	when $p+q\leqslant n-1$.
+\end{theorem}
+
+\begin{theorem}[][Vesentini vanishing theorem\cite[Introduction]{gigante1981vector}]
+	If $\mX$ is semi-definite of rank, $k$ (i.e. $\mX\leqslant 0$ and $\mX$ has $k$ negative eigenvalues at each point of $M$) then 
+	\[H^q(M,\Omega(F))=0 \quad \And \quad H^0(M,\Omega^q(F))=0\]
+	when $q\leqslant k-1$.
+\end{theorem}
+
+\begin{problem}[][\cite[Introduction]{gigante1981vector}][prob:Main problem]
+	If $\mX\leqslant 0$ with rank $k$, then 
+	\[H^q(M,\Omega^p(F))=0\]
+	when $p+q\leqslant k-1$?
+\end{problem}
+
+\subsection{Correlation Techniques}
+
+\begin{fancybox}
+Problems in holomorphic vector bundles can be often reduced to similar problems in line bundles, by means of constructing the projective bundle $PE$ over $M$ and the tautological line bundle $LE^{-1}$.
+\end{fancybox}
+
+By using the technique, we shall generalize to vector bundles some of the results of the following two section.
+
+\section{The K\"ahler Case}
+\newcommand{\tmcolor}[2]{{\color{#1}{#2}}}
+\newcommand{\tmverbatim}[1]{\text{{\ttfamily{#1}}}}
+\newcommand{\tmop}[1]{\ensuremath{\operatorname{#1}}}
+\newcommand{\tmstrong}[1]{\textbf{#1}}
+\providecommand{\xequal}[2][]{\mathop{=}\limits_{#1}^{#2}}
+
+The first result says that let $M$ be a
+compact K\"ahler manifold and let $F$ be a holomorphic line bundle over $M$. If
+$C_{\mathbb{R}} (F)$ contains a form $\mathcal{X}$ whose associated hermitian
+form is negative semidefinite of rank $k$ at each point of $M$, then
+\[ H^t (M, \Omega^s (F)) = H^s (M, \Omega^t (F)) = 0, \quad \tmop{for} \quad
+   s + t \leqslant k - 1. \]
+The proof mainly depends on the \textit{Akizuki-Nakano Inequality} that given any harmonic $(p,
+q)$-form $\varphi$ with values in $E$, then
+\begin{equation}
+  ([\Lambda, \tmop{ie} (\Theta)] \varphi, \varphi) \geqslant 0, \label{1}
+\end{equation}
+where $e(\Theta)$ denotes the exterior multiplication of the matrix of local $(1,1)$-form with the column vector $\varphi$. And in \cite[]{calabi1960compact}, we have known that $e(\Theta)=(\bd_E \bdd+ \bdd\bd_E)\varphi$.
+Here is a simplified version.
+
+In the K\"ahler case, let $F \rightarrow M$ be a holomorphic line bundle over a
+compact K\"ahler manifold of dimension $n$. Take $(U ; (z^1, \cdots, z^n))$ be a
+local coordinate system on $M$ and
+\[ \varphi = \sum \varphi_{A \bar{B} } \tmop{dz}^A \wedge
+   \dd \bar z^{B}, \]
+where $A=(\alpha_1,\ldots,\alpha_p) \; (\alpha_1<\cdots<\alpha_p), B=(\beta_1,\ldots,\beta_q) \; (\beta_1<\cdots<\beta_q)$.
+
+Denoting by $X_1 \leqslant X_2 \leqslant \cdots \leqslant X_n$ the eigenvalues
+of the hermitian form associated to $\mathcal{X}$, for any $z \in U$,
+compatible coordinates centered at $z$ can be chosen in $U$ in such a way that
+the fundamental form $\omega$ of the K\"ahler metric is given at $z$ by
+\[ \omega = i \sum \tmop{dz}^{\alpha} \wedge \overline{\tmop{dz}^{\alpha}} \]
+and
+\begin{eqnarray*}
+  \mathcal{X} & = \dfrac{i}{2 \pi} \Theta & = \frac{i}{2 \pi} \sum_{\alpha}
+  X_{\alpha} \tmop{dz}^{\alpha} \wedge \overline{\tmop{dz}^{\alpha}} .
+\end{eqnarray*}
+\textit{Note that the expression of $\omega$ above is the consequence of diagonalization. And one can easily obtain these two equations by using simultaneously  diagonalization for $\omega$ and $\mX$.}
+
+
+Then we compute the formula of Akizuki-Nakano Inequality by
+\begin{eqnarray*}
+  &&([\Lambda, \tmop{ie} (\Theta)] \varphi)_{A \bar{B}} (z) \\
+  & = & [\Lambda,
+  \tmop{ie} (\Theta)]_{A \bar{B}} (z) \cdot \varphi_{A \bar{B}} (z)\\
+  & = & [\Lambda, 2 \pi i\mathcal{X}]_{A \bar{B}} (z) \cdot \varphi_{A
+  \bar{B}} (z)\\
+  & = & - \left[ \sum_{\alpha} X_{\alpha} \tmop{dz}^{\alpha} \wedge
+  \overline{\tmop{dz}^{\alpha}}, \Lambda \right]_{A \bar{B}} (z) \cdot
+  \varphi_{A \bar{B}} (z)\\
+  & = & - \left[ \left( \sum_{\alpha} X_{\alpha} \tmop{dz}^{\alpha} \wedge
+  \overline{\tmop{dz}^{\alpha}} \right) \wedge (\Lambda \varphi_{A \bar{B}}) 
+  \right] (z) + \Lambda \left[ \left( \sum_{\alpha} X_{\alpha}
+  \tmop{dz}^{\alpha} \wedge \overline{\tmop{dz}^{\alpha}} \right) \wedge
+  \varphi_{A \bar{B}} \right] (z)\\
+  & \xequal{\star} & - \sum_{\alpha \in A \cap B} X_{\alpha} (z)
+  \varphi_{A \bar{B}} (z) + \sum_{\alpha \not{\in} A \cup B} X_{\alpha} (z)
+  \varphi_{A \bar{B}} (z),
+\end{eqnarray*}
+where
+\begin{align*}
+  \left[ \left( \sum_{\alpha} X_{\alpha} \tmop{dz}^{\alpha} \wedge
+  \overline{\tmop{dz}^{\alpha}} \right) \wedge (\Lambda \varphi_{A \bar{B}}) 
+  \right] =
+  \begin{cases}
+    \sum X_{\alpha} \varphi_{A \bar{B}}, &\alpha \in A \cap B,\\
+    0, & \alpha \not\in A \cap B,
+  \end{cases}
+\end{align*}
+and
+\begin{align*}
+  \Lambda \left[ \left( \sum_{\alpha} X_{\alpha} \tmop{dz}^{\alpha} \wedge
+  \overline{\tmop{dz}^{\alpha}} \right) \wedge \varphi_{A \bar{B}} \right] 
+  =\begin{cases}
+    \sum X_{\alpha} \varphi_{A \bar{B}}, &\alpha \not\in A \cup
+  B,\\ 
+  0, &\alpha \in A \cup B.
+  \end{cases}
+\end{align*}
+Thus, if the following relations are satisfied at each point $z \in M$
+\[  (X_{t_1} + \cdots + X_{t_s}) - (X_{j_1} + \cdots + X_{j_{n - t}}) > 0 \]
+for each choice of $i_1 < \cdots < i_s$ and $j_1 < \cdots j_{n - t}$ and for
+all $s \leqslant t$, then
+\begin{equation}
+  ( [\Lambda, \tmop{ie} (\Theta)] \varphi, \varphi) (z) \leqslant 0. \label{2}
+\end{equation}
+
+\begin{definition}[][Positive Hermitian line bundle][def:Positive Hermitian vector bundle]
+    A hermitian holomorphic line bundle $E$ on $X$ is said to be positive (negative/semi-positive/semi-negative) if the hermitian matrix (Component) of its Chern curvature form 
+    \[i\Theta(E)=i\sum_{1\leqslant j,k\leqslant n}c_{jk}(z)\dd z_j\wedge\dd \bar{z}_k\]
+    is positive (negative/semi-positive/semi-negative) definite at every point $z\in X$.
+\end{definition}
+    In\cite[P334]{CACA},  by Prop VI-8.3, we gain that
+    \begin{align*}
+        \left\langle [i\Theta(E),\Lambda]u,u\right\rangle &= \sum_{J,K} (\sum_{j\in J}\gamma_j+\sum_{j\in K}\gamma_j-\sum_{1\leqslant j\leqslant n}\gamma_j)|u_{J,K}|^2\\ 
+        &\geqslant (\gamma_1+\cdots+\gamma_q-\gamma_{p+1}-\cdots-\gamma_n)|u_{J,K}|^2
+    \end{align*}
+        for any form $u=\sum_{J,K} u_{J,K} \zeta_J\wedge\bar{\zeta}_K\in \Lambda^{p,q}T^*(X)$.
+Then we have 
+\begin{align*}
+    ( [\Lambda, \tmop{ie} (\Theta)] \varphi, \varphi) (z) &=-\left\langle [i\Theta(E),\Lambda]u,u\right\rangle \\
+    & \leqslant  (\gamma_1+\cdots+\gamma_q-\gamma_{p+1}-\cdots-\gamma_n)|u_{J,K}|^2\\
+    & \leqslant \br{(X_{j_1}+\cdots+X_{j_{n-t}}) -(X_{i_1}+\cdots+X_{i_s})}|u_{J,K}|^2\\ 
+    & \leqslant 0.
+\end{align*}
+
+By (\ref{2}), consequently, in view of inequality (\ref{1}), any harmonic $(s,
+t)$-form vanishes identically, i.e. the Lemma 1.1 of the paper.
+
+\begin{remark}
+  By (\ref{1}) and (\ref{2}), we have \cite[Lemma2,P483]{calabi1960compact}
+  \begin{eqnarray*}
+    ( [\Lambda, \tmop{ie} (\Theta)] \varphi, \varphi) (z) = 0 &
+    \Longleftrightarrow & {\varphi \in H'}^{p, q} (M, F) {\cap H''}^{p, q} (M,
+    F)
+  \end{eqnarray*}
+
+  As ${H'}^{p, q} (M, F) \cong H_{\bar{\partial}}^{p, q} (M, F)$ and ${H'}^{p,
+q} (M, F) \cong H_{\partial}^{p, q} (M, F)$, one has
+\begin{equation}
+  {H'}^{p, q} (M, F) {\cap H''}^{p, q} (M, F) \cong H_{\bar{\partial}}^{p, q}
+  (M, F) \cap H_{\partial}^{p, q} (M, F) = \{ 0 \} . \label{3}
+\end{equation}
+
+Thus $\varphi \in \{ 0 \} \Longrightarrow \varphi \equiv 0$, i.e.
+{\tmstrong{any harmonic $(p, q)$-form $\varphi$ vanishes identically}}.
+\end{remark}
+%%%%%%%%%%%%%%%%%%%%%%
+
+Suppose $\mathcal{X} \leqslant 0$ of rank $k$. Now,
+\tmcolor{red}{for any $\mu \in \mathbb{R}^+$, the form $(\omega - \mu
+\mathcal{X})$ is still a K\"ahler form on $M$}. Denoting
+{\color[HTML]{800080}the eigenvalues of $\mathcal{X}$ with respect to the
+metric induced by $\omega$ as before}, {\color[HTML]{B4005A}the eigenvalues of
+$\mathcal{X}$ with respect to the metric induced by $(\omega - \mu
+\mathcal{X})$ are }
+\[ {\color[HTML]{B4005A}\frac{X_i}{(1 - \mu X_i)}, \quad i = 1, \ldots, n.} \]
+Now, if $\mu$ is sufficient large, we have
+\begin{equation}
+  \tmcolor{DarkBlue}{\sum_{i = 1}^s \frac{X_i}{(1 - \mu X_i)} > \sum_{j = t + 1}^n
+  \frac{X_j}{(1 - \mu X_j)} .} \label{4}
+\end{equation}
+The computation should be the following.
+
+Firstly, we gain the first inequality
+\[ \sum_{i = 1}^s \frac{(X_i - X_{t + i})}{(1 - \mu X_i) (1 - \mu X_{t + i})}
+   \geqslant \frac{s (X_1 - X_k)}{(1 - \mu X_1) (1 - \mu X_k)} = s \left(
+   \frac{X_1}{(1 - \mu X_1)} - \frac{X_k}{(1 - \mu X_k)} \right) . \]
+As $X_1 \leqslant X_2 \leqslant \cdots \leqslant X_n$, then
+\[ \frac{X_i}{(1 - \mu X_i)} \leqslant \frac{X_j}{(1 - \mu X_j)}, \quad
+   \tmop{where} \quad 1 \leqslant i \leqslant j \leqslant n. \]
+\tmcolor{red}{But for the associated hermitian form $\Theta$ is negative
+semidefinite of rank $k$, there are $k$ negative eigenvalues of $\mathcal{X}$,
+which can be written as $X_1 \leqslant \cdots \leqslant X_k < 0 \leqslant X_{k
++ 1} \leqslant \cdots \leqslant X_n$ without loosing generality.} ($X_l
+\geqslant 0, l = k + 1, \ldots, n$)
+
+Thus, we have
+\begin{align*}
+  \sum_{i = 1}^s \frac{(X_i - X_{t + i})}{(1 - \mu X_i) (1 - \mu X_{t + i})}
+   &= \sum_{i = 1}^s \left[ \frac{X_i}{(1 - \mu X_i)} \downarrow - \frac{X_{t +
+   i}}{(1 - \mu X_{t + i})} \uparrow \right] \\
+   &\geqslant s \left( \frac{X_1}{(1
+   - \mu X_1)} - \frac{X_k}{(1 - \mu X_k)} \right) . 
+\end{align*}
+Secondly, we abtain the second inequality
+\begin{align*}
+  \sum_{j = s + t + 1}^k \frac{X_j}{(1 - \mu X_j)} &= \sum_{j = s + t + 1}^n
+   \frac{X_j}{(1 - \mu X_j)} \\
+   &= \sum_{j = s + 1}^{n - t} \frac{X_{j + t}}{(1 -
+   \mu X_{j + t})} \leqslant [k - (s + t + 1)] \frac{X_k}{(1 - \mu X_k)} 
+\end{align*}
+by
+\[ \frac{X_j}{(1 - \mu X_j)} \leqslant \frac{X_k}{(1 - \mu X_k)}, \quad
+   \tmop{where} X_1 \leqslant \cdots \leqslant X_k \leqslant  0
+   \leqslant\underbrace{ X_{k + 1} \leqslant \cdots \leqslant X_n}_{n - k} .
+\]
+
+Then, for each $z \in M$, we can find $\bar{\mu} \in \mathbb{R}^+$ so
+that for any $\mu \geqslant \bar{\mu}$ the hermitian form associated to
+$\Theta$ satisfies condition of Lemma 1.1 for any pair $(s, t)$ such that $s +
+t \leqslant k - 1$, with respect to the K\"ahler metric $(\omega - \mu
+\mathcal{X})$. \itbf{This means that for any K\"ahler form (Not just specific one), by lemma 1.1 of paper, any harmonic $(s,t)$-form vanishes identically.} Eventually, we gain the Theorem 2.1, i.e., the result we have written in the beginning of this section.
+
+\subsection{An application of semidefinite theorem in K\"ahler case}
+
+\begin{theorem}[][Lefschetz theorem on hyperplane sections]
+  If the Chern class $C_{\mathbb{R}} ([S]) \in H^2 (M, \mathbb{R})$ of $[S]$
+  contains a form $\mathcal{X} \geqslant 0$ of rank $k$, then
+  \[ \rho^{\ast}_S  \text{ is an isomorphism for $s \leqslant k - 2$} \]
+  and
+  \[ \rho^{\ast}_S \text{ is injective for $s = k - 1$.} \]
+\end{theorem}
+
+\begin{proof}
+  The main body remains the same as [1], and now we provide the kernel of the
+  proof. We gain the {\tmstrong{exact cohomology sequence}} from above
+  \[ \cdots \rightarrow H^q (M, \Omega^p ([S]^{- 1})) \rightarrow H^q \left(
+     {M, \Omega'}^p \right) \rightarrow H^q (S, \Omega^{p - 1} ([S]^{- 1} |_S
+    )) \rightarrow \cdots . \]
+  Applying the vanishing theorem in Kahler case, we have
+  \[ H^q \left( {M, \Omega'}^p \right) = 0, \quad \tmop{whenever} \quad p + q
+     \leqslant k - 1. \]
+  {\tmstrong{The exact Cohomology sequence}} yields the
+  {\tmstrong{isomorphisms}}
+  \begin{equation}
+    H^q (M, \Omega^q) \cong H^q (S, \Omega^p), \quad \tmop{for} \quad p + q
+    \leqslant k - 2 = (k - 1) - 1 \label{5}
+  \end{equation}
+  and the {\tmstrong{injectivity}} of the map
+  \[ H^q (M, \Omega^p) \rightarrow H^q (S, \Omega^p), \quad \tmop{whenever}
+     \quad p + q = k - 2. \]
+  Since
+  \[ H^s (M, \mathbb{C}) \cong \oplus_{p + q = s} H^q (M, \Omega^p) \]
+  and a similar decomposition holds for $S$, the conclusion follows.
+\end{proof}
+
+\section{General case}
+In the general case, the proof is very different, which is mainly depends on the \textit{local expression of the Laplace-Beltrami operator and on a result about hermitian forms}, due to E. Calabi and \textit{Lectures on Convexity of Complex manifolds and Cohomology vanishing theorems} by E. Vesentini.
+
+If the hermitian metric on $X$ is a K\"ahler metric \cite[P72]{vesentini1967lectures}, then
+\begin{equation*}
+\bdd=\tilde{\partial}, \quad \vartheta=\tilde{\vartheta}, \quad \square=\tilde{\square} .
+\end{equation*}
+For $\varphi \in C^{p q}(X, E)$
+\begin{equation*}
+(\tilde{\vartheta} \varphi)_{\overline{A B^{\prime}}}^a=(-1)^{p-1} \nabla_\alpha \varphi_A^a \alpha_{\overline{B^{\prime}}},
+\end{equation*}
+so that, exactly as in the case of the Laplacian $\triangle$ in Chapter 2, we have
+\begin{equation}\label{eq:3.11of vesentininote}
+(\tilde{\square} \varphi)_{\overline{A B}}^a=-\nabla_\alpha \nabla^\alpha \varphi \frac{a}{A B}+\sum_{r=1}^q(-1)^{r-1}\left(\nabla_\alpha \nabla_{\overline{\beta_r}}-\nabla_{\overline{\beta_r}} \nabla_\alpha\right) \varphi_A^a \alpha_{\overline{B_r^{\prime}}}
+\end{equation}
+where
+\begin{equation*}
+\nabla^\alpha=g^{\alpha \bar{\beta}} \nabla_{\bar{\beta}},
+\end{equation*}
+and $\quad A=\left(\alpha_1, \ldots \alpha_p\right), B=\left(\beta_1, \ldots \beta_q\right), B_r^{\prime}=\left(\beta_1, \ldots , \hat{\beta}_r, \ldots , \beta_q\right)$.
+
+In view of the Ricci identity, the summand of \textbf{\eqref{eq:3.11of vesentininote}} can be expressed by 
+\begin{equation}\label{eq:3.12of vesentininote}
+\sum_{r=1}^q(-1)^{r-1}\left(\nabla_\alpha \nabla_{\overline{\beta_r}}-\nabla_{\overline{\beta_r}} \nabla_\alpha\right) \varphi_A^a \alpha_{\overline{B_r^{\prime}}}=(\tilde{\mathcal{K}} \varphi)^a A B
+\end{equation}
+where $\tilde{\mathcal{K}}$ is a mapping
+\begin{equation*}
+\tilde{\mathcal{K}}: C^{p q}(X, E) \rightarrow C^{p q}(X, E),
+\end{equation*}
+which is linear over $C^{\infty}$ functions, whose local expression involves linearly (with integral coefficients) only the coefficients of the curvature forms, $s$ and $L$, of $E$ and $\Theta_{\circ}$.
+
+By \cite[Remark (3) after Lemma 3.2]{vesentini1967lectures}, we have
+\begin{equation}\label{eq:3.13of vesentininote}
+\left(\tilde{\mathcal{K}}_{\varphi}\right)_{A \bar{B}}^a=\sum_{r=1}^q(-1)^r s_{b \bar{\beta}_r \alpha}^a \varphi_A^b \alpha_{\overline{B_r^{\prime}}}+\left(\tilde{\mathcal{K}}_{\circ} \varphi\right)_{A \bar{B}}^a,
+\end{equation}
+where $\tilde{\mathcal{K}}_{\circ}$ involves only the curvature tensor of $\Theta_{\circ}$, and is completely independent of $E$.
+
+Formula \textbf{\eqref{eq:3.11of vesentininote}} can be also written as
+\begin{equation}\label{eq:3.14of vesentininote}
+(\tilde{\square} \varphi)_{A \bar{B}}^a=-\nabla_\alpha \nabla^\alpha \varphi_{A \bar{B}}^a+(\tilde{\mathcal{K}} \varphi)_{A \bar{B}}^a .
+\end{equation}
+Now
+\begin{equation*}
+\begin{aligned}
+\square & =(\bar{\partial} \vartheta+\vartheta \bar{\partial})=(\bar{\partial}+S)(\tilde{\vartheta}+T)+(\tilde{\vartheta}+T)(\tilde{\partial}+S) \\
+& =\tilde{\square}+\tilde{\partial} T+T \tilde{\partial}+\tilde{\vartheta} S+S \tilde{\vartheta}+S T+T S .
+\end{aligned}
+\end{equation*}
+It follows that
+\begin{lemma}[][\cite[Lemma 3.4.]{vesentini1967lectures}][lem:lemma3.4ofvesentininote]
+  For any $\varphi \in C^{p q}(X, E)$
+\begin{equation}\label{eq:local-expression-of-Beltrami-operator}
+(\square \varphi)_{A \bar{B}}^a=(\tilde{\square} \varphi)_{A \bar{B}}^a+\br{\left(F_1 \varphi\right)_{A \bar{B}}^a+\left(F_2 \nabla^{\prime} \varphi\right)_{A \bar{B}}^a+\left(F_3 \nabla^{\prime \prime} \varphi\right)_{A \bar{B}}^a}
+\end{equation}
+where
+\begin{equation*}
+\begin{aligned}
+& F_1: C^{p q}(X, E) \rightarrow C^{p q}(X, E), \\
+& F_2: C^{p q}\left(X, E \otimes \Theta_o^*\right) \rightarrow C^{p q}(X, E), \\
+& F_3: C^{p q}\left(X, E \otimes \Theta_o^*\right) \rightarrow C^{p q}(X, E),
+\end{aligned}
+\end{equation*}
+are linear over $C^{\infty}$ functions. Their local expression involves the tensor product and its first derivatives.
+\end{lemma}
+Then the Laplace-Beltrami operator $\square$ on $(0,q)$-forms with coefficients in $F\otimes D$ is given locally by 
+\begin{equation}
+  \label{Local expression of Laplace-Beltrami operator}
+  (\square\varphi)_{\overline{B}}=-\nabla_\alpha\nabla^\alpha\varphi_{\overline{B}}+(\mK\varphi)_{\overline{B}}+\sum g^{\overline{\alpha}\beta}\Gamma_{\overline{\alpha}\beta}^{\overline{\lambda}}\nabla_{\overline{\lambda}}\varphi_{\overline{B}},
+\end{equation}
+where $B$ is a set of $q$ indices $B=(\beta_1,\cdots,\beta_q)$ and $\Gamma_{\overline{\alpha}\beta}^{\overline{\lambda}}$ are components of the Riemann-Christoffel connection defined by the hermitian metric on $M$ and $\mK$ is a linear operator on $(0,q)$-forms which splits as the sum of $\mK=\mK_0+\mK_\mX$. 
+
+\begin{lemma}[][\cite[Lemma 2.2 by E. Calabi, P80]{vesentini1967lectures}][lem:Lemma2.2]
+  Let $H$ be a hermitian quadratic differential form on $X$ and $G$ a hermitian metric on $X$. Assume that $H$ has at least $p$ positive eigen values. Let $\varepsilon_1(x), \ldots, \varepsilon_n(x)$ be the eigen values of $H$ (w.r.t.
+  $G)$ at $x$ in decreasing order: $\varepsilon_r(x) \geq \varepsilon_{r+1}(x)$
+  Then given $c_1, c_2>0, G$ can be so chosen that
+  \begin{equation*}
+  l_H(x)=c_1 \varepsilon_p(x)+c_2 \operatorname{Inf}\left(0, \varepsilon_n(x)\right)>0,\quad  \text { for all } x \in X .
+  \end{equation*}
+\end{lemma}
+
+  \begin{proof}
+    Let $G$ be any complete hermitian metric whatever. Let $\sigma_1(x), \ldots$, $\sigma_n(x)$ be the eigen-values of $H$ with reference to $G$ arranged in decreasing order. We construct now a metric $G$ on $X$ whose eigen values are functions of $\left\{\sigma_i(x)\right\}_{1 \leq i \leq n}$ as follows: let $\lambda: X \rightarrow \mathbb{R}$ be a $C^{\infty}-$ function (we will impose conditions on $\lambda$ letter); let $U$ be a coordinate open set in $X$ with holomorphic coordinates $\left(z^1, \ldots, z^n\right)$; in $U$, we have $G=G_{U \alpha \bar{\beta}} d z^\alpha d \bar{z}^\beta$ so that $\left(G_{U \alpha \bar{\beta}}\right)_{\alpha \beta}$ is a function whose values are positive definite hermitian matrices; then the matrix valued function $\widehat{G}_U=\left(\widehat{G}_{U \alpha \bar{\beta}}\right)_{\alpha \beta}$ where $\widehat{G}=\sum \widehat{G}_{U \alpha \bar{\beta}} d z^\alpha d z^\beta$ in $U$ is defined by
+  \begin{equation*}
+  \widehat{G}_U^{-1}=G_U^{-1} \sum_{r=0}^{\infty} \frac{\lambda(x)^r}{(r+1) !}\left(H_U G_U^{-1}\right)^r
+  \end{equation*}
+  where $H_U$ is the matrix valued function $\left(H_{U \alpha \beta}\right)$ defined by
+    \begin{equation*}
+    H=\sum H_{U \alpha \bar{\beta}} d z^\alpha d z^\beta
+    \end{equation*}
+    in $U$.
+
+    We now assert that $\widehat{G}_U$ define a global hermitian defferential form on $X$ and under a suitable choice of $\lambda$, it is positive definite. To see that $\widehat{G}_U$ defines a global hermitian differential form on $X$, we need only prove the following. Let $V$ be another coordinate open set with coordinates complex $\left(w^1, \ldots, w^n\right)$. Let $J=\frac{\partial\left(z^1, \ldots, z^n\right)}{\partial\left(w^1, \ldots, w^n\right)}$ be the Jacobian matrix. As before let $G_V=\left(G_{V \alpha \beta}\right)$ be defined by $G=\sum G_{V \alpha \bar{\beta}} d w^\alpha d \bar{w}^\beta$ in $V$. Then if $\widehat{G}_V$ is defined starting from $G_V$ as $\widehat{G}_U$ from $G_U$, we have
+    \begin{equation*}
+    J \widehat{G}_U^t \bar{J}=\widehat{G_V}
+    \end{equation*}
+    We have in fact, writing $J^*$ for $^t \bar{J}^{-1}$,
+    \begin{equation*}
+    J^* \widehat{G}_U^{-1} J^{-1}=G_V^{-1} J\left(\sum_{r=0}^{\infty} \frac{\lambda(x)^1}{(r+1) !}\left(H_U G_U^{-1}\right)^r\right) J^{-1} \text {, since } J G_U^t \bar{J}=G_V .
+    \end{equation*}
+    It follows from the above that
+    \begin{equation*}
+    \begin{aligned}
+    J^* \widehat{G}_U^{-1} J^{-1} & =G_V^{-1} \sum_{r=0}^{\infty} \frac{\lambda(x)^r}{(r+1) !}\left(J H_U G_U^{-1} J^{-1}\right)^r \\
+    & =G_V^{-1} \sum_{r=0}^{\infty} \frac{\lambda(x)^r}{(r=1) !}\left(H_V J^* G_U^{-1} J^{-1}\right)^r
+    \end{aligned}
+    \end{equation*}
+    since $J H_U^t \bar{J} H_V$. Hence we obtain
+    \begin{equation*}
+    \begin{aligned}
+    J^* \widehat{G}_U^{-1} J^{-1} & =G_V^{-1} \sum_{r=0} \frac{(\lambda(x))^r}{(r+1) !}\left(H_V G_V^{-1}\right)^r \\
+    & =\widehat{G}_V^{-1}
+    \end{aligned}
+    \end{equation*}
+    This proves that $\widehat{G}_U$ defines on $X$ a global hermitian differential. We next show that $\widehat{G}$ is positive definite. For this we look for the eigenvalues of $\widehat{G}$ with reference to $G$. TO compute these, we may assume, in the above formula for $\widehat{G}_U$, that $G_U$ is the identity matrix
+    Then we have
+    \begin{equation*}
+    \widehat{G}_U=\sum_{r=0}^{+\infty} \frac{\lambda(x)^r}{(r+1) !} H_U^r
+    \end{equation*}
+    It follows that the eigen values of $\widehat{G}_U$ are
+    \begin{equation*}
+    \left\{\sum_{r=0}^{+\infty} \frac{\lambda(x)^r}{(r+1) !} \sigma_q(x)^r\right\}_{1 \leq q \leq n} .
+    \end{equation*}
+    It is easily seen that these are all strictly greater than zero: this assertion simply means this: $f(t)=\frac{e^t-1}{t}=\sum_{r=0}^{\infty} \frac{t^r}{(r+1) !}$ for $t \neq 0, f(0)=1$ (which is continuous in $t$ ) is everywhere greater than $0$ .
+
+    We will now look for conditions on $\lambda$ such that $\widehat{G}$ satisfies our requirements. From the formula for $\widehat{G}$, we have
+    \begin{equation*}
+    H_U \widehat{G}_U^{-1}=\sum_{r=0}^{+\infty} \frac{\lambda(x)^r}{(r+1)}\left(H_U G_U^{-1}\right)^{r+1} .
+    \end{equation*}
+
+    Now the eigenvalues of $H$ with respect to $\widehat{G}$ (resp. $G$ ) are simply those of the matrix $H_U \widehat{G}_U^{-1}$ (resp. $H_U G_U^{-1}$ ), Hence these eigenvalues $\varepsilon_q(X)$ of $H$ with reference to $\widehat{G}$ are
+    \begin{equation*}
+    f\left(\lambda(x), \sigma_q(x)\right)
+    \end{equation*}
+    where $f(s, t)$ is the function on $\mathbb{R}^2$ defined by
+    \begin{equation*}
+    f(s, t)=\sum_{r=0}^{t \infty} \frac{S^r}{(r+1)} t^{r+1}
+    \end{equation*}
+
+    Since $\frac{\partial f(s, r)}{\partial t}=e^{s t}>0$ for any, $f(s, t)$ is monotone increasing in $t$. Hence we have
+    \begin{equation*}
+    \varepsilon_r(x) \geqslant \varepsilon_{r+1}(x) \text { for } 1 \leqslant r \leqslant n-1 .
+    \end{equation*}
+    Moreover $f(s, t) \geqslant t$ for $s \geqslant 0$. Thus, if we choose $\lambda(x) \geqslant 0$ for every $x \in X$, then $\varepsilon_q(x) \geqslant \sigma_q(x)>0$.
+
+The choice of $\lambda(x)$ is now made as follows . Let, for every integer $v>0 . B_v=\left\{x \mid d\left(x, x_0\right) \leqslant \gamma\right\}$ for some $x_0 \in X$, the distance being $i$ the metric $G$. The $B_v$ are then compact. Let $b_v=\operatorname{Inf}_{x \in B_\gamma}\left(\sigma_p(x)\right)$.
+
+Then $b_1 \geqslant b_2 \geqslant \ldots \geqslant b_{v+1} \geqslant \ldots$. 
+
+Let $b(x)$ be a $C^{\infty}$ function on $X$ such that $b(x)>0$ for $x \in X$ and $b(x)<b_v$ in $B_v-B_{v-1}$. Then clearly $b(x) \leq \sigma_p(x)$.
+
+Finally let $\rho(x)$ be a $C^{\infty}$ function on $X$ such that $\rho(x) \geqslant d\left(x, x_0\right)$, and $k>\sqrt{\frac{C_2}{C_1}} b_1$ be a real constant. Set $\lambda(x)=\frac{2 k e^{\rho(x)}}{b^2(x)}$. We have then
+\begin{equation*}
+\varepsilon_q(x)=f\left(\lambda(x), \sigma_p(x)\right)=\sigma_p(x)+\frac{\lambda(x)}{2 !} \sigma_p(x)^2+\cdots
+\end{equation*}
+so that
+\begin{equation*}
+\varepsilon_p(x) \geqslant \frac{k e^{\rho(x)}}{b^2(x)} \sigma_p(x)^2 \geqslant k e^{\rho(x)} \geqslant k .
+\end{equation*}
+On the other hand,
+\begin{equation*}
+\begin{gathered}
+\varepsilon_n(x)=f\left(\lambda(x), \sigma_n(x)\right)=\frac{1}{\lambda(x)}\left\{e^{\lambda(x) \sigma_n(x)_{-1}}\right\} \geqslant \frac{-1}{\lambda(x)}=-\frac{b^2(x)}{2 k e^{\rho(x)}} \geqslant-\frac{b_1^2}{k} \\
+C_1 \varepsilon_p(x)+C_2 \operatorname{Inf}\left(0, \varepsilon_n(x)\right) \geqslant C_1 k-C_2 \frac{b_1^2}{k} \geqslant \frac{1}{k}\left(C_1 k^2-C_2 b_1^2\right)>0 .
+\end{gathered}
+\end{equation*}
+  \end{proof}
+
+The general version of the theorem will be described as follows :
+\begin{theorem}[][The general semidefinite vanishing theorem]
+    Let $M$ be a compact hermitian manifold. Let $F$ be a holomorphic line bundle and $D$ be a holomorphic vector bundle over $M$.
+  
+    If $C_\bR (F)$ contains a form $\mX$ whose associated hermitian form has at least $k$ positive eigenvalues at each ponit of $M$, then there exists a positive integer $\mu_0$ such that 
+    \[H^q(M,\Omega(F^\mu\otimes D))=0\]
+    for all $\mu\geqslant \mu_0$, and all $q\leqslant n-k+1$.
+  \end{theorem}
+
+\begin{proof}
+  By \autoref{lem:Lemma2.2}, $M$ can be equipped with a new hermitian metric
+  in such a way that, denoting by $X_1 (z) \geqslant \cdots \geqslant X_n (z)$
+  the eigenvalues of $\mathcal{X}$ w.r.t. this metric, then $X_k (z) > 0$ and
+  \[ X_k (z) + n \cdot \inf (0, X_n (z)) > 0, \quad \tmop{at} \tmop{each}
+     \tmop{point} z \in M. \]
+  As $K = K_0 + K_{\mathcal{X}}$ is a linear operator, then $A (K \varphi,
+  \varphi) = A (K_0 \varphi, \varphi) + A (K_{\mathcal{X}} \varphi, \varphi)$.
+  Aaccording to a straightforward computation, we abtain
+  \[ A (K_{\mathcal{X}} \varphi, \varphi) (z) \geqslant (X_k (z) + n \cdot
+     \tmop{inf} (0, X_n (z))) A (\varphi, \varphi) (z) \]
+  by using the fact that for $q \geqslant n - k + 1$, there is at least one
+  of the indices $\beta \leqslant k$.
+  
+  And since $M$ is compact, there exist a positive $C$ s.t. $A (K_0 \varphi,
+  \varphi) (z) \geqslant - \tmop{CA} (\varphi, \varphi) (z)$ at every point $z
+  \in M$.($K_0$ is a bounded linear operator on $M$ when $M$ is comapct.) Then
+  we choose a $\mu_0$ s.t.
+  \[ \mu_0 (X_k (z) + n \cdot \inf (0, X_n (z))) - (C + 1) > 0, \quad
+     \tmop{at} \tmop{each} \tmop{point} z \in M, \]
+  which implies $A (K \varphi, \varphi) \geqslant A (\varphi, \varphi)$. (
+    \begin{align*}
+      A (K \varphi, \varphi) (z) &\geqslant [ (X_k (z) + n \cdot
+     \tmop{ing} (0, X_n (z)) - C] A (\varphi, \varphi) (z) \\
+     &\geqslant \frac{[(1
+     - \mu_0) C + 1]}{\mu_0} \cdot A (\varphi, \varphi) (z) \geqslant A
+     (\varphi, \varphi) (z)
+    \end{align*}
+  )
+  
+  Thus, if $\varphi$ is any harmonic $(0, q)$-form with coefficients in
+  $F^{\mu} \otimes D$, with $\mu \geqslant \mu_0$ and $q \geqslant n - k + 1$,
+  we have
+  \[ 0 \leqslant \| \varphi \|^2 = (\varphi, \varphi) \leqslant (K \varphi,
+     \varphi) \leqslant 0, \]
+  which means that $\varphi \equiv 0$.
+\end{proof}
+
+\section{On vector bundles}
+
+\subsection{Terminologies}
+
+\begin{definition}[][Hermitian metric]
+  On a holomorphic vector bundle with a hermitian metric $h$, there is a
+  unique connection compatible with $h$ and the complex structure. Namely, it
+  must be $\nabla = \partial + \bar{\partial}$, where \tmcolor{red}{$\partial
+  s = h^{- 1} \partial \tmop{hs}$}.
+\end{definition}
+
+
+\NewTblrTheme{fancy}{
+  \SetTblrStyle{firsthead}{font=\bfseries}
+  \SetTblrStyle{firstfoot}{fg=purple2}
+  \SetTblrStyle{middlefoot}{\itshape}
+  \SetTblrStyle{caption-tag}{magenta2}
+}
+\begin{center}
+\begin{tblr}[long,theme = fancy,
+    caption = {Terminologies Interpretation},
+    entry = {Interpretation},
+    label = {tblr:Terminologies Interpretation 1},
+    % note{a} = {第一个表注。},
+    % note{$\dag$} = {第二个长长长长长长长的表注。},
+    %   remark{Attention!} = {For any \textit{fine sheaf} $\sS$, one has $H^q(X,\sS)=0$ for $q\geqslant 1$.},
+    % remark{来源} = {自力更生，自力更生，自力更生。},
+    ]
+    {
+    colspec = {X|[dashed]X}, % 这是本来传入 tblr 的参数
+    column{1}= {.22\linewidth,c},column{2}= {.73\linewidth}, rows = {m},
+    width = \linewidth,
+    row{odd} = {},
+    % col{odd} = {gray9},
+    row{1} = {1.3em,bg=cyan2,fg=white,font=\large\bfseries\sffamily},rowhead = 1, rowfoot = 1,
+    row{even} = {brown9!60}, row{Z} = {bg=gray9,fg=red2},
+    hline{1,2} = {0pt},
+    hline{2,Y} = {dashed},
+    hline{3-X} = {dashed,cyan2},
+}
+\textbf{Terminologies} & \textbf{Interpretations}\\ 
+$\tmop{PE}$ & $= (E - 0) /\mathbb{C}^{\ast}$,\\
+  
+$(E - 0)$ & The bundle space $E$ minus its zero section,\\
+
+Curvature form $\hat{\Theta}$ & $\hat{\Theta} = \sum_{i, j} \;
+\Theta_{\tmop{ri} \bar{j}}^r \tmop{dz}^i \wedge \overline{\tmop{dz}}^j -
+\sum_1^{r - 1} d \zeta^{\alpha} \wedge \overline{d \zeta^{\alpha}}$,\\
+
+$D$ & A holomorphic vector bundle over $M$,\\
+
+$S^k E$ & $k$-th symmetric tensor power of $E$,\\
+
+$\tmop{LE}$ & the associated complex line bundle over $\tmop{PE}$.\\
+
+\itbf{Terminologies} & \itbf{Interpretations}\\ 
+\end{tblr}
+\end{center}
+
+We have the following homeomorphisms \cite[Theorem 2.1, P504 and P502]{kobayashi1970complex}:
+\[ H^q (\tmop{PE}^{\ast}, \Omega ((\tmop{LE}^{\ast})^{- k} \otimes \pi^{\ast}
+   D)) \cong H^q (M, \Omega (S^k E \otimes D)) \]
+and
+\[ H^q (\tmop{PE}^{\ast}, \Omega^p (\tmop{LE}^{\ast})^{- 1}) \cong H^q (M,
+   \Omega^p (E)) . \]
+
+\section{Vanishing theorems for positive semidefinite vector bundles of rank
+k}
+
+In order to define the following concept, it is necessary to calculate the
+Hermitian quadratic form $\Theta (\zeta, \eta)$, which is strongly associated
+with the definition. (cf [8],proof of Proposition 6.3)
+
+\begin{definition}[][Vector bundle being positive-semidefinite of rank $k$]
+  $E$ is said to be {\emph{positive semidefinite of rank $k$}} if
+  there exists a hermitian metric on $E$ whose curvature tensor $\Theta$
+  satisfies the following condition: for all $\zeta \in \mathbb{C}^r - 0$, the
+  quadratic form on the variable $\eta$ : $\Theta (\zeta, \eta)$
+  {\emph{is positive semidefinite of rank $k$ at each point of $M$}}, where
+  \[ \Theta (\zeta, \eta) = \sum_{i, j} \Theta_{\sigma i \bar{j}}^{\rho}
+     \zeta^{\sigma} \bar{\zeta}^{\rho} \eta^i \bar{\eta}^j . \]
+\end{definition}
+
+\subsection{K\"ahler case over semidefinite vector bundles}
+
+\begin{theorem}[][Semidefinite vanishing theorem for vector bundle of rank $k$ (K\"ahler Case)]
+  Let $E$ be positive semidefinite (or negative semidefinite) of rank $k$ at
+  each point $z$ of a compact K{\"a}hler manifold $M$. Then
+  \[ H^q (M, \Omega^p (E)) = 0 \quad \text{if } \quad p + q \geqslant 2 n - (k
+     - r) . \]
+  (respectively, $H^q (M, \Omega^p (E)) = 0$ if $p + q \leqslant k - r$. (By
+  Serre Duality Theorem.))
+\end{theorem}
+\begin{theorem}[][The generalization of Theorem 3.1][thm:The generalization of Theorem 3.1]
+    \begin{align*}
+        \begin{cases}
+                    \rho_S^* \text{ is an isomorphism}, & \text{if } s\leqslant k-r-2,\\ 
+                    \rho_S^* \text{ is injective}, & \text{if } s= k-r-1.\\ 
+        \end{cases}
+    \end{align*}
+        
+\end{theorem}
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%
+This paper gives an application of its vanishing theorem of K\"ahler case over semidefinite vector bundle, which is the \textit{Lefschetz theorem on hyerplane sections}. Here, $S$ will be  a non-singular complex submanifold of codimension $r$ regularly imbedded in the compact K\"ahler manifold $M$, and $S$ will be assumed to be the zero set of a holomorphic section $\zeta$ of a holomorphic $r$-vector bundle $E\to M$. Let $\rho^*_S : H^s(M,\bC)\to H^s(S,\bC)$. Let $\widehat{\zeta}\in H^0(PE^*,(LE^*)^{-1})$ be the holomorphic section of the line bundle $(LE^*)^{-1}$ corresponding to $\zeta$. Thus, $\widehat{\zeta}=\{p\colon \widehat{\zeta}(p)=0\}$ is a non-singular submanifold of codimension $1$ in $PE^*$.
+
+\subsection{General case over semidefinite vector bundles}
+\begin{theorem}[][Semidefinite vanishing theorem for vector bundle of rank $k$ (General Case)][thm:Semidefinite vanishing theorem for vector bundle of rank $k$ (General Case)]
+   Let $M$ be a compact complex manifold, and assume that there exists a hermitian metric on $E$, whose curvature tensor $\Theta$ satisfies the following condition at each point of $M$.
+        
+   For any $\zeta\in \bC^r-0$, the quadratic form in $\eta,\Theta(\zeta,\eta)$, has at least $n-k_1$ positive eigenvalues and at least $k_2$ negative eigenvalues. Then 
+    \[H^q(M,\Omega(S^\mu E\otimes D))=0\]
+    for any $q\not\in (k_1,\ldots,k_2)$ if $\mu\geqslant 0$.
+\end{theorem}
+    
+\section{The semi-curvature of a line bundle \texorpdfstring{$L(E)$}- over \texorpdfstring{$P(E)$}-}
+
+\begin{proposition}[][\sc Proposition 6.1. of \cite{kobayashi1970complex}]
+    Given a point $o \in M$, there exist local holomorphic sections $s_1, \cdots, s_r$ around o such that
+\begin{equation*}
+h_{\alpha \bar{\beta}}=\delta_{\alpha \beta} \quad \text { and } \quad d h_{\alpha \bar{\beta}}=0 \quad \text { at } o .
+\end{equation*}
+\end{proposition}
+
+\begin{proof}
+Choose local holomorphic sections $t_1, \cdots, t_r$ around $o$ which are orthonormal at $o$. We set
+\begin{equation*}
+s_\alpha=\sum a_\alpha^\beta t_\beta \quad (a_\alpha^\beta: \text { holomorphic })
+\end{equation*}
+and try to find $\left(a_\alpha^\beta\right)$ such that $a_\alpha^\beta=\delta_\alpha^\beta$ at $o$ and $s_1, \cdots, s_r$ satisfy the required second condition. If we set
+\begin{equation*}
+g_{\alpha \bar{\beta}}=h\left(t_\alpha, \bar{t}_\beta\right),
+\end{equation*}
+then
+\begin{equation*}
+h_{\alpha \bar{\beta}}=h\left(s_\alpha, \bar{s}_\beta\right)=\sum a_\alpha^\gamma g_{r \bar{\delta}} \bar{a}_\beta^{\grave{\delta}},
+\end{equation*}
+or in matrix form
+\begin{equation*}
+H={ }^t A \cdot G \cdot \bar{A} .
+\end{equation*}
+We want to find $A$ such that $A=I$ at $o$ and $d H=0$ at $o$. Since
+\begin{equation*}
+\partial H=\partial^t A \cdot G \cdot \bar{A}+{ }^t A \cdot \partial G \cdot \bar{A},
+\end{equation*}
+it suffices to set
+\begin{equation*}
+a_\alpha^\beta=\delta_\alpha^\beta-\Sigma\left(\frac{\partial g_{\alpha \bar{\beta}}}{\partial z^j}\right)_0 \cdot z^j,
+\end{equation*}
+where $z^1, \cdots, z^n$ is a local coordinate system with origin $o$.
+\end{proof}
+
+\begin{proposition}[][Proposition 6.3. of \cite{kobayashi1970complex}][prop:6.3]
+If $E$ is a hermitian vector bundle with negative curvature (resp. semi-negative curvature), then the line bundle $L(E)$ over $P(E)$ with the induced hermitian metric has negative (resp. semi-negative) curvature.
+\end{proposition}
+
+\begin{proof}
+The naturally induced hermitian metric $\tilde{h}$ in $L(E)$ may be described as follows. Since $L(E)$ minus its zero section is naturally isomorphic to $E$ minus its zero section
+\[(L(E)-0)\cong (E-0),\]
+every nonzero element $X$ of $L(E)$ may be identified with an element of $E$, and
+\begin{equation*}
+\tilde{h}(X, X)=h(X, X) .
+\end{equation*}
+Fixing a point $o$ in the base manifold $M$, we choose holomorphic sections $s_1, \cdots, s_r$ in a neighborhood of $o$ with the properties stated in Proposition 6.1. Then we may write
+\begin{equation*}
+h(X, X)=\Sigma h_{\alpha \bar{\beta}} \xi^\alpha \bar{\xi}^\beta \quad \text { for } X=\Sigma \xi^\alpha s_\alpha .
+\end{equation*}
+We shall \textit{compute the Ricci tensor of the line bundle $L(E)$ at an arbitrarily fixed point of $P(E)$ which lies over $o \in M$.} This point is represented by a unit vector $X_0 \in E$. Applying a unitary transformation to $s_1, \cdots, s_r$, we may assume that $X_0=s_r(0)$. We take $z^1, \cdots, z^n, \xi^1, \cdots, \xi^{r-1}$ as a local coordinate system around $\left[X_0\right]$ in $P(E),\left[X_0\right]$ denotes the point of $P(E)$ represented by $X_0$. Then the components of the Ricci tensor of $L(E)$ at $\left[X_0\right]$ are given by
+\begin{equation*}
+\left(\begin{array}{l}
+-\dfrac{\partial^2 \log h(X, X)}{\partial z^i \partial \bar{z}^j}-\dfrac{\partial^2 \log h(X, X)}{\partial z^i \partial \bar{\xi}^\beta} \\[1mm]
+-\dfrac{\partial^2 \log h(X, X)}{\partial \xi^\alpha \partial \bar{z}^j}-\dfrac{\partial^2 \log h(X, X)}{\partial \xi^\alpha \partial \bar{\xi}^\beta}
+\end{array}\right)=\left(\begin{array}{cr}
+-\dfrac{\partial^2 \log h_{\alpha \bar{\beta}}}{\partial z^i \partial \bar{z}^j} & 0 \\[1mm]
+0 & -\delta_\beta^\alpha
+\end{array}\right)
+\end{equation*}
+where $i, j=1, \cdots, n$ and $\alpha, \beta=1, \cdots, r-1$. It is clear that this matrix is negative (semi-) definite if the curvature of $E$ is (semi-) negative. 
+\end{proof}
+\begin{remark}
+  If $E$ has (semi-) positive curvature, its dual $E^*$ has (semi-) negative curvature by Proposition 6.2 and hence the line bundle $L(E *)$ over $P\left(E^*\right)$ has (semi-) negative curvature by Proposition 6.3 and its dual $L\left(E^*\right)^{-1}$ $=L\left(E^*\right)^*$ has (semi-) positive curvature. But $L(E)$ itself does not have (semi-) positive curvature.
+\end{remark}
+
+From \textit{Proposition 6.3}, we obtain immediately the following
+\begin{theorem}[][\sc Teorem 6.4. of \cite{kobayashi1970complex}]
+  A hermitian vector bundle $E$ with negative (resp. semi-negative, positive, or semi-positive) curvature is negative (resp. semi-negative, positive, or semi-positive).
+\end{theorem}
+
+We do not know if the converse is true, e.g., if a negative vector bundle $E$ admits a hermitian metric with negative curvature. For a line bundle $E$, by definition $E$ is negative (resp. positive) if and only if it admits a hermitian metric with negative (resp. positive) curvature. It is, however, not clear if a semi-negative (resp. semi-positive) line bundle admits a hermitian metric with semi-negative (resp. semi-positive) curvature.
+
+So form the proof of \autoref{prop:6.3} we get the curvature of $L(E)$ with respect to the induced hermitian metric $\tilde{h}$ at the point $[X_0]\in P(E)$
+\begin{align*}
+  \Theta_{L(E)}([X_0]) &=\sum_{i,j} \br{-\dfrac{\partial^2 \log h_{\alpha \bar{\beta}}}{\partial z^i \partial \bar{z}^j} }\dd z^i\wedge \dd \bar{z}^j-\sum_{\alpha=1}^{r-1}\dd \xi^\alpha\wedge\dd \bar{\xi}^\alpha.\\ 
+  &=\sum_{i,j} \Theta_{ri\bar{j}}^r \dd z^i\wedge \dd \bar{z}^j-\sum_{\alpha=1}^{r-1}\dd \xi^\alpha\wedge\dd \bar{\xi}^\alpha.
+\end{align*}
+There is still an issue.
+\begin{align*}
+  \Theta_{i\bar{j}} =\sum \Theta^\alpha_{\alpha i\bar{j}} =-\dfrac{\partial^2\log \det h_{\alpha\bar{\beta}}}{\partial z^i \partial\bar{z}^j}
+  ?=?-\dfrac{\partial^2 \sum_{\alpha,\beta}\log h_{\alpha\bar{\beta}}}{\partial z^i \partial\bar{z}^j}
+  =\sum_{\alpha,\beta} \br{-\dfrac{\partial^2 \log h_{\alpha\bar{\beta}}}{\partial z^i \partial\bar{z}^j}}.
+\end{align*}
+
+
+\subsection{Computation of \texorpdfstring{$\Theta\wedge\varphi=0$}{}}
+For P.52 of \cite{gigante1981vector}
+\begin{fancybox}
+  It can be verified that using (1), if $E$ is negative semidefinite, then any harmonic $(p,0)$- or $(0,p)$- form with coefficients in $E$ has to satisfy the condition : $\Theta\wedge\varphi=0$ at each point of $M$.
+\end{fancybox}
+In fact, let $\varphi$ be a harmonic $(p,0)$- or $(0,p)$- form with coefficients in $E$, then clearly, we have $\Lambda\varphi\equiv 0$, which shows that (1) can be written as $(\sqrt{-1}\Lambda e(\Theta)\varphi,\varphi)\geqslant 0$. And the pointwise scalar product $A(\sqrt{-1}\Lambda e(\Theta)\varphi,\varphi)\leqslant 0$ at each point of $M$. Thus by (1) it must be $(\Lambda e(\Theta)\varphi,\varphi)=0$ and therefore, for (2), we have 
+\begin{align*}
+  &(\Lambda(\partial_E \bar{\partial}+\bar{\partial}\partial_E)\varphi,\varphi)=0\\
+  &\Longrightarrow \left.\begin{cases}
+    \Lambda\bar{\partial}\partial_E\varphi=0\rightarrow \bar{\partial}\varphi=0\rightarrow \partial_E\varphi=0, &\text{ when $\varphi$ is a $(0,p)$-form}\\ 
+    \Lambda\partial_E \bar{\partial}\varphi=0\rightarrow \partial_E\varphi=0, &\text{ when $\varphi$ is a $(p,0)$-form}\\ 
+  \end{cases}\right\}\implies \partial_E\varphi=0.
+\end{align*}
+Then by (2), $e(\Theta)\varphi=\Theta\wedge\varphi=0$.
+
+For p.53. Since in the strong sense $\Theta=\Theta_{\sigma i\bar{j}}^\rho \tau^\sigma_i \bar{\tau}_j^\rho\geqslant 0$ if $E$ is positive semidefinite and let $\varphi=\sum \varphi_A \dd z^A$ be the local representation of the $(p,0)$-form, then we have
+\begin{align*}
+  \Theta\wedge\varphi &=\sum_{i\in A}\br{\sum \Theta_{\sigma i\bar{j}}^\rho \;\tau^\sigma_i \bar{\tau}_j^\rho\wedge\varphi_{A(i)}\dd z^{A(i)}}
+  =\sum_{i\in A}\br{\sum \Theta_{\sigma i\bar{j}}^\rho \varphi_{A(i)} \;\tau^\sigma_i  \wedge\bar{\tau}_j^\rho\wedge\dd z^{A(i)}}\\ 
+&=\sum_\rho \br{\sum_{i\in A}\sum_\sigma \Theta_{\sigma i\bar{j}}^\rho \varphi_{A(i)}^\sigma (-1)^{p(i)}\;\tau^\sigma_i \wedge\dd z^{A(i)} \wedge\bar{\tau}_j^\rho}\\ 
+&=\sum_\rho \br{\br{\sum_{i\in A}\sum_\sigma \Theta_{\sigma i\bar{j}}^\rho \varphi_{A(i)}^\sigma (-1)^{p(i)}}\;\tau^\sigma_i \wedge\dd z^{A(i)} \wedge\bar{\tau}_j^\rho}\\ 
+&=0,
+\end{align*}
+which implices that 
+\[\sum_{i\in A}\sum_\sigma \Theta_{\sigma i\bar{j}}^\rho \varphi_{A(i)}^\sigma (-1)^{p(i)}=0.\]
+
+
+\newcommand{\tmmathbf}[1]{\ensuremath{\boldsymbol{#1}}}
+\newcommand{\tmscript}[1]{\text{\scriptsize{$#1$}}}
+% \begin{equation}
+%   \Theta = - (2 \pi i\mathcal{X}) = - (\bar{\partial} \partial \log h) = -
+%   \sum_{\alpha, \beta} \frac{\partial^2 \log h}{\partial z^{\alpha} \partial
+%   \bar{z}^{\beta}} \tmop{dz}^{\alpha} \overline{\tmop{dz}^{\beta}} \label{6}
+% \end{equation}
+
+\subsection{Computation of the quadratic form \texorpdfstring{$\Theta (\zeta^0, \eta)$}{}}
+For $L (T^{\ast} P)$ its Ricci curvature is
+\[ \Theta (\xi, \eta) = \left( \begin{array}{c}
+     - \dfrac{\partial^2 \log h (X, X)}{\partial z^i \partial \bar{z}^j} -
+     \dfrac{\partial^2 \log h (X, X)}{\partial z^i \partial
+     \bar{\xi}^{\beta}}\\[1mm]
+     - \dfrac{\partial^2 \log h (X, X)}{\partial \xi^{\alpha} \partial
+     \bar{z}^j} - \dfrac{\partial^2 \log h (X, X)}{\partial \xi^{\alpha}
+     \partial \bar{\xi}^{\beta}}
+   \end{array} \right) = \left( \begin{array}{rr}
+     - \dfrac{\partial^2 \log h_{\alpha \beta}}{\partial z^i \partial
+     \bar{z}^j} & 0\\[1mm]
+     0 & - \delta_{\beta}^{\alpha}
+   \end{array} \right) \]
+For the Fubini-Study metric on $P_n (\tmmathbf{C})$ with holomorphic sectional
+curvature $c$, the curvature tensor is given by
+\[ K_{i \bar{j} k \bar{l}} = - \frac{c}{2}  (h_{i \bar{j}} h_{k \bar{l}} +
+   h_{i \bar{l}} h_{k \bar{j}}) . \]
+Given a point $o$ in $P_n (\tmmathbf{C})$, we may always choose a local
+coordinate system around $o$ so that the metric tensor $h_{i \bar{j}}$
+coincides with $\delta_{ij}$ at $o$. Then the curvature of the cotangent
+bundle is given by
+\[ \frac{c}{2}  (\delta_{ij} \delta_{kl} + \delta_{il} \delta_{kj}) . \]
+Note that the sign changes when we pass from $TP$ to $T \ast P$. The matrix
+representing the Ricci curvature of $L (T^{\ast} P)$ in the proof of
+Proposition 6.3 reduces in this case to the following:
+\[ \left( \begin{array}{cc}
+     - \frac{c}{2}  (\delta_{ij} + \delta_{in} \delta_{jn}) & 0\\
+     0 & - \delta_{\alpha \beta}
+   \end{array} \right)_{\tmscript{\begin{array}{l}
+     i, j = 1, \cdots, n\\
+     \alpha, \beta = 1, \cdots, n - 1
+   \end{array}}} . \]
+The Ricci curvature of $L (T^{\ast} P)^{- 1}$ is obtained from that of $L
+(T^{\ast} P)$ by changing its sign. On the other hand, the Ricci curvature of
+$P$ at $o$ (which is nothing but the Ricci curvature of $K_P^{- 1}
+= H^{n + 1})$ is given by $K_{i \bar{j}} = - \frac{c}{2}  (n + 1)
+\delta_{ij}$. Hence, the Ricci curvature of $H$ is given by
+\[ - \frac{1}{n + 1} K_{i \bar{j}} = \frac{c}{2} \delta_{ij} . \]
+Consequently, the Ricci curvature of $L (T^{\ast} P)^{- k} \otimes \pi^{\ast}
+H^m$ can be expressed by the following matrix:
+\[ \left( \begin{array}{cc}
+     k \frac{c}{2}  (\delta_{ij} + \delta_{in} \delta_{jn}) & 0\\
+     0 & k \delta_{\alpha \beta}
+   \end{array} \right) + \left( \begin{array}{cc}
+     m \frac{c}{2} \delta_{ij} & 0\\
+     0 & 0
+   \end{array} \right), \]
+which is clearly positive if $m + k \geqq 1$ and $k \geqq 1$.
+
+Now we compute the quadratic form $\Theta (\zeta^0, \eta)$ of $S^k
+(\tmop{TP}) \otimes H^m$ as follow: \cite[P52]{gigante1981vector}
+\begin{align*}
+  \Theta ( \eta,\zeta^0) & =  \sum_{\alpha,\beta,i, j} \br{\left( \begin{array}{cc}
+    k \frac{c}{2}  (\delta_{ij} + \delta_{in} \delta_{jn}) & 0\\
+    0 & k \delta_{\alpha \beta}
+  \end{array} \right) + \left( \begin{array}{cc}
+    m \frac{c}{2} \delta_{ij} & 0\\
+    0 & 0
+  \end{array} \right)}  \begin{pmatrix}
+    \eta^i
+  \overline{\eta^j}\\ \zeta^{\alpha} \overline{\zeta^{\beta}}
+  \end{pmatrix} \\
+  (\delta_{\alpha \beta} \equiv 0) & =\sum_{\alpha,\beta,i, j} 
+    \begin{pmatrix}
+      k \frac{c}{2}  (\delta_{ij} + \delta_{in} \delta_{jn})+m \frac{c}{2} \delta_{ij} &0\\ 0&0
+    \end{pmatrix}
+ \begin{pmatrix}
+    \eta^i
+  \overline{\eta^j}\\ \zeta^{\alpha} \overline{\zeta^{\beta}}
+  \end{pmatrix} \\
+  & =  \sum_{i, j}\left[ k \frac{c}{2}  (\delta_{ij} + \delta_{in} \delta_{jn}) + m
+  \frac{c}{2} \delta_{ij} \right] (\eta^i \overline{\eta^j})\\
+  & =  k \frac{c}{2} \left( \sum_{i, j \leqslant n - 1} \delta_{\tmop{ij}}
+  \eta^i \overline{\eta^j} + \sum_i \delta_{\tmop{in}} \eta^i
+  \overline{\eta^n} + \sum_j \delta_{\tmop{jn}} \eta^n \overline{\eta^j}
+  \right) + m \frac{c}{2} \sum_{i, j} \delta_{\tmop{ij}} \eta^i
+  \overline{\eta^j}\\
+  & =  (k + m) \frac{c}{2} \sum_{i, j \leqslant n - 1} \delta_{\tmop{ij}}
+  \eta^i \overline{\eta^j} + (2 k + m) \frac{c}{2} \eta^n \overline{\eta^n}\\
+  & =  (k + m) \frac{c}{2} \sum_{i \leqslant n - 1} \eta^i \overline{\eta^i}
+  + (2 k + m) \frac{c}{2} \eta^n \overline{\eta^n}
+\end{align*}
+which is semi-positive if $m + k \geqq 1$ and $k \geqq 1$.
+
+\section*{hyperplane Theorem}
+We note that the fibre of $S^k E^*$ over $x \in M$ is the space of homogeneous polynomials of degree $k$ on $E_x$.
+
+\begin{theorem}[][Theorem 1.3. of \cite{gigante1981vector}]
+  Let $E$ be positive semidefinite (or negative semidefinite) of rank $k$ at each point $z$ of a compact K\"ahler manifold $M$. Then
+  \begin{equation*}
+  H^q\left(M, \Omega^p(E)\right)=0 \quad \text { if } \quad p+q \geqslant 2 n-(k-r).
+  \end{equation*}
+  (respectively, $H^q\left(M, \Omega^p(E)\right)=0$ if $p+q \leqslant k-r$. (By Serre Duality Theorem.))
+\end{theorem}
+
+\begin{theorem}[][Lefschetz theorem on hyperplane sections][thm:lefschetz]
+  If the Chern class $\mC_\bR ([S])\in H^2 (M,\bR)$ of $[S]$ contains a form $\mX\geqslant 0$ of rank $k$, then 
+  \[\rho^*_S\text{ is an isomorphism for $s\leqslant k-2$}\]
+  and 
+  \[\rho^*_S\text{ is injective for $s=k-1$}.\]
+\end{theorem}
+
+\begin{proof}
+Let $\boldsymbol{S}^{n-1}$ be a non-singular analytic subvariety of $\boldsymbol{V}^n, \mathfrak{B}_s$ the restriction of the bundle $\mathfrak{B}$ on $S$, and the sequence
+\begin{equation*}
+0 \rightarrow \Omega^{\prime p}(\mathfrak{B}) \stackrel{i}{\rightarrow} \Omega^p(\mathfrak{B}) \stackrel{r}{\rightarrow} \Omega^p\left(\mathfrak{B}_s\right) \rightarrow 0
+\end{equation*}
+be exact. And let $\eta \in \Omega^{\prime p}(\mathfrak{B})$
+\begin{equation*}
+\eta=\sum_{\alpha_1<\cdots<\alpha_p} \eta_{\alpha_1 \ldots \alpha_p} d z^{\alpha_1} \ldots d z^{\alpha_p},
+\end{equation*}
+where we assume that $z^1=0$ the local equation of $S$. Then it is clear, that for $p \geqq 1$
+\begin{equation*}
+\eta^{\prime}=\sum_{1<\alpha_2<\cdots<\alpha_p}\left(\eta_{1 \alpha_2 \ldots \alpha_p}\right)_s d z^{\alpha_2} \ldots d z^{\alpha_p}
+\end{equation*}
+belongs to $\Omega^{p-1}\left\{(\mathfrak{B}-\{\boldsymbol{s}\})_s\right\}$. If we denote by $\bar{r}$ the mapping $\Omega^{\prime p}(\mathfrak{B})\rightarrow \Omega^{p-1}\left\{(\mathfrak{B}-\{\boldsymbol{s}\})_s\right\}$ such that
+\begin{equation*}
+\overline{\boldsymbol{r}}: \quad \eta \in \Omega^{\prime p}(\mathfrak{B}) \rightarrow \eta^{\prime} \in \Omega^{p-1}\left\{(\mathfrak{B}-\{\boldsymbol{s}\})_s\right\},
+\end{equation*}
+then we can easily prove that the sequence
+\begin{equation*}
+0 \rightarrow \Omega^p(\mathfrak{B}-\{\boldsymbol{s}\}) \rightarrow \Omega^{\prime p}(\mathfrak{B}) \rightarrow \Omega^{p-1}\left\{(\mathfrak{B}-\{\boldsymbol{s}\})_s\right\} \rightarrow 0
+\end{equation*}
+is exact. By taking the sequence of cohomology groups corresponding to (12), we obtain the exact sequence
+\begin{equation*}
+\rightarrow H^q\left(\Omega^p(\mathfrak{B}-\{\boldsymbol{s}\})\right) \rightarrow H^q\left(\Omega^{\prime p}(\mathfrak{B})\right) \rightarrow H^q\left(\Omega^{p-1}\left\{(\mathfrak{B}-\{\boldsymbol{s}\})_s\right\}\right) \rightarrow .
+\end{equation*}
+Now let us assume that $\boldsymbol{S}$ is so ample that $c(\mathfrak{B}-\{\boldsymbol{s}\})$ contains an everywhere negative definite form, then we see by theorem $1^{\prime \prime}$ that
+\begin{equation*}
+H^q\left(\Omega^p(\mathfrak{B}-\{\boldsymbol{s}\})\right) \simeq 0 \quad \text { for } \quad p+q \leqq n-1,
+\end{equation*}
+\begin{equation*}
+  H^q\left(\Omega^{p-1}(\mathfrak{B}-\{\boldsymbol{s}\})_s\right) \simeq 0 \quad \text { for } \quad p+q \leqq n-1
+  \end{equation*}
+  Putting these in (13), we have, if $p \geqq 1$, for $p+q \leqq n-1$
+  \begin{equation*}
+  H^\alpha\left(\Omega^{\prime p}(\mathfrak{B})\right) \simeq 0
+  \end{equation*}
+  Moreover it is also the case even when $p=0$, because 
+  $$\Omega^{\prime 0}(\mathfrak{B})=\Omega^0(\mathfrak{B}-\{\boldsymbol{s}\}), \quad H^q\left(\Omega^0(\mathfrak{B}-\{\boldsymbol{s}\})\right) \simeq 0 \quad\text{ for }q \leqq n-1.$$
+  On the other hand, taking the sequence of cohomology groups of the sequence (11), we get the exact sequence
+  \begin{equation*}
+  \rightarrow H^q\left(\Omega^{\prime p}(\mathfrak{B})\right) \rightarrow H^q\left(\Omega^p(\mathfrak{B})\right) \rightarrow H^q\left(\Omega^p\left(\mathfrak{B}_s\right)\right) \rightarrow H^{q+1}\left(\Omega^{\prime p}(\mathfrak{B})\right) \rightarrow .
+  \end{equation*}
+
+  \begin{theorem}
+  If the divisor $\boldsymbol{S}^{n-1}$ is so ample such that $c(\mathfrak{B}-\{\boldsymbol{s}\})$ contains an everywhere negative definite form, then for $p+q \leqq n-1$ there exists the isomorphism
+  \begin{equation*}
+  H^q\left(\Omega^p(\mathfrak{B})\right) \rightarrow H^q\left(\Omega^p\left(\mathfrak{B}_s\right)\right)
+  \end{equation*}
+  and this is an isomorphism onto or into according as $p+q \leqq n-2$ or $p+q=n-1$.
+  \end{theorem}
+  
+  Consider the special case, where $\boldsymbol{V}$ is a projective variety, $\boldsymbol{S}$ a generic hyperplane section of $\boldsymbol{V}$. Taking $\mathfrak{B}$ as $\{0\} \quad(\{0\}$ the trivial bundle), then clearly $\{0\}-\{\boldsymbol{S}\}$ contains an everywhere negative definite form, so the mapping
+  \begin{equation*}
+  H^q\left(\Omega^p(0)\right) \rightarrow H^q\left(\Omega^p\left(0_s\right)\right) \text { for } \quad p+q \leqq n-1
+  \end{equation*}
+  is isomorphic. But we see by the Dolbeault's theorem
+  \begin{equation*}
+  H^q\left(\Omega^p(0)\right) \simeq H^{p, q}(\boldsymbol{V}, C), \quad H^q\left(\Omega^p\left(0_s\right)\right) \simeq H^{p, q}(\boldsymbol{S}, C),
+  \end{equation*}
+  where $C$ is complex number field. Hence we have the Lefschetz theorem in the classical form:
+  \begin{theorem}
+    Let $\boldsymbol{V}$ be an algebraic variety of dim. $n$ without singularities immersed in a projective space, $\boldsymbol{S}$ be a generic hyperplane section of it (consequently $\boldsymbol{S}$ is irreducible and has no singularities), $H(\boldsymbol{V}, C)$ the cohomology group of degree $r$.
+  Then $H^r(\boldsymbol{V}, C)$ is isomorphic to $H^r(\boldsymbol{S}, C)$ if $r \leqq n-2$, and $H^{n-1}(\boldsymbol{V}, C)$ is isomorphic to a submodule of $H^{n-1}(\boldsymbol{S}, C)$.
+  \end{theorem}
+\end{proof}
+
+\section{Summary and Reflection}
+
+Vanishing theorems are furnish criteria for the non-existence of nontrivial harmonic tensor fields, to show that certain cohomology groups $H^q(X, 0)$ are zero.
+According to S. Bochner's general criterion, a tensor of a specified type cannot satisfy a given ``harmonic '' equation globally on a compact manifold, unless it is identically zero. 
+
+
+
+
+
+
+
+\chapter{Logarithmic vanishing theorems on compact K\"ahler manifolds I }
+% \oddoutermargin{\sffamily\leftmark} % Odd 奇数页
+
+\section{Terminologies}
+\vspace{-\baselineskip}
+\begin{center}
+\begin{tblr}[long,theme = fancy,
+  caption = {Terminologies Interpretation},
+  entry = {Interpretation},
+  label = {tblr:Terminologies Interpretation 2},
+  % note{a} = {第一个表注。},
+  % note{$\dag$} = {第二个长长长长长长长的表注。},
+  remark{Attention!} = {For any \textit{fine sheaf} $\sS$, one has $H^q(X,\sS)=0$ for $q\geqslant 1$.},
+  % remark{来源} = {自力更生，自力更生，自力更生。},
+  ]
+  {
+  colspec = {X|[dashed]X}, % 这是本来传入 tblr 的参数
+  column{1}= {.22\linewidth,c},column{2}= {.73\linewidth}, rows = {m},
+  width = \linewidth,
+  row{odd} = {},
+  % col{odd} = {gray9},
+  row{1} = {1.3em,bg=cyan2,fg=white,font=\large\bfseries\sffamily},rowhead = 1, rowfoot = 1,
+  row{even} = {brown9!60}, row{Z} = {bg=gray9,fg=red2},
+  hline{1,2} = {0pt},
+  hline{2,Y} = {dashed},
+  hline{3-X} = {dashed,cyan2},
+}
+\textbf{Terminologies} & \textbf{Interpretations}\\ 
+\textbf{SNC divisor} $D$ &  every irreducible component $D_i$ is smooth and all intersections  are \textit{transverse}.\\ 
+$\Omega_X^p (\log D)$ & The sheaf of germs of differential $p$-forms on $X$ with at most  logarithmic poles along $D$, (introduced by Deligne in) whose sections on an open subset $V$ of $X$ are  $\displaystyle \Gamma(V,\Omega_X^p (\log D)):=\left\{\alpha\in\Gamma(V,\Omega_X^p \otimes \mO_X(D))\right.$ $\displaystyle\left.\And \dd\alpha\in\Gamma(V,\Omega_X^{p+1} \otimes \mO_X(D))\right\}$.\\ 
+$E$ & Holomorphic vector bundle of rank $k$ over a complex manifold $M$.\\ 
+$h$ & A smooth Hermitian metric on $E$.\\ 
+$\nabla$ & {The Chern connection of $(E,h)$, which is compatible with $h$ and  \\ complex structure on $E$.}\\ 
+$Y=X\backslash D$ & The complement of a SNC divisor $D$ in a compact K\"ahler manifold $X$.\\
+Poincar\'e type metric $\omega_P$ & A smooth K\"ahler metric on $Y=X\backslash D$ which is of Poincar\'e type along $D$. According to \cite[proposition 3.2 and 3.4]{zucker1979hodge}, this metric is \textit{complete} and of \textit{finite volume}. Moreover, its \textit{curvature tensor and covariant derivatives are bounded}. \newline $\displaystyle\omega_P=\sqrt{-1}\sum_{j=1}^{k}\frac{\dd z_j\wedge\dd \overline{z}_j}{|z_j|^2\cdot \log^2 |z_j|^2}+\sqrt{-1}\sum_{j=k+1}^{n}\dd z_j\wedge\dd \overline{z}_j.$\\
+{$\Omega_{(2)}^{p,q}(X,E,\omega_Y,h^E_Y)$\\ (or $\Omega_{(2)}^{p,q}(X,E)$) }& Whose section space  $\Gamma(U,\Omega_{(2)}^{p,q}(X,E))$ over $\forall U\stackrel{\text{open}}{\subset} X$ consists  of $E$-valued $(p,q)$-forms $u$  with measurable coefficients such that  the $L^2$ norms of both $u$ and $\bdd u$  are integrable  on any compact  subset $V\subset U$. (Local integrable)\\
+$L^2_{p,q}(X,E)$ & $\displaystyle L^2(X,\Lambda^{p,q}T^* M\otimes E)=L^2_{p,q}(X,E)=\mA^2_{p,q}(X)\otimes E$.\\
+Fine sheaf & For any finite open covering $\frakU=\{U_j\}$, there is a family of homomorphisms $\{h_j\}, h_j\colon \sS\to\sS$,  such that the support of $h_j$  satisfying that $\operatorname{Supp}(h_j)\subset U_j$ and $\sum_j h_j=\textrm{identity}$. (Partition of unity)\\
+$\bR$-divisor & $T$ is called an $\bR$-divisor if  it is an element of $\operatorname{Div}_{\bR}(X):=\operatorname{Div}(X)\otimes_{\bZ}\bR$, where $\operatorname{Div}(X)$ is the set of divisors in $X$.\\ 
+{$\bR$-linear equivalence\\ $T_1\sim_{\bR} T_2$} & $T_1-T_2$ can be written as a finite sum of principal divisors with real coefficients, i.e. $\displaystyle T_1-T_2=\sum_{i=1}^{k} r_i(f_i)$, where $r_i\in\bR$ and $(f_i)$ is the principal divisor associated to meromorphic function $f_i$.\\ 
+$\bR$-line bundle $L$ & $L=\sum_i a_i L_i$ is a finite sum with real numbers $a_1,\cdots,a_k$ and certain line bundles $L_1,\cdots,L_k$. It is \shadowtext{\textit{$k$-positive}} if \textit{there exists  smooth metrics} $h_1,\cdots,h_k$ on $L_1,\cdots,L_k$ such that the curvature of the induced metric on $L$ : $\sqrt{-1}\Theta (L,h)=\sum_{i=1}^{k}a_i \sqrt{-1}\Theta(L_i,h_i)$ is $k$-positive.\\ 
+\itbf{Terminologies} & \itbf{Interpretations}\\ 
+\bottomrule
+\end{tblr}
+\end{center}
+
+\section{Some problems and their solutions}
+\begin{problem}[][Fine sheaf][prob:fine sheaf]
+  Why one can obtain the fact that $\Omega_{(2)}^{p,q}(X,E)$ admits a partition of unity from the consequence that if $u\in \Gamma(U,\Omega_{(2)}^{p,q}(X,E))$ and $f\in C^\infty (X)$, then $fu\in \Gamma(U,\Omega_{(2)}^{p,q}(X,E))$?
+\end{problem}
+\begin{problem}[][Splitting of holomorphic vector bundle][prob:Splitting of holomorphic vector bundle]
+  Why the metric $\widetilde{\omega}_P$ on the holomorphic tangent bundle $TY$ is of the splitting form : $\widetilde{\omega}_P=\sum_{i=1}^{n}\omega_i (z_i)$? Then why in local computations, we can treat $(TY,\widetilde{\omega}_P)$ as a direct sum of line bundles $\bigoplus_{i=1}^n (F_i,\omega_i)$, i.e. $(TY,\widetilde{\omega}_P):=\bigoplus_{i=1}^n (F_i,\omega_i)$?
+\end{problem}
+  
+  \begin{theorem}[][][thm:an L2 type dolbeault isomorphism]
+    There exists a smooth Hermitian metric $h^L_Y$ on $L|_Y$ such that the sheaf $\Omega_X^p(\log D)\otimes\mO (L)$ enjoys a fine resolution given by the $L^2$-Dolbeault complex $\br{\Omega^{p,*}_{(2)}(X,L,\omega_P,h^L_Y),\bdd}$.
+  \end{theorem}
+
+\section{Preliminaries}
+\subsection{Proof of Theorem1.1}
+
+\begin{lemma}[][3.3]
+    \[ \left\langle \left[ \sqrt{- 1} \Theta (V, h^V), \Lambda_{\tilde{\omega}_P}
+    \right] u, u \right\rangle \geqslant C | u |^2 . \]
+\end{lemma}
+
+\begin{proof}
+    \[ \Omega^p_Y \otimes {\color[HTML]{B4005A}K_Y^{- 1}} = \Omega^p_Y \otimes
+        {\color[HTML]{B4005A}\Omega^{- n}_Y} = \Omega_Y^{- (n - p)} =^a
+        \bigoplus_{i_1, \cdots, i_{n - p}} (F_{i_1}^{- 1} \otimes \cdots \otimes
+        F_{i_{n - p}}^{- 1}) . \]
+    \begin{align*}
+        \Omega^p_Y \otimes {\color[HTML]{B4005A}\Omega^{- n}_Y} & =  \Omega^p_Y
+        \otimes ({\color[HTML]{B4005A}\Omega^{- p}_Y} \otimes \Omega_Y^{- (n -
+        p)})\\
+        & =  (\Omega_Y^p \otimes 1) \otimes ({\color[HTML]{B4005A}\Omega^{-
+        p}_Y} \otimes \Omega_Y^{- (n - p)})\\
+        & =  (\Omega_Y^p \otimes 1) \otimes ({\color[HTML]{B4005A}\Omega^{-
+        p}_Y} \otimes 1) \otimes (1 \otimes \Omega_Y^{- (n - p)})\\
+        & =  1 \otimes \Omega_Y^{- (n - p)} = \Omega_Y^{- (n - p)} .
+    \end{align*}
+    \[ (\Omega_Y^p \otimes 1) \otimes ({\color[HTML]{B4005A}\Omega^{- p}_Y}
+    \otimes 1) = \Omega_Y^p ({\color[HTML]{B4005A}\Omega_Y^{- p}}) \otimes 1
+    = 1 (\tmop{trivial} \tmop{holomorphic} \tmop{cotangent} \tmop{bundle})
+    \otimes 1. \]
+    $^a$ For $(\tmop{TY}, \tilde{\omega}_P) = \bigoplus_{i = 1}^n (F_i,
+    \omega_i)$ by using (2.1), then in local case (Fixed a local coordinate $(W
+    ; z_1, \cdots, z_n)$), one has $F_i^{\ast} = F_i^{- 1}$(Dual line
+    bundle)\cite[\S 2.2,p71]{Huybrechts2010Complex}. ($\Omega_Y$ is the dual
+    of $\tmop{TY}$) The conclusion is clear through some easy computation.
+    
+    We have
+    \[ 
+        \sqrt{- 1} \Theta (V, h^V)  =  \sum_{i_1, \cdots, i_{n - p}} \sqrt{-
+        1} \Theta [L |_Y \otimes  (F_{i_1}^{- 1} \otimes \cdots
+        \otimes F_{i_{n - p}}^{- 1})]
+    \]
+    and
+    \begin{align*}
+    {\color[HTML]{B4005A}\sqrt{- 1} \Theta [L |_Y \otimes 
+    (F_{i_1}^{- 1} \otimes \cdots \otimes F_{i_{n - p}}^{- 1})]} & =  \sum_i
+    \sqrt{- 1} \partial \overline{\partial} \log (\omega_i)\\
+    (3.12) & \geqslant  \alpha \tilde{\omega}_P - (n - p) C
+    \tilde{\omega}_P\\
+    (\tmop{if} \alpha > (n - p + 1) C) & >  C\tilde{\omega}_P
+    {\color[HTML]{B4005A}> 0} ,
+    \end{align*}
+where we denote 
+    \[\sqrt{- 1} \Theta [L |_Y \otimes 
+(F_{i_1}^{- 1} \otimes \cdots \otimes F_{i_{n - p}}^{- 1})]=\sqrt{- 1} \Theta [L |_Y \otimes 
+(F_{i_1}^{- 1} \otimes \cdots \otimes F_{i_{n - p}}^{- 1}), h_Y^L\otimes \omega_{i_1}^* \otimes\cdots\otimes\omega_{i_{n-p}}^*].\]
+
+    Thus, the curvature of each summand of $L |_Y \otimes  (F_{i_1}^{-
+    1} \otimes \cdots \otimes F_{i_{n - p}}^{- 1})$ is strictly positive, i.e.
+    \[{\color[HTML]{B4005A}\sqrt{- 1} \Theta [L |_Y \otimes (F_{i_1}^{- 1} \otimes \cdots \otimes F_{i_{n - p}}^{- 1})]> 0}.
+    \]
+    \begin{align*}
+        \left\langle \left[ \sqrt{- 1} \Theta (V, h^V), \Lambda_{\widetilde{\omega}_P}\right] u, u \right\rangle & =  \left\langle \left[ \sum_{i_1, \cdots, i_{n - p}}\sqrt{- 1} \Theta [L |_Y \otimes  (F_{i_1}^{- 1} \otimes \cdots\otimes F_{i_{n - p}}^{- 1})], \Lambda_{\widetilde{\omega}_P} \right] u, u\right\rangle\\
+        & \geqslant (q\cdot C-(n-n))|u|^2\geqslant C|u|^2. \text{($q\geqslant 1$)}
+    \end{align*}
+    \clearpage
+    And the proof of the assertion that of the metric $\widetilde{h}^{L }_Y$ is Nakano
+    positive is on following.
+    \begin{align*}
+        &\sum_{i_1, \cdots, i_{n - p}} \sqrt{- 1} \Theta [L |_Y \otimes 
+        (F_{i_1}^{- 1} \otimes \cdots \otimes F_{i_{n - p}}^{- 1})] \\
+        & =  \sum_{i,j, \alpha, \gamma} \sqrt{- 1} R_{i \bar{j} \alpha}^{\gamma} \tmop{dz}^i
+        \wedge d \bar{z}^j \otimes e^{\alpha} \otimes e_{\gamma}  (\textrm{cf P.5} )\\
+        (R_{i \bar{j} \alpha}^{\gamma} = h^{\gamma \bar{\beta}} R_{i \bar{j} \alpha\bar{\beta}} ) & =  \sum_{i, j, \alpha, \beta} \sqrt{- 1} h^{\gamma
+        \bar{\beta}} R_{i \bar{j} \alpha \bar{\beta}}  \tmop{dz}^i \wedge d\bar{z}^j \otimes e^{\alpha} \otimes \bar{e}^{\beta}\\
+        \tmop{dz}^i = \left( u^i \frac{\partial}{\partial z^i} \right) & = \sum_{i, j, \alpha, \beta} \sqrt{- 1} h^{\gamma \bar{\beta}} R_{i \bar{j}
+        \alpha \bar{\beta}}   \left( u^i \frac{\partial}{\partial z^i} \right)\wedge \left( \bar{u}^j \frac{\partial}{\partial \bar{z}^j} \right) \otimes e^{\alpha} \otimes \bar{e}^{\beta}\\
+        & =  \sum_{i, j, \alpha, \beta} \sqrt{- 1} h^{\gamma \bar{\beta}} R_{i\bar{j} \alpha \bar{\beta}}  u^{i \alpha} \bar{u}^{j \beta} \left( \frac{\partial}{\partial z^i} \otimes e^{\alpha} \right) \wedge \left( \frac{\partial}{\partial\bar{z}^j} \otimes \bar{e}^{\beta} \right)\\
+        & >  \sum_{i_1, \cdots, i_{n - p}} C \widetilde{\omega}_P > 0
+    \end{align*}
+    As $h^{\gamma\bar{\beta}}>0$, then we have $\sum_{i, j, \alpha, \beta} \sqrt{- 1} h^{\gamma \bar{\beta}} R_{i
+    \bar{j} \alpha \bar{\beta}}  u^{i \alpha} \bar{u}^{j \beta}>0$, which immediately shows that $$\sum_{i, j, \alpha, \beta} R_{i
+    \bar{j} \alpha \bar{\beta}}  u^{i \alpha} \bar{u}^{j \beta}>0.$$ Thus $\widetilde{h}^{L }_Y$ is Nakano positive. 
+\end{proof}
+
+\begin{theorem}[][Main theorem][thm:Main theorem]
+    Let
+    \begin{center}
+        \begin{tblr}{hline{1,Z} = {1pt,gray}, hline{2-Y}={0.5pt,dotted}, row{odd} = {},row{even} = {brown9!60},rows={m},  column{1}= {.2\linewidth,c},column{2}= {.65\linewidth},
+    width=0.9\textwidth+2pt, colspec={X|[dotted]X},
+    }
+            $X$ & A compact K\"ahler manifold \\ 
+            $D$ & A small normal crossing (SNC) divisor\\ 
+            $N$ & A line bundle   \\ 
+            $\Delta=\sum_{i=1}^{s}\alpha_i D_i$ & an $\mathbb{R}$-divisor with $\alpha_i\in [0,1]$ such that $N\otimes\mathcal{O}_X([\Delta])$ is a $k$-positive $\mathbb{R}$-line bundle \\
+            $L$ & A nef line bundle \\
+        \end{tblr}
+    \end{center}
+
+Then we have 
+    \[
+        H^q(X,\Omega_X^p(\log D)\otimes L\otimes N)=0, \text{ for any } p+q\geqslant n+k+1.
+    \]
+\end{theorem}
+\clearpage
+    \begin{proof}[A small sketch]
+        The following computation is of (4.5).
+        {\small
+        \begin{align*}
+            &\sqrt{- 1} \Theta (\mathcal{F}, h_{\alpha, \varepsilon, \tau}^{\mathcal{F}})\\
+            & =  \sqrt{- 1} \Theta (L \otimes F \otimes \mathcal{O}_X (- [\Delta]),
+            h_{\alpha, \varepsilon, \tau}^{\mathcal{F}})\\
+            & =  \sqrt{- 1} \partial \overline{\partial} \log (h_{\alpha, \varepsilon,
+            \tau}^{\mathcal{F}})\\
+            & =  \sqrt{- 1} \partial \overline{\partial} \log (h^L) + \sqrt{- 1}
+            \partial \overline{\partial} \log (h^F) + \sqrt{- 1} \partial
+            \overline{\partial} \log (h^{\Delta})^{- 1} + \sqrt{- 1} \partial
+            \overline{\partial} \log \left( \prod_{i = 1}^s \| \sigma_i \|^{2
+            \tau_i}_{D_i} (\log^2 (\varepsilon \| \sigma_i
+            \|^2_{D_i}))^{\frac{\alpha}{2}}  \right)\\
+            & =  \sqrt{- 1} \partial \overline{\partial} \log (h^L) + \sqrt{- 1}
+            \partial \overline{\partial} \log (h^F) + \sqrt{- 1} \partial
+            \overline{\partial} \log \left( \prod_{i = 1}^s h^{a_i}_{D_i} \right)^{- 1}
+            + \sqrt{- 1} \partial \overline{\partial} \log \left( \prod_{i = 1}^s \|
+            \sigma_i \|^{2 \tau_i}_{D_i} \right) \\
+            &+ \sqrt{- 1} \partial \overline{\partial}
+            \log \left( \prod_{i = 1}^s (\log^2 (\varepsilon \| \sigma_i
+            \|^2_{D_i}))^{\frac{\alpha}{2}}  \right)\\
+            & =  \sqrt{- 1} \partial \overline{\partial} \log (h^L) + \sqrt{- 1}
+            \partial \overline{\partial} \log (h^F) - \sum_{i = 1}^s a_i \sqrt{- 1}
+            \partial \overline{\partial} \log (h _{D_i})  + \sum_{i = 1}^s \tau_i
+            \sqrt{- 1} \partial \overline{\partial} \log (\| \sigma_i \|^2_{D_i}) \\ &+
+            \sum_{i = 1}^s \alpha \sqrt{- 1} \partial \overline{\partial} \log (\log 
+            (\varepsilon \| \sigma_i \|^2_{D_i}))\\
+            & =  \sqrt{- 1} \partial \overline{\partial} \log (h^L) + \sqrt{- 1}
+            \partial \overline{\partial} \log (h^F) - \sum_{i = 1}^s a_i c_1  (D_i) +
+            \sum_{i = 1}^s \tau_i \sqrt{- 1} \partial \overline{\partial} \log (h_{D_i})
+            \\ &+ \sum_{i = 1}^s \alpha \sqrt{- 1} \partial \left( \frac{\overline{\partial}
+            \log  (\varepsilon \| \sigma_i \|^2_{D_i})}{\log  (\varepsilon \| \sigma_i
+            \|^2_{D_i})} \right)\\
+            & =  \sqrt{- 1} \partial \overline{\partial} \log (h^L) + \sqrt{- 1}
+            \partial \overline{\partial} \log (h^F) - \sum_{i = 1}^s a_i c_1  (D_i) +
+            \sum_{i = 1}^s \tau_i c_1  (D_i) \\ &+ \sum_{i = 1}^s \alpha \sqrt{- 1} \left(
+            \frac{\partial \overline{\partial} \log  (\| \sigma_i \|^2_{D_i}) \cdot \log
+            (\varepsilon \| \sigma_i \|^2_{D_i}) - \overline{\partial} \log  (\|
+            \sigma_i \|^2_{D_i}) \wedge \partial \log  (\| \sigma_i
+            \|^2_{D_i})}{( \log  (\varepsilon \| \sigma_i \|^2_{D_i})^2}
+            \right)\\
+            & =  \sqrt{- 1} \Theta (L, h^L) + \sqrt{- 1} \Theta (F, h^F) + \sum_{i =
+            1}^s (\tau_i - a_i) c_1  (D_i) + \sum_{i = 1}^s \left( \frac{\alpha \sqrt{-
+            1} \partial \overline{\partial} \log  (\| \sigma_i \|^2_{D_i})}{\log 
+            (\varepsilon \| \sigma_i \|^2_{D_i}) } \right) \\ &+ \sqrt{- 1} \sum_{i = 1}^s
+            \left( \frac{\alpha \partial \log  (\| \sigma_i \|^2_{D_i}) \wedge
+            \overline{\partial} \log  (\| \sigma_i \|^2_{D_i})}{( \log 
+            (\varepsilon \| \sigma_i \|^2_{D_i})^2} \right)\\
+            & =  \sqrt{- 1} \Theta (L, h^L) + \sqrt{-
+            1} \Theta (F, h^F) + \sum_{i = 1}^s (\tau_i - a_i) c_1  (D_i) + \sum_{i =
+            1}^s \left( \frac{\alpha c_1 (D_i)}{\log  (\varepsilon \| \sigma_i
+            \|^2_{D_i}) } \right) \\ &+ \sqrt{- 1} \sum_{i = 1}^s \left( \frac{\alpha
+            \partial \log  (\| \sigma_i \|^2_{D_i}) \wedge \overline{\partial} \log  (\|
+            \sigma_i \|^2_{D_i})}{( \log  (\varepsilon \| \sigma_i
+            \|^2_{D_i})^2} \right) .
+          \end{align*}}
+          where $h_{D_i} = \| \sigma_i \|^2_{D_i} $.
+          \clearpage
+        
+    \end{proof}
+        \begin{remark}
+            \begin{align*}
+                \mathcal{O}_X([D])\otimes\mathcal{O}_X(-[\Delta]) &=\mathcal{O}_X(\sum_{i=1}^{s}[D_i])\otimes\mathcal{O}_X(-\sum_{i=1}^{s}a_i[D_i])\\ 
+                (\text{Dual line bundle})&=\sum_{i=1}^{s}a_i \mathcal{O}_X([D_i])\otimes\mathcal{O}_X(-[D_i])\\ 
+                &=\sum_{i=1}^{s}a_i \mathcal{O}_X(1). \text{ (trivial line bundle)}
+            \end{align*}
+                
+        \end{remark}
+    \begin{definition}[][Poincar\'e Type Metric][def:Poincare type metric]
+        A metric $\omega_Y$ is of Poincar\'e Type along $D$ if for each local
+        coordinate chart $(W ; z_1, \cdots, z_n)$ along $D$, the restriction $\omega
+        |_{W_{1 / 2}^{\ast}} $ is equivalent to the usual Poincar\'e type
+        metric $\omega_P$ defined by
+        \[ \omega_P = \sqrt{- 1} \sum_{i = 1}^k \frac{\tmop{dz}_j \wedge d
+        \overline{z_j}}{| z_j |^2 \cdot \log^2 | z_j |^2} + \sqrt{- 1} \sum_{j =
+        k + 1}^n \tmop{dz}_j \wedge d \overline{z_j} . \]
+        Where $W_{r}^{\ast}=Y\cap W=(\Delta_r^*)^{k}\times (\Delta_r)^{n-k}, r\in (0,\frac{1}{2}]$.
+    \end{definition}
+
+    \begin{theorem}[][The key theorem for the proof of the main theorem][thm:3.1]
+        Let
+        \begin{center}
+            \begin{tblr}{hlines = {1pt,gray}, row{odd} = {},rows={m},  column{1}= {.1\linewidth,c},column{2}= {.45\linewidth},hline{2-Y}={0.5pt,dotted},
+        row{even} = {brown9!60},width=0.6\textwidth+2pt, colspec={X|[dotted]X},
+        }
+        $(X,\omega)$ & A compact K\"ahler manifold of dimension $n$\\ 
+        $D$ & A SNC divisor in X\\ 
+        $\omega_P$ & A smooth K\"ahler metric on $Y=X-D$ which is Poincar\'e Type along $D$\\ 
+    \end{tblr}
+        \end{center}
+    
+    Then there exists a smooth Hermitian metric $h_Y^L$ on $L|_Y$ such that the sheaf $\Omega^p(\log D)\otimes\mO(L)$ over $X$ has a fine resolution given by the $L^2$ Dolbeault complex $(\Omega_{(2)}^{p,*}(X,L,\omega_P,h_Y^L),\overline{\partial})$.
+    
+    In other words, we have an \textbf{exact sequence of sheaf over $X$}
+    \[0\to \Omega^p(\log D)\otimes\mO(L)\to \Omega_{(2)}^{p,*}(X,L,\omega_P,h_Y^L)\]
+    such that $\Omega_{(2)}^{p,q}(X,L,\omega_P,h_Y^L)$ is a \textbf{fine sheaf} for any $0\leq p,q\leq n$. In particular,
+    \begin{equation}\label{eq:3.2}
+        H^q(X,\Omega^p(\log D)\otimes\mO(L))\cong H^{p,q}_{(2)}(Y,L,\omega_P,h_Y^L)\cong \bH_{(2)}^{p,q}(Y,L,\omega_P,h_Y^L).
+    \end{equation}
+    \textbf{Note:} The isomorphism holds up to equivalence of metrics, i.e. if $\widetilde{\omega}_P\sim \omega_P$ and $\widetilde{h}_Y^L\sim h_Y^L$, then
+    \[
+        \bH_{(2)}^{p,q}(Y,L,\omega_P,h_Y^L)\cong \bH_{(2)}^{p,q}(Y,L,\widetilde{\omega}_P,\widetilde{h}_Y^L).
+    \]
+    ! Replacing the line bundle with vector bundle is still valid.
+    \end{theorem}
+
+    \newcommand{\tmem}[1]{\emph{#1}}
+    \begin{problem}[][Why $\Omega^{p, q}_{(2)} (X, E)$ is a fine
+        sheaf over $X$?][prob:Fine sheaf]
+        In the paper \cite[\S 2.3, P7]{huang2016logarithmic}, the author asserts that if $u
+        \in \Gamma (U, \Omega^{p, q}_{(2)} (X, E))$ and $f \in C^{\infty} (X)$, then
+        $fu \in \Gamma (U, \Omega^{p, q}_{(2)} (X, E))$. This demonstrates the
+        existence of a partition of unity in $\Omega^{p, q}_{(2)} (X, E)$.
+        Subsequently, the author claims that $\Omega^{p, q}_{(2)} (X, E)$ is a fine
+        sheaf over $X$.
+    \end{problem}
+    
+    \begin{proof}
+        The basis for this assertion lies in the properties of fine sheaves and the
+        specific construction of $\Omega^{p, q}_{(2)} (X, E)$:
+        \begin{enumerate}
+            \item  {\tmstrong{Definition of a Fine Sheaf}}: {\tmem{A sheaf $\mathcal{F}$ is
+        considered ``fine'' if it satisfies certain partition of unity properties.}}
+        In this context, it means that for any open cover $\{U_i \}$ of the
+        underlying topological space $X$, there exist smooth functions $\rho_i \in
+        C^{\infty} (X)$ with specific properties:
+        \begin{itemize}
+            \item $0 \leq \rho_i \leq 1$ for all $i$.
+            \item supp$(\rho_i) \subseteq U_i$ (the support of $\rho_i$ is contained
+            in $U_i$). 
+            \item $\sum \rho_i (x) = 1$ for all $x$ in $X$ (the sum of $\rho_i$ at
+            each point $x$ is $1$).
+        \end{itemize}
+        {\tmem{These partition of unity functions $\rho_i$ are crucial for gluing
+        together local sections of the sheaf to obtain global sections.}}
+        \item {\tmstrong{Construction of}} $\Omega^{p, q}_{(2)} (X, E)$: This sheaf
+        represents smooth differential forms of type $(p, q)$ with values in a
+        vector bundle $E$ over the manifold $X$. {\tmem{Its construction involves
+        defining local sections on coordinate patches and specifying how these
+        sections transition between overlapping patches.}}
+        \item {\tmstrong{Demonstrating Fine Sheaf Property}}: In Section 2.3 of the
+        paper, the author asserts that if $u$ is a section in $\Omega^{p, q}_{(2)}
+        (X, E)$ and $f$ is a smooth function on $X$, then the product $fu$ is also a
+        section in $\Omega^{p, q}_{(2)} (X, E)$. {\tmem{This demonstrates
+        compatibility with the fine sheaf property because it shows that you can use
+        smooth functions (such as the $\rho_i$ functions from the partition of
+        unity) to combine sections locally without leaving the sheaf $\Omega^{p,
+        q}_{(2)} (X, E)$.}}
+        
+        {\it\tmstrong{Essentially, this step ensures that $\Omega^{p, q}_{(2)} (X, E)$
+        is closed under multiplication by smooth functions, which is a crucial
+        property for a sheaf to be fine.}}
+        \end{enumerate}
+    \end{proof}
+    
+    \begin{remark}
+        In summary,{\tmem{ the assertion that $\Omega^{p, q}_{(2)} (X, E)$ is a fine
+        sheaf is based on the construction of $\Omega^{p, q}_{(2)} (X, E)$ and the
+        demonstration that it satisfies the necessary partition of unity property
+        when sections are multiplied by smooth functions.}} This property is
+        essential for many purposes in differential geometry and {\tmem{allows for
+        the gluing of local sections to obtain global sections over a manifold
+        $X$.}}
+    \end{remark}
+\begin{problem}
+    \begin{enumerate}
+        \item How to get (3.5)?
+        \item How to obtain the Laurentz series representation of $\sigma_I(z)$ on $W_{1/2}^*$?
+        \item Why $\sigma$ is $L^2$ integrable on $W_r^*$ iff $\beta_j>-\tau_j$ along $D_j$ by using polar coordinates and Fubini Theorem (Example 2.4)?
+        \item Why $\sigma$ and $\nabla \sigma$ have only logarithimic pole and $\sigma$ is a section of $\Omega^p(\log D)\otimes\mO(L)$ on $W$?
+    \end{enumerate}
+\end{problem}
+
+\begin{solution}
+    \begin{enumerate}
+        \item 
+        \item The Laurentz series equation for several variables is 
+        \[
+            f(z_1,\cdots,z_n)=\sum_{J=-\infty}^{\infty} a_J (z_1-z_{1_0})^{j_1} \cdots (z_n-z_{n_0})^{j_n},\quad R_1\leqslant |z_i-z_{i_0}|\leqslant R_2,
+        \]
+        where $J=(j_1,\cdots,j_n)$.  $f(z_1,\cdots,z_n)$ is single-valued analysis in the annulus centered at every point $z_{i_0}$. The coefficients are
+        \[
+            a_J=\frac{1}{(2\pi i)^n} \int_{\Omega_1}\cdots \int_{\Omega_n} \frac{f(z_1,\cdots,z_n)}{(z_1-z_{1_0})^{j_1+1} \cdots (z_n-z_{n_0})^{j_n+1}}\dd z_J,
+        \]
+        where $\dd z_J=\dd z_1\wedge\cdots \wedge\dd z_n$ and $\Omega_1,\cdots,\Omega_n$ are counter-clockwise closed curves surrounding the expansion point $(z_{1_0},\cdots,z_{n_0})$ in each variable, and the order of inegration can be interchanged.
+
+        By using the above equation, for a fixed point $(0,\cdots,0)\in W_{1/2}^*=\Delta_{1/2}^{*t}\times \Delta_{1/2}^{n-t}$, we have 
+        \begin{align*}
+            \sigma_I(z)=\sum_{J=-\infty}^{\infty} a_J (z_1)^{j_1} \cdots (z_t)^{j_t}, \quad J=(j_1,\cdots,j_t),
+        \end{align*}
+            where $a_J=\sigma_{IJ}(z_{t+1},\cdots,z_n)$ is a holomorphic function on $\Delta_{1/2}^{n-t}$. Thus $\sigma_I(z)$ is bounded on $W_r^*\subset W_{1/2}^*$, i.e. there exists a positive constant $M$ such that $\abs{\sigma_I(z)}\leqslant M$.
+        \item By using polar coordinates, we obtain that
+        {\small
+        \begin{align*}
+            &\|\sigma\|^2_{L^2(W_r^*)} \\
+            &=\sum_{|I|=p}\int_{W_r^*} |e|^2_{h^L} \br{ |\sigma_I(z)|^2 \prod_{\nu=1}^b \log^2 |z_{i_{p\nu}}|^2 \prod_{i=1}^t |z_i|^{2\tau_i}(\log^2 |z_i|^2)^{\alpha/2} } \omega_P^n \\
+            &\leqslant \sum_{|I|=p}\int_{W_r^*}  \br{ |\sigma_I(z)|^2 \prod_{\nu=1}^b \log^2 |z_{i_{p\nu}}|^2 \prod_{i=1}^t |z_i|^{2\tau_i}(\log^2 |z_i|^2)^{\alpha/2} } \omega_P^n \\
+            &\leqslant\sum_{|I|=p} \br{\underbrace{\int_0^{2\pi}\cdots \int_0^{2\pi}}_{b+t}}\br{\underbrace{\int_{0}^{\frac 12}\cdots \int_{0}^{\frac 12}}_{b+t}}  \br{ |\sigma_I(z)|^2 \prod_{\nu=1}^b \log^2 r_{i_{p\nu}}^2 \prod_{i=1}^t r_i^{2\tau_i}(\log^2 r_i^2)^{\alpha/2} } \omega_P^n \;\dd \bm{\theta}\dd \bm{r} \\ 
+            &=\sum_{|I|=p}|\sigma_I(z)|^2 \prod_{\nu=1}^b\br{ \int_0^{2\pi}\int_{0}^{\frac 12} \log^2 r_{i_{p\nu}}^2 \dd \theta_{i_{p\nu}}\dd r_{i_{p\nu}} } \prod_{i=1}^t\br{ \int_0^{2\pi}\int_{0}^{\frac 12} r_i^{2\tau_i}(\log^2 r_i^2)^{\alpha/2} \dd \theta_i\dd r_{i} } \omega_P^n \\
+            &=\sum_{|I|=p}(2\pi)^{b+t}{\color{purple}|\sigma_I(z)|^2} \prod_{\nu=1}^b\br{ \int_{0}^{\frac 12} \log^2 r_{i_{p\nu}}^2 \dd r_{i_{p\nu}} }\cdot \prod_{i=1}^t\br{ \int_{0}^{\frac 12} r_i^{2\tau_i}(\log^2 r_i^2)^{\alpha/2} \dd r_i } {\color{purple}\omega_P^n}\\ 
+            &=\sum_{|I|=p}(2\pi)^{b+t} 2^{2b+\alpha t}{\color{purple}|\sigma_I(z)|^2} \prod_{\nu=1}^b\br{ \int_{0}^{\frac 12} \log^2 r_{i_{p\nu}} \dd r_{i_{p\nu}} }\cdot \prod_{i=1}^t\br{ \int_{0}^{\frac 12} r_i^{2\tau_i}(\log r_i)^{\alpha} \dd r_i } {\color{purple}\omega_P^n}\\ 
+            &\leqslant \sum_{|I|=p}(2\pi)^{b+t} 2^{2b+\alpha t} M^2  \br{\prod_{\nu=1}^b\br{ \int_{0}^{\frac 12} \log^2 r_{i_{p\nu}} \dd r_{i_{p\nu}} }\cdot \prod_{i=1}^t\br{ \int_{0}^{\frac 12} r_i^{2\tau_i}(\log r_i)^{\alpha} \dd r_i } } \br{\frac 12}^n\\ 
+            &<+\infty \text{\quad (By using Example 2.4)}
+        \end{align*}}
+            where $|e|^2_{h^L}\in [\frac 12,1]$ over $W$ by hypothesis and $r_i=|z_i|$, $\dd\bm{r}=\dd r_{i_{p1}}\wedge \cdots \wedge\dd r_{i_{pb}}\wedge \dd r_{1}\wedge \cdots \wedge \dd r_{t}, \dd\bm{\theta}=\dd \theta_{i_{p1}}\wedge \cdots \wedge\dd \theta_{i_{pb}}\wedge \dd \theta_{1}\wedge \cdots \wedge \dd \theta_{t}$ . $(r\leq \frac 12)$ Thus $\sigma$ is $L^2$ integrable on $W_r^*$ iff $\beta_j>-\tau_j$ along $D_j$.
+
+        \item We have {\small\begin{align*}
+            \nabla \sigma(z) &=\sum_{\abs{I}=p} \nabla \br{\sigma_I(z) \zeta_{i_1}\wedge\cdots\wedge\zeta_{i_p}\otimes e}\\ 
+            &=\sum_{\abs{I}=p} \dd\sigma_I(z) \wedge\zeta_{i_1}\wedge\cdots\wedge\zeta_{i_p}\otimes e+\sum_{\abs{I}=p} \sigma_I(z) \wedge\zeta_{i_1}\wedge\cdots\wedge\zeta_{i_p}\otimes \dd e\\
+            &+ \sum_{\nu=1}^p \br{\sum_{\abs{I}=p} \sigma_I(z) \zeta_{i_1}\wedge\cdots\wedge(\dd\zeta_{i_\nu})\wedge\cdots\wedge\zeta_{i_p}\otimes e}\\ 
+            &=\sum_{\abs{I}=p} \dd\sigma_I(z) \wedge\zeta_{i_1}\wedge\cdots\wedge\zeta_{i_p}\otimes e
+        \end{align*}}
+            ,where \begin{align*}
+                \dd\sigma_I(z) &=\sum_{J=-\infty}^{\infty} \dd \br{ a_J (z_1)^{j_1} \cdots (z_t)^{j_t}}\\ 
+                &=\sum_{J=-\infty}^{\infty} \dd \br{a_J } (z_1)^{j_1} \cdots (z_t)^{j_t}+\sum_{J=-\infty}^{\infty} a_J \dd \br{(z_1)^{j_1} \cdots (z_t)^{j_t}}\\ 
+                &=\sum_{J=-\infty}^{\infty} \dd \br{\sigma_{IJ}(z_{t+1},\cdots,z_n)} (z_1)^{j_1} \cdots (z_t)^{j_t}\\
+                &+\sum_{J=-\infty}^{\infty} \sigma_{IJ}(z_{t+1},\cdots,z_n) \dd \br{(z_1)^{j_1} \cdots (z_t)^{j_t}}
+            \end{align*}
+            and 
+            \begin{align*}
+                &\sigma_{IJ}(z_{t+1},\cdots,z_n) \\
+                &=\frac{1}{(2\pi i)^{n-t}} \int_{W_{1/2}^*}\frac{\sigma_I(z_{t+1},\cdots,z_n)}{(z_{t+1}-z_{{t+1}_0})^{j_{t+1}+1} \cdots (z_n-z_{n_0})^{j_n+1}}\dd z_{t+1}\wedge\cdots\wedge\dd z_n.
+            \end{align*}
+                As $\sigma_{IJ}(z_{t+1},\cdots,z_n)$ is a holomorphic function on $\Delta_{1/2}^{n-t}$, thus it has only removable singularity, and so as to $\sigma_I(z)$, which shows that $\sigma$ and $\nabla\sigma$ have only logarihmic pole.
+                
+
+    \end{enumerate}
+\end{solution}
+
+
+\section*{Additional Material}
+\subsection*{Definition of Nef line bundle}
+\begin{definition}[][Nef line bundle (Algebraic version)][def:nef line bundle]
+    More generally, a line bundle $L$ on a proper scheme $X$ over a field $k$ is said to be nef if it has nonnegative degree on every (closed irreducible) curve in $X$ (The degree of a line bundle $L$ on a proper curve $C$ over $k$ is the degree of the divisor $(s)$ of any nonzero rational section $s$ of $L$.) A line bundle may also be called an invertible sheaf.
+\end{definition}
+
+The term ``nef'' was introduced by Miles Reid as a replacement for the older terms ``arithmetically effective'' (Zariski 1962) and ``numerically effective'', as well as for the phrase ``numerically eventually free''. The older terms were misleading, in view of the examples below.
+
+\textit{Every line bundle $L$ on a proper curve $C$ over $k$ which has a global section that is not identically zero has nonnegative degree.} As a result, a basepoint-free line bundle on a proper scheme $X$ over $k$ has nonnegative degree on every curve in $X$; that is, it is nef.  More generally, a line bundle $L$ is called semi-ample if some positive tensor power $L^{\otimes a}$ is basepoint-free. It follows that a semi-ample line bundle is nef. Semi-ample line bundles can be considered the main geometric source of nef line bundles, although the two concepts are not equivalent; see the examples below.
+
+A Cartier divisor $D$ on a proper scheme $X$ over a field is said to be nef if the associated line bundle $O(D)$ is nef on $X$. Equivalently, $D$ is nef if the intersection number $D \cdot C$ is nonnegative for every curve $C$ in $X$.
+
+To go back from line bundles to divisors, the first Chern class is the isomorphism from the Picard group of line bundles on a variety $X$ to the group of Cartier divisors modulo linear equivalence. Explicitly, the first Chern class $\mathrm{C}_1(\mathrm{~L})$ is the divisor $(s)$ of any nonzero rational section $s$ of $L$.
+
+\subsection*{The nef cone}
+
+To work with inequalities, it is convenient to consider $\mathbf{R}$-divisors, meaning finite linear combinations of Cartier divisors with real coefficients. The $\mathbf{R}$-divisors modulo numerical equivalence form a real vector space $N^1(X)$ of finite dimension, the Néron-Severi group tensored with the real numbers.  (Explicitly: two $\mathbf{R}$-divisors are said to be numerically equivalent if they have the same intersection number with all curves in $X$.) An $\mathbf{R}$-divisor is called nef if it has nonnegative degree on every curve. The nef $\mathbf{R}$-divisors form a closed convex cone in $N^1(X)$, the nef cone $\operatorname{Nef}(X)$.
+
+The cone of curves is defined to be the convex cone of linear combinations of curves with nonnegative real coefficients in the real vector space $N_1(X)$ of 1-cycles modulo numerical equivalence. The vector spaces $N^1(X)$ and $N_1(X)$ are dual to each other by the intersection pairing, and the nef cone is (by definition) the dual cone of the cone of curves.
+
+A significant problem in algebraic geometry is to analyze which line bundles are ample, since that amounts to describing the different ways a variety can be embedded into projective space. One answer is Kleiman's criterion (1966): for a projective scheme $X$ over a field, a line bundle (or $\mathbf{R}$-divisor) is ample if and only if its class in $N^1(X)$ lies in the interior of the nef cone.  (An $\mathbf{R}$-divisor is called ample if it can be written as a positive linear combination of ample Cartier divisors.) It follows from Kleiman's criterion that, for $X$ projective, every nef $\mathbf{R}$-divisor on $X$ is a limit of ample $\mathbf{R}$-divisors in $\mathrm{N}^1(\mathrm{X})$. Indeed, for $D$ nef and $A$ ample, $D+c A$ is ample for all real numbers $c>0$.
+
+\begin{definition}[][Metric definition of nef line bundles (Geometry version)][def:Metric definition of nef line bundles]
+Let $X$ be a compact complex manifold with a fixed Hermitian metric, viewed as a positive $(1,1)$-form $\omega$. Following Jean-Pierre Demailly, Thomas Peternell and Michael Schneider, \textbf{\color{purple} a holomorphic line bundle $L$ on $X$ is said to be nef if for every $\varepsilon>0$ there is a smooth Hermitian metric $h_\varepsilon$ on $L$ whose curvature satisfies $\Theta_h(L) \geqslant-\varepsilon \omega$.} When $X$ is projective over $C$, this is equivalent to the previous definition (that $L$ has nonnegative degree on all curves in $X$) which explains the more complicated definition just given. 
+\end{definition}
+    \begin{definition}[][Logarithmic pole][def:logarithmic pole]
+        For a complex function $f(z)$, if there exists a pole at $z_0$ with the following form:
+        \[\color{purple} f(z)\sim \frac{C}{(z-z_0)\log (z-z_0)},\]
+        where $\sim$ denotes that the ratio tends to $1$ as $z\to z_0$, $C$ is a nonzero complex number, and $\log(z-z_0)$ represents the logarithmic function, then $z_0$ is called a logarithmic pole of the function $f(z)$.
+
+        Note that the characteristic of a logarithmic pole is that the function becomes very large in magnitude as we approach points near $z_0$.
+    \end{definition}
+
+\chapter{\texorpdfstring{$L^2$}{}-approach to the saito vanishing theorem}
+
+\section{Terminologies}
+\vspace{-\baselineskip}
+\begin{center}
+  \begin{tblr}[long,theme = fancy,
+    caption = {Terminologies Interpretation},
+    entry = {Interpretation},
+    label = {tblr:Terminologies Interpretation 3},
+    note{a} = {For every $p,q$ and every $\alpha\in \bR^\nu$, the prolongation bundles $\mP_\alpha E^{p,q}$ satisfy the folllowing properties: \newline 1. $\mP_\alpha E^{p,q}$ is a locally free sheaf,\newline 2. By Nilpotent Orbit theorem, $E^{p,q}$ can be naturally identified to $\mP_\alpha E^{p,q}$, which is the prolongation bundle via growth of Higgs norm.},
+    % note{$\dag$} = {},
+    ]
+    {
+    colspec = {X|[dashed]X}, % 这是本来传入 tblr 的参数
+    column{1}= {.22\linewidth,c},column{2}= {.73\linewidth}, rows = {m},
+    width = \linewidth,
+    row{odd} = {},
+    % col{odd} = {gray9},
+    row{1} = {1.3em,bg=cyan2,fg=white,font=\large\bfseries\sffamily},rowhead = 1, rowfoot = 1,
+    row{even} = {brown9!60}, row{Z} = {bg=gray9,fg=red2},
+    hline{1,2} = {0pt},
+    hline{2,Y} = {dashed},
+    hline{3-X} = {dashed,cyan2},
+  }
+  \textbf{Terminologies} & \textbf{Interpretations}\\ 
+A variation of Hodge structures on $X$ with weight $k$ & A smooth vector bundle $E$ on $X$ with decomposition 
+$E=\bigoplus_{p+q=k} E^{p,q}$
+by smooth vector bundles and a flat connection $\nabla: E\to \mA_X^1(E)$ that maps each $\mA_X(E^{p,q})$ into
+$\displaystyle\mA_X^{1,0}(E^{p,q})\otimes\mA_X^{1,0}(E^{p-1,q+1})\otimes\mA_X^{0,1}(E^{p,q})\otimes\mA_X^{0,1}(E^{p+1,q-1}).$ \quad ($\nabla^2=0$)\\
+Filtration on $E$ & $F^p E=\bigoplus_{p\pr\geqslant p}E^{p\pr,k-p\pr}$ and \newline \vspace{1em}
+$\displaystyle \begin{aligned}
+  \nabla^{1,0}: \mA_X^{r,s}(E^{p,q})\to \mA_X^{r+1,s}(E^{p,q}) ;\; \theta: \mA_X^{r,s}(E^{p,q})\to \mA_X^{r+1,s}(E^{p-1,q+1})\\ 
+  \bdd: \mA_X^{r,s}(E^{p,q})\to \mA_X^{r,s+1}(E^{p,q}) ;\; \varphi: \mA_X^{r,s}(E^{p,q})\to \mA_X^{r+1,s}(E^{p+1,q-1})
+\end{aligned}$\\
+A polarization on $E$ & A sesquilinear pairing $Q: E\otimes \overline{E}\to \mA_X$ such that \newline
+  1. $Q$ is compatible with $\nabla$ in the sense that $\nabla Q(u,v)=Q(\nabla u,v)+Q(u,\nabla v)$ for all smooth sections $u,v$ of $E$,\newline
+  2. The summands $E^{p,q}$ od the decomposition are mutually orthogonal to each other,\newline
+  3.  $h(v,w)=\sum_{p+q=k}(-1)^q Q(v^{p,q},w^{p,q})$ is positive definite.
+\\
+$h_E $ or $h$ & The Hermitian metric on $E$. For all smooth sections $u,v\in E$, we have $h_E(\theta u,v)=h_E(u,\varphi v)$.\\ 
+$(E,\nabla,F^\bullet,Q)$ & A complex polarization of Hodge structures\\ 
+Some useful facts& $\bullet$ For each $E^{p,q}$, the connection $\nabla^{1,0}+\bdd$ is the metric connection with respect to $h$.\newline 
+$\bullet$ The curvature of the hermitian bundle $E^{p,q}$ is equal to $-(\theta\varphi+\varphi\theta)$.\\ 
+Poincar\'e Type metric $\omega_{\text{car\'e}}$ on $(\Delta^*)^l\times \Delta^{n-l}$&$\displaystyle \omega_{\text{car\'e}}=i\sum_{j=1}^l \frac{\dd z_j \wedge \dd \bar{z}_j}{\abs{z_j}^2 (-\log \abs{z_j}^2)^2} +\sum_{k=l+1}^n i \dd z_j \wedge \dd \bar{z}_j$ .\\ 
+Admissible coordinates $(\Omega;z_1,\cdots,z_n)$ centered at $x\in D$ &  $\bullet$ $\Omega$ is an open subset of $X$ containing $x$\newline
+$\bullet$ $(z_1,\cdots,z_n)$ is a coordinates system on $\Omega$ centered at $x$, which gives a holomorphic isomorphism of $\Omega$ with $\Delta^n=\{(\zeta_1,\ldots,\zeta_n)\in \bC^n : \abs{\zeta_j}<1\}$,\newline
+$\bullet$ $D\cap \Omega$ is given by the equation $z_1\cdots z_l=0$ for some $l\leqslant n$.\\
+Higgs field $\theta$ & If $E$ is a variation of Hodge structures on $X=\overline{X} \backslash D$, then every point $x\in D$ has an admissible coordinate $(\Omega; z_1\cdots,z_n)$ centered at $x$ such that $\displaystyle \abs{\theta}_{h,\text{car\'e}}^2\leqslant C$ holds on $\Omega^*$ for some constant $C>0$.\\ 
+Prolongation bundles via \textit{Norm Growth and the Nilpotent Orbit Theorem} & Let $(E,h)$ be a hermitian vector bundle on $X=\overline{X}\backslash D$. For each $\alpha=(\alpha_1,\cdots,\alpha_\nu)\in \bR^n$, we prolong $E$ to an $\mO_{\overline{X}}$-module $\mP_\alpha E$ as follows. Let $(U;z_1,\cdots,z_n)$ be an admissible coordinates and suppose that $D|_U$ is defined by $z_1\cdots z_l=0$, i.e. $D_i=(z_i=0),i=1,\cdots,l$. Then\newline $\displaystyle\mP_\alpha E(U)=\Biggl\{\sigma\in \Gamma(E,X\cap U): \abs{\sigma}\lesssim \prod_{j=1}^l \abs{z_j}^{-\alpha_j-\varepsilon}\text{ on $U$ for all } \varepsilon>0\Biggr\}$. \TblrNote{a}\\
+$D = \sum_{i = 1}^{\nu} D_i$ & A SNC divisor on a compact k\"ahler
+manifold $\overline{X}$;\\
+$\{ \Omega_i \}_{i \in I}$ & Finitely many admissible coordinates
+covering $D$ s.t. $| \theta |^2_{h, \omega_{\text{car\'e}}} < C$;\\
+$\mathcal{L}$ & A line bundle on $\overline{X}$ s.t. $\mathcal{L}+ D$ has
+a smooth hermitian metric $h_{\mathcal{L}+ D} = h_{\mathcal{L}} +
+\sum_1^{\nu} \alpha_j h_j$ with {\textbf{semi-positive curvature
+$\omega_{\mathcal{L}+ D} = \omega_{\mathcal{L}} + \sum_{j = 1}^{\nu}
+\alpha_j \omega_j$ and at each point $x \in X$, the curvature has at least
+$n - t$ positive eigenvalues;}} (*)\\
+$B$ & a {\textbf{nef}} (semi-definite) line bundle on
+$\overline{X}$.(Hermitian metric: $h_B$ ; Curvature w.r.t. $h_B$: $\omega_B$)\\
+  \itbf{Terminologies} & \itbf{Interpretations}\\ 
+  \end{tblr}\end{center}
+
+  \begin{theorem}[][Main theorem][thm:Main Theorem of saito]
+    Let $\mL$ be a line bundle on $\overline{X}$. Assume that $\mL + \sum_{i=1}^{\nu} \alpha_{i} D_{i}$ is $n-t$-positive $\bR$-line bundle. If $B$ is a nef line bundle on $\overline{X}$, then
+		$$ \bH^{l}\left( \overline{X} , \operatorname{gr}^{p} \br{\operatorname{DR}_{(\overline{X}, D)}(E_{\alpha}) } \otimes \mL \otimes B \right) = 0 \quad \textnormal{ for all } l > t, p \in \bZ.$$
+  \end{theorem}
+
+  \begin{remark}
+    This theorem is just the variant of \cite[Theorem 1.1 (4.1)]{huang2016logarithmic} by replacing $\Omega_X^p(\log D)$ with $\operatorname{gr}^{p} \br{\operatorname{DR}_{(\overline{X}, D)}(E_{\alpha}) }$. Here we consider the Deligne extension $E_\alpha, \alpha\in \bR^\nu$ of a variation of Hodge structures $E$ on $\overline{X}\backslash D$, whose eigenvalues of the residue along $D_i$ lie inside $[-\alpha_i,-\alpha_i+1)$. By the Nilpotent Orbit theorem via Higgs norm growth, we gain the graded pieces $E_\alpha^{p,q}$ on $\overline{X}$ from extension of $E^{p,q}$. Then one has the graded pieces of the logarithmic de Rham complex $\operatorname{gr}^{p} \br{\operatorname{DR}_{(\overline{X}, D)}(E_{\alpha}) }$ that is $\br{\Omega_{\overline{X}}^i (\log D)\otimes E^{p-r,q+r}_\alpha,\nabla}$, where $0\leq i,r\leq n$, which is the generalization of \cite[Theorem 3.1]{huang2016logarithmic}.
+  \end{remark}
+\clearpage
+\section{Dolbeault Resolution for the de Rham Complex}
+
+\subsection{The Dolbeault resolution}
+Let $X$ be a complex manifold and $E \rightarrow X$ a holomorphic vector bundle. Let $\mathcal{E}$ be the associated sheaf of free $\mathcal{O}_X$-modules. Let $\mathcal{A}^{0, q}(E)$ be the sheaf of $\mathcal{C}^{\infty}$ sections of $\Omega^{0, q} \otimes E$. In (2.5), we defined the operator
+\begin{equation*}
+\bar{\partial}: \mathcal{A}^{0, q}(E) \rightarrow \mathcal{A}^{0, q+1}(E) .
+\end{equation*}
+We know (cf. lemma 2.34 and proposition 2.36) that this operator satisfies:
+\begin{itemize}
+  \item The kernel of $\bar{\partial}: \mathcal{A}^{0,0}(E) \rightarrow \mathcal{A}^{0,1}(E)$ is equal to the sheaf of holomorphic sections of $E$, i.e. to $\mathcal{E}$ (here $\mathcal{A}^{0,0}(E)$ is the sheaf of $\mathcal{C}^{\infty}$ sections of $E$ ).
+  \item For $q>0$, a section of $\mathcal{A}^{0, q}(E)$ is $\bar{\partial}$-closed if and only if it is locally $\bar{\partial}$-exact. 
+\end{itemize}
+In other words, we have the following.
+\begin{proposition}[][][prop:4.19]
+  The complex
+\begin{equation*}
+0 \rightarrow \mathcal{A}^{0,0}(E) \stackrel{\bar{\partial}}{\rightarrow} \mathcal{A}^{0,1}(E) \cdots \stackrel{\bar{\partial}}{\rightarrow} \mathcal{A}^{0, n}(E) \rightarrow 0,
+\end{equation*}
+where $n=\operatorname{dim}_{\mathbb{C}} X$, is a resolution of the sheaf $\mathcal{E}$.
+\end{proposition}
+
+\subsection{The logarithmic Holomorphic de Rham Resolution}
+
+Let $X$ be a complex manifold, and let $D \subset X$ be a hypersurface, i.e. $D$ is locally defined by the vanishing of a holomorphic equation.
+\begin{definition}[][\sffamily Normal Crossing Divisor][def:Normal Crossing Divisor]
+  We say that $D$ is a \textit{normal crossing divisor} if locally there exist coordinates $z_1, \ldots, z_n$ on $X$ such that $D$ is defined by the equation $z_1 \cdots z_r=0$ for an integer $r$ which naturally depends on the considered open set.
+
+  In particular, a divisor $D=\sum_{i=1}^{s}D_i$ is called \textit{simple normal crossing divisor} if every irreducible component $D_i$ is smooth and all intersections are \textit{transverse}.
+\end{definition}
+
+Given a pair $(X, D)$, where $D$ is a normal crossing divisor in $X$, we will define the holomorphic de Rham complex with logarithmic singularities along $D$.
+Let $\Omega_X^k(\log D)$ be the subsheaf of the sheaf $\Omega_X^k(* D)$ of meromorphic forms on $X$, holomorphic on $X-D$, defined by the condition:
+\begin{itemize}
+  \item If $\alpha$ is a meromorphic differential form on $U$, holomorphic on $U-D \cap U$, $\alpha \in \Omega_X^k(\log D)_{\mid U}$ if $\alpha$ admits a pole of order at most 1 along (each component of) $D$, and the same holds for $d \alpha$.
+\end{itemize}
+\begin{lemma}[][][lem:]
+  Let $z_1, \ldots, z_n$ be local coordinates on an open set $U$ of $X$, in which $D \cap U$ is defined by the equation $z_1 \cdots z_r=0$. Then $\Omega_X^k(\log D)_{\mid U}$ is a sheaf of free $\mathcal{O}_U$-modules, for which $\frac{d z_{i_1}}{z_{i_1}} \wedge \cdots \wedge \frac{d z_{i_1}}{z_{i_l}} \wedge d z_{j_1} \wedge \cdots \wedge d z_{j_m}$ with $i_s \leq r, j_s>r$ and $l+m=k$ form a basis.
+\end{lemma}
+\begin{proof}
+  Let $\alpha$ be a section of $\Omega_X^k(\log D)$ on $V \subset U$. As $\alpha$ admits a pole of order at most 1 along $D$, we can write $\alpha=\frac{\beta}{z_1 \cdots z_r}$, with $\beta$ a holomorphic $k$-form on $V$. As $d \alpha$ admits a pole of order at most 1 along $D$, we find that $\sum_{i \leq r} z_1 \cdots \hat{z}_i \cdots$ $z_r d z_i \wedge \beta$ must vanish along $D$. It follows immediately that if $\beta=\sum_{I, J} \beta_{I, J} d z_I$ $\wedge d z_J$ with $I \subset\{1, \ldots, r\}, J \subset\{r+1, \ldots, n\}$, the function $\beta_{I, J}$ must vanish on the hyperplanes of equation $z_i, i \in I^{\prime}:=\{1, \ldots, r\}-I$, and thus must be divisible by $z_{I^{\prime}}=\prod_{i \in I^{\prime}} z_i$.
+\end{proof}
+
+\begin{corollary}[][][cor:8.17]
+  The sheaves $\Omega_X^k(\log D)$ are sheaves of free $\mathcal{O}_X$-modules.
+\end{corollary}
+
+Furthermore, by definition, if $\alpha$ is a section of $\Omega_X^k(\log D)$ on $V \subset X$, then $d \alpha=\partial \alpha$ is in $\Omega_X^{k+1}(\log D)$. Indeed $d \alpha$ is meromorphic, with a pole of order at most 1 along $D$, and closed. Thus, $\left(\Omega_X(\log D), \partial\right)$ is a complex of sheaves over $X$. This complex is called \textit{the logarithmic de Rham complex}.
+
+For \autoref{cor:8.17} , the complex 
+\[
+  0\rightarrow \mA_X^{0,0}(E)\stackrel{\bar{\partial}}{\rightarrow}\mA_X^{0,1}(E)\stackrel{\bar{\partial}}{\rightarrow}\cdots\stackrel{\bar{\partial}}{\rightarrow}\mA_X^{0,k}(E)\rightarrow 0
+\]
+is a resolution for $\Omega_X^k (\log D)$, where $\mA_X^{0,k}(E)=\bigoplus_{p+q=k}(\Omega_X^{k}\otimes E^{p,q}) $.
+
+\begin{lemma}[][][lem:voisin8.13]
+Via $i$, the holomorphic de Rham complex is a resolution of $\mathbb{C}$. 
+
+\end{lemma}
+  \begin{proof}
+    We want to show that the sheaves of cohomology $\mathcal{H}^k=\mathcal{H}^k\left(\Omega_X\right)$ satisfy $\mathcal{H}^0=i(\mathbb{C})$ and $\mathcal{H}^k=0$ for $k>0$.
+
+Now, we have an inclusion of the holomorphic de Rham complex into the de Rham complex
+\begin{equation*}
+\left(\Omega_X, \partial\right) \rightarrow\left(\mathcal{A}_X^k, d\right),
+\end{equation*}
+\textit{since $d$ and $\partial$ coincide on holomorphic forms. Moreover, we can see the usual de Rham complex $\mathcal{A}_X$ as the simple complex associated to the double complex}
+\begin{equation*}
+\left(\mathcal{A}^{p, q}, \partial,(-1)^p \bar{\partial}\right) .
+\end{equation*}
+\textit{Each column $\left(\mathcal{A}_X^{p, q},(-1)^p \bar{\partial}\right)$ of this double complex is exact in positive degree by proposition 2.36 and gives a resolution of $\Omega_X^p$. Thus, the de Rham complex is quasi-isomorphic to the holomorphic de Rham complex by lemma 8.5. }Like the usual de Rham complex, it is exact in positive degree, and its cohomology is given by the locally constant sheaf $\mathbb{C}$ in degree 0 , so this also holds for the holomorphic de Rham complex.
+  \end{proof}
+\section{\texorpdfstring{$L^2$}{}-existence results}
+\clearpage
+\begin{lemma}[][][lemm-Hilbert-technique]
+  Let $H_{1}, H_{2}$ and $H_{3}$ be Hilbert spaces and let $T \colon H_{1} \to H_{2}$ and $S \colon H_{2} \to H_{3}$ be closed and densely defined operators such that $ST = 0$. Let $T^*$ and $S^*$ be the adjoints of $T$ and $S$, respectively. Suppose that there exists $\varepsilon > 0$ such that
+  \newcommand{\Dom}{\operatorname{Dom}}
+  $$ \norm{T^* u}^{2} + \norm{S u}^{2} \geq \varepsilon^{2} \norm{u}^{2} \qquad \textnormal{for all } u \in \Dom(T^*) \cap \Dom(S).$$
+  Then for every $u \in H_{2}$ such that $Su =0$, there exists $v \in H_{1}$ such that $Tv = u$ and $\norm{v} \leq \varepsilon^{-1} \norm{u}$.
+\end{lemma}
+
+The first proposition is a global version of the $L^{2}$-existence result in \autoref{lemm-Hilbert-technique}.
+
+\begin{theorem}[][Global version of the $L^2$-existence result][thm:Global version of the $L^2$-existence result]
+  Let $(X, \omega)$ be a K\"ahler manifold (not necessarily compact) and let $\mL$ be a line bundle with smooth hermitian metric $h_{\mL}$. Let $E$ be a complex polarized variation of Hodge structures on $X$. Furthermore, we assume that
+		\begin{enumerate}
+			\item The geodesic distance $\delta_{\omega}$ is complete on $X$.
+			\item The norm of the Higgs field $|\theta|_{h, \omega}^{2}$ is globally bounded.
+			\item There exists $\varepsilon > 0$ such that $\langle [i\Theta_{\mL}, \Lambda_{\omega}] u, u \rangle \geq  \varepsilon \norm{u}_{\omega}^{2}$ for all smooth and compactly supported $(r, s)$-forms $u$ for $r + s = n + l$.
+		\end{enumerate}
+		Let $\bm{u}$ be a measurable section with values in $\bE^{l}$ such that $\eth \bm{u} = 0$. Provided that the right hand side of the expression below is finite, there exists a measurable section $\bm{v}$ with values in $\bE^{l-1}$ satisfying $\eth \bm{v} = \bm{u}$ and the following inequality
+		$$ \int_{X} \norm{\bm{v}}_{h, \omega}^{2} dV_{\omega} \leqslant \frac{1}{\varepsilon} \int_{X} \norm{\bm{u}}_{h, \omega}^{2} dV_{\omega}.$$
+\end{theorem}
+
+  \begin{theorem}[][Local version of the $L^2$-existence result][thm:Local version of the $L^2$-existence result]
+    Equip $\Omega^* = (\Delta^*)^{l} \times \Delta^{n-l}$ with the Poincaré metric $\omega_{\text{car\'e}}$ defined in Table \ref{tblr:Terminologies Interpretation 3}. Let $E$ be a complex polarized variation of Hodge structures on $\Omega^*$. Let $C > 0$ be a number such that $\norm{\theta}^{2}_{\omega_{\text{car\'e}}} < C$ on $\Omega^*$. Define $\eta\colon\Omega^* \to \bR$ by the following formula, for $a_{j} \in \bR$ and $b_{j} > C + 2$:
+		$$ e^{-\eta} = \prod_{j = 1}^{l} |z_{j}|^{2a_{j}} (-\log |z_{j}|^{2})^{b_{j}} \prod_{j = l+1}^{n} e^{- b_{j} |z_{j}|^{2}}.$$
+		If $u$ is an $(r, s)$-form with values in $E^{p,q}$, with measurable coefficients such that $\bdd u = 0$ and
+		$$ \int_{\Omega^*} \norm{u}_{h, \omega_{\text{car\'e}}}^{2} e^{-\eta} dV_{\text{car\'e}} < + \infty,$$
+		then there exists an $(r, s-1)$-form with values in $E^{p,q}$, with measurable coefficients, such that $u = \bdd v$ and
+		$$ \int_{\Omega^*} \norm{v}_{h, \omega_{\text{car\'e}}}^{2} e^{-\eta} dV_{\text{car\'e}} \leq \int_{\Omega^*} \norm{u}_{h, \omega_{\text{car\'e}}}^{2} e^{-\eta} dV_{\text{car\'e}}.$$
+  \end{theorem}
+
+\section{Construction of the K\"ahler metric on the Complement}
+
+\begin{enumerate}
+  \item As $\overline{X}$ is a K\"ahler manifold, let $\omega_0$ be the K\"ahler
+  metric on $\overline{X}$. (positive-definite)
+  
+  \item According to (*), we can choose hermitian metrics on $\mathcal{L}$ and
+  $\mathcal{O}_{\overline{X}} (D_j)$, and abtain the corresponding curvatures
+  ${{\omega_{\mathcal{L}}} }_{\texttt{\tmverbatim{}}}$ and $\{ \omega_j
+  \}_1^{\nu}$. Locally, for each $x \in X$, we can simulataneously diagonalize
+  $\omega_0$ and $\omega_{\mathcal{L}} + \sum_{j = 1}^{\nu} \alpha_j D_j$ such
+  that
+  \[ \omega_0 (x) = i \sum_{\mu} \zeta_{\mu} \wedge \overline{\zeta_{\mu}} 
+     \quad\And\quad \omega_{\mathcal{L}} + \sum_{j = 1}^{\nu} \alpha_j \omega_j = i
+     \sum_{\mu} \gamma_{\mu} (x) \zeta_{\mu} \wedge \overline{\zeta_{\mu}} .
+  \]
+  (diagonalization of the metric and corresponding curvature), where $0 \leqslant \gamma_1 (x)
+  \leqslant \cdots \leqslant \gamma_n (x)$ and $\gamma_t (x) > 0$ since there
+  at least $n - t$ positive eigenvalues. We can let $m = \min_{x \in
+  \overline{X}} \gamma_t (x) > 0$.
+  
+  \item\label{Demailly} (Constructing the properiate K\"ahler metric $\omega$ from $\omega_0$.
+  How and Why?) {\color{purple}From the proof of [Demailly,ChapterVII,4]: ``Let us consider
+  the new Kahler metric on $X$
+  \[ \omega_{\varepsilon} = \varepsilon \omega + i \Theta (E), \varepsilon >
+     0, \]
+  and let $i \Theta (E) = i \sum \gamma_j \zeta_j \wedge \overline{\zeta_j}$
+  be a diagonalization of $i \Theta (E)$ with respect to $\omega$ and with
+  $\gamma_1 \leqslant \cdots \leqslant \gamma_n .$ Then $\omega_{\varepsilon}
+  = i \sum (\varepsilon + \gamma_j) \zeta_j \wedge \overline{\zeta_j}$. The
+  eigenvalues of $i \Theta (E)$ with respect to $\omega_{\varepsilon}$ are
+  given by
+  \[ \gamma_{j, \varepsilon} = \frac{\gamma_j}{(\varepsilon + \gamma_j)}, 1
+     \leqslant j \leqslant n. \]
+  ''},we know that we can construct an analogous K\"ahler metric such that it is
+  complete for each admissible coordinate $\Omega_i, i \in I$.
+  
+  \item \begin{fancybox} 
+  Let $\sigma_j \in H^0 \left( \overline{X}, \mathcal{O}_{\overline{X}}
+  (D_j) \right) = \Gamma \left( \overline{X}, \mathcal{O}_{\overline{X}} (D_j)
+  \right)$ that vanishes along $D_j$.
+  \begin{align*}
+    \sigma_j(x)=\begin{cases}
+      0,& x \in D_j ; \\\neq 0,& x \in \overline{X}\backslash D_j.
+    \end{cases}
+  \end{align*}
+  And take $a_j$ to be sufficiently close to $\alpha_j$ so that
+  $\mathcal{P}_{\alpha} (E^{p, q}) = \mathcal{P}_a (E^{p, q})$. We can rescale
+  $\sigma_j$ so that $| \sigma_j |^2_{h_j} \leqslant \exp \left( \frac{- 2 (C
+  + 3)}{\delta \varepsilon_2} \right)$. Let
+  \[ \tau_j : X \rightarrow \mathbb{R}, \hspace{1.0em} \tau_j (x) = - \log |
+     \sigma_j |^2_{h_j, x} \]
+  and let
+  \[ \xi = \sum_{j = 1}^{\nu} a_j \tau_j - b_j \log \tau_j . \]
+  So define the new K\"ahler metric $\omega$ on $X$ as
+  \[ \omega = \varepsilon \omega_0 + \omega_{\mathcal{L}} + \omega_B + i
+     \partial \overline{\partial} \xi . \]
+     $\omega$	is positive definite and  then $\omega$	is a K\"ahler form on $X$	. 
+\end{fancybox}
+  \item (Prove that the metric $\omega$	and $\omega_{\text{car\'e}}$	are mutually bounded for each admisiible coordinate $\Omega_i$.) \shadowtext{\color{purple}\circled{1}Clearly, this implies that $(X,\omega)$	is complete}. Fix an admisiible coordinate $ (\Omega;z_{1},\cdots,z_n) $ and assume that $D\cap\Omega$	is defined by the equation $z_1\cdots z_l=0$. For convenience, suppose that $(z_i=0)=D_i\cap\Omega$. Note that $\tau_i=-\log |z_i|^2+g_i $ for some smooth function $g_i$ on $\Omega$. Then 
+  \begin{align*}
+    \frac{b_j}{\tau^2_j}\partial\tau_j\wedge\overline{\partial}\tau_j=\frac{b_j}{(-\log |z_j|^2+g)^2}\br{\frac{\dd z_j}{z_j}-\partial g_j}\wedge\br{\frac{\dd \overline{z}_j}{\overline{z}_j}-\overline{\partial}g_j}.
+  \end{align*}
+    Since the first four terms of $\omega$ are smooth on $\overline{X}$, we see that \shadowtext{\color{purple}\circled{2}$\omega$ and $\omega_{\text{car\'e}}$ are mutually}\newline\shadowtext{\color{purple}bounded on $\Omega$.} \shadowtext{\color{purple}\circled{3}This also shows that $|\theta|^2_{h_j,\omega}$ is globally bounded (Theorem 2.5\footnotemark)}.
+\end{enumerate}
+\footnotetext{Which is related to the existence of  admissible coordinates centered at each point $x\in D$.}
+
+
+\subsection{Poincar\'e type
+K\"ahler metric on complement \texorpdfstring{$X\backslash D$}{}}
+
+Namely\cite[Introduction,Definition 2]{auvray2013note}, fixing a simple normal crossing divisor $D$ in a compact K\"ahler manifold $\left(X, J, \omega_X\right)$, we recall the definition Poincaré type Kähler metrics on $X \backslash D$, following [TY87, Wu08, Auv11]:
+
+\begin{definition}[][Poincar\'e type
+  K\"ahler metric on complement][def:Poincar\'e type
+  K\"ahler metric on complement]
+A smooth positive $(1,1)$-form $\omega$ on $X \backslash D$ is called a Poincaré type Kähler metric on $X \backslash D$ if: on every open subset $U$ of coordinates $\left(z^1, \ldots, z^m\right)$ in $X$, in which $D$ is given by $\left\{z^1 \cdots z^j=0\right\}$, \shadowtext{\color{purple}$\omega$ is mutually bounded with \circled{2}}
+\begin{equation*}
+  ({\color{purple}\omega_{\text{car\'e}}})\;\omega_U^{\mathrm{model}}:=i\sum_{k=1}^{j}\frac{ \dd z^k \wedge \dd \overline{z^k}}{\left|z^k\right|^2 \log ^2\left(\left|z^k\right|^2\right)}+i\sum_{l=j+1}^{m} \dd z^{l} \wedge \dd \overline{z^{l}}   
+\end{equation*}
+and has bounded derivatives at any order for this model metric.
+
+We say moreover that $\omega$ is of class $\left[\omega_X\right]$ if $\omega=\omega_X+\dd \dd^c \varphi$ for some $\varphi$ smooth on $X \backslash D$, with $\varphi=\mathcal{O}\left(\sum_{\ell=1}^j \log \left[-\log \left(\left|z^{\ell}\right|^2\right)\right]\right)$ in the above coordinates and $d \varphi$ bounded at any order for $\omega_U^{\mathrm{mdl}}$. We then set: $\omega \in \mathscr{M}_{\left[\omega_X\right]}^D$.
+\end{definition}
+
+\shadowtext{\color{purple}\circled{1} Metrics of $\mathscr{M}_{\left[\omega_X\right]}^D$ are complete}\vspace{.3em}, with finite volume (equal to that of $X$ for smooth Kähler metrics of class $\left[\omega_X\right]$ ); they also share a common mean scalar curvature, which differs from that attached to smooth Kähler metrics of class $\left[\omega_X\right]$.
+
+\subsection{Check the positivity of the commutator operator \texorpdfstring{$[i\Theta_{\mL\otimes B},\Lambda_\omega]$}{}}
+
+The key idea is to \emph{twist the metric of $\mL$ by an extra factor of $e^\xi$.} This gives us a smooth hermitian metric $h_{\mL}\pr =h_{\mL}e^\xi$ on $\mL|_X$. Denote it by $\Theta\pr_{\mL\otimes B}$. Then
+\[
+  i\Theta\pr_{\mL\otimes B}=\omega_\mL +\omega_B+i\bd\bdd\xi.
+\]
+simulataneously diagonalization $\omega_0$ and  $i\Theta\pr_{\mL\otimes B}$ at $x\in X$ and express 
+\[
+  \omega_0=i\sum_{\mu} \zeta_\mu\wedge\overline{\zeta_\mu}\quad\And\quad i\Theta\pr_{\mL\otimes B}=i\sum_{\mu} \gamma_\mu\pr(x)\zeta_\mu\wedge\overline{\zeta_\mu},
+\]
+and $\gamma_1\pr\leqslant\cdots \leqslant \gamma_n\pr $.
+
+Using the result of \ref{Demailly} of \itbf{The sketch of the proof} and $\omega=\varepsilon\omega_0+i\Theta\pr_{\mL\otimes B}$, if we diagonalize $i\Theta\pr_{\mL\otimes B}$ with respect to $\omega$ and denote the eigenvalues as $\gamma_{\mu,\varepsilon}\pr(x)$, then we have \[\gamma_{\mu,\varepsilon}\pr=\frac{\gamma_\mu\pr}{\gamma_\mu\pr+\varepsilon}.\]
+
+As 
+\begin{align*}
+  1\geqslant \gamma_{\mu,\varepsilon}\pr(x)\geqslant \frac{\varepsilon_1-\varepsilon}{\varepsilon_1} \text{\quad for } 1\leq \mu\leq t-1,\\ 
+  1\geqslant \gamma_{\mu,\varepsilon}\pr(x)\geqslant \frac{m+\varepsilon_1-\varepsilon}{m+\varepsilon_1} \text{\quad for } t\leq \mu\leq n.
+\end{align*}
+  ,then we abtain that \cite{kim20232}
+  \begin{align*}
+    \langle [i\Theta_{\mL\otimes B},\Lambda_\omega]u,u\rangle_x &\stackrel{\text{lemma2.12}}{\geqslant } \br{\gamma_{1,\varepsilon}\pr(x)+\cdots+\gamma_{s,\varepsilon}\pr(x)-\gamma_{r+1,\varepsilon}\pr(x)-\cdots-\gamma_{n,\varepsilon}\pr(x)}|u|^2_{\omega,x}\\
+    &\geqslant \br{\br{\frac{\varepsilon_1-\varepsilon}{\varepsilon_1}}\cdot t+\br{\frac{m+\varepsilon_1-\varepsilon}{m+\varepsilon_1}}\cdot (s-t)-(n-r)}|u|^2_{\omega,x}\\ 
+    &\geqslant \frac{1}{10}|u|^2_{\omega,x}.
+  \end{align*}
+    
+\section{\texorpdfstring{$L^2$}{}--Dolbeault resolution}
+
+\subsection{\texorpdfstring{$L^2$}{}--Dolbeault resolution of the de Rham complex when there is a variation of Hodge structures on the complement of an SNC devisor}
+
+\begin{fancybox}
+  \begin{center}
+        \shadowtext{\color{purple}TARGET}
+  \end{center}
+Construct a K\"ahler metric $\omega$ on $X$ s.t. the following conditions
+are satisfied:
+\begin{enumerate}
+  \item $(X, \omega)$ is \textbf{complete};
+  
+  \item $| \theta |^2_{h, \omega_{\tmop{care}}} $ is \textbf{globally bounded};
+  
+  \item $[i \Theta_{\mathcal{L} \otimes B}, \Lambda_{\omega}]$ is a \textbf{positive
+  definite} $(r, s)$-form;
+  
+  \item The local $\bar{\partial}$-equation in admissible coordinate with
+  appropriate twist is \textbf{solvable}.
+\end{enumerate}
+\end{fancybox}
+
+\begin{proposition}[][][prop:L2dolbeault-resolution1]
+  The complex \begin{align*}
+    0\to\mH^2_{(r)}(E^{p,q}\otimes\mL\otimes B)\to L^2_{(r,\bullet)}(E^{p,q}\otimes\mL\otimes B)
+  \end{align*}
+    is a resolution of $\mH^2_{(r)}(E^{p,q}\otimes\mL\otimes B)$ by fine sheaves.
+\end{proposition}
+  \begin{proof}
+    By the short exact sequence \begin{align*}
+      \mH^2_{(r)}(E^{p,q}\otimes\mL\otimes B) \stackrel{i}{\rightarrow} L^2_{(r,0)}(E^{p,q}\otimes\mL\otimes B)\stackrel{\bdd}{\rightarrow} L^2_{(r,1)}(E^{p,q}\otimes\mL\otimes B)
+    \end{align*} and $i$ being injective with $\operatorname{Im}(i)=\ker \bdd$, we know that the complex is exact at $\mH^2_{(r)}(E^{p,q}\otimes\mL\otimes B)$. (The $\bdd$--equation is regular.) Also, it is clear that the complex is exact on $X$. \emph{Thus, the left task is to prove the exactness on the boundary $\overline{X}$, which is equivalent to solve a $\bdd$-equation on a doamin of type $\Omega^*=(\Delta^*)^l\times \Delta^{n-l}$.}
+      
+    After construction of an admissible coodinate $(\Omega;z_1,\cdots,z_n)$ ($D=(z_1\cdots z_l=0)$) and assuming that $\mL\otimes B$ is locally trivial on $\Omega$ and is trivialized by a non-vanishing section $\sigma$, let $u\otimes \sigma\in L^2_{(r,\bullet)}(E^{p,q}\otimes\mL\otimes B)(\Omega)$ such that $\bdd u=0$ with 
+    \[
+      \int_{\Omega^*}\| u\|^2_{h_E,\omega_{\text{car\'e}}}e^{-\eta}\dd V_{\omega_{\text{car\'e}}}<+\infty,
+    \] 
+    then by proposition 3.5, the $\bdd$-equation is solvable.
+  \end{proof}
+
+  \begin{proposition}[][][prop:L2dolbeault-resolution2]
+    The sheaves $\mH^2_{(r)}(E^{p,q}\otimes\mL\otimes B)$ in terms of prolongation bundles are \[\mH^2_{(r)}(E^{p,q}\otimes\mL\otimes B)=\Omega^r_{\overline{X}}(\log D)\otimes \mP_\alpha E^{p,q}\otimes\mL\otimes B.\]
+  \end{proposition}
+  \begin{proof}
+    
+  \end{proof}
+
+  \section{Proof of the Main theorem}
+
+  \textbf{1.} As the global bound for the Higgs field $\theta$ in Theorem 2.5 give a morphism on sheaves $L^2_{(r,s)}(E^{p,q}\otimes \mL\otimes B)\stackrel{\theta}{\rightarrow}L^2_{(r+1,s)}(E^{p,q}\otimes \mL\otimes B)$, thus analogously to Section 3.1, we can construct a double complex:
+
+  {\small
+    \[ \newcommand{\lind}[1]{_{(#1)}}
+      \begin{tikzcd}
+      L\lind{0,n}^{2} (E^{p,q} \otimes \mL\otimes B) \ar[r, "\theta"]  & L\lind{1,n}^{2} (E^{p-1,q+1} \otimes \mL\otimes B) \ar[r, "\theta"] & \cdots \ar[r, "\theta"]  & L\lind{n,n}^{2} (E^{p-n,q+n} \otimes \mL\otimes B)\\
+      \vdots \ar[r, "\theta"] \ar[u, "\bdd"] & \vdots \ar[r, "\theta"]\ar[u, "\bdd"] & \vdots \ar[r, "\theta"] \ar[u, "\bdd"] & \vdots \ar[u, "\bdd"] &\\
+      L\lind{0,1}^{2} (E^{p,q} \otimes \mL\otimes B) \ar[r, "\theta"] \ar[u, "\bdd"] & L\lind{1,1}^{2} (E^{p-1,q+1} \otimes \mL\otimes B) \ar[r, "\theta"] \ar[u, "\bdd"] & \cdots \ar[r, "\theta"] \ar[u, "\bdd"] & L\lind{1,n}^{2} (E^{p-n,q+n} \otimes \mL\otimes B) \ar[u, "\bdd"] \\
+      L\lind{0,0}^{2} (E^{p,q} \otimes \mL\otimes B) \ar[r, "\theta"] \ar[u, "\bdd"] & L\lind{1,0}^{2} (E^{p-1,q+1} \otimes \mL\otimes B) \ar[r, "\theta"] \ar[u, "\bdd"] & \cdots \ar[r, "\theta"] \ar[u, "\bdd"] & L\lind{n,0}^{2} (E^{p-n,q+n} \otimes \mL\otimes B) \ar[u, "\bdd"]. 
+    \end{tikzcd}\]}
+
+  \textbf{2.} By Proposition 3.8 and 3.9, the $r$-th column is a resolution of $\Omega_{\overline{X}}^{r}(\log D) \otimes E_{\alpha}^{p-r,q+r} \otimes \mL \otimes B$ by fine sheaves. Hence, we can compute the hypercohomology of
+  $$ \Big[ E_{\alpha}^{p,q} \to \Omega_{\overline{X}}^{1}(\log D) \otimes E_{\alpha}^{p-1, q+1} \to \cdots \to \Omega_{\overline{X}}^{n}(\log D) \otimes E_{\alpha}^{p-n, q+n} \Big] [n] \otimes \mL \otimes B$$
+  by taking the global section of the total complex above and compute the cohomology. Let $(\mathbb{E}, \eth)$ be the total complex of the double complex above. We have a concrete description of the global section of the sheaves $L_{(r,s)}^{2}(E^{p-r, q+r} \otimes \mL \otimes B)$. The global sections $u$ are $(r, s)$-forms on $X$ with values in $E^{p-r, q+r} \otimes \mL \otimes B$ with measurable coefficients such that
+  $$ \int_{X} \norm{u}_{h', \omega}^{2} dV_{\omega} < + \infty \qquad \text{and} \qquad \int_{X} \norm{\bdd u}_{h' , \omega}^{2} dV_{\omega} < + \infty. $$
+  By Proposition 3.6 and 3.3, we have an a priori inequality (\shadowtext{\color{purple}\itbf {The condition \circled{3} of prop 3.4}})
+  $$ \norm{\eth \mathbf{u}}^{2} + \norm{\eth^*\mathbf{u}}^{2} \geq 0.1 \norm{\mathbf{u}}^{2} \quad $$
+  for $\mathbf{u} \in \mathbb{E}^{l}$ when $l > 0$. \itbf{\color{purple}Since $(X,\omega)$ is complete and $|\theta|_{h_{E} , \omega}^{2}$ is globally bounded on $X$}, the vanishing of cohomology immediately follows from \shadowtext{\color{purple}\itbf{Proposition 3.4}}.
+  
+
+
+  \chapter{Logarithimic Vanishing Theorems for Effective \texorpdfstring{$q$}{}-Ample Divisors}
+  \section{Introduction}
+
+\begin{definition}[][$q$-ample line bundle][def:q-ample]
+  A line bundle $L$ over a compact complex manifold $X$ is called $q$-ample if for any \textit{coherent sheaf $\mF$} on $X$ there exists a positive integer $m_0=m_0(X,L,\mF)>0$ such that 
+  \[H^i(X,\mF\otimes L^m)=0, \text{ for } i>q, m\geqslant m_0.\]
+\end{definition}
+  \begin{remark}
+    A divisor $D$ is $q$-ample if $\mO_X(D)$ is a $q$-ample line bundle.  
+  \end{remark}
+Note that for $\Delta=\sum_{i=1}^s \alpha_i D_i\in \operatorname{Div}(X) \otimes_{\bZ} \bR, \alpha_i\in \bR$ to be a $q$-positive ($q$-ample) $\bR$-divisor, $\Delta$ is the support of some $q$-ample divisor $D\pr$, i.e. $\operatorname{Supp}(D\pr)=\Delta$.
+
+
+\begin{theorem}[][Main theorem][thm:Main thm]
+  Let
+  \begin{center}
+    \begin{tblr}{hline{1,Z} = {0.5pt,gray}, hline{2-Y}={0.5pt,dotted}, row{odd} = {},row{even} = {brown9!60},rows={m},  column{1}= {.2\linewidth,c},column{2}= {.65\linewidth},
+width=0.9\textwidth+2pt, colspec={X|[dotted]X},
+}
+        $X$ & A compact K\"ahler manifold \\ 
+        $D$ & A small normal crossing divisor which is the support of some effective $q$-ample divisor $D\pr$, i.e. $\operatorname{Supp}(D\pr)=D$.\\ 
+    \end{tblr}
+\end{center}
+  Then we have 
+  $$
+  H^i (X,\Omega_X^j (\log D))=0, \text{ for any } i+j> n+q.
+  $$
+\end{theorem}
+
+\begin{theorem}[][generalization of Main theorem][thm:gerneralization of Main thm]
+With the same notation above, for any nef line bundle $L$, we have
+  $$
+  H^i (X,\Omega_X^j (\log D)\otimes L)=0, \text{ for any } i+j> n+q+1.
+  $$
+\end{theorem}
+\clearpage
+\begin{fancybox}
+If $H(t,x)=tx$ is the homotopy between the identity map $\Omega\to\Omega$ and the constant map $\Omega\to \{0\}$. Then we have the following computation:
+\begin{align*}
+  &\begin{cases}
+      F(x)=H(0,x)\equiv 0\\ 
+      G(x)=H(1,x)\equiv \operatorname{Id}_\Omega.
+  \end{cases}\\
+&\quad\text{and }\\ 
+&\begin{cases}
+  F^*(v)=\begin{cases}
+    v(0)\in H^0_{\textrm{DR}}(\Omega,\bR)=\bR;\\ 
+    0\in H^p_{\textrm{DR}}(\Omega,\bR)=\{0\}. (\text{For } \dd^p (v(0))\equiv 0 \text{ for any }p\geq 1)
+  \end{cases},\\ 
+  G^*(v)=(\operatorname{Id})^*(v)=v.
+\end{cases}
+\end{align*}
+\end{fancybox}
+
+
+\chapter{Notes for some new topics}
+
+\section{Perverse Sheaf and Intersection Cohomology}
+
+\subsection{Poincar\'e Duality}
+
+\begin{definition}[][cap product]
+    On an $n$-manifold $X$, the \highlight{cap product} is 
+    \[C^i(X)\times C_n(X)\xlongrightarrow[]{\frown} C_{n-i}(X),\]
+    where $C_i$ and $C^i$ denote the (simplicial/singular) $i$-(co)chains on $X$ with $\mathbb{Z}_{\text {- }}$ coefficients.
+\end{definition}
+
+The cap product is defined as follows: if $a \in C^{n-i}(X), b \in C^i(X)$ and $\sigma \in C_n(X)$, then
+$$
+a(b \frown \sigma)=(a \smile b)(\sigma).
+$$
+
+The cap product is compatible with the boundary maps, thus it descends to a map
+$$
+H^i(X ; \mathbb{Z}) \times H_n(X ; \mathbb{Z}) \xrightarrow{\frown} H_{n-i}(X ; \mathbb{Z}).
+$$
+
+
+The following statement lies at the heart of algebraic and geometric topology. For a modern proof see, e.g.,  \cite[Section 3.3]{hatcher2002algebraic}:
+\begin{theorem}[][Poincaré Duality][thm:pd]
+    Let $X$ be a closed, connected, oriented topological n-manifold with fundamental class $[X]$. Then capping with $[X]$ gives an isomorphism
+$$
+H^i(X ; \mathbb{Z}) \xrightarrow{\cong} H_{n-i}(X ; \mathbb{Z})
+$$
+for all integers $i$.
+\end{theorem}
+    As a consequence of Theorem \ref{thm:pd} one gets a non-degenerate pairing
+$$
+H_i(X, \mathbb{C}) \otimes H_{n-i}(X ; \mathbb{C}) \longrightarrow \mathbb{C}.
+$$
+In particular, the Betti numbers (It is known as the rank of the corresponding homology groups.) of $X$ in complementary degrees coincide, i.e.,
+$$
+\operatorname{dim}_{\mathbb{C}} H_i(X ; \mathbb{C})=\operatorname{dim}_{\mathbb{C}} H_{n-i}(X ; \mathbb{C}).
+$$
+\textit{Note that the existence of Hodge structures on the cohomology of complex projective manifolds leads to an important consequence that the odd Betti numbers of a complex projective manifold are even. }
+
+
+\subsection{Understanding Why the Odd Betti Numbers of a Complex Projective Manifold are Even?}
+
+For a complex projective manifold, the odd Betti numbers are always even. This can be understood through a combination of complex geometry and topological properties. Let’s break this down in detail:
+
+\begin{enumerate}
+\item \textbf{Definition of Betti Numbers:}
+Betti numbers, denoted as $b_k$, quantify the topology of a manifold by representing the rank of the $k$-th homology group $H_k(M, \mathbb{Z})$ (or the $k$-th cohomology group $H^k(X;\bZ)$). They indicate the number of $k$-dimensional "holes" or independent cycles in the manifold. For instance, $b_0$ represents the number of connected components, $b_1$ represents the number of independent loops, and so on.
+
+\item \textbf{Complex Projective Manifolds:}
+A complex projective manifold is a complex manifold that can be embedded into complex projective space. These manifolds have a rich structure and are inherently Kähler manifolds, meaning they have a compatible triple structure of a complex structure, a symplectic structure, and a Riemannian metric.
+
+\item \textbf{Hodge Decomposition:}
+For a Kähler manifold $M$, the complex de Rham cohomology group $H^k(M, \mathbb{C})$ can be decomposed into a direct sum of Hodge components:
+
+$$
+H^k(M, \mathbb{C}) = \bigoplus_{p+q=k} H^{p,q}(M)
+$$
+
+Here, $H^{p,q}(M)$ denotes the space of harmonic forms of type $(p, q)$, and $h^{p,q} = \dim H^{p,q}(M)$ are the Hodge numbers.
+
+\item \textbf{Relation Between Betti Numbers and Hodge Numbers:}
+The $k$-th Betti number $b_k$ is related to the Hodge numbers $h^{p,q}$ by the following formula:
+
+$$
+b_k = \sum_{p+q=k} h^{p,q}
+$$
+
+\item \textbf{Symmetry of Hodge Numbers:}
+For Kähler manifolds, there is a fundamental symmetry in the Hodge numbers:
+
+$$
+h^{p,q} = h^{q,p}
+$$
+
+This symmetry implies that the Hodge components $H^{p,q}$ and $H^{q,p}$ appear in pairs.
+
+\item \textbf{Implication for Odd Betti Numbers:}
+Due to the symmetry $h^{p,q} = h^{q,p}$, the sum of Hodge numbers for odd $k$ (such as $b_1$, $b_3$, etc.) will always be an even number because each non-zero $h^{p,q}$ has a matching $h^{q,p}$. Thus, the odd Betti numbers must be even.
+
+\item \textbf{Example:}
+Consider the complex projective space $\mathbb{CP}^n$. The Hodge numbers are as follows:
+\begin{itemize}
+    \item $h^{0,0} = 1$
+    \item $h^{1,1} = 1$
+    \item $h^{2,2} = 1$ (if $n \geq 2$)
+    \item All other $h^{p,q} = 0$.
+\end{itemize}
+
+The Betti numbers calculated are:
+\begin{itemize}
+    \item $b_0 = h^{0,0} = 1$
+    \item $b_2 = h^{1,1} = 1$
+    \item $b_4 = h^{2,2} = 1$ (for $n \geq 2$)
+    \item The odd Betti numbers $b_1 = b_3 = 0$.
+\end{itemize}
+
+This example shows that odd Betti numbers are zero (which is even) for $\mathbb{CP}^n$.
+
+\item \textbf{Conclusion:}
+In summary, the reason the odd Betti numbers of a complex projective manifold are even is due to the Hodge decomposition and the inherent symmetry of Hodge numbers on Kähler manifolds.
+\end{enumerate}
+% ---------------------------------------------------------------------------- %
+
+\begin{remark}
+    \upshape
+    In the diagram, $\delta$ is labeled as a \textbf{meridian}, and $\eta$ is labeled as a \textbf{longitude}. The reason why the homology class of $\delta$ vanishes can be explained from the perspective of algebraic topology.
+
+1. \textbf{Meridian as a Boundary}:
+   From the diagram, the meridian $\delta$ appears to be the boundary of a region. In homology theory, any curve that forms the boundary of a region has a \textbf{trivial homology class} (i.e., it vanishes). This is because a boundary does not represent a closed, independent cycle—it is merely the edge of a higher-dimensional region. In other words, since $\delta$ bounds some region within $X$, it is a boundary, and hence its homology class must vanish.
+
+2. \textbf{Boundaries and Homology in Algebraic Topology}:
+   In homology theory, the boundary of a higher-dimensional object always has a zero homology class. For example, in the case of a surface, if a loop (like the meridian $\delta$) is the boundary of a region, its homology class is trivial because it does not represent a free, closed cycle but rather a boundary.
+
+3. \textbf{Betti Number and Hodge Decomposition}:
+   The passage also mentions that $\delta$'s homology class vanishes, and this is related to the fact that the first Betti number $b_1$ of $X$ is odd. According to Hodge theory, if the first Betti number is odd, a complete Hodge decomposition cannot exist. This implies that certain homology classes in $H^1(X;\mathbb{C})$ cannot be fully decomposed into pure $(1,0)$ and $(0,1)$ components. This is connected to the fact that $\delta$'s homology class vanishes in the homology of $X$.
+
+\textbf{Summary:}\begin{enumerate}
+\item The meridian $\delta$ is the boundary of some region, and by the fundamental property of homology, \textbf{any boundary has a trivial homology class}.
+\item This follows from basic algebraic topology, where boundaries do not contribute to non-trivial homology classes.
+\item Additionally, the fact that $X$ has an odd first Betti number implies that a full Hodge decomposition is not possible for $H^1(X;\mathbb{C})$, which further supports why the homology class of $\delta$ is trivial.
+\end{enumerate}
+\end{remark}
+\subsection{Lefschetz Hyperplane Section Theorem}
+
+A map $f: X\to Y$ is called \textbf{homotopy equivalence} if  there is a map $g: Y\to X$ such that $fg\cong \bI$ and $gf\cong \bI$. It is an equivalent relation and $X$ and $Y$ are homotopy equivalent if they are the deformation retracts of the third space $Z$ containing them. In general, we can take $Z$ as the mapping Cylinder $M_f$ of any homotopy equivalence $f: X\to Y$. As we know that $M_f$ deformation retracts to $Y$, it suffices to prove that $M_f$ also deformation retracts to its other end $X$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\printbibliography[heading=bibintoc,title={Bibliography}]\printindex\thispagestyle{empty}
+\bottomimage{hummingbird-8013214}
+\ISBNcode{\EANisbn[ISBN=978-80-7340-097-2]} %
+\summary{A Research Notes Series For papers.}
+\makebottomcover
+\end{document} 

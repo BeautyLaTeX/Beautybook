@@ -1,0 +1,14 @@
+\contentsline {part}{第一部分\hspace {1em}笔记}{1}{part.1}%
+\contentsline {chapter}{\numberline {第一章\hspace {.3em}}笔记归档}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}杂记}{3}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}一些重要概念的理解}{3}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Neat analytic property}{3}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Normal Bundle and Its Duality}{5}{subsection.1.1.3}%
+\contentsline {subsection}{\numberline {1.1.4}澄清一些基础概念，了解它们的区别，并做一定的分类归纳整理}{6}{subsection.1.1.4}%
+\contentsline {subsection}{\numberline {1.1.5}Jet Bundle and Jet Sheaf}{9}{subsection.1.1.5}%
+\contentsline {part}{第二部分\hspace {1em}$L^2$-extension theorem for $k$-jets }{13}{part.2}%
+\contentsline {chapter}{\numberline {第二章\hspace {.3em}}$L^2$-extension theorem for $k$-jets }{15}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Introduction}{15}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Weierstrass Preparation Theorem and Weierstrass Division Theorem}{17}{section.2.2}%
+\contentsline {section}{\numberline {2.3}复流形}{21}{section.2.3}%
+\contentsfinish 

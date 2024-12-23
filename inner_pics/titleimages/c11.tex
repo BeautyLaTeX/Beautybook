@@ -1,0 +1,44 @@
+% Rotated polygons
+% Author: Dr. rer. nat. Ismael Gutierrez Garcia
+\documentclass{article}
+\usepackage[svgnames,usenames,dvipsnames,pdftex]{xcolor}
+\usepackage{tikz}
+%%%<
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+%%%>
+\begin{comment}
+:Title: Rotated polygons
+:Tags: Foreach;Geometry;Decorative drawings
+:Author: Dr. rer. nat. Ismael Gutierrez Garcia
+:Slug: rotated-polygons
+
+Extending the rotated triangle example
+http://www.texample.net/tikz/examples/rotated-triangle/
+by Alain Matthes, here are rotated hexagon, pentagon and squares.
+\end{comment}
+\usepackage{ifthen}
+\begin{document}
+\newcounter{density}
+\setcounter{density}{20}
+\begin{tikzpicture}
+    \def\couleur{DarkCyan}
+    \path[coordinate] (0,0)  coordinate(A)
+                ++( 90:12cm) coordinate(B)
+                ++(0:12cm) coordinate(C)
+                ++(-90:12cm) coordinate(D);
+    \draw[fill=\couleur!\thedensity] (A) -- (B) -- (C) --(D) -- cycle;
+    \foreach \x in {1,...,80}{%
+        \pgfmathsetcounter{density}{\thedensity+5}
+        \setcounter{density}{\thedensity}
+        \path[coordinate] coordinate(X) at (A){};
+        \path[coordinate] (A) -- (B) coordinate[pos=.10](A)
+                            -- (C) coordinate[pos=.10](B)
+                            -- (D) coordinate[pos=.10](C)
+                            -- (X) coordinate[pos=.10](D);
+        \draw[fill=\couleur!\thedensity] (A)--(B)--(C)-- (D) -- cycle;
+    }
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,9 @@
+[0] Config.pm:308> INFO - This is Biber 2.20
+[0] Config.pm:311> INFO - Logfile is 'build/Notes-for-Demailly-Book.blg'
+[107] biber-MSWIN64:340> INFO - === 
+[141] Biber.pm:420> INFO - Reading 'build/Notes-for-Demailly-Book.bcf'
+[253] Biber.pm:994> INFO - Found 0 citekeys in bib section 0
+[267] bbl.pm:676> INFO - Writing 'build/Notes-for-Demailly-Book.bbl' with encoding 'UTF-8'
+[267] bbl.pm:779> INFO - Output to build/Notes-for-Demailly-Book.bbl
+[267] Biber.pm:131> WARN - The file 'build/Notes-for-Demailly-Book.bcf' does not contain any citations!
+[267] Biber.pm:133> INFO - WARNINGS: 1

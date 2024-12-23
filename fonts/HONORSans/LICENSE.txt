@@ -1,0 +1,31 @@
+
+HONOR Sans Software (Copyright 2022 Honor Device Co., Ltd.) is licensed under HONOR Sans Copyright License Agreement.
+---------------------------------------------------------------------------------------------------------------------------------
+HONOR Sans Copyright License Agreement
+
+THIS HONOR SANS COPYRIGHT LICENSE AGREEMENT ("AGREEMENT") IS A LEGAL AGREEMENT BETWEEN YOU (¡°LICENSEE¡±) AND HONOR DEVICE CO., LTD. ("LICENSOR") FOR THE USE OF THE COPYRIGHT OF HONOR SANS. BY DOWNLOADING, COPYING OR OTHERWISE USING HONOR SANS YOU INDICATE THAT YOU AGREE TO BE BOUND BY ALL OF THE TERMS OF THIS AGREEMENT. IF YOU DO NOT AGREE TO THE TERMS OF THIS AGREEMENT, YOU MAY NOT DOWNLOAD, COPY OR OTHERWISE USE THE HONOR SANS, AND YOU SHALL PROMPTLY DESTROY AND DELETE ALL THE HONOR SANS.
+
+1.Definition  
+"HONOR Sans " shall mean the collection of fonts software components provided by Licensor under this Agreement and clearly marked as "HONOR Sans".
+¡°Licensor¡± shall mean Honor Device Co., Ltd.
+"Licensee" shall mean an individual or legal entity exercising permissions granted by this Agreement. 
+
+2.GRANT OF LICENSE
+Subject to the terms and conditions of this Agreement, Licensor hereby grant Licensee a non-transferable, non-exclusive, royalty-free, revocable, worldwide copyright license to use, copy, merge, embed, and/or redistribute unmodified copies of HONOR Sans£¬subject to the following conditions:
+1) Licensee may not make any modifications to HONOR Sans or any of their individual components. 
+2) Neither HONOR Sans nor any of their individual components may be redistributed or sold in a stand-alone base. This limitation does not apply to any work created by using HONOR Sans. Licensee can freely distribute or sell their work, such as materials, logos, and/or application software etc. created by using HONOR Sans.
+3) Licensee shall retain the copyright notice and this Agreement in any copies of HONOR Sans.
+4) Licensee shall make a prominent notice in the software to state that HONOR Sans are used.
+
+3.Termination
+This Agreement will be automatically terminated if Licensee breach any terms of this Agreement.
+
+4.NO WARRANTY
+LICENSEE AGREE THAT THE HONOR SANS ARE PROVIDED BY LICENSOR ON AN "AS IS" BASIS WITHOUT WARRANTY OF ANY KIND. LICENSOR MAKES NO WARRANTY, EXPRESSED OR IMPLIED OR STATUTORY, WITH RESPECT TO ANY OF THE HONOR SANS, INCLUDING WITHOUT LIMITATION, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT.
+
+5.NO LIABILITY
+IN NO EVENT SHALL LICENSOR BE LIABLE FOR ANY DIRECT OR INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES (INCLUDING WITHOUT LIMITATION, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) ARISING IN ANY WAY OUT OF THE USE OF OR INABILITY TO USE HONOR SANS, WHETHER UNDER THEORY OF CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHER LEGAL THEORY, EVEN IF LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+LICENSEE EXPRESSLY ASSUME ALL LIABILITIES AND RISKS WHATSOEVER ARISING FROM OR RELATING TO USE OR INABILITY OF USE OF HONOR SANS. SHOULD THE HONOR SANS PROVE DEFECTIVE, LICENSEE ASSUME THE ENTIRE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+
+                                                                                                                                                      

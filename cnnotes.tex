@@ -1,0 +1,906 @@
+\documentclass[lang=cn,12pt,a4paper,fontset=none]{beautybook}
+% ---------------------------------------------------------------------------- %
+%                            The Cover Theme Chosen                            %
+% ---------------------------------------------------------------------------- %
+\definecolor{coverbgcolor}{HTML}{77969a}
+\definecolor{coverfgcolor}{HTML}{2e5c6e} % The color of the background
+\definecolor{coverbar}{HTML}{517794} % The color of the left bar
+\definecolor{bottomcolor}{HTML}{2c4f54}
+\definecolor{nuanbai}{HTML}{f5f5f5}
+\pagecolor{nuanbai}
+\beautybookstyle={
+   cover-choose=enfig, % en/cn/enfig/birkar
+   math-font=plain, % plain/mtpro2/fourier
+   sidebar=off, % on/off
+}
+\usepackage{stys/beautybook-cnsettings} % 中文配置文件
+% ---------------------------------------------------------------------------- %
+%                            The Cover Theme Chosen                            %
+% ---------------------------------------------------------------------------- %
+\usepackage{newtxmath}
+\begin{document}
+\thispagestyle{empty}
+\title{Notes for Articles}
+\subtitle{}
+\edition{First Edition}
+\bookseries{Research Notes}
+\author{Ethan Lu}
+\pressname{beautybook}
+\presslogo{beautybook-logo}
+\coverimage{hummingbird-8013214}
+\makecover
+
+\makeatletter
+% ---------------------------------------------------------------------------- %
+%                           The Sidebar Theme Chosen                           %
+% ---------------------------------------------------------------------------- %
+\definecolor{bg}{HTML}{e0e0e0}
+\definecolor{fg}{HTML}{2c4f54}
+\colorlet{outermarginbgcolor}{bg} % The foreground color of the sidebar
+\colorlet{outermarginfgcolor}{fg} % The background color of the sidebar
+% set the contents of the outer margin on even and odd pages for scrheadings, plain and scth
+% \oddoutermargin{\sffamily \leftmark} % Odd 奇数页
+% \evenoutermargin{\sffamily\@title} % Even 偶数页
+% ---------------------------------------------------------------------------- %
+%                           The Sidebar Theme Chosen                           %
+% ---------------------------------------------------------------------------- %
+
+% ---------------------------------------------------------------------------- %
+%                         The images used in the title                         %
+% ---------------------------------------------------------------------------- %
+\titleimage{
+  chapteroddimage={c9,c10},
+%
+  partoddimage={c9,c10},
+%
+  chapterevenimage={c9,c10},
+%
+  partevenimage={c9,c10},
+}
+\chapimage{\beautybook@chapterimagename} % 会自动改变
+\partimage{\beautybook@partimagename}    % 会自动改变
+\makeatother
+% ---------------------------------------------------------------------------- %
+%                         The images used in the title                         %
+% ---------------------------------------------------------------------------- %
+
+% ---------------------------------------------------------------------------- %
+%                      The Color Chosen for The Magic Box                      %
+% ---------------------------------------------------------------------------- %
+\colorlet{framegolden}{fg} % The line color of the magic box
+\colorlet{framegray}{bg!50} % The background color of the magic box
+% ---------------------------------------------------------------------------- %
+%                      The Color Chosen for The Magic Box                      %
+% ---------------------------------------------------------------------------- %
+
+\frontmatter
+\pagenumbering{Roman}
+
+{% Preface
+\thispagestyle{empty}
+% \addcontentsline{toc}{chapter}{Preface}
+\chapter*{Preface}
+Here is a comprehensive list of the academic papers that I have perused.
+
+
+\hfill
+\begin{tabular}{lr}
+    &-- Ethan Lu\\ 
+    &2024-07-12
+\end{tabular}
+\clearpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+\tableofcontents\let\cleardoublepage\clearpage
+
+
+\mainmatter
+\pagenumbering{arabic}
+
+\partabstract{GPT4o笔记备份}
+\part{笔记}
+\chapter{笔记归档}
+\section{杂记}
+\subsection{一些重要概念的理解}
+   在环论中，理想（ideal）是指一个环的子集，它在环的加法和乘法下保持封闭性。具体来说，如果 $I$ 是一个环 $R$ 的理想，那么 $I$ 满足以下条件：
+
+1. 对于所有 $a, b \in I$，有 $a + b \in I$。
+
+2. 对于所有 $r \in R$ 和 $a \in I$，有 $ra \in I$ 和 $ar \in I$（在交换环中，只需要考虑其中一种乘法，因为 $ra = ar$）。
+
+正规理想 (Proper Ideal) ：
+一个理想 $I$ 被称为正规理想（proper ideal），如果它不是整个环 $R$ 本身。也就是说 %\sidenote{测试旁注效果如何？好的话，应该很漂亮的呢！} ，
+
+\[ I \neq R \]
+
+这种情况下，正规理想 $I$ 具有以下性质：
+
+- $I \subsetneq R$，即 $I$ 是 $R$ 的一个真子集。
+
+- $I$ 中不包含 1（如果 $R$ 是带单位元的环），因为如果 $I$ 包含 1，那么对于任意 $r \in R$，有 $r = r \cdot 1 \in I$，这就意味着 $I = R$。
+
+例子：
+
+1. 在整数环 $\mathbb{Z}$ 中，偶数构成的集合 $2\mathbb{Z} = \{2k \mid k \in \mathbb{Z}\}$ 是一个正规理想，因为它不是整个 $\mathbb{Z}$，且满足理想的定义。
+
+2. 在多项式环 $\mathbb{R}[x]$ 中，所有被 $x$ 整除的多项式构成的集合 $(x) = \{ p(x) \in \mathbb{R}[x] \mid p(x) = x \cdot q(x) \text{ for some } q(x) \in \mathbb{R}[x] \}$ 是一个正规理想。
+
+总结：
+\textbf{正规理想是一个环的理想，且它不等于整个环}\footnote{或者说，通俗点，就叫真理想！毫无疑问，这是非平凡理想。}。这一概念在环论中非常重要，因为许多重要的结构和性质，例如素理想和极大理想，都依赖于理想是正规理想。
+
+
+\subsection{Neat analytic property}
+
+了解 \(\psi\) 的neat analytic singularities的定义之后，我们可以更深入地分析为何集合 \( S := \{ \psi = -\infty \} \) 是 \( M \) 的一个解析子流形。
+
+\textbf{Neat Analytic Singularities的定义}
+
+一个函数 \(\psi\) 具有neat analytic singularities的定义是：对于流形 \(M\) 上的每一个点 \(x \in M\)，存在一个邻域 \(U\)，使得在这个邻域上，\(\psi\) 可以表示为：
+\[
+\psi = c \log \left( \sum_{j=1}^N |g_j|^2 \right) + u,
+\]
+其中：
+\begin{itemize}
+  \item \(c > 0\) 是一个常数，
+  \item \(g_j \in \mathcal{O}_M(U)\) 是在 \(U\) 上定义的全纯函数，
+  \item \(u \in C^\infty(U)\) 是在 \(U\) 上的光滑函数。
+\end{itemize}
+
+\textbf{分析集合 \( S = \{ \psi = -\infty \} \)}
+
+为了理解 \( S \) 的性质，我们首先考虑 \(\psi\) 取值为负无穷的条件。在一个局部邻域 \(U\) 内，我们有
+\[
+\psi = c \log \left( \sum_{j=1}^N |g_j|^2 \right) + u.
+\]
+为了使 \(\psi = -\infty\)，我们需要
+\[
+c \log \left( \sum_{j=1}^N |g_j|^2 \right) \to -\infty.
+\]
+由于 \(c > 0\)，这等价于
+\[
+\log \left( \sum_{j=1}^N |g_j|^2 \right) \to -\infty,
+\]
+即
+\[
+\sum_{j=1}^N |g_j|^2 \to 0.
+\]
+所以，\(\psi = -\infty\) 的点是满足 \( \sum_{j=1}^N |g_j|^2 = 0 \) 的点集。
+
+\textbf{解析子流形}
+
+\[
+S = \{ \psi = -\infty \} = \left\{ \sum_{j=1}^N |g_j|^2 = 0 \right\}.
+\]
+注意到 \(\sum_{j=1}^N |g_j|^2 = 0\) 当且仅当每个 \(g_j\) 都为零，因为每个 \(|g_j|\) 是非负的实数。于是，
+\[
+S = \{ g_1 = 0, g_2 = 0, \ldots, g_N = 0 \}.
+\]
+在一个邻域 \(U\) 上，\(\{g_j = 0\}\) 是全纯函数 \(g_j\) 的零点集。因为这些 \(g_j\) 是全纯函数，它们的零点集形成了一个解析子流形。也就是说，\(\{g_1 = 0, g_2 = 0, \ldots, g_N = 0\}\) 是 \(M\) 的一个解析子流形。
+
+
+因此，我们得出，具有neat analytic singularities的函数 \(\psi\) 的集合 \( S = \{ \psi = -\infty \} \) 是流形 \(M\) 的一个解析子流形。这是因为在每个邻域 \(U\) 上，\(\psi\) 可以表示为一个常数 \(c\) 乘以对全纯函数平方和的对数加上一个光滑函数，而 \(\psi = -\infty\) 的点集正好是这些全纯函数的零点集的交集，构成了一个解析子流形。
+
+\subsection{Normal Bundle and Its Duality}
+
+在微分几何和代数几何中，法丛（normal bundle）和其对偶丛（dual bundle）是重要的概念。下面将详细解释它们的定义及如何理解这些概念。
+
+\textbf{法丛（Normal Bundle）}
+
+\textit{请问normal bundle $\mathcal{N}_X$与其对偶$\mathcal{N}_X^*$应该如何理解？能结合他们的定义详细说明吗？}
+
+
+在微分几何和代数几何中，法丛（normal bundle）和其对偶丛（dual bundle）是重要的概念。下面将详细解释它们的定义及如何理解这些概念。
+
+\textbf{法丛（Normal Bundle）}
+
+设 \( X \) 是嵌入在更高维光滑流形 \( M \) 中的一个光滑子流形。记 \( TX \) 为 \( X \) 的切丛，\( TM \) 为 \( M \) 的切丛。
+
+定义: 法丛 \( \mathcal{N}_X \) 是 \( X \) 在 \( M \) 中的法向量（normal vectors）的集合，形式上表示为：
+\[
+\mathcal{N}_X = \frac{TM|_X}{TX}.
+\]
+这里，\( TM|_X \) 表示限制在 \( X \) 上的 \( M \) 的切丛，而 \( TX \) 是 \( X \) 的切丛。法丛 \( \mathcal{N}_X \) 可以被看作是 \( TM \) 的一个子丛，其每个纤维是 \( TM \) 的纤维减去 \( TX \) 的纤维。
+
+直观理解:
+在每一点 \( x \in X \)，\( \mathcal{N}_X \) 的纤维 \( \mathcal{N}_{X,x} \) 是 \( T_x M \) 与 \( T_x X \) 的余空间，包含所有垂直于 \( T_x X \) 的向量。
+如果 \( X \) 是嵌入 \( \mathbb{R}^n \) 中的一个子流形，那么 \( \mathcal{N}_X \) 的纤维就是正交于 \( X \) 的向量。
+
+\textbf{法丛的对偶丛（Dual of the Normal Bundle）}
+
+法丛的对偶丛 \( \mathcal{N}_X^* \) 是指法丛 \( \mathcal{N}_X \) 的对偶向量丛。给定一个向量丛 \( E \)，其对偶丛 \( E^* \) 是由 \( E \) 的每个纤维的对偶向量空间构成的向量丛。
+
+定义: 法丛 \( \mathcal{N}_X \) 的对偶丛 \( \mathcal{N}_X^* \) 是一个向量丛，其每个纤维是 \( \mathcal{N}_{X,x} \) 的对偶向量空间：
+\[
+\mathcal{N}_X^* = (\mathcal{N}_X)^*.
+\]
+
+\textbf{具体例子}
+
+考虑 \( X \) 是嵌入在 \( \mathbb{R}^3 \) 中的一个二维曲面。此时：
+\begin{enumerate}
+  \item \( TX \) 是曲面的切丛，每个纤维是曲面在该点的切空间。
+  \item \( \mathcal{N}_X \) 是曲面的法丛，每个纤维是垂直于曲面切空间的向量，这就是曲面在每点的法向量。
+  \item \( \mathcal{N}_X^* \) 是法丛的对偶丛，每个纤维是从法向量空间到实数的线性函数集合。
+\end{enumerate}
+
+\textbf{直观理解:}在每一点 \( x \in X \)，\( \mathcal{N}_X^* \) 的纤维 \( \mathcal{N}_{X,x}^* \) 是所有线性函数从 \( \mathcal{N}_{X,x} \) 到 \( \mathbb{R} \) 的集合。如果 \( \mathcal{N}_X \) 表示法向量，则 \( \mathcal{N}_X^* \) 表示与这些法向量相对的线性形式。
+
+\textbf{具体例子}
+
+考虑 \( X \) 是嵌入在 \( \mathbb{R}^3 \) 中的一个二维曲面。此时：
+\begin{enumerate}
+  \item \( TX \) 是曲面的切丛，每个纤维是曲面在该点的切空间。
+  \item \( \mathcal{N}_X \) 是曲面的法丛，每个纤维是垂直于曲面切空间的向量，这就是曲面在每点的法向量。
+  \item \( \mathcal{N}_X^* \) 是法丛的对偶丛，每个纤维是从法向量空间到实数的线性函数集合。
+\end{enumerate}
+
+总而言之，法丛 \( \mathcal{N}_X \)：描述子流形在嵌入空间中的法向量，表示为 \( \mathcal{N}_X = \frac{TM|_X}{TX} \)；
+法丛的对偶丛 \( \mathcal{N}_X^* \)：描述与法向量对应的线性形式，是法丛的每个纤维的对偶空间。
+
+这两个概念在研究子流形的几何性质和测量法向量场的变化中具有重要意义。
+
+
+\subsection{澄清一些基础概念，了解它们的区别，并做一定的分类归纳整理}
+
+若 \( X \) 是一个光滑的射影簇（smooth projective variety），且具有固定的Kähler度量 \(\omega\)，那么 \( X \) 是弱拟凸Kähler流形（weakly pseudoconvex Kähler manifold）吗？这是一个有趣且重要的问题，涉及到复几何和代数几何的交叉领域。
+
+首先，我们要明确一些概念：
+\begin{enumerate}
+  \item 光滑射影簇：这是一个复流形，嵌入到某个复射影空间中，是复代数几何中的基本对象。
+  \item Kähler度量：这是一个特殊的度量，使得流形具有Kähler结构，即其Kähler形式 \( \omega \) 是闭的（即 \( d\omega = 0 \)）。
+  \item 弱拟凸Kähler流形：这是一个Kähler流形，存在一个拟凸的Kähler形式。
+\end{enumerate}
+
+对于光滑射影簇 \( X \)，它具有固定的Kähler度量 \(\omega\)。关键是要证明它是否为弱拟凸Kähler流形。
+\textbf{这里指出所有光滑射影簇都是弱拟凸Kähler流形。}具体来说，可以通过以下几点来理解：
+\begin{enumerate}
+  \item 紧致性：光滑射影簇是紧致的。
+  \item Kähler结构：光滑射影簇天然带有Kähler结构。
+  \item 弱拟凸性：由于射影簇是紧致的，任何Kähler度量都将满足弱拟凸的条件。
+\end{enumerate}
+
+
+由于 \( X \) 是一个射影簇，意味着它可以嵌入到某个复射影空间中，因此具有天然的Kähler结构。此外，紧致性确保了它是弱拟凸的，因为紧致Kähler流形的Kähler形式总是满足弱拟凸条件。
+
+综上所述，具有固定Kähler度量的光滑射影簇 \( X \) 确实是弱拟凸Kähler流形。
+
+猜想下面定理成立
+\begin{theorem}[][Main Theorem][thm:question]
+   On a weakly pseudoconvex $n$-dimensional Kähler manifold $(X, \omega)$, let $L$ be a smooth Hermitian holomorphic line bundle, $E$ a smooth Hermitian holomorphic vector bundle of rank $r \geq 1$, and $s \in H^0(X, E)$ a section transverse to the zero section. Set
+$$
+Y:=\{x \in X: s(x)=0\} .
+$$
+
+Assume also that, for an integer $k \geq 0$, the $(1,1)$-form $\sqrt{-1} \Theta_L+(r+k) \sqrt{-1} \partial \bar{\partial} \log |s|_E^2$ involving the curvature of $L$ is semipositive on $X \backslash Y$, and that there exists a continuous function $\alpha>0$ on $X$ such that on $X \backslash Y$,
+\begin{enumerate}[label=(\roman*)]
+  \item $\sqrt{-1} \Theta_L+(r+k) \sqrt{-1} \partial \bar{\partial} \log |s|^2 \geq \alpha^{-1} \frac{\left\{\sqrt{-1} \Theta_E s, s\right\}}{|s|^2}$,
+  \item $|s|_E \leq e^{-\alpha}$.
+\end{enumerate}
+Then for every relatively compact open subset $\Omega \subset X$ and every $k$-jet $f \in H^0\left(X, K_X \otimes L^{\otimes m}\otimes \mathscr{O}_X / \mathscr{I}_Y^{k+1}\right)$ satisfying
+$$
+\int_Y \frac{|f|_{s, \rho,(k)}^2}{\left|\Lambda^r(\mathrm{~d} s)\right|^2} \mathrm{~d} V_{Y, \omega}<+\infty,
+$$
+there exists $F^{(k)} \in H^0\left(\Omega, K_X \otimes L^{\otimes m}\right)$ such that $J_{\Omega}^k F^{(k)}=f$ and
+$$
+\int_{\Omega} \frac{\left|F^{(k)}\right|_L^2}{|s|^{2 r} \left(-\log |s|\right)^2} \mathrm{d} V_{X, \omega} \leq C_{r}^{(k)} \int_Y \frac{|f|_{s, \rho,(k)}^2}{\left|\Lambda^r(\mathrm{~d} s)\right|^2} \mathrm{~d} V_{Y, \omega},
+$$
+where $C_{r}^{(k)}>0$ is a constant depending only on $r, k, E$ and $\sup _{\Omega}\|i \Theta(L)\|$.
+\end{theorem}
+\begin{proof}[基本思路]
+  主要关注点在于需要更改哪里
+\end{proof}
+
+将主定理中的$K_X\otimes L$改为$K_X\otimes L^{\otimes l}$是可以的，但需要确保所有的证明和条件都相应调整。具体来说，$L^{\otimes l}$表示$L$的$l$次张量积，以下是需要考虑的几点：
+
+1. Hermitian Metric和Curvature：
+   - $L$的Hermitian度量会影响其$l$次张量积$L^{\otimes l}$的度量。
+   - 对于$L^{\otimes l}$的曲率$\Theta(L^{\otimes l})$，我们有$\Theta(L^{\otimes l}) = l\Theta(L)$，其中$\Theta(L)$是$L$的曲率形式。因此，定理中的条件需要相应调整以考虑这个变化。
+
+2. 主要定理中的条件调整：
+   - 定理0.1.4中条件(a)：
+     $$ i\Theta(L) + (r + k) id'd'' \log |s|^2 \geq α^{-1} \{i\Theta(E)s, s\}/|s|^2 $$
+     需要改为：
+     $$ i\Theta(L^{\otimes l}) + (r + k) id'd'' \log |s|^2 \geq α^{-1} \{i\Theta(E)s, s\}/|s|^2 $$
+     即：
+     $$ li\Theta(L) + (r + k) id'd'' \log |s|^2 \geq α^{-1} \{i\Theta(E)s, s\}/|s|^2 $$
+   - 定理中的其他条件也需要相应调整以适应$L^{\otimes l}$。
+
+3. 证明中的调整：
+   - 证明中的所有涉及$L$的部分需要替换为$L^{\otimes l}$，并且重新计算相关的L2估计和Sobolev范数。
+
+具体来说，调整后的定理可以表述如下：
+
+调整后的主定理
+令 $X$ 是一个复数维度为 $n$ 的弱伪凸复流形，配有一个Kähler度量 $\omega$。设 $L$ 是一个Hermitian全纯线丛，$E$ 是一个秩为 $r$ 的Hermitian全纯向量丛，并且 $s \in H^0(X, E)$ 是一个截面，假设其在零截面上是一般横截的。定义：
+$$ Y := \{x \in X \mid s(x) = 0, \Lambda^r(ds)(x) \neq 0\} $$
+这是 $X$ 中的一个余维度为 $r$ 的子流形。假设对于某个整数 $k \geq 0$，(1,1)-形式 $i\Theta(L^{\otimes l}) + (r+k) id'd'' \log |s|^2$ 是半正的，并且存在一个连续函数 $α \geq 1$ 使得在 $X$ 上满足以下两个不等式：
+
+(a) \(i\Theta(L^{\otimes l}) + (r+k) id'd'' \log |s|^2 \geq α^{-1} \{i\Theta(E)s, s\}/|s|^2\),
+
+(b) \(|s| \leq e^{-α}\).
+
+如果 $\Omega \subset X$ 是一个相对紧的开子集，定义一个相关的权函数 \(\rho = \rho_\Omega > 0\) 为：
+$$ \rho(y) = \frac{1}{||D s^{-1}_y|| \sup_{\xi \in \Omega} (||D^2 s_\xi|| + ||D s_\xi||)}, $$
+其中 $D$ 表示 $E$ 的Chern联络。
+
+那么，对于每个相对开的子集 $\Omega \subset X$，以及每个 $k$ 阶喷射 $f \in H^0(X, \Lambda^n T^* X \otimes L^{\otimes l} \otimes O_X / I^{k+1}_Y)$，如果
+$$ \int_Y |f|^2_{s, \rho, (k)} |Λ^r(ds)|^{-2} dV_Y, \omega < +∞, $$
+则存在 \(F_k \in H^0(X, \Lambda^n T^* X \otimes L^{\otimes l})\)，使得 \(J_k F_k = f\)，并且
+$$ \int_\Omega \frac{|F_k|^2}{|s|^{2r} (-\log |s|)^2} dV_X, \omega \leq C(k)_r \int_Y |f|^2_{s, \rho, (k)} |Λ^r(ds)|^{-2} dV_Y, \omega, $$
+其中 \(C(k)_r > 0\) 是仅依赖于 $r$、$k$、$E$ 和 $\sup_\Omega ||i\Theta(L^{\otimes l})||$ 的常数。
+
+通过这些调整，我们可以将原定理应用于$K_X\otimes L^{\otimes l}$的情况。希望这些信息对你有帮助，如果有更多具体问题或需要更详细的调整，请告诉我。
+
+
+为了将主定理从 $K_X \otimes L$ 推广到 $K_X \otimes L^{\otimes l}$，需要仔细分析并解决一些技术细节和潜在的问题。以下是几个关键点以及需要注意的地方：
+
+1. Hermitian度量和曲率
+\begin{itemize}
+  \item Hermitian度量：$L^{\otimes l}$ 的度量来自 $L$ 的度量。如果 $h_L$ 是 $L$ 的 Hermitian 度量，那么 $L^{\otimes l}$ 的度量是 $h_L^{\otimes l}$，其曲率 $\Theta(L^{\otimes l}) = l\Theta(L)$。需要检查原证明中的每一步，确保使用 $\Theta(L^{\otimes l})$ 时能够自然过渡。
+  \item 曲率条件：在原定理中，假设 $i\Theta(L) + (r + k) id'd'' \log |s|^2 \geq α^{-1} \{i\Theta(E)s, s\}/|s|^2$。替换后，需要确认 $li\Theta(L) + (r + k) id'd'' \log |s|^2 \geq α^{-1} \{i\Theta(E)s, s\}/|s|^2$ 仍然成立，并且可能需要调整 $α$ 以满足新的不等式。
+\end{itemize}
+
+2. Sobolev范数和L2估计
+
+   - L2估计：原文中使用的 L2 估计可能依赖于 $L$ 的具体性质，特别是度量 $h_L$。推广到 $L^{\otimes l}$ 时，需要重新计算这些估计，并确保 $L^{\otimes l}$ 的度量 $h_L^{\otimes l}$ 带来的变化不会破坏证明的有效性。
+   
+   - Sobolev范数：原文中定义的 Sobolev 范数可能需要重新定义，以适应 $L^{\otimes l}$。尤其是在涉及到 jets 的部分，需要确认新的 Sobolev 范数能够正确估计 $L^{\otimes l}$ 的 jets。
+
+3. 证明的技术细节
+
+   - L2 Extension Theorem：原文中的证明基于 Ohsawa-Takegoshi 的 L2 extension theorem 和 Manivel 的推广。需要确保这些定理在 $L^{\otimes l}$ 上仍然适用。如果有额外条件，需要进一步验证。
+   
+   - Rauch Comparison Theorem：证明中使用的 Rauch 比较定理也需要重新检查，确保它在 $L^{\otimes l}$ 的情况下依然成立。
+
+4. 整体框架和逻辑
+
+   - 证明逻辑：整个证明过程需要重新梳理，确保每一步都能推广到 $L^{\otimes l}$。特别是涉及到度量和曲率的部分，需要逐一验证。
+   
+   - 统一常数和估计：原文中的统一常数和估计需要重新计算，并确保它们在新的情况下仍然适用。这包括所有涉及到 $L$ 的部分，例如 $α$ 的定义和估计等。
+
+5. 额外难点
+   - 范数和估计：你已经提到涉及到 $L$ 的范数及相关估计是一个难点。这是一个关键问题，需要细致地重新计算并验证。
+   
+   - 其他潜在问题：任何涉及到具体几何性质的部分，例如喷射 (jets) 的定义和性质，可能需要重新验证。在推广过程中，需要特别关注这些细节，确保所有几何和分析性质在新的设置下仍然成立。
+
+
+要将主定理推广到 $K_X \otimes L^{\otimes l}$，需要仔细处理涉及到度量和曲率的技术细节，重新计算相关的 L2 估计和 Sobolev 范数，并验证所有证明步骤在新的设置下的有效性。原文的证明经过适当修改是有可能继续使用的，但需要逐步验证和调整每一个细节。
+
+如果有具体的证明步骤或者某些部分需要详细分析或修改，欢迎提供更多信息，我们可以更深入地讨论和解决。
+
+
+在原文中，$L$ 的 Sobolev 范数和 $L^2$ 估计在以下部分有所涉及：
+
+1. Sobolev 范数的定义和使用：
+   - 在原文中，定义了 $k$ 阶 jet 的 Sobolev 型 $L^2$ 范数。这涉及到如何为 $L$ 定义合适的内在 Sobolev 范数。具体来说，定义了加权的 $L^2$ 范数，其中包含了 Hermitian 向量丛 $L$ 的范数【12:0†source】。
+   - 这些范数被用于度量 $f \in H^0(X, \Lambda^n T^*X \otimes L \otimes \mathcal{O}_X / I^{k+1}_Y)$ 的点态范数和整体的 $L^2$ 范数。例如，文中定义了在权函数 $\rho > 0$ 下的点态 $\rho$ 加权范数和整体 $L^2$ 加权范数【12:2†source】【12:3†source】。
+
+2. $L^2$ 估计的使用：
+   - $L^2$ 估计主要用于推导 $k$ 阶 jet 的估计。这包括使用 Parseval's 公式和 Garding 引理来控制解的导数的增长。具体而言，这些估计用于证明在椭圆系统中的解的增长情况【12:1†source】【12:5†source】。
+   - 文中还涉及了如何使用 $L^2$ 范数来得到关于 jet 延拓的积分不等式，这些不等式在推广过程中可能需要重新验证【12:4†source】。
+
+需要解决的问题和修改
+
+为了将主定理中的 $K_X \otimes L$ 改为 $K_X \otimes L^{\otimes l}$（其中 $L^{\otimes l}$ 表示 $L$ 的 $l$ 次张量积），需要解决以下问题：
+
+1. Sobolev 范数的重新定义：
+   - 需要重新定义 $L^{\otimes l}$ 的 Sobolev 范数。这涉及到如何从 $L$ 的范数推导出 $L^{\otimes l}$ 的范数。
+   - 具体来说，需要证明在新的设定下，对应的 Sobolev 范数依然满足同样的性质和不等式。
+
+2. $L^2$ 估计的调整：
+   - 原文中的 $L^2$ 估计依赖于 $L$ 的 Hermitian 范数。需要确认 $L^{\otimes l}$ 的范数是否也满足相同的估计，或者需要调整证明中的关键步骤。
+   - 需要重新验证在 $L^{\otimes l}$ 下，Parseval's 公式和 Garding 引理是否仍然适用，或者需要新的技术工具来替代它们。
+
+3. 曲率形式和 Chern 连接：
+   - 需要重新计算 $L^{\otimes l}$ 的曲率形式和相应的 Chern 连接。这些计算会影响到整个证明过程，特别是在计算导数和积分不等式时。
+   - 需要确认在新的设定下，导出的不等式依然有效。
+
+4. 整体框架的验证：
+   - 虽然原文的方法和技术可以提供一定的指导，但需要逐步验证每一个步骤在新的设定下是否依然成立。这包括每一个局部提升、导数的计算、范数的估计等。
+
+综上所述，要完成从 $K_X \otimes L$ 到 $K_X \otimes L^{\otimes l}$ 的推广，涉及到重新定义范数、调整 $L^2$ 估计、计算新的曲率形式和 Chern 连接，并验证整体证明框架。这是一个复杂的过程，需要对每一个细节进行仔细推敲和验证。
+
+\subsection{Jet Bundle and Jet Sheaf}
+\subsubsection*{Jet Bundle}
+在复几何（complex geometry）中，"JET" 通常指的是“喷射丛”（jet bundle）。喷射丛是一个在微分几何和代数几何中用于研究光滑映射和光滑流形的一种概念。具体来说，喷射丛可以用于描述映射的高阶导数信息，并且在研究微分方程、代数几何和解析几何中非常有用。
+
+喷射丛的定义
+
+考虑从一个流形 $M$ 到另一个流形 $N$ 的映射 $f: M \to N$。$k$ 阶喷射丛（$k$-jet bundle）$J^k(M, N)$ 包含了 $f$ 在每一点 $x \in M$ 的 $k$ 阶导数信息。更正式地说，两个映射 $f, g: M \to N$ 在点 $x \in M$ 的 $k$ 阶喷射相同，当且仅当 $f$ 和 $g$ 在 $x$ 及其附近的一定范围内具有相同的泰勒展开到 $k$ 阶。
+
+主要性质
+
+1. **局部坐标描述**：在局部坐标系中，$k$ 阶喷射可以表示为 $f$ 的各阶偏导数组成的向量。
+2. **光滑结构**：$k$ 阶喷射丛本身是一个光滑流形，并且可以构造出一个纤维丛（fiber bundle），其中纤维是与 $k$ 阶导数有关的向量空间。
+3. **应用**：喷射丛在研究偏微分方程的几何理论中非常重要。通过喷射丛，可以把微分方程的解的高阶导数转化为几何对象进行研究。
+
+具体例子
+
+- **1-jet bundle**：当 $k=1$ 时，1-jet bundle 记录了映射的点和该点的导数。对于光滑映射 $f: \mathbb{R}^n \to \mathbb{R}^m$，1-jet bundle 记录了 $f$ 在某点的值及其雅可比矩阵（Jacobian matrix）。
+- **高阶 jet bundle**：对于 $k > 1$，$k$-jet bundle 记录了高阶偏导数，能够捕捉更多的局部几何信息。
+
+形式化定义
+
+给定 $M$ 和 $N$ 为光滑流形，$x \in M$，$J^k(M, N)$ 是这样的一类等价类的集合，其中每个等价类表示在 $x$ 点处具有相同 $k$ 阶导数的映射。更形式化地，有
+$$ J^k(M, N) = \{ [f]_x^k \mid f: M \to N, x \in M \}, $$
+其中 $[f]_x^k$ 表示在 $x$ 点处 $f$ 的 $k$ 阶喷射。
+
+通过喷射丛，我们可以将复杂的几何问题转换为更具结构化的问题，利用代数几何和微分几何的工具进行研究。
+
+\subsubsection*{Jet Sheaf}
+好的，我们来详细探讨一下喷射丛（jet bundle）和喷射层（jet sheaf）的关系及其在复几何中的应用。
+
+喷射层（Jet Sheaf）的定义
+
+喷射层是喷射丛在层（sheaf）理论中的具体化，主要用于描述映射的高阶导数信息，并在代数几何和解析几何中发挥重要作用。喷射层提供了一种系统的方法来处理局部几何对象和全局几何结构之间的关系。
+
+形式化定义
+
+考虑复流形 $X$ 和 $Y$ 以及一个从 $X$ 到 $Y$ 的映射 $f: X \to Y$。$k$ 阶喷射层 $J^k_{X/Y}$ 是一个 $\mathcal{O}_X$-模层（$\mathcal{O}_X$-module），其中 $\mathcal{O}_X$ 是 $X$ 上的结构层（结构层提供了在 $X$ 上定义的解析函数）。
+
+- **0-jet sheaf**: $J^0_{X/Y} = \mathcal{O}_X$，这是 $X$ 上的结构层本身。
+- **1-jet sheaf**: $J^1_{X/Y}$ 记录了 $f$ 的一阶导数信息，可以看作是 $X$ 上切丛（tangent bundle）$\mathcal{T}_X$ 的某种推广。
+- **高阶 jet sheaf**: $k$ 阶喷射层 $J^k_{X/Y}$ 记录了 $f$ 的 $k$ 阶导数信息。
+
+局部描述
+
+在局部坐标 $(x^1, \ldots, x^n)$ 中，$k$ 阶喷射层 $J^k_{X/Y}$ 的截面可以表示为包含高阶偏导数的信息。例如，对于一个函数 $f$，它的 $k$ 阶喷射层在点 $x$ 处的截面可以表示为
+$$ [f]_x^k = \left( f(x), \frac{\partial f}{\partial x^i}(x), \frac{\partial^2 f}{\partial x^i \partial x^j}(x), \ldots, \frac{\partial^k f}{\partial x^{i_1} \cdots \partial x^{i_k}}(x) \right). $$
+
+喷射层的性质
+
+1. **Exact Sequences**：喷射层和其他层之间存在精确序列。例如，一阶喷射层 $J^1_{X/Y}$ 和切丛 $\mathcal{T}_X$ 之间有一个经典的精确序列：
+   $$ 0 \to \Omega^1_X \to J^1_{X/Y} \to \mathcal{O}_X \to 0, $$
+   其中 $\Omega^1_X$ 是 $X$ 上的微分形式层。
+
+2. **代数结构**：喷射层具有丰富的代数结构，可以通过层的同态（sheaf morphism）和分次结构（graded structure）进行研究。
+
+3. **应用**：喷射层在研究代数微分方程、解析几何中的模空间（moduli space）、代数簇（algebraic varieties）的变形理论（deformation theory）中有广泛应用。
+
+应用示例
+
+**模空间的研究**：在研究模空间时，喷射层提供了分析映射的高阶变形的重要工具。例如，给定一个代数簇 $X$，喷射层可以帮助理解 $X$ 的自同构（automorphism）群以及 $X$ 的变形空间。
+
+**代数微分方程**：喷射层在代数微分方程中起到了关键作用。通过将微分方程转化为喷射层的条件，可以使用代数几何的方法来研究这些方程的解的结构和性质。
+
+**解析几何中的应用**：在解析几何中，喷射层用于研究复流形上的函数和映射的局部行为，通过喷射层可以更好地理解这些映射的全局性质。
+
+总结
+
+喷射层（jet sheaf）将喷射丛的概念推广到层理论中，使得高阶导数的信息可以在代数几何和解析几何中系统地处理。通过喷射层，可以将复杂的几何和解析问题转化为层理论中的问题，从而应用层理论的工具进行研究和解决。这使得喷射层成为现代几何学研究中的一个强大工具。
+
+在复几何和代数几何中，陈联络（Chern connection）作为偏微分算子发挥了重要作用，特别是在讨论喷射丛（jet bundle）和喷射层（jet sheaf）时。让我们详细讨论一下陈联络及其在这些几何对象中的应用。
+
+ 陈联络（Chern Connection）
+
+陈联络是一种特殊的联络，用于复向量丛（complex vector bundle）上，尤其是在赫尔墨特向量丛（Hermitian vector bundle）上。陈联络最初由陈省身引入，用于构造具有特定性质的联络，它既与丛的赫尔墨特度量（Hermitian metric）相容，又保持复结构。
+
+定义与性质
+
+考虑一个复向量丛 $E$，其上有一个赫尔墨特度量 $h$。陈联络是一个唯一的联络 $\nabla$，满足以下条件：
+
+1. **Hermitian Compatibility**：对于 $E$ 的任何两个截面 $s_1, s_2$，
+   $$
+   \frac{\partial}{\partial z^i} h(s_1, s_2) = h(\nabla_{\frac{\partial}{\partial z^i}} s_1, s_2) + h(s_1, \nabla_{\frac{\partial}{\partial \overline{z}^i}} s_2),
+   $$
+   这表示陈联络与赫尔墨特度量 $h$ 相容。
+
+2. **Complex Structure Compatibility**：陈联络的 $(0,1)$ 分量等于 Dolbeault 算子 $\overline{\partial}$，即
+   $$
+   \nabla^{(0,1)} = \overline{\partial}.
+   $$
+应用在喷射丛和喷射层中
+
+喷射丛和喷射层包含高阶导数的信息，陈联络提供了一种自然的方式来处理这些导数信息，特别是在复杂结构和赫尔墨特度量的情况下。
+在喷射丛中的应用
+
+喷射丛 $J^k(E)$ 包含 $E$ 的截面及其高阶导数的信息。陈联络 $\nabla$ 可以延拓到喷射丛上，从而定义高阶喷射丛上的联络。具体来说，给定一个截面 $s \in \Gamma(E)$，陈联络 $\nabla$ 作用在 $s$ 的高阶喷射上，可以递归地定义为：
+$$
+\nabla^{k+1} s = \nabla (\nabla^k s),
+$$
+其中 $\nabla^k s$ 是 $s$ 的 $k$ 阶导数所组成的喷射。
+
+在喷射层中的应用
+
+喷射层 $J^k_{X/Y}$ 是一个 $\mathcal{O}_X$-模层，包含映射的高阶导数信息。陈联络可以视为作用在这些高阶导数上的偏微分算子，通过这个联络可以定义喷射层的切向导数和曲率。
+
+具体例子
+1. 一阶喷射层和陈联络
+
+对于复流形 $X$ 上的一个赫尔墨特向量丛 $E$，其一阶喷射层 $J^1(E)$ 包含 $E$ 的截面及其一阶导数。陈联络 $\nabla$ 可以延拓到 $J^1(E)$ 上，从而得到包含一阶导数的联络。
+
+2. 高阶喷射层和陈联络
+
+对于高阶喷射层 $J^k(E)$，陈联络 $\nabla$ 同样可以延拓，使得可以定义高阶导数的联络。这个过程在技术上较为复杂，但本质上是递归应用陈联络的定义。
+
+总结
+
+陈联络在复几何中是一个非常重要的工具，通过其与赫尔墨特度量和复结构的相容性，使得我们能够自然地处理复向量丛和喷射丛中的高阶导数信息。尤其是在喷射层和喷射丛的研究中，陈联络作为偏微分算子提供了一种系统的方法来处理这些复杂的几何对象，从而在代数几何和解析几何中发挥关键作用。如果你在论文中看到陈联络的应用，通常它是用来处理复向量丛或喷射丛中的导数和曲率问题的。
+
+\partabstract{A new type $L^2$-extension theorem for $k$-jets.  }
+\part{\texorpdfstring{$L^2$}{}-extension theorem for \texorpdfstring{$k$}{}-jets }
+\chapter{\texorpdfstring{$L^2$}{}-extension theorem for \texorpdfstring{$k$}{}-jets }
+\section{Introduction}
+% \subsection{Main Theorem}
+\begin{theorem}[][Main Theorem][thm:main]
+   Let $(X, \omega)$ be a weakly pseudoconvex complex n-dimensional manifold possessing a Kähler metric $\omega, \psi$ be a plurisubharmonic function on $X$, $E$ be a holomorphic vector bundle of rank $r$ over $X$ equipped with a smooth Hermitian metric $(1 \leq r\leq n)$, and $s$ be a global holomorphic section of $E$. Assume that $s$ is transverse to the zero section, and let
+$$
+Y:=\{x \in X: s(x)=0, \Lambda^r (\dd s)(x)\neq 0\} .
+$$
+
+Let $L$ be a holomorphic line bundle over $X$ equipped with a singular Hermitian metric $h_L$, which is written locally as $e^{-\varphi_L}$ for some function $\varphi_L \in L_{\text {loc }}^1$ with respect to a local holomorphic frame of $L$. Assume that $\frac{q}{2}\varphi_L+\br{1-\frac{q}{2}}\varphi_\omega+\psi$ is quasi-plurisubharmonic and $\varphi_L$ is locally bounded above. Let $\sigma:=\psi+(r+k)\log \abs{s}^2_E$  for an integer $k\geqslant 0$  and $\Theta_L=\bd\bdd\varphi_L$ .  Moreover, assume that the $(1,1)$-form  
+
+(i) $\frac{q}{2}\sqrt{-1} \Theta_L+\br{1-\frac{q}{2}}\sqrt{-1}\bd\bdd\varphi_\omega+ \sqrt{-1} \partial \bar{\partial} \sigma \geq 0$ holds on $X \backslash Y$, 
+
+and that there is a continuous function $\alpha>0$ on $X$ such that the following two inequalities hold on $X \backslash Y$ :
+
+(ii) $\frac{q}{2}\displaystyle\sqrt{-1} \Theta_L+\br{1-\frac{q}{2}}\sqrt{-1}\bd\bdd\varphi_\omega+\sqrt{-1} \partial \bar{\partial} \sigma \geq \frac{\left\{\sqrt{-1} \Theta_E s, s\right\}_E}{\alpha|s|_E^2}$,
+
+(iii) $\sigma\leq-2 r \alpha$
+
+Then, for every relatively compact open subset $\Omega \subset X$, and every $k$-jet $f \in H^0\left(X, K_X\otimes L \otimes \mathcal{O}_X / \mathcal{J}_Y^{k+1}\right)$ satisfying
+$$
+C_f :=\int_Y \frac{|f|_{s, \rho,(k)}^2}{\left|\Lambda^r(d s)\right|^{2} }d V_{Y, \omega}<+\infty,
+$$
+there exists $F_k \in H^0\left(X, K_X \otimes L\right)$ such that $J^k F_k=f$ and
+$$
+\int_{\Omega} \frac{\left|F_k\right|_L^q}{e^\sigma R(\sigma)} d V_{X, \omega} \leq C_{r,R}^{(k)} C_f,
+$$
+where $C_{r,R}^{(k)}>0$ is a constant depending only on $r, R,k, E$, and $\sup _{\Omega}\|i \Theta_L\|$.
+
+\end{theorem}
+
+
+附加条件 $\frac{\left|u_{\varepsilon}\right|^2}{ |s|^{2m}} \in L_{\text {loc }}^1$ 在 $Y$ 的一个邻域内成立。这个条件保证了 $u_{\varepsilon}$ 及其所有阶数小于等于 $k$ 的jet在 $Y$ 上消失。
+
+为了理解这个结论，我们需要分几步详细分析：
+
+
+1.  \textit{条件 $\frac{\left|u_{\varepsilon}\right|^2}{ |s|^{2m}} \in L_{\text {loc }}^1$ 的作用}：这个条件在 $Y$ 的邻域内成立，意味着 $u_{\varepsilon}$ 在 $Y$ 上的增长受到了控制。特别是，如果 $s$ 是定义 $Y$ 的局部切割函数（即 $Y = \{s = 0\}$），那么 $\frac{\left|u_{\varepsilon}\right|^2}{ |s|^{2m}} \in L_{\text{loc}}^1$ 意味着 $u_{\varepsilon}$ 的增长速率不能超过 $|s|^m$ 的速率。
+
+2.  \textit{$u_{\varepsilon}$ 在 $Y$ 上的行为}：\textit{由于 $\frac{\left|u_{\varepsilon}\right|^2}{ |s|^{2m}} \in L_{\text{loc}}^1$，可以得出 $u_{\varepsilon}$ 在 $Y$ 上必须是零}。否则，如果 $u_{\varepsilon}$ 在 $Y$ 上不为零，$\frac{\left|u_{\varepsilon}\right|^2}{ |s|^{2m}}$ 将在 $Y$ 附近产生奇异性，无法属于 $L_{\text{loc}}^1$。
+
+3.  \textit{jet 的行为}：对于 $u_{\varepsilon}$ 的 jet，特别是阶数小于等于 $k$ 的 jet，其行为受 $u_{\varepsilon}$ 在 $Y$ 上的行为约束。因为 $u_{\varepsilon}$ 在 $Y$ 上为零，并且由 $u_{\varepsilon}$ 的光滑性可以推出其导数在 $Y$ 上也是零。特别地，阶数小于等于 $k$ 的导数（即 $k$ 阶及以下的 jet）在 $Y$ 上也必须为零。
+
+综上所述，附加条件 $\frac{\left|u_{\varepsilon}\right|^2}{ |s|^{2m}} \in L_{\text{loc}}^1$ 的关键作用是控制 $u_{\varepsilon}$ 在 $Y$ 上的行为，确保 $u_{\varepsilon}$ 及其小于等于 $k$ 阶的 jet 在 $Y$ 上都消失。
+
+
+\begin{problem}[][非零全纯函数的泰勒展开性质]
+   请问为何对于一个高维复平面上一个半径为$r$小圆盘$\Delta_r$上的非零全纯函数$f$，可以将它写作$f=z^m f_1$,这里$f_1|_o\neq 0$,？$o$是复平面的原点。
+\end{problem}
+
+\begin{solution}
+   对于一个高维复平面上的非零全纯函数 \( f \)，如果在一个半径为 \( r \) 的小圆盘 \( \Delta_r \) 上分析这个函数，考虑 \( f \) 在原点附近的性质，可以通过以下方式理解为何 \( f \) 可以写作 \( f = z^m f_1 \)，其中 \( f_1 \) 在原点非零：
+
+泰勒级数展开：
+   由于 \( f \) 是全纯函数，它在原点附近可以展开成一个泰勒级数：
+   \[
+   f(z) = a_0 + a_1 z + a_2 z^2 + \cdots
+   \]
+   其中 \( a_i \) 是常数。
+
+找出最低次非零项：
+   因为 \( f \) 是非零的全纯函数，因此总有一个最小的正整数 \( m \)，使得 \( a_m \neq 0 \) 而 \( a_0, a_1, \ldots, a_{m-1} \) 都是零。也就是说，
+   \[
+   f(z) = a_m z^m + a_{m+1} z^{m+1} + \cdots
+   \]
+
+提取 \( z^m \) 因子：
+   将 \( z^m \) 提出来，可以写作
+   \[
+   f(z) = z^m (a_m + a_{m+1} z + a_{m+2} z^2 + \cdots)
+   \]
+   记 \( f_1(z) = a_m + a_{m+1} z + a_{m+2} z^2 + \cdots \)。因为 \( a_m \neq 0 \)，因此 \( f_1 \) 在原点处非零，即 \( f_1|_o \neq 0 \)。
+
+最终表达式：
+   这样，\( f(z) \) 可以表示为
+   \[
+   f(z) = z^m f_1(z)
+   \]
+   其中 \( f_1 \) 是一个在 \( \Delta_r \) 上全纯的函数，并且在原点处 \( f_1 \neq 0 \)。
+
+这个表示法的关键点在于全纯函数的泰勒级数展开，保证了我们可以通过找到最低次非零项，将 \( f \) 分解为 \( z^m \) 与一个在原点非零的全纯函数 \( f_1 \) 的乘积。
+\end{solution}
+
+
+\section{Weierstrass Preparation Theorem and Weierstrass Division Theorem}
+
+Weierstrass' preparation theorem is a theorem obtained and originally formulated by K. Weierstrass in 1860 as a preparation lemma, used in the proofs of the existence and analytic nature of the implicit function of a complex variable defined by an equation $f(z,w)=0$ whose left-hand side is a holomorphic function of two complex variables. This theorem generalizes the following important property of holomorphic functions of one complex variable to functions of several complex variables: If $f(z)$ is a holomorphic function of $z$ in a neighbourhood of the coordinate origin with $f(0)=0, f(z)\not\equiv 0$, then it may be represented in the form $f(z)=z^s g(z)$, where $s$ is the multiplicity of vanishing of $f(z)$ at the coordinate origin, $s\geq 1$, while the holomorphic function $g(z)$ is non-zero in a certain neighbourhood of the origin.
+
+The formulation of the Weierstrass preparation theorem for functions of $n$ complex variables, $n\geq 1$. Let
+$$
+f(z)=f(z_1,\dots,z_n)
+$$
+be a holomorphic function of $z=(z_1,\dots,z_n)$ in the polydisc
+$$
+U={z:|z_i|<a_i,i=1,\dots,n},
+$$
+and let
+$$
+f(0)=0,  f(0,\dots,0,z_n)\not\equiv 0.
+$$
+Then, in some polydisc
+$$
+V=\{z:|z_i|<b_i\leq a_i, i=1,\dots,n\},
+$$
+the function $f(z)$ can be represented in the form
+$$
+f(z)= [z^s_n+f_1(z_1,\dots,z_{n-1})z^{s-1}_n+\dots
++f_s(z_1,\dots,z_{n-1})]h(z),
+$$
+where $s$ is the multiplicity of vanishing of the function
+$$
+f(z_n)=f(0,\dots,0,z_n)
+$$
+at the coordinate origin, $s\geq 1$ ; the functions $f_j(z_1,\dots,z_{n-1})$ are holomorphic in the polydisc
+$$
+\begin{gathered}
+   V'=\{(z_1,\dots,z_{n-1}):|z_i|<b_i,i=1,\dots,n-1\},\\
+f_j(0,\dots,0)=0, j=1,\dots,s;
+\end{gathered}
+$$
+the function $h(z)$ is holomorphic and does not vanish in $V$. The functions $f_j(z_1,\dots,z_{n-1}), j=1,\dots,s$, and $h(z)$ are uniquely determined by the conditions of the theorem.
+
+If the formulation is suitably modified, the coordinate origin may be replaced by any point $a=(a_1,\dots,a_n)$ of the complex space $\bC^n$. It follows from the Weierstrass preparation theorem that for $n>1$, as distinct from the case of one complex variable, every neighbourhood of a zero of a holomorphic function contains an infinite set of other zeros of this function.
+
+Weierstrass' preparation theorem is purely algebraic, and may be formulated for formal power series. Let $\bC[[z_1,\dots,z_n]]$ be the ring of formal power series in the variables $z_1,\dots,z_n$ with coefficients in the field of complex numbers $C$
+; let$ f$ be a series of this ring whose terms have lowest possible degree $s\geq 1$
+, and assume that a term of the form $c z^s_n, c≠0$, exists. The series $f$ can then be represented as
+$$
+f=(z^s_n+f_1 z^{s-1}_n+\dots+f_s)g,
+$$
+where $f_1,\dots,f_s$ are series in $C[[z_1,\dots,z_{n-1}]]$ whose constant terms are zero, and $g$ is a series in $\bC[[z_1,\dots,z_n]]$ with non-zero constant term. The formal power series $f_1,\dots,f_s$ and $g$ are uniquely determined by $f$.
+
+A meaning which is sometimes given to the theorem is the following division theorem: Let the series
+$$
+f\in \bC[[z_1,\dots,z_n]]
+$$
+satisfy the conditions just specified, and let $g$ be an arbitrary series in $\bC[[z_1,\dots,z_n]]$. Then there exists a series
+$$
+h\in \bC[[z_1,\dots,z_n]]
+$$
+and series
+$$
+\begin{gathered}
+   a_j\in \bC[[z_1,\dots,z_{n-1}]],  a_j (0,\dots,0)=0,\\
+j=0,\dots,s-1,
+\end{gathered}
+$$
+which satisfy the following equation:
+$$
+g=h_f+a_0+a_1z_n+\dots+a_{s-1}z^{s-1}_n.
+$$
+Weierstrass' preparation theorem also applies to rings of formally bounded series. It provides a method of inductive transition, e.g. from $\bC[[z_1,\dots,z_{n-1}]]$
+ to $\bC[[z_1,\dots,z_n]]$. It is possible to establish certain properties of the rings $\bC[z_1,\dots,z_n]$ and $\bC[[z_1,\dots,z_n]]$ in this way, such as being Noetherian and having the unique factorization property. There exists a generalization of this theorem to differentiable functions [6].
+
+References
+
+[1a]	K. Weierstrass, "Abhandlungen aus der Funktionenlehre" , Springer (1866)
+
+[1b]	K. Weierstrass, "Math. Werke" , 1–7 , Mayer \& Müller (1894–1895)
+
+[2]	B.V. Shabat, "Introduction of complex analysis" , 1–2 , Moscow (1985) (In Russian) Zbl 0578.32001 Zbl 0574.30001
+
+[3]	S. Bochner, W.T. Martin, "Several complex variables" , Princeton Univ. Press (1948) MR0027863 Zbl 0041.05205
+
+[4]	R.C. Gunning, H. Rossi, "Analytic functions of several complex variables" , Prentice-Hall (1965) MR0180696 Zbl 0141.08601
+
+[5]	I.R. Shafarevich, "Basic algebraic geometry" , Springer (1977) (Translated from Russian) MR0447223 Zbl 0362.14001
+
+[6]	B. Malgrange, "Ideals of differentiable functions" , Tata Inst. (1966) MR2065138 MR0212575 Zbl 0177.17902
+
+\textbf{Comments}
+
+The polynomial
+$$
+z^s_n+f_1(z_1,\dots,z_{n-1}) z^{s-1}_n+⋯+
++f_s(z_1,\dots,z_{n-1}),
+$$
+which occurs in the Weierstrass preparation theorem, is called a Weierstrass polynomial of degree s
+ in $z_n$.
+
+% The analogue of the Weierstrass preparation theorem for differentiable functions is variously known as the differentiable preparation theorem, the Malgrange preparation theorem or the Malgrange–Mather preparation theorem. Let F
+%  be a smooth real-valued function on some neighbourhood of 0
+%  in R×Rn
+%  and let F(t,0)=g(t)tk
+%  with g(0)≠0
+%  and g
+%  smooth near 0
+%  in R
+% . Then the Malgrange preparation theorem says that there exists a smooth function q
+%  near zero such that (qF)(t,x)=tk+∑k−1i=0λi(x)ti
+%  for suitable smooth λi
+% , and the Mather division theorem says that for any smooth G
+%  near 0
+%  in R×Rn
+%  there exist smooth functions q
+%  and r
+%  on R×Rn
+%  near 0
+%  such that G=qF+r
+%  with r(t,x)=∑k−1i=0ri(x)ti
+% . For more sophisticated versions of the differentiable preparation and division theorems, cf. [a2]–[a4].
+
+% An important application is the differentiable symmetric function theorem (differentiable Newton theorem), which says that a germ f
+%  of a symmetric differentiable function of x1,\dots,xn
+%  in 0
+%  can be written as a germ of a differentiable function in the elementary symmetric functions σ1=x1+⋯+xn
+% , σn=x1,\dots,xn
+% , [a7], [a8].
+
+% There exist also p
+% -adic analogues of the preparation and division theorems. Let k
+%  be a complete non-Archimedean normed field (cf. Norm on a field). Tn(k)=k⟨z1,\dots,zn⟩
+%  is the algebra of power series ∑aαzα
+% , α=(α1,\dots,αn)
+% , αi∈N∪{0}
+% , zα=zα11,\dots,zαnn
+% , such that |aα|→0
+%  as |α|→∞
+% , |α|=α1+⋯+αn
+% . The norm on Tn(k)
+%  is defined by ∥∑aαzα∥=maxα|aα|
+% . The subring An(k)
+%  consists of all f∈Tn(k)
+%  with ∥f∥≤1
+%  and mn(k)
+%  is the ideal of all f∈An(k)
+%  with |f|<1
+% . Let T¯¯¯¯n(k)
+%  be the residue ring An(k)/mn(k)
+% , and let f↦f¯¯¯
+%  be the quotient mapping. Then T¯¯¯¯n(k)=k¯¯¯[z1\dotszn]
+% , where k¯¯¯
+%  is the residue field of k
+% . An element f∈Tn(k)
+%  with ∥f∥=1
+%  is called regular in zn
+%  of degree d
+%  if f¯¯¯
+%  is of the form f¯¯¯=λzdn+∑d−1i=0cizin
+%  with ci∈k¯¯¯[z1,\dots,zn−1]
+%  and 0≠λ∈k¯¯¯
+% . Note that Tn−1(k)[zn]=k⟨z1,\dots,zn−1⟩[zn]
+%  is naturally a subalgebra of Tn(k)
+% . The p
+% -adic Weierstrass preparation and division theorem now says: i) (division) Let F∈Tn(k)
+%  be regular of degree d
+%  in zn
+%  and let G∈Tn(k)
+% . Then there exist unique elements q∈Tn(k)
+%  and ri∈Tn−1(k)
+% , i=0,\dots,d−1
+% , such that G=qF+∑d−1i=0rizin
+%  and, moreover, ∥G∥=max(∥F∥,r)
+% , where r=∑d−1i=0rizin
+% ; ii) (preparation) Let F∈Tn(k)
+%  be of norm 1
+% , then there exists a k
+% -automorphism of Tn(k)
+%  such that σ(F)
+%  is regular in zn
+% .
+
+% References
+% [a1]	L. Hörmander, "An introduction to complex analysis in several variables" , North-Holland (1973) pp. Chapt. 2.4 MR0344507 Zbl 0271.32001
+% [a2]	M. Golubitsky, "Stable mappings and their singularities" , Springer (1973) pp. Chapt. IV MR0341518 Zbl 0294.58004
+% [a3]	J.C. Tougeron, "Ideaux de fonction différentiables" , Springer (1972) pp. Chapt. IX MR0440598
+% [a4]	B. Malgrange, "Ideals of differentiable functions" , Oxford Univ. Press (1966) pp. Chapt. V MR2065138 MR0212575 Zbl 0177.17902
+% [a5]	J. Fresnel, M. van der Put, "Géométrie analytique rigide et applications" , Birkhäuser (1981) pp. §II.2 MR0644799 Zbl 0479.14015
+% [a6]	N. Koblitz, "-adic numbers, -adic analysis, and zeta-functions" , Springer (1977) pp. 97 MR466081
+% [a7]	G. Glaeser, "Fonctions composés différentiables" Ann. of Math. , 77 (1963) pp. 193–209
+% [a8]	S. Łojasiewicz, "Whitney fields and the Malgrange–Mather preparation theorem" C.T.C. Wall (ed.) , Proc. Liverpool Singularities Symposium I , Lect. notes in math. , 192 , Springer (1971) pp. 106–115 Zbl 0224.58003
+
+下面是这两个定理的初步理解以及它们的证明。
+\begin{theorem}[][Weierstrass Preparation Theorem][thm:Weierstrass Preparation Theorem]
+   If $f$ is holomorphic around the origin in $\bC^n$ and is not identically zero on the $w$-axis, then in some neighborhood of the origin $f$ can be written as 
+   \[f=g\cdot h,\]
+   where $g$ is a Weierstrass polynomial of degree $d$ in $w$ and $h(0)\neq 0$.
+
+   即每个 $f \in \mathcal{O}_{\mathbb{C}^n, 0}$ 都能唯一地写为 $f=g \cdot h$的形式, 其中 $g$ 是一个 WP 而 $h$ 是一个单位元素（即可逆的元素, 或者等价地 $h(0) \neq 0$ ）。
+\end{theorem}
+   \begin{proof}
+% We assert that the key point of the proof is the progress of constructing the weierstrass polynomial $g(z,w)$. Suppose we are given a function $f(z_1,\dots$ $,z_{n-1},w)$ holomorphic in some neighborhood of the origin in $\bC^n$, with $f(0,\dots,0)=0$. Assume that $f$ does not vanish identically on the $w$-axis, i.e., the power series expansion for $f$ around the origin contains a term $a\cdot w^d$ with $a\neq 0$ and $d\geq 1$; clearly this will be the case for most choices of coordinate system.
+
+
+% 当然，照着书上抄一遍证明并没有什么意思，也挺麻烦，所以我就简单把思路过一遍。
+首先这种存在唯一的定理大概都可以想想这个``唯一性"会迫使结果长成什么样子。\textbf{这里的关键就是``一个首一多项式完全被它的根所确定下来"。具体来说，定义 $f_w\left(z_n\right):=f\left(w, z_n\right)$ , 即固定 $w \in \mathbb{C}^{n-1}$ 后来看, $f$ 就变成了一元函数。}那么\textbf{如果有这样的分解 $f_w=g_w \cdot h_w$ , 由于 $h$ 在某个包含 0 的邻域内都非零, 这就表示 $f_w$ 和 $g_w$ 的零点是相同的}, 所以唯一性是显然的。
+
+如果把 $f_w$ 的零点记为 $b_1(w), \ldots b_d(w)$, 那么就有 $$g_w\left(z_n\right)=\left(z_n-b_1(w)\right) \cdots\left(z_n-b_d(w)\right).$$ 虽然这里对零点的顺序有一些任意性, 但最后这个多项式还是一样的。如果希望 $$g\left(w, z_n\right)=z_n^d+a_1(w) \cdot z_n^{d-1}+\cdots+a_d(w)$$ 是一个 WP, 那么对比知道 $a_i(w)$ 是这些 $b_j(w)$ 的基本对称多项式。
+
+立马要面对的问题有两个: 
+\begin{fancybox}
+\begin{enumerate}
+   \item 为什么零点的数目 $d$ 与 $w$ 无关？
+   \item 最后得到的这个多项式为什么是全纯的? 
+\end{enumerate}
+\end{fancybox}
+
+\begin{remark}
+   虽然我们可以相信零点随着系数的变化也是全纯地变化, 但总有很多"奇异"的情况没办法直接去证明。
+\end{remark}
+
+这两个问题都可以从下述引理中得到解答:
+
+\begin{lemma}[][][lem:important1]
+   如果 $f$ 是一个一元全纯函数（在某个使下面命题有意义的区域上定义的）, 且它在球面 $\{|z|=r\}$ 上没有零点, 在开球 $\{|z|<r\}$ 内的零点为 $b_1, \ldots, b_d$ (多重零点按重数计算), 那么有 
+   $$\frac{1}{2 \pi \mathrm{i}} \oint_{|z|=r} z^k \frac{f^{\prime}(z)}{f(z)} \mathrm{d} z=\sum_{i=1}^d b_i^k,$$
+   其中 $k \geq 0$ 。
+\end{lemma}
+
+
+   只需要在某个零点附近展开看看留数 就知道了。那么\textbf{对第一个问题的回答就是``取足够小的邻域即可"}。具体来说, 先选择 $\varepsilon_n$ 使得在 $\left\{\left|z_n\right|<\varepsilon_n\right\}$ 内 $f_0$ 只有 0 这一个（ $d$ 重的）零点。在上述引理中取 $k=0$ ，于是 $f_w$ 的零点数目随 $w$ 的变化是全纯的, 但这必须是个整数, 所以在足够小的邻域内就恒为 $d$ 。当然了,可以把这个邻域取为 $\left(-\varepsilon_1, \varepsilon_1\right) \times \cdots \times\left(-\varepsilon_n, \varepsilon_n\right)$ 。
+
+\textbf{对第二个问题的回答就是``基本对称多项式和对称幂次和能相互表示"}。于是上述引理就说明了这些 $a_i$ 都是全纯的。
+
+
+至此\textbf{唯一剩下需要证明的就是 $h$ 是全纯函数了。为此只需要说明它相对于 $w$ 和 $z_n$ 都是全纯的然后由 Osgood 引理即得}。固定 $w$, 由于 $f_w$ 和 $g_w$ 零点完全相同, 所以 $h_w$ （即 $h$ 相对于 $z_n$ ) 是全纯的; 而对于固定的 $z_n$, 有 $h\left(w, z_n\right)=\frac{1}{2 \pi \mathrm{i}} \oint_{|\zeta|=\varepsilon_1} \frac{h_w(\zeta)}{\zeta-z_n} \mathrm{~d} \zeta$, 所以相对于 $w$也是全纯的。
+   
+\end{proof}
+
+\begin{remark}
+   对于 $f(z_1,\dots,z_n)=0$, 现在固定$w=z_1,\dots,z_{n-1}$, 则上述方程成为一个一元函数$f_w (z_n):=f(w,z_n)=0$. 唯一性。假设存在如题中的分解式 $f_w(z_n)=g_w(z_n)\cdot h_w(z_n)$,那么由 $f$在$w$上不一致为零，即存在$f_w$的幂级数展开式中某一个和项系数不为零，从而受此启发，我们可以将 $f_w$分为两部分，一部分包括了 $f_w$全部零点，记为 $g_w$,另一部分则不包含 $f_w$零点，记为 $h_w$, 即 $f_w=g_w\cdot h_w$. 我们不妨假设 $f_w$的所有零点为 $b_1(w),\dots,b_d(w)$, 则有 $g_w(z_n)=(z_n-b_1(w))\cdots (z_n-b_d(w))$, 也可以写为 $g_w=z_n^d+a_1(w) z_n^{d-1}+\dots+a_d(w)$. 这样一来，就确定了这个分解的存在性，剩下的就是证明唯一性是否成立？这涉及到两个问题，第一：这里所假设的零点 $b_i(w),i=1,\dots,d$的个数 $d$是否与 $w$相关，如果不相关，则唯一性显然成立；第二：上面所构造的 $g_w$是否全纯？如果 $g_w$全纯，那么 $h_w$全纯也是显然的。如若这两个问题都如此回答，则这个分解是有意义的，且 $g_w$ 是WP。
+
+   对于问题一，反证法，假设 $d$与 $w$有关，则有配对$(d_1,w_1), (d_2,w_2)$。那么就相应地有 $f_w=g_{w_1} h_{w_1}=g_{w_2}h_{w_2}$, 且 $g_{w_1}\neq g_{w_2}$.  可是由于我们构造 $g_w$时的假设 $f_w$ 与 $g_w$ 共零点，设零点集为 $\{c_1,\dots,c_q\}$，且在复数域中 $g_{w_1},g_{w_2}$都具有完全分解式，则 $g_{w_1}=\prod_{d_1}(z_n-b_i(w_1))= g_{w_2}=\prod_{d_2}(z_n-b_j(w_2))=\prod_{q}(z_n-c_k)$, 从而 $g_{w_1}=g_{w_2}, h_{w_1}=h_{w_2}$, 这与假设$g_{w_1}\neq g_{w_2}$相悖，故而 $d$与 $w$无关。
+
+   问题二如上面证明所述，应用\autoref{lem:important1}即可。
+   % 题中假设知$f_w$是原点附近一元全纯函数且 $f(0,\dots,0)=0$, 由于$f$在 $w$坐标上不一致为零，这意味着假若如我们所设，将 $w=z_1,\dots,z_{n-1}$固定为 $w=0,\dots,0$,则 $f_0(0)=0$. 
+\end{remark}
+
+
+
+
+\begin{corollary}
+   每个局部环 $\mathcal{O}_{X, p}$ 都是 UFD。
+\end{corollary}
+\begin{proof}
+当然只需要对 $\mathcal{O}_{\mathbb{C}^n, 0}$ 来证明就好了。对于 $n=0,1$ 都是显然的, 我们尝试对 $n$ 归纳来证明。设 $f \in \mathcal{O}_{\mathbb{C}^n, 0}$, 那么 WPT 告诉我们 $f=g \cdot h$, 由于 $h$ 可逆我们不管它, 就只看这个 WP $g \in \mathcal{O}_{\mathbb{C}^{n-1}, 0}[z]$ 。
+
+按照归纳假设这是一个 UFD, 于是可以写 $g=g_1 \cdots g_k$, 其中 $g_i \in \mathcal{O}_{\mathbb{C}^{n-1}, 0}[z]$ 是不可约的。视 $g_i$ 为 $\mathcal{O}_{\mathbb{C}^n, 0}$ 中的元素, 应用 WPT 有 $g_i=\tilde{g}_i \cdot h_i$, 其中 $\tilde{g}_i$ 是 WP 而 $h_i$ 可逆。于是有 $g=\left(\tilde{g}_1 \cdots \tilde{g}_k\right)\left(h_1 \cdots h_k\right)$, 第一个括号是一些 WP 的乘积所以仍然是一个 WP, 而第二个括号可逆, 所以按照 WPT 的唯一性知道 $g=\tilde{g}_1 \cdots \tilde{g}_k$ 。换言之, 每个 WP 都是一些不可约 WP 的乘积，所谓"不可约 WP"是指这个 WP 在 $\mathcal{O}_{\mathbb{C}^{n-1}, 0}[z]$ 中不可约。
+
+容易看出一个 WP 在 $\mathcal{O}_{\mathbb{C}^{n-1}, 0}[z]$ 中不可约则在 $\mathcal{O}_{\mathbb{C}^n, 0}$ 中也不可约: 如果 $\tilde{g}$ 是一个不可约 WP且在 $\mathcal{O}_{\mathbb{C}^n, 0}$ 中有 $\tilde{g}=f_1 \cdot f_2$, 则应用 WPT 得 $f_i=g_i \cdot h_i$, 于是 $\tilde{g}=\left(g_1 g_2\right)\left(h_1 h_2\right)$, 同样由 WPT 的唯一性知道 $\tilde{g}=g_1 g_2$ 。
+
+所以精确到相伴，每个 $f \in \mathcal{O}_{\mathbb{C}^n, 0}$ 都是一些不可约 WP 的乘积。唯一性的证明也是类似的，只需要说明 WP 在 $\mathcal{O}_{\mathbb{C}^{n-1}, 0}[z]$ 和 $\mathcal{O}_{\mathbb{C}^n, 0}$ 中的不可约性是一样的即可（上面已经证明了一半了)。
+\end{proof}
+
+      
+
+\begin{theorem}[][Weierstrass Division Theorem][thm:Weierstrass Division Theorem]
+   Let $g(z,w)\in \mO_{n-1}[w]$ be a Weierstrass polynomial of degree $k$ in $w$. Then for any $f\in \mO_{n}$, we can write 
+   \[f=g\cdot h+r\]
+   with $r(z,w)$ a polynomial of degree $<k$ in $w$.
+\end{theorem}
+   \begin{proof}
+      Here is the proof in my words. 
+      
+   \end{proof}
+
+\section{复流形}
+
+\begin{theorem}[][Inverse Function Theorem][thm:Inverse]
+   Let $U,V$ be sets in $\bC^n$ with $0\in U$ and $f: U\to V$ a holomorphic map with $\sF (f)=\Diff[f_j]{z_i}$ nonsingular at $0$. Then $f$ is one-to-one in a neiborhood of $0$, and $f^{-1}$ is holomorphic at $f(0)$.
+\end{theorem}
+   \begin{proof}
+      As $\sF (f)=\Diff[f_j]{z_i}$ nonsingular at $0$, i.e., not all of the $\Diff[f_j]{z_i}=0, i,j=1,\dots,n$,  thus $\det \abs{\sF_\bR (f)}=\abs{\det(\sF(f))}^2\neq 0$ at $0$, by ordinary inverse fuction theorem $f$ has a smooth inverse $f^{-1}$ near $0$. Now the left  thing is to prove this $f^{-1}$ is holomorphic at $f(0)$. Naturally, we have 
+      \[f^{-1} \circ f (z)=z,\]
+       so 
+       \[
+         \begin{aligned}
+            0 & =\frac{\partial}{\partial \bar{z}_i}\left(f^{-1}(f(z))\right) \\
+            & =\sum_k \frac{\partial f_j^{-1}}{\partial z_k} \cdot \frac{\partial f_k}{\partial \bar{z}_i}+\sum_k \frac{\partial f_j^{-1}}{\partial \bar{z}_k} \cdot \frac{\partial \bar{f}_k}{\partial \bar{z}_i} \\
+            & =\sum_k \frac{\partial f_j^{-1}}{\partial \bar{z}_k} \cdot\left(\frac{\overline{\partial f_k}}{\partial z_i}\right) \quad \text { for all } i, j
+            \end{aligned}\]
+   \end{proof}
+      
+
+
+
+
+\clearpage
+\printbibliography[heading=bibintoc,title={Bibliography}]\printindex\thispagestyle{empty}
+\bottomimage{hummingbird-8013214}
+\ISBNcode{\EANisbn[ISBN=978-80-7340-097-2]} %
+\summary{A Research Notes Series For papers.}
+\makebottomcover
+\end{document} 

@@ -1,0 +1,361 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{auvray2013note}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=d830aebc048fadfe7c67993fe44a47f4}{%
+           family={Auvray},
+           familyi={A\bibinitperiod},
+           given={Hugues},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{d830aebc048fadfe7c67993fe44a47f4}
+      \strng{fullhash}{d830aebc048fadfe7c67993fe44a47f4}
+      \strng{fullhashraw}{d830aebc048fadfe7c67993fe44a47f4}
+      \strng{bibnamehash}{d830aebc048fadfe7c67993fe44a47f4}
+      \strng{authorbibnamehash}{d830aebc048fadfe7c67993fe44a47f4}
+      \strng{authornamehash}{d830aebc048fadfe7c67993fe44a47f4}
+      \strng{authorfullhash}{d830aebc048fadfe7c67993fe44a47f4}
+      \strng{authorfullhashraw}{d830aebc048fadfe7c67993fe44a47f4}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1401.0128}
+      \field{title}{Note on Poincaré type Kähler metrics and Futaki characters}
+      \field{year}{2013}
+    \endentry
+    \entry{calabi1960compact}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=e2ebff972a994f358c76bb9d60673b1e}{%
+           family={Calabi},
+           familyi={C\bibinitperiod},
+           given={Eugenio},
+           giveni={E\bibinitperiod}}}%
+        {{hash=4b2563f1f36f18f01151939487f4e9d6}{%
+           family={Vesentini},
+           familyi={V\bibinitperiod},
+           given={Edoardo},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {JSTOR}%
+      }
+      \strng{namehash}{4e6899e7854e9c524331f113dd5baa54}
+      \strng{fullhash}{4e6899e7854e9c524331f113dd5baa54}
+      \strng{fullhashraw}{4e6899e7854e9c524331f113dd5baa54}
+      \strng{bibnamehash}{4e6899e7854e9c524331f113dd5baa54}
+      \strng{authorbibnamehash}{4e6899e7854e9c524331f113dd5baa54}
+      \strng{authornamehash}{4e6899e7854e9c524331f113dd5baa54}
+      \strng{authorfullhash}{4e6899e7854e9c524331f113dd5baa54}
+      \strng{authorfullhashraw}{4e6899e7854e9c524331f113dd5baa54}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Annals of Mathematics}
+      \field{title}{On compact, locally symmetric Kahler manifolds}
+      \field{year}{1960}
+      \field{pages}{472\bibrangedash 507}
+      \range{pages}{36}
+    \endentry
+    \entry{CACA}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=eca6b7dd74245c117dc5e7b0449c9463}{%
+           family={Demailly},
+           familyi={D\bibinitperiod},
+           given={Jean-Pierre},
+           giveni={J\bibinithyphendelim P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Institut Fourier, UMR 5582 du CNRS}%
+      }
+      \list{publisher}{1}{%
+        {Université de Grenoble I}%
+      }
+      \strng{namehash}{eca6b7dd74245c117dc5e7b0449c9463}
+      \strng{fullhash}{eca6b7dd74245c117dc5e7b0449c9463}
+      \strng{fullhashraw}{eca6b7dd74245c117dc5e7b0449c9463}
+      \strng{bibnamehash}{eca6b7dd74245c117dc5e7b0449c9463}
+      \strng{authorbibnamehash}{eca6b7dd74245c117dc5e7b0449c9463}
+      \strng{authornamehash}{eca6b7dd74245c117dc5e7b0449c9463}
+      \strng{authorfullhash}{eca6b7dd74245c117dc5e7b0449c9463}
+      \strng{authorfullhashraw}{eca6b7dd74245c117dc5e7b0449c9463}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1}
+      \field{month}{6}
+      \field{note}{book}
+      \field{series}{Book}
+      \field{title}{Complex Analytic and Differential Geometry}
+      \field{volume}{1}
+      \field{year}{2012}
+    \endentry
+    \entry{gigante1981vector}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=9c10ff7d4a4dd0c441b6f5d8415a0f1e}{%
+           family={Gigante},
+           familyi={G\bibinitperiod},
+           given={Giuliana},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c10ff7d4a4dd0c441b6f5d8415a0f1e}
+      \strng{fullhash}{9c10ff7d4a4dd0c441b6f5d8415a0f1e}
+      \strng{fullhashraw}{9c10ff7d4a4dd0c441b6f5d8415a0f1e}
+      \strng{bibnamehash}{9c10ff7d4a4dd0c441b6f5d8415a0f1e}
+      \strng{authorbibnamehash}{9c10ff7d4a4dd0c441b6f5d8415a0f1e}
+      \strng{authornamehash}{9c10ff7d4a4dd0c441b6f5d8415a0f1e}
+      \strng{authorfullhash}{9c10ff7d4a4dd0c441b6f5d8415a0f1e}
+      \strng{authorfullhashraw}{9c10ff7d4a4dd0c441b6f5d8415a0f1e}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Adv. in Math}
+      \field{number}{1}
+      \field{title}{Vector bundles with semidefinite curvature and cohomology vanishing theorems}
+      \field{volume}{41}
+      \field{year}{1981}
+      \field{pages}{40\bibrangedash 56}
+      \range{pages}{17}
+    \endentry
+    \entry{hatcher2002algebraic}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=0a94eadf86d8b878d4c37bc5640e53e3}{%
+           family={Hatcher},
+           familyi={H\bibinitperiod},
+           given={Allen},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cambridge}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{0a94eadf86d8b878d4c37bc5640e53e3}
+      \strng{fullhash}{0a94eadf86d8b878d4c37bc5640e53e3}
+      \strng{fullhashraw}{0a94eadf86d8b878d4c37bc5640e53e3}
+      \strng{bibnamehash}{0a94eadf86d8b878d4c37bc5640e53e3}
+      \strng{authorbibnamehash}{0a94eadf86d8b878d4c37bc5640e53e3}
+      \strng{authornamehash}{0a94eadf86d8b878d4c37bc5640e53e3}
+      \strng{authorfullhash}{0a94eadf86d8b878d4c37bc5640e53e3}
+      \strng{authorfullhashraw}{0a94eadf86d8b878d4c37bc5640e53e3}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Algebraic Topology}
+      \field{year}{2002}
+    \endentry
+    \entry{huang2016logarithmic}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=a61ecf8f61ae39dc1bff395d51cb3e8e}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Chunle},
+           giveni={C\bibinitperiod}}}%
+        {{hash=2f1c2ebb3891f3563e1cc29b7372ee81}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Kefeng},
+           giveni={K\bibinitperiod}}}%
+        {{hash=f1a740efe3a7012d7ab2067086fbc59f}{%
+           family={Wan},
+           familyi={W\bibinitperiod},
+           given={Xueyuan},
+           giveni={X\bibinitperiod}}}%
+        {{hash=9c58e81c9a9d761b9219765e34b17913}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Xiaokui},
+           giveni={X\bibinitperiod}}}%
+      }
+      \strng{namehash}{499f715903b23711069c2b799f93d56b}
+      \strng{fullhash}{80e8e405c055219ff07bf06009710358}
+      \strng{fullhashraw}{80e8e405c055219ff07bf06009710358}
+      \strng{bibnamehash}{499f715903b23711069c2b799f93d56b}
+      \strng{authorbibnamehash}{499f715903b23711069c2b799f93d56b}
+      \strng{authornamehash}{499f715903b23711069c2b799f93d56b}
+      \strng{authorfullhash}{80e8e405c055219ff07bf06009710358}
+      \strng{authorfullhashraw}{80e8e405c055219ff07bf06009710358}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1611.07671}
+      \field{title}{Logarithmic vanishing theorems on compact Kähler manifolds I}
+      \field{year}{2016}
+    \endentry
+    \entry{Huybrechts2010Complex}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=f25572a74fe0f6eb7e686ace12cb3011}{%
+           family={Huybrechts},
+           familyi={H\bibinitperiod}}}%
+        {{hash=262031397020fd8df478ec13b4b096c5}{%
+           family={Daniel},
+           familyi={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{62ef5d71962e55d1e2757e1aeb5755c8}
+      \strng{fullhash}{62ef5d71962e55d1e2757e1aeb5755c8}
+      \strng{fullhashraw}{62ef5d71962e55d1e2757e1aeb5755c8}
+      \strng{bibnamehash}{62ef5d71962e55d1e2757e1aeb5755c8}
+      \strng{authorbibnamehash}{62ef5d71962e55d1e2757e1aeb5755c8}
+      \strng{authornamehash}{62ef5d71962e55d1e2757e1aeb5755c8}
+      \strng{authorfullhash}{62ef5d71962e55d1e2757e1aeb5755c8}
+      \strng{authorfullhashraw}{62ef5d71962e55d1e2757e1aeb5755c8}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Complex geometry:an introduction}
+      \field{year}{2010}
+    \endentry
+    \entry{kim20232}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=42e28fc3f5d4609fbd4a7dc96fac1056}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Hyunsuk},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{42e28fc3f5d4609fbd4a7dc96fac1056}
+      \strng{fullhash}{42e28fc3f5d4609fbd4a7dc96fac1056}
+      \strng{fullhashraw}{42e28fc3f5d4609fbd4a7dc96fac1056}
+      \strng{bibnamehash}{42e28fc3f5d4609fbd4a7dc96fac1056}
+      \strng{authorbibnamehash}{42e28fc3f5d4609fbd4a7dc96fac1056}
+      \strng{authornamehash}{42e28fc3f5d4609fbd4a7dc96fac1056}
+      \strng{authorfullhash}{42e28fc3f5d4609fbd4a7dc96fac1056}
+      \strng{authorfullhashraw}{42e28fc3f5d4609fbd4a7dc96fac1056}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv: 2306.00313}
+      \field{title}{$L^2$-approach to the Saito vanishing theorem}
+      \field{year}{2023}
+    \endentry
+    \entry{kobayashi1970complex}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=6a80d28fcb3df1ce1c4b1226430560ba}{%
+           family={Kobayashi},
+           familyi={K\bibinitperiod},
+           given={Shoshichi},
+           giveni={S\bibinitperiod}}}%
+        {{hash=99bc15533a5c71c5d27dbcabd07a6a27}{%
+           family={Ochiai},
+           familyi={O\bibinitperiod},
+           given={Takushiro},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {The Mathematical Society of Japan}%
+      }
+      \strng{namehash}{9d9a46bbfaa3b6a5fdd313eb39e160cd}
+      \strng{fullhash}{9d9a46bbfaa3b6a5fdd313eb39e160cd}
+      \strng{fullhashraw}{9d9a46bbfaa3b6a5fdd313eb39e160cd}
+      \strng{bibnamehash}{9d9a46bbfaa3b6a5fdd313eb39e160cd}
+      \strng{authorbibnamehash}{9d9a46bbfaa3b6a5fdd313eb39e160cd}
+      \strng{authornamehash}{9d9a46bbfaa3b6a5fdd313eb39e160cd}
+      \strng{authorfullhash}{9d9a46bbfaa3b6a5fdd313eb39e160cd}
+      \strng{authorfullhashraw}{9d9a46bbfaa3b6a5fdd313eb39e160cd}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of the Mathematical Society of Japan}
+      \field{number}{4}
+      \field{title}{On complex manifolds with positive tangent bundles}
+      \field{volume}{22}
+      \field{year}{1970}
+      \field{pages}{499\bibrangedash 525}
+      \range{pages}{27}
+    \endentry
+    \entry{vesentini1967lectures}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=4b2563f1f36f18f01151939487f4e9d6}{%
+           family={Vesentini},
+           familyi={V\bibinitperiod},
+           given={Edoardo},
+           giveni={E\bibinitperiod}}}%
+        {{hash=3d431cd924a4ef18c573f97b93537c93}{%
+           family={Raghunathan},
+           familyi={R\bibinitperiod},
+           given={MS},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Tata Institute of fundamental research Bombay}%
+      }
+      \strng{namehash}{c1dc87a0698fa2afb022de7ae3ee3fc0}
+      \strng{fullhash}{c1dc87a0698fa2afb022de7ae3ee3fc0}
+      \strng{fullhashraw}{c1dc87a0698fa2afb022de7ae3ee3fc0}
+      \strng{bibnamehash}{c1dc87a0698fa2afb022de7ae3ee3fc0}
+      \strng{authorbibnamehash}{c1dc87a0698fa2afb022de7ae3ee3fc0}
+      \strng{authornamehash}{c1dc87a0698fa2afb022de7ae3ee3fc0}
+      \strng{authorfullhash}{c1dc87a0698fa2afb022de7ae3ee3fc0}
+      \strng{authorfullhashraw}{c1dc87a0698fa2afb022de7ae3ee3fc0}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Lectures on Levi convexity of complex manifolds and cohomology vanishing theorems}
+      \field{volume}{39}
+      \field{year}{1967}
+    \endentry
+    \entry{zucker1979hodge}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=e295ef22b9458ba2f5b8d1551515a568}{%
+           family={Zucker},
+           familyi={Z\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {JSTOR}%
+      }
+      \strng{namehash}{e295ef22b9458ba2f5b8d1551515a568}
+      \strng{fullhash}{e295ef22b9458ba2f5b8d1551515a568}
+      \strng{fullhashraw}{e295ef22b9458ba2f5b8d1551515a568}
+      \strng{bibnamehash}{e295ef22b9458ba2f5b8d1551515a568}
+      \strng{authorbibnamehash}{e295ef22b9458ba2f5b8d1551515a568}
+      \strng{authornamehash}{e295ef22b9458ba2f5b8d1551515a568}
+      \strng{authorfullhash}{e295ef22b9458ba2f5b8d1551515a568}
+      \strng{authorfullhashraw}{e295ef22b9458ba2f5b8d1551515a568}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Annals of Mathematics}
+      \field{title}{Hodge theory with degenerating coefficients: $L^2$ cohomology in the Poincaré metric}
+      \field{year}{1979}
+      \field{pages}{415\bibrangedash 476}
+      \range{pages}{62}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

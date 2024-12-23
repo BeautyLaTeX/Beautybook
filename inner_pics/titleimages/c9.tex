@@ -1,0 +1,92 @@
+% Rotated polygons
+% Author: Dr. rer. nat. Ismael Gutierrez Garcia
+\documentclass{article}
+\usepackage[usenames,dvipsnames,pdftex]{xcolor}
+\usepackage{tikz}
+%%%<
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+%%%>
+\begin{comment}
+:Title: Rotated polygons
+:Tags: Foreach;Geometry;Decorative drawings
+:Author: Dr. rer. nat. Ismael Gutierrez Garcia
+:Slug: rotated-polygons
+
+Extending the rotated triangle example
+http://www.texample.net/tikz/examples/rotated-triangle/
+by Alain Matthes, here are rotated hexagon, pentagon and squares.
+\end{comment}
+\usepackage{ifthen}
+\begin{document}
+\newcounter{density}
+\setcounter{density}{20}
+\begin{tikzpicture}
+    \def\couleur{BlueGreen}
+    \path[coordinate] (0,0)  coordinate(A)
+                ++( 120:6cm) coordinate(B)
+                ++(60:6cm) coordinate(C)
+                ++(0:6cm) coordinate(D)
+                ++(-60:6cm) coordinate(E)
+                ++(240:6cm) coordinate(F)
+                ;
+    \draw[fill=\couleur!\thedensity] (A) -- (B) -- (C) --(D) -- (E) -- (F)-- cycle;
+    \foreach \x in {1,...,40}{%
+        \pgfmathsetcounter{density}{\thedensity+10}
+        \setcounter{density}{\thedensity}
+        \path[coordinate] coordinate(X) at (A){};
+        \path[coordinate] (A) -- (B) coordinate[pos=.10](A)
+                            -- (C) coordinate[pos=.10](B)
+                            -- (D) coordinate[pos=.10](C)
+                            -- (E) coordinate[pos=.10](D)
+                             -- (F) coordinate[pos=.10](E)
+                            -- (X) coordinate[pos=.10](F);
+        \draw[fill=\couleur!\thedensity] (A)--(B)--(C)-- (D) --(E) -- (F) -- cycle;
+    }
+\end{tikzpicture}
+
+% \setcounter{density}{20}
+% \begin{tikzpicture}
+%     \def\couleur{LimeGreen}
+%     \path[coordinate] (0,0)  coordinate(A)
+%                 ++( 144:10cm) coordinate(B)
+%                 ++(72:10cm) coordinate(C)
+%                 ++(0:10cm) coordinate(D)
+%                 ++(-72:10cm) coordinate(E)
+%                                 ;
+%     \draw[fill=\couleur!\thedensity] (A) -- (B) -- (C) --(D) -- (E) --  cycle;
+%     \foreach \x in {1,...,40}{%
+%         \pgfmathsetcounter{density}{\thedensity+10}
+%         \setcounter{density}{\thedensity}
+%         \path[coordinate] coordinate(X) at (A){};
+%         \path[coordinate] (A) -- (B) coordinate[pos=.10](A)
+%                             -- (C) coordinate[pos=.10](B)
+%                             -- (D) coordinate[pos=.10](C)
+%                             -- (E) coordinate[pos=.10](D)
+%                              -- (X) coordinate[pos=.10](E);
+%         \draw[fill=\couleur!\thedensity] (A)--(B)--(C)-- (D) --(E)  -- cycle;
+%     }
+% \end{tikzpicture}
+
+% \setcounter{density}{20}
+% \begin{tikzpicture}
+%     \def\couleur{OrangeRed}
+%     \path[coordinate] (0,0)  coordinate(A)
+%                 ++( 90:12cm) coordinate(B)
+%                 ++(0:12cm) coordinate(C)
+%                 ++(-90:12cm) coordinate(D);
+%     \draw[fill=\couleur!\thedensity] (A) -- (B) -- (C) --(D) -- cycle;
+%     \foreach \x in {1,...,40}{%
+%         \pgfmathsetcounter{density}{\thedensity+20}
+%         \setcounter{density}{\thedensity}
+%         \path[coordinate] coordinate(X) at (A){};
+%         \path[coordinate] (A) -- (B) coordinate[pos=.10](A)
+%                             -- (C) coordinate[pos=.10](B)
+%                             -- (D) coordinate[pos=.10](C)
+%                             -- (X) coordinate[pos=.10](D);
+%         \draw[fill=\couleur!\thedensity] (A)--(B)--(C)-- (D) -- cycle;
+%     }
+% \end{tikzpicture}
+\end{document}

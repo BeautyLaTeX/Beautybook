@@ -1,0 +1,1042 @@
+\documentclass[lang=en,12pt]{beautybook}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{times} % Times New Roman Font
+\RequirePackage[T1]{fontenc}
+\RequirePackage{microtype}
+\RequirePackage{pgfplots}
+\tikzset{>=Stealth}
+\pgfplotsset{compat=1.18}
+% ---------------------------------------------------------------------------- %
+%                            The Cover Theme Chosen                            %
+% ---------------------------------------------------------------------------- %
+\definecolor{coverbgcolor}{HTML}{e0e0e0}
+\definecolor{coverfgcolor}{HTML}{1f3134} % The color of the background
+\definecolor{coverbar}{HTML}{7c9092} % The color of the left bar
+\definecolor{bottomcolor}{HTML}{2c4f54}
+\definecolor{nuanbai}{HTML}{f5f5f5}
+\coverstyle={ % cover-keys
+    cover-choose=en, % cn ; en ; enfig ; birkar
+}
+% ---------------------------------------------------------------------------- %
+%                            The Cover Theme Chosen                            %
+% ---------------------------------------------------------------------------- %
+\mathstyle={
+    math-font=plain, % plain; stix; mtpro2 
+}
+\usepackage{bm}
+\renewcommand*{\textfraction}{0.05}
+\renewcommand*{\topfraction}{0.9}
+\renewcommand*{\bottomfraction}{0.8}
+\renewcommand*{\floatpagefraction}{0.85}
+
+% \overfullrule=1pt
+% \RequirePackage[fontsize=13.5pt]{fontsize}
+%% First one
+\mynewtheorem{
+    defi={\textbf{Definition}}[section]{interior style={left color=ReD!8,right color=ReD!5!CyaN!50}, borderline west={1.5mm}{0mm}{ReD}},
+    thm={\textbf{Theorem}}[section]{interior style={left color=CyaN!80!black!20,right color=CyaN!80!black!15!CyaN!50}, borderline west={1.5mm}{0mm}{CyaN!80!black}},
+    lem={\textbf{Lemma}}[section]{interior style={left color=BluE!8,right color=BluE!5!CyaN!50}, borderline west={1.5mm}{0mm}{BluE}},
+    prop={\textbf{Proposition}}[section]{interior style={left color=OrangE!8,right color=OrangE!5!CyaN!50}, borderline west={1.5mm}{0mm}{OrangE}},
+    exam={\textbf{Example}}[chapter]{interior style={left color=DarkGreen!8,right color=DarkGreen!5!CyaN!50}, borderline west={1.5mm}{0mm}{DarkGreen}},
+    cor={\textbf{Corollary}}[chapter]{interior style={left color=violet!8,right color=violet!5!CyaN!50}, borderline west={1.5mm}{0mm}{violet}},
+}
+\newtheorem*{remark}{\textbf{Remark}}
+%% Second one
+\makeatletter
+\mynewtcbtheorem{
+    % theorem-environment
+    problem={
+        counter=tcbprob, 
+        the counter=\thesection.\arabic{tcbprob}, 
+        name=Problem, % it will be saved in \theorem@name 
+        thmcolor=绛紫,
+        autoref name=\bfseries Problem, 
+        style={
+        arc=3pt,breakable,enhanced,interior style={top color=绛紫!9 ,middle color=绛紫!6, bottom color=绛紫!3},boxrule=0pt,top=8mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% up
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%down
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape, step={tcbprob},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@theorem@overlay@unbroken{Problem\ \thetcbprob}{绛紫},
+        overlay first=\my@theorem@overlay@first{Problem\ \thetcbprob}{绛紫},
+        overlay last=\my@theorem@overlay@last{绛紫},
+        }
+    },
+    lemma={
+        counter=tcblem,
+        the counter=\thesection.\arabic{tcblem},
+        name=Lemma, 
+        lemcolor=靛蓝, 
+        autoref name=\bfseries Lemma,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=靛蓝!9 ,middle color=靛蓝!6, bottom color=靛蓝!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape,step={tcblem},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{\lemma@name\ \thetcblem}{\lemma@lemcolor},
+        overlay first=\my@lemma@overlay@first{\lemma@name\ \thetcblem}{\lemma@lemcolor},
+        overlay last=\my@lemma@overlay@last{\lemma@lemcolor},
+        }
+    },
+    corollary={
+        counter=tcbcor,
+        the counter=\thesection.\arabic{tcbcor},
+        autoref name=\bfseries Corollary,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=茶色!9 ,middle color=茶色!6, bottom color=茶色!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape,step={tcbcor},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Corollary\ \thetcbcor}{茶色},
+        overlay first=\my@lemma@overlay@first{Corollary\ \thetcbcor}{茶色},
+        overlay last=\my@lemma@overlay@last{茶色},
+        }
+    },
+    proposition={
+        counter=tcbprop,
+        the counter=\thesection.\arabic{tcbprop},
+        autoref name=\bfseries Proposition,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=黛绿!9 ,middle color=黛绿!6, bottom color=黛绿!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape,step={tcbprop},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Proposition\ \thetcbprop}{黛绿},
+        overlay first=\my@lemma@overlay@first{Proposition\ \thetcbprop}{黛绿},
+        overlay last=\my@lemma@overlay@last{黛绿},
+        }
+    },
+    definition={
+        counter=tcbdefi,
+        the counter=\thesection.\arabic{tcbdefi},
+        autoref name=\bfseries Definition,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=茜色!9 ,middle color=茜色!6, bottom color=茜色!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcbdefi},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Definition\ \thetcbdefi}{茜色},
+        overlay first=\my@lemma@overlay@first{Definition\ \thetcbdefi}{茜色},
+        overlay last=\my@lemma@overlay@last{茜色},
+        }
+    },
+    example={
+        counter=tcbexam,
+        the counter=\thesection.\arabic{tcbexam},
+        autoref name=\bfseries Example,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=黛绿!9 ,middle color=黛绿!6, bottom color=黛绿!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcbexam},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Example\ \thetcbexam}{黛绿},
+        overlay first=\my@lemma@overlay@first{Example\ \thetcbexam}{黛绿},
+        overlay last=\my@lemma@overlay@last{黛绿},
+        }
+    },
+    Exercise={
+        counter=tcbexer,
+        the counter=\thechapter.\arabic{tcbexer},
+        autoref name=\bfseries Exercise,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=绛紫!9 ,middle color=绛紫!6, bottom color=绛紫!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.9,
+        fontupper=\normalsize,step={tcbexer},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Exercise\ \thetcbexer}{绛紫},
+        overlay first=\my@lemma@overlay@first{Exercise\ \thetcbexer}{绛紫},
+        overlay last=\my@lemma@overlay@last{绛紫},
+        }
+    },
+    theorem={
+        counter=tcbthm,
+        the counter=\thesection.\arabic{tcbthm},
+        autoref name=\bfseries Theorem,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=黛绿!9 ,middle color=黛绿!6, bottom color=黛绿!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape,step={tcbthm},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Theorem\ \thetcbthm}{黛绿},
+        overlay first=\my@lemma@overlay@first{Theorem\ \thetcbthm}{黛绿},
+        overlay last=\my@lemma@overlay@last{黛绿},
+        }
+    },
+    conjecture={
+        counter=tcbconj,
+        the counter=\thesection.\arabic{tcbconj},
+        name=Conjecture, 
+        lemcolor=靛蓝, 
+        autoref name=\bfseries Conjecture,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=靛蓝!9 ,middle color=靛蓝!6, bottom color=靛蓝!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape,step={tcbconj},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Conjecture\ \thetcblem}{靛蓝},
+        overlay first=\my@lemma@overlay@first{Conjecture\ \thetcblem}{靛蓝},
+        overlay last=\my@lemma@overlay@last{靛蓝},
+        }
+    },
+}
+\makeatother
+%
+
+
+%% --------reference
+\RequirePackage[
+backend=biber,
+style=numeric,
+sorting=nty
+]{biblatex}
+\addbibresource{ref.bib}
+
+\indexsetup{level=\chapter*,noclearpage}
+\makeindex[title={\sffamily References},columns=3,columnsep=15pt,columnseprule]
+\makeindex
+
+    \usepackage{listings}
+    \lstset{
+        basicstyle=\small\ttfamily,	
+            keywordstyle=\color{NavyBlue}, 
+            commentstyle=\color{gray!50!black!50},   	
+            stringstyle=\rmfamily\slshape\color{red}, 	
+        backgroundcolor=\color{gray!5},     
+        frame=leftline,						
+        framerule=0.5pt,rulecolor=\color{gray!80}, 
+        numbers=left,				
+            numberstyle=\footnotesize,	
+            firstnumber=1,
+            stepnumber=1,                  	
+            numbersep=7pt,               	
+        aboveskip=.25em, 			
+        showspaces=false,               	
+        showstringspaces=false,        
+        keepspaces=true, 					
+        showtabs=false,                 	
+        tabsize=2,                     		
+        captionpos=b,                   	
+        flexiblecolumns=true, 			
+        breaklines=true,                	
+        breakatwhitespace=false,        	
+        breakautoindent=true,			
+        breakindent=1em, 			
+        title=\lstname,				
+        escapeinside=``,  		
+        xleftmargin=1em,  xrightmargin=1em,     
+        aboveskip=1ex, belowskip=1ex,
+        framextopmargin=1pt, framexbottommargin=1pt,
+            abovecaptionskip=-2pt,belowcaptionskip=3pt,
+        extendedchars=false, columns=flexible, mathescape=true,
+        texcl=true,
+        fontadjust
+    }%
+
+\begin{document}
+\thispagestyle{empty}
+\title{An Introduction to beautybook template}
+\subtitle{A subtitle here}
+\edition{First Edition}
+\bookseries{Ilustrated by Ethan Lu}
+\author{Ethan Lu}
+\pressname{beautybook}
+\presslogo{inner_pics/beautybook-logo.png}
+\coverimage{inner_pics/coverimage.jpg}%ivy-ge998908f8_1280.jpg
+\makecover
+
+\makeatletter
+% ---------------------------------------------------------------------------- %
+%                           The Sidebar Theme Chosen                           %
+% ---------------------------------------------------------------------------- %
+\definecolor{bg}{HTML}{e0e0e0}
+\definecolor{fg}{HTML}{2c4f54}
+\colorlet{outermarginbgcolor}{bg}
+\colorlet{outermarginfgcolor}{fg}
+% set the contents of the outer margin on even and odd pages for scrheadings, plain and scth
+\oddoutermargin{\sffamily \leftmark} % Odd
+\evenoutermargin{\sffamily\@title} % Even
+% ---------------------------------------------------------------------------- %
+%                           The Sidebar Theme Chosen                           %
+% ---------------------------------------------------------------------------- %
+
+% ---------------------------------------------------------------------------- %
+%                         The images used in the title                         %
+% ---------------------------------------------------------------------------- %
+\titleimage{
+  chapteroddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  partoddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  chapterevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  partevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+}
+\chapimage{\beautybook@chapterimagename}
+\partimage{\beautybook@partimagename}
+\makeatother
+% ---------------------------------------------------------------------------- %
+%                         The images used in the title                         %
+% ---------------------------------------------------------------------------- %
+
+% ---------------------------------------------------------------------------- %
+%                      The Color Chosen for The Magic Box                      %
+% ---------------------------------------------------------------------------- %
+\colorlet{framegolden}{fg} % The line color of the magic box
+\colorlet{framegray}{bg!50} % The background color of the magic box
+% ---------------------------------------------------------------------------- %
+%                      The Color Chosen for The Magic Box                      %
+% ---------------------------------------------------------------------------- %
+
+\frontmatter
+\pagenumbering{Roman}
+
+{% Preface
+\thispagestyle{empty}
+% \addcontentsline{toc}{chapter}{Preface}
+\chapter*{Preface}
+An introduction to the beautybook template.
+
+
+\hfill
+\begin{tabular}{lr}
+    &-- Ethan Lu\\ 
+    & 2024-06-30
+\end{tabular}
+\clearpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+\tableofcontents\let\cleardoublepage\clearpage
+
+
+\mainmatter
+\pagenumbering{arabic}
+
+\partabstract{\hspace*{2em} Here is the introduction area of each part, where you can write a concise overview of the part, of course, if there is nothing to say, you can leave it blank.}
+\part{The template usage introduction of \textbf{beautybook}}
+
+\chapter{A short introduction of \textbf{beautybook}}
+
+\section{Introduction}
+
+The Beauty\LaTeX{} collection is a series of templates authored by a humble, unknown individual. In fact, there are only two series, one is the custom book template \textbf{fancybook } , which is dedicated to the fresh and elegant style, the other is my flagship product-\textbf{ beautybook } !  Why did I choose such an unusual name? My answer is, originally I wanted to name it elegantboook, but there is already the famous elegantbook template. Inspired by the old poem "There is a jade-like beauty waiting for you in the book", the template is named ``beautybook", which means a beautiful woman in your arms and the fragrance of a book overflowing! Therefore, this is the origin of the name \textbf{beautybook } !
+
+
+I am committed to creating a series of beautiful, elegant, simple template to facilitate the use of users and myself. Version changes frequently, please pay attention to version information. Before starting to use templates, it is recommended to choose the latest official version! The latest test version will usually be released in the QQ Group, you can download it and try it yourself!
+
+
+This article covers some of the setup and basic usage of this template. If you have any other questions, suggestions or comments, feel free to submit them to me on GitHub
+\href{https://github.com/BeautyLaTeX/latex-template/issues}{issues} or \href{h1479840692@163.com}{163 mail} or QQ mail \href{1479840692@qq.com}{QQ mail}. 
+
+
+The Project Addresses are the following.
+\begin{itemize}
+  \item GitHub repository: \href{https://github.com/BeautyLaTeX/latex-template}{https://github.com/BeautyLaTeX/latex-template},
+  \item Texpage : \href{https://www.texpage.com/template/8dc933fc-6579-44c9-b660-ea58409d193b}{https://www.texpage.com/template/8dc933fc-6579-44c9-b660-ea58409d193b}
+  \item Download Release: \href{https://github.com/BeautyLaTeX/latex-template/releases}{Official release},
+  \item User QQ Group: 809237593. (!If you are not in China, please e-mail me at \href{h1479840692@outlook.com}{outlook-email}.)
+\end{itemize}
+
+\textit{This work is released under the LaTeX Project Public License, v1.3c or later.}
+
+\section{Installation and Maintenance of Template}
+
+There are two ways you can use this template. The first method is trivial that just download the zip of template from above channel, and then unzip and compile the main file in the archive (i.e. a file with a name like ``beautybook-xx. tex"). The second way is uploading the zip of template to \texttt{overleaf} to comply.
+
+Note that if you choose the second way,  you must write \lstinline{math-font=plain} in the premble of the main file!
+
+It is worth noting that when you download the template from CTAN, then the English version of it does not use any third-party fonts, so that one can be compiled using \texttt{pdflatex}. This is an exception to the rule under which all other files must be compiled using the \texttt{XeLaTeX} engine.
+
+\subsection{Local Installation}
+
+To install locally, follow above steps to download the latest version from GitHub, CTAN or the QQ group.
+
+The following is an example of a minimal work:
+
+\begin{lstlisting}
+\documentclass[lang=en,12pt]{beautybook}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{times} % Times New Roman Font
+\RequirePackage[T1]{fontenc}
+\RequirePackage{microtype} 
+\RequirePackage{pgfplots}
+\tikzset{>=Stealth}
+\pgfplotsset{compat=1.18}
+% ------------------------------------------------- %
+%                            The Cover Theme Chosen                            %
+% ------------------------------------------------- %
+\definecolor{coverbgcolor}{HTML}{e0e0e0}
+\definecolor{coverfgcolor}{HTML}{1f3134} % The color of the background
+\definecolor{coverbar}{HTML}{7c9092} % The color of the left bar
+\definecolor{bottomcolor}{HTML}{2c4f54}
+\definecolor{nuanbai}{HTML}{f5f5f5}
+\coverstyle={ % cover-keys
+    cover-choose=cn, % cn ; en ; enfig ; birkar
+}
+% ---------------------------------------------------------------------------- %
+%                            The Cover Theme Chosen                            %
+% ---------------------------------------------------------------------------- %
+\mathstyle={
+    math-font=plain, % plain; stix; mtpro2 
+}
+%% First one
+\mynewtheorem{
+    defi={\textbf{Definition}}[section]{interior style={left color=ReD!8,right color=ReD!5!CyaN!50}, borderline west={1.5mm}{0mm}{ReD}},
+    thm={\textbf{Theorem}}[section]{interior style={left color=CyaN!80!black!20,right color=CyaN!80!black!15!CyaN!50}, borderline west={1.5mm}{0mm}{CyaN!80!black}},
+    lem={\textbf{Lemma}}[section]{interior style={left color=BluE!8,right color=BluE!5!CyaN!50}, borderline west={1.5mm}{0mm}{BluE}},
+    prop={\textbf{Proposition}}[section]{interior style={left color=OrangE!8,right color=OrangE!5!CyaN!50}, borderline west={1.5mm}{0mm}{OrangE}},
+    exam={\textbf{Example}}[chapter]{interior style={left color=DarkGreen!8,right color=DarkGreen!5!CyaN!50}, borderline west={1.5mm}{0mm}{DarkGreen}},
+    cor={\textbf{Corollary}}[chapter]{interior style={left color=violet!8,right color=violet!5!CyaN!50}, borderline west={1.5mm}{0mm}{violet}},
+}
+\newtheorem*{remark}{\textbf{Remark}}
+%% Second one
+\makeatletter
+\mynewtcbtheorem{
+    % theorem environment
+    problem={
+        counter=tcbprob, 
+        the counter=\thesection.\arabic{tcbprob}, 
+        name=Problem, 
+        thmcolor=purple,
+        autoref name=\bfseries Problem, 
+        style={
+        arc=3pt,breakable,enhanced,interior style={top color=purplepurplepurplegreen!9 ,middle color=purplepurplepurplegreen!6, bottom color=purplepurplepurplegreen!3},boxrule=0pt,top=8mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% up
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%down
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape, step={tcbprob},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@theorem@overlay@unbroken{Problem\ \thetcbprob}{purplepurplepurplegreen},
+        overlay first=\my@theorem@overlay@first{Problem\ \thetcbprob}{purplepurplepurplegreen},
+        overlay last=\my@theorem@overlay@last{purplepurplepurplegreen},
+        }
+    },
+    lemma={
+        counter=tcblem,
+        the counter=\thesection.\arabic{tcblem},
+        name=Lemma, 
+        lemcolor=purplepurplegreen, 
+        autoref name=\bfseries Lemma,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=purplepurplegreen!9 ,middle color=purplepurplegreen!6, bottom color=purplepurplegreen!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape,step={tcblem},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{\lemma@name\ \thetcblem}{\lemma@lemcolor},
+        overlay first=\my@lemma@overlay@first{\lemma@name\ \thetcblem}{\lemma@lemcolor},
+        overlay last=\my@lemma@overlay@last{\lemma@lemcolor},
+        }
+    },
+    corollary={
+        counter=tcbcor,
+        the counter=\thesection.\arabic{tcbcor},
+        autoref name=\bfseries Corollary,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=purplegreen!9 ,middle color=purplegreen!6, bottom color=purplegreen!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape,step={tcbcor},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Corollary\ \thetcbcor}{purplegreen},
+        overlay first=\my@lemma@overlay@first{Corollary\ \thetcbcor}{purplegreen},
+        overlay last=\my@lemma@overlay@last{purplegreen},
+        }
+    },
+    proposition={
+        counter=tcbprop,
+        the counter=\thesection.\arabic{tcbprop},
+        autoref name=\bfseries Proposition,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=green!9 ,middle color=green!6, bottom color=green!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape,step={tcbprop},purplered
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Proposition\ \thetcbprop}{green},
+        overlay first=\my@lemma@overlay@first{Proposition\ \thetcbprop}{green},
+        overlay last=\my@lemma@overlay@last{green},
+        }
+    },
+    definition={
+        counter=tcbdefi,
+        the counter=\thesection.\arabic{tcbdefi},
+        autoref name=\bfseries Definition,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=purplered!9 ,middle color=purplered!6, bottom color=purplered!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcbdefi},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Definition\ \thetcbdefi}{purplered},
+        overlay first=\my@lemma@overlay@first{Definition\ \thetcbdefi}{purplered},
+        overlay last=\my@lemma@overlay@last{purplered},
+        }
+    },
+    example={
+        counter=tcbexam,
+        the counter=\thesection.\arabic{tcbexam},
+        autoref name=\bfseries Example,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=red!9 ,middle color=red!6, bottom color=red!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcbexam},redpurple
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Example\ \thetcbexam}{red},
+        overlay first=\my@lemma@overlay@first{Example\ \thetcbexam}{red},
+        overlay last=\my@lemma@overlay@last{red},
+        }
+    },
+    Exercise={
+        counter=tcbexer,
+        the counter=\thechapter.\arabic{tcbexer},
+        autoref name=\bfseries Exercise,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=redpurple!9 ,middle color=redpurple!6, bottom color=redpurple!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.9,
+        fontupper=\normalsize,step={tcbexer},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Exercise\ \thetcbexer}{redpurple},
+        overlay first=\my@lemma@overlay@first{Exercise\ \thetcbexer}{redpurple},
+        overlay last=\my@lemma@overlay@last{redpurple},
+        }
+    },
+    theorem={
+        counter=tcbthm,
+        the counter=\thesection.\arabic{tcbthm},
+        autoref name=\bfseries Theorem,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=purple!9 ,middle color=purple!6, bottom color=purple!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape,step={tcbthm},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Theorem\ \thetcbthm}{purple},
+        overlay first=\my@lemma@overlay@first{Theorem\ \thetcbthm}{purple},
+        overlay last=\my@lemma@overlay@last{purple},
+        }
+    },
+    conjecture={
+        counter=tcbconj,
+        the counter=\thesection.\arabic{tcbconj},
+        name=Conjecture, 
+        lemcolor=purple, 
+        autoref name=\bfseries Conjecture,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=purple!9 ,middle color=purple!6, bottom color=purple!3},arc=3pt,boxrule=0pt,top=6mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},% 
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},%
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape,step={tcbconj},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{Conjecture\ \thetcblem}{purple},
+        overlay first=\my@lemma@overlay@first{Conjecture\ \thetcblem}{purple},
+        overlay last=\my@lemma@overlay@last{purple},
+        }
+    },
+}
+\makeatother
+%
+
+
+\RequirePackage[
+backend=biber,
+style=numeric,
+sorting=nty
+]{biblatex}
+\addbibresource{ref.bib}
+
+\indexsetup{level=\chapter*,noclearpage}
+\makeindex[title={\sffamily References},columns=3,columnsep=15pt,columnseprule]
+\makeindex
+
+    \usepackage{listings}
+    \lstset{
+        basicstyle=\small\ttfamily,	
+            keywordstyle=\color{NavyBlue}, 
+            commentstyle=\color{gray!50!black!50},   	
+            stringstyle=\rmfamily\slshape\color{red}, 	
+        backgroundcolor=\color{gray!5},     
+        frame=leftline,						
+        framerule=0.5pt,rulecolor=\color{gray!80}, 
+        numbers=left,				
+            numberstyle=\footnotesize,	
+            firstnumber=1,
+            stepnumber=1,                  	
+            numbersep=7pt,               	
+        aboveskip=.25em, 			
+        showspaces=false,               	
+        showstringspaces=false,        
+        keepspaces=true, 					
+        showtabs=false,                 	
+        tabsize=2,                     		
+        captionpos=b,                   	
+        flexiblecolumns=true, 			
+        breaklines=true,                	
+        breakatwhitespace=false,        	
+        breakautoindent=true,			
+        breakindent=1em, 			
+        title=\lstname,				
+        escapeinside=``,  		
+        xleftmargin=1em,  xrightmargin=1em,     
+        aboveskip=1ex, belowskip=1ex,
+        framextopmargin=1pt, framexbottommargin=1pt,
+            abovecaptionskip=-2pt,belowcaptionskip=3pt,
+        extendedchars=false, columns=flexible, mathescape=true,
+        texcl=true,
+        fontadjust
+    }%
+
+\begin{document}
+\thispagestyle{empty}
+\title{Your title}
+\subtitle{}
+\edition{The Edition}
+\bookseries{Illustrated by author}
+\author{author}
+\pressname{beautybook}
+\presslogo{inner_pics/beautybook-logo.png}
+\coverimage{inner_pics/coverimage.jpg}%ivy-ge998908f8_1280.jpg
+\makecover
+
+\makeatletter
+% ---------------------------------------------------------------------------- %
+%                           The Sidebar Theme Chosen                           %
+% ---------------------------------------------------------------------------- %
+\definecolor{bg}{HTML}{e0e0e0}
+\definecolor{fg}{HTML}{2c4f54}
+\colorlet{outermarginbgcolor}{bg}
+\colorlet{outermarginfgcolor}{fg}
+% set the contents of the outer margin on even and odd pages for scrheadings, plain and scth
+\oddoutermargin{\sffamily \leftmark} % Odd sidebar text
+\evenoutermargin{\sffamily\@title} % Even sidebar text
+% ---------------------------------------------------------------------------- %
+%                           The Sidebar Theme Chosen                           %
+% ---------------------------------------------------------------------------- %
+
+% ---------------------------------------------------------------------------- %
+%                         The images used in the title                         %
+% ---------------------------------------------------------------------------- %
+\titleimage{
+    chapteroddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+    partoddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+    chapterevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+    partevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+}
+\chapimage{\beautybook@chapterimagename}
+\partimage{\beautybook@partimagename}
+\makeatother
+% ---------------------------------------------------------------------------- %
+%                         The images used in the title                         %
+% ---------------------------------------------------------------------------- %
+
+% ---------------------------------------------------------------------------- %
+%                      The Color Chosen for The Magic Box                      %
+% ---------------------------------------------------------------------------- %
+\colorlet{framegolden}{fg} % The line color of the magic box
+\colorlet{framegray}{bg!50} % The background color of the magic box
+% ---------------------------------------------------------------------------- %
+%                      The Color Chosen for The Magic Box                      %
+% ---------------------------------------------------------------------------- %
+
+\frontmatter
+\pagenumbering{Roman}
+
+{% Preface
+\thispagestyle{empty}
+% \addcontentsline{toc}{chapter}{Preface}
+\chapter*{Preface}
+An introduction to the beautybook template.
+
+
+\hfill
+\begin{tabular}{lr}
+    &-- author\\ 
+    & 2024-06-30
+\end{tabular}
+\clearpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+\tableofcontents\let\cleardoublepage\clearpage
+
+
+\mainmatter
+\pagenumbering{arabic}
+
+\partabstract{\hspace*{2em} Here is the introduction area of each part, where you can write a concise overview of the part, of course, if there is nothing to say, you can leave it blank.}
+\part{Part}
+
+\chapter{Chapter}
+
+\section{Section}
+
+% your main contents here!
+
+
+\printindex\thispagestyle{empty}
+\bottomimage{inner_pics/coverimage.jpg}
+\ISBNcode{\EANisbn[ISBN=978-80-7340-097-2]} %
+\summary{Summary.}
+\makebottomcover
+\end{document} 
+\end{lstlisting}
+
+\subsection{Release installation and updates}
+
+The test environment for this template is
+\begin{enumerate}
+\item Win11 23H2 + \TeX{} Live 2024;
+\end{enumerate}
+
+For the installation of \TeX Live/Mac\TeX{} , please refer to articles online, which is omitted here.
+
+After installing \TeX{} Live, it is recommended to upgrade all macro packages after installation, upgrade methods: use ``cmd" or ``terminal" to run \lstinline{tlmgr update --all}, if tlmgr needs to be updated, use cmd to run \lstinline{tlmgr update --self}, if there is a break in the update process, please use \lstinline{tlmgr update -- self --all --reinstall-forcibly-removed} update, that is
+
+\begin{lstlisting}
+tlmgr update --self 
+tlmgr update --all
+tlmgr update --self --all --reinstall-forcibly-removed
+\end{lstlisting}
+
+Please refer to \href{https://tex.stackexchange.com/questions/55437/how-do-i-update-my-tex-distribution}{How do I update my \TeX{} distribution?} for more information.
+
+\chapter{The setting of beautybook Template}
+
+The English version of this template is based on the basic ``book" class, and the Chinese version is based on the ``ctexbook" class, so the option of book or ctexbook is also valid for this template. The default encoding is \texttt{UTF-8}, and it is recommended to compile with \TeX{} Live.
+
+\section{Language Mode}
+
+This template includes two basic locales: Chinese and English. Changing the locales alters the headings (including figures and tables) of the chart title, the article formatting (such as table of contents and references), and the language used for theorem contexts (such as Theorem, Lemma, etc.). You can switch between these language modes using the following instructions in the top of the premble:
+
+\begin{lstlisting}
+    \documentclass[lang=cn,zihao=-4,a4paper,fontset=windows]{beautybook} % chinese
+    \documentclass[lang=en,12pt]{beautybook} % english
+\end{lstlisting}
+
+In addition to the two language settings that come with the template, if you need to use another language, you can do so by modifying the \texttt{.cls} file as follows
+
+\begin{enumerate}
+    \item Change the name of the part environment \lstinline{Part\ \thepart} to \lstinline{(translation of part in your language)\ \thepart}
+    \item Theorem environment guide words in premble, such as Theorem.
+\end{enumerate}
+
+\section{Theme Color}
+
+The colors of this template can be configured according to personal preferences in the following way :
+
+\begin{lstlisting}
+    \definecolor{bg}{HTML}{e0e0e0} % Overall style background color % i.e. theme light color
+    \definecolor{fg}{HTML}{455a64} % Overall style foreground color   % i.e. theme dark color
+    %% The colors below are in the stys/bottompage.sty file
+    \definecolor{coverbgcolor}{HTML}{f9b868}      % Cover and bottom page background color
+    \definecolor{coverfgcolor}{HTML}{503D4B}     % foreground color on the front and back covers
+    \definecolor{coverbar}{HTML}{BF8E6F}             % cover bar color
+    \definecolor{bottomcolor}{HTML}{B3686A}      % The theme color of bottom page
+    %%%%%%%%%%%%%%%%%%%%%%%%
+    \colorlet{framegolden}{fg}                                 % Antique box's line color
+    \colorlet{framegray}{Dilu!5}                               % Antique box's background color
+\end{lstlisting}
+
+In the preamble of the main file, certain theorem environments' colors can be set. This will be further explained in the upcoming section on mathematical environments.
+
+Here it is recommended to use the color configuration of the cncolours macro package developed by Lin Lianzhi, and you can select the appropriate color for comparison. 
+
+
+\section{Choice of Cover}
+\subsection{How to choose your favorite cover?}
+
+This template has multiple sets of covers that can be used at will, and the use of them is as follows:
+
+\begin{enumerate}
+    \item Chinese classic cover (Chinese default) --corresponding macro package \lstinline{cover-choose=cn} ,
+    \item Springer Classic Cover 1 (English default) --corresponding to the macro package \lstinline{cover-choose=en} ,
+    \item Springer Classic Cover 2 (image background) --corresponding to macro package \lstinline{cover-choose=enfig} ,
+    \item Springer Classic cover 3 (Geometric style) --corresponding to the macro package \lstinline{cover-choose=birkar} .
+    
+    Note that the information corresponding to the cover is not the same, look at the above example, just follow the requirements.
+\end{enumerate}
+
+\begin{table}[htbp]
+  \centering
+  \caption{cover element information}
+  \begin{tabular}{cccccc}
+    \hline
+    Information & Commands & Information & Commands & Information & Commands \\
+    \hline
+    Title & \lstinline|\title| & subtitle & \lstinline|\subtitle| & author & \lstinline|\author| \\
+    Publisher & \lstinline|\pressname| & Version & \lstinline|\edition| & cover image & \lstinline|\coverimage|\\
+    Logo & \lstinline|\presslogo| &&&&\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsection{Logo}
+
+You can search and obtain the publisher's logo yourself. To avoid copyright infringement, please ensure to choose a proper and lawful image when replacing the current one.
+
+\subsection{Custom Cover}
+
+Moreover, in case you opt for a personalized cover, say an A4 PDF file created through Adobe Illustrator or any other software, comment out the \lstinline{\makecover} command, and subsequently include the custom cover using the \lstinline{pdfpages} macro package. Likewise, if you utilize the \lstinline{titlepage} environment.
+
+\section{Title Style}
+
+This template is fully customized for section headings, if this is not to your liking, you can comment them out to restore the default style.
+
+\section{Introduction to the Mathematical Environments}
+
+Our template includes four distinct theorem environments. These consist of the default theorem style provided by ``amsthm" in simple mode, as well as a custom style provided by ``thmtools." Additionally, we offer a color emphasis box style, an exquisite box style that I developed, and an ancient style box provided by Mr. Wuyue, which can also be used as a theorem box.
+
+\subsection{Usage of theorem environments}
+
+Here is the effect of the theorem environment provided by amsthm.
+\subsubsection{amsthm}
+
+\begin{remark}
+    This is an amsthm-based annotation environment
+\end{remark}
+
+\subsubsection{thmtools}
+
+\begin{proof}[description of proof]
+    Proof environment
+\end{proof}
+
+\begin{solution}[description of solution]
+    Solution environment
+\end{solution}
+
+\subsubsection{Color emphasis box style}
+
+\begin{defi}[name of the definition]\label{defi:def test}
+    The first defines the environment
+\end{defi}
+
+\begin{thm}[name of the thm]\label{thm:thm test}
+    The first theorem environment
+\end{thm}
+
+\begin{cor}[name of the corollary]\label{cor:cor test}
+    The first inference environment
+\end{cor}
+
+\begin{prop}[name of the prop]\label{prop:prop test}
+    The first propositional environment
+\end{prop}
+
+\begin{exam}[name of the example]\label{exam:exam test}
+    The first example problem environment
+\end{exam}
+
+\begin{lem}[name of the lem]\label{lem:lem test}
+    The first lemma environment
+\end{lem}
+
+% \clearpage
+
+\section{Two exquisite theorem boxes crafted by the author!}
+
+\begin{definition}[][Name][def label] 
+    Here are the guidelines for using these two boxes.
+
+\begin{itemize}
+        \item If the theorem name and label are both empty, you can write it like this : 
+    \begin{lstlisting}
+        \begin{definition}
+            Define the environment content
+        \end{definition}
+    \end{lstlisting}
+        \item If you don't have a label but have a name, use it as 
+        \begin{lstlisting}
+            \begin{definition}[][Name]
+                Define the environment content
+            \end{definition}
+        \end{lstlisting}
+        \item If you have a tag, then whether or not it has a name, use it as 
+        \begin{lstlisting}
+            \begin{definition}[][Yes, fill in, no blank][Tag]
+                Define the environment content
+            \end{definition}
+        \end{lstlisting}
+        \item If you want to change some setting options of the box, such as bordering, etc., use it as
+        \begin{lstlisting}
+            \begin{definition}[tcolorbox options][If so, write the name, if not, delete it along with the outside brackets.][tag (Here is where the label is written, if there is no label should be deleted together with the outside brackets.)]
+                Define the environment content
+            \end{definition}
+        \end{lstlisting}
+    \end{itemize}
+
+\end{definition}
+
+\begin{theorem}
+    The usage is the same as above, refer to the tag \ref{def label} below or you can use \autoref{def label}.
+\end{theorem}
+
+\begin{lemma}
+    The usage is the same as above, refer to the tag \ref{def label} below or you can use \autoref{def label}.
+\end{lemma}
+
+\begin{corollary}
+    The usage is the same as above, refer to the tag \ref{def label} below or you can use \autoref{def label}.
+\end{corollary}
+\newpage
+\begin{example}
+    The usage is the same as above, refer to the tag \ref{def label} below or you can use \autoref{def label}.
+\end{example}
+\subsection*{Ancient style box}
+\begin{fancybox}
+    Test ancient style box , you can use it to nest outside of other environments arbitrarily!
+\end{fancybox}
+
+\subsection{Theorem counter adjustment}
+
+If you want to modify the theorem environment to count by section, you can modify the \lstinline{chapter} in the counter option \lstinline{ counter/.code}, the available options are \lstinline{chapter} (default) and \lstinline{section}, \lstinline{subsection}, etc.
+
+\subsection{How to define a new theorem environment?}
+
+There are four ways in which users can define their own theorem environments. Among them amsthm and thmtools can be learned through their macro package documentations. The latter two theorems are defined in the following way.
+
+For example, in premble of the main file, you can write it as
+\begin{lstlisting}
+    % This is the first one.
+    \mynewtheorem{
+        defi={\textbf{Definition}}[section]{interior style={left color=ReD!8,right color=ReD!5!CyaN!50}, borderline west={1.5mm}{0mm}{ReD}},  % It is a example of the first one, then you can mimic it to build the theorem setting you need.
+    }
+
+    % This is the second one.
+    <environment name>={
+        counter=tcb<theorem counter>, 
+        the counter=\thesection.\arabic{tcb<theorem counter>}, 
+        autoref name=\bfseries <environment name>, 
+        style={
+        arc=3pt,breakable,enhanced,interior style={top color=<your color>!12 ,middle color=<your color>!9, bottom color=<your color>!6},boxrule=0pt,top=8mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},
+        opacityframe=0, opacityback=0.98,
+        fontupper=\itshape, step={tcb<theorem counter>},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@theorem@overlay@unbroken{<environment name>\ \thetcb<theorem counter>}{<your color>},
+        overlay first=\my@theorem@overlay@first{<environment name>\ \thetcb<theorem counter>}{<your color>},
+        overlay last=\my@theorem@overlay@last{<your color>},
+        }
+    },
+    <environment name>={
+        counter=tcb<theorem counter>,
+        the counter=\thesection.\arabic{tcb<theorem counter>},
+        autoref name=\bfseries <environment name>,
+        style={
+        arc=0mm,breakable,enhanced,interior style={top color=<your color>!12 ,middle color=<your color>!9, bottom color=<your color>!6},arc=3pt,boxrule=0pt,top=7mm,bottom=5mm,
+        fuzzy shadow={-0.6mm}{0.6mm}{0mm}{0.3mm}{white!50!gray},
+        fuzzy shadow={0.6mm}{-0.6mm}{0mm}{0.3mm}{fill=white!40!gray},
+        opacityframe=0, opacityback=0.98,
+        fontupper=\normalsize,step={tcb<theorem counter>},
+        before pre=\smallskip, after app=\smallskip,
+        overlay unbroken=\my@lemma@overlay@unbroken{<environment name>\ \thetcb<theorem counter>}{<your color>},
+        overlay first=\my@lemma@overlay@first{<environment name>\ \thetcb<theorem counter>}{<your color>},
+        overlay last=\my@lemma@overlay@last{<your color>},
+        }
+    },
+}
+\end{lstlisting}
+
+\begin{remark}
+ Change the folllowing parts :
+ \begin{center}
+     \begin{tabular}{ccc}\hline
+    <environment name> & $\to$ & your new defined theorem name \\ 
+    <theorem counter > & $\to$ & your new defined theorem counter \\ 
+    <your color> & $\to$ & your new defined theorem color \\ \hline
+ \end{tabular}
+ \end{center}
+\end{remark}
+
+\section{list environment}
+This template is customizable with the help of \lstinline{enumitem}, see the enumitem macro package documentation. Here are two examples.\\[2ex]
+\begin{minipage}[b]{0.49\textwidth}
+  \begin{itemize}[label=$\bigodot $]
+    \item first item of nesti;
+    \item second item of nesti;
+      \begin{itemize}
+        \item first item of nestii;
+        \item second item of nestii;
+        \begin{itemize}
+          \item first item of nestiii;
+          \item second item of nestiii.
+        \end{itemize}   
+      \end{itemize}
+  \end{itemize}
+\end{minipage}
+\begin{minipage}[b]{0.49\textwidth}
+  \begin{enumerate}[label=\arabic*)]
+    \item first item of nesti;
+    \item second item of nesti;
+      \begin{enumerate}
+        \item first item of nestii;
+        \item second item of nestii;
+        \begin{enumerate}
+          \item first item of nestiii;
+          \item second item of nestiii.
+        \end{enumerate}   
+      \end{enumerate}
+  \end{enumerate}
+\end{minipage}
+
+\section{References}
+
+\subsection{print reference}
+
+\lstinline{ref.bib} is a file stored in the reference and needs to be placed in the working folder.
+
+\subsection{modify reference format}
+
+In addition, this template calls the Biblatex macro package and provides Biber engine to compile references. Of course, you can also directly delete the Biblatex macro package in cls file (the last few lines of cls) to use Bibtex.
+
+For bib items, you can pick them up in Google Scholar, Mendeley, Endnote and add them to \lstinline{ref.bib}. When quoting in the text, just quote their bib key.
+
+The default reference style used by the template is ``numeric".
+
+\begin{lstlisting}
+\usepackage[
+backend=biber, % It can be changed to bibtex.
+style=numeric, % It can be changed to others, cf the documentation of biblatex.
+sorting=nty
+]{biblatex}
+\addbibresource{ref.bib}
+\end{lstlisting}
+
+
+\printindex\thispagestyle{empty}
+\bottomimage{inner_pics/coverimage.jpg}
+\ISBNcode{\EANisbn[ISBN=978-80-7340-097-2]} %
+\summary{A Research Notes Series For papers.}
+\makebottomcover
+\end{document} 

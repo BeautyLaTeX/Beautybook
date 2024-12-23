@@ -1,0 +1,186 @@
+%% This work is released under the LaTeX Project Public License, v1.3c or later.
+% This template is made by Ethan Lu.
+% Please use XeLaTeX engine!
+\documentclass[lang=cn,a4paper,zihao=-4,fontset=none]{beautybook}
+\definecolor{coverbgcolor}{HTML}{e0e0e0}
+\definecolor{coverfgcolor}{HTML}{1f3134} % The color of the background
+\definecolor{coverbar}{HTML}{7c9092} % The color of the left bar
+\definecolor{bottomcolor}{HTML}{2c4f54}
+\definecolor{nuanbai}{HTML}{f5f5f5}
+\beautybookstyle={
+  cover-choose=cn, % en/cn/enfig/birkar
+  math-font=plain, % plain/mtpro2
+  sidebar=off, % on/off
+}
+\usepackage{stys/beautybook-cnsettings} % 中文配置文件
+\begin{document}
+\thispagestyle{empty}
+\title{beautybook模板简介}
+\subtitle{}
+\edition{First Edition}
+\bookseries{llustrated by Ethan Lu}
+\author{Ethan Lu}
+\pressname{beautybook}
+\presslogo{beautybook-logo}
+\coverimage{hummingbird-8013214}%ivy-ge998908f8_1280.jpg
+\makecover
+
+
+\definecolor{bg}{HTML}{e0e0e0}
+\definecolor{fg}{HTML}{2c4f54}
+\colorlet{outermarginbgcolor}{bg}
+\colorlet{outermarginfgcolor}{fg}
+\colorlet{framegolden}{fg}
+\colorlet{framegray}{bg!50}
+
+\makeatletter
+% set the contents of the outer margin on even and odd pages for scrheadings, plain and scth
+% \oddoutermargin{\sffamily \leftmark} % Odd 奇数页
+% \evenoutermargin{\sffamily\@title} % Even 偶数页
+%
+\titleimage{
+  chapteroddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  partoddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  chapterevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  partevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+}
+\chapimage{\beautybook@chapterimagename} % 会自动改变
+\partimage{\beautybook@partimagename}    % 会自动改变
+\makeatother
+%
+\frontmatter
+\pagenumbering{Roman}
+
+{% Preface
+\thispagestyle{empty}
+% \addcontentsline{toc}{chapter}{Preface}
+\chapter*{Preface}
+Introduction to Beatybook template.
+
+
+\hfill
+\begin{tabular}{lr}
+    &-- Ethan Lu\\ 
+    &2024-07-02
+\end{tabular}
+\clearpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+\tableofcontents\let\cleardoublepage\clearpage
+
+
+\mainmatter
+\pagenumbering{arabic}
+
+\partabstract{\hspace*{2em} 申博老师名单.}
+\part{申博老师资料}
+
+\chapter{申博老师名单}
+% \href{run:./path/to/your/file.pdf}{Click here to open the PDF}
+% \href{mailto:mail}{mail}
+\section{表格}
+
+\NewTblrTheme{fancy}{
+  \SetTblrStyle{firsthead}{font=\bfseries}
+  \SetTblrStyle{firstfoot}{fg=purple2}
+  \SetTblrStyle{middlefoot}{\itshape}
+  \SetTblrStyle{caption-tag}{magenta2}
+}
+\begin{center}
+\begin{tblr}[long,theme = fancy,
+    caption = {申博老师名单及其联系方式},
+    entry = {Interpretation},
+    label = {tblr:申博老师名单及其联系方式},
+    % note{a} = {第一个表注。},
+    % note{$\dag$} = {第二个长长长长长长长的表注。},
+    %   remark{Attention!} = {For any \textit{fine sheaf} $\sS$, one has $H^q(X,\sS)=0$ for $q\geqslant 1$.},
+    remark{申博老师名单及其联系方式} = {申博老师名单及其联系方式。},
+    ]
+    {
+    colspec = {X|[dashed]X|[dashed]X|[dashed]X|[dashed]X}, % 这是本来传入 tblr 的参数
+    column{1}= {.05\linewidth,c},column{2}= {.15\linewidth}, column{3}= {.1\linewidth},column{4}= {.4\linewidth},column{5}= {.25\linewidth},rows = {m},
+    width = \linewidth,
+    row{odd} = {brown9},
+    column{odd} = {gray9},
+    row{1} = {1.3em,bg=cyan2,fg=white,font=\bfseries\sffamily},rowhead = 1, rowfoot = 1,
+    row{even} = {brown9!60}, row{Z} = {bg=gray9,fg=red2},
+    hline{1,2} = {0pt},
+    hline{2,Y} = {dashed},
+    hline{3-X} = {dashed,cyan2},
+}
+        \textbf{学校序号} & \textbf{学校} & \textbf{老师} & \textbf{方向} & \textbf{联系方式} \\ \hline
+        1 &  \href{run:./pdf/fujian8.pdf}{首都师范大学} & 胥世成 & 度量黎曼几何  \\
+        ~ & ~ & 许明 & 微分几何  \\
+        ~ & ~ & 张永胜 & 微分几何  \\
+        2 &  \href{run:./pdf/东北师范大学数学与统计学院2024年博士研究生“申请-考核”制招生选拔工作实施细则.pdf}{东北师范大学} & 王勇 & 整体微分几何 & ~  \\
+        &  & 陈亮 & 光滑映射的奇点理论及其在微分几何、微分拓扑中的应用研究 & \\ 
+        3 & 郑州大学 & 翟云云 & （第一年招生）孤立子与可积系统 &\href{mailto:zhaiyy@zzu.edu.cn}{zhaiyy@zzu.edu.cn}\\
+        & & 薛波&孤立子与可积系统& \href{mailto:xuebo@zzu.edu.cn}{xuebo@zzu.edu.cn}\\ 
+        4 & \href{run:./pdf/008：中国矿业大学数学学院2024年全日制学术学位博士研究生“申请-考核”制招生工作实施细则.pdf}{中国矿业大学} & 任新安& 多复变与复几何&\href{mailto:renx@cumt.edu.cn}{renx@cumt.edu.cn}\\ 
+        5 & 南昌大学 & 付海平 &微分几何&\href{mailto:fuhaiping@ncu.edu.cn}{fuhaiping@ncu.edu.cn}\\ 
+        6& 内蒙古大学&颜昭雯 &孤子理论与可积系统&\href{mailto:yanzw@imu.edu.cn}{yanzw@imu.edu.cn}\\ 
+        8 & \href{run:./pdf/南京理工大学申请审核制办法.pdf}{南京理工大学}&张希&几何分析、微分几何、复几何。主要研究典则度量存在性与相关非线性偏微分方程及应用，涉及K\"ahler-Einstein度量，Hermitian-Yang-Mills度量，Ricci流，Hermitian-Yang-Mills流，复Monge-Ampere方程等。&\href{mailto:mathzx@njust.edu.cn}{mathzx@njust.edu.cn}\\ % 要求六级大于430，不达标
+        9 & 上海大学&席东盟&Minkowski 问题&\href{mailto:xi\_dongmeng@shu.edu.cn}{xi\_dongmeng@shu.edu.cn}\\ 
+        &&冷岗松&几何分析中的极值问题，Banach空间中的凸体理论，积分几何，离散计算几何，几何不等式，几何断层学。&\href{mailto:gleng@staff.shu.edu.cn}{gleng@staff.shu.edu.cn}\\ 
+        10&\href{run:./pdf/华南师范.pdf}{华南师范大学}&魏国新&微分几何与特征值问题&\href{mailto:weigx@scnu.edu.cn}{weigx@scnu.edu.cn}\\
+        10 & \href{run:./pdf/吉林大学.pdf}{吉林大学} & 生云鹤 & 数学物理、Poisson几何、高阶李理论 & \href{mailto:shengyh@jlu.edu.cn}{shengyh@jlu.edu.cn}\\ 
+        ~ & ~& 唐荣 & Rota-Baxter代数和高阶代数& \href{mailto:tangrong@jlu.edu.cn}{tangrong@jlu.edu.cn}\\
+        11 & 苏州大学 & 张影 & 几何拓扑学 & \href{mailto:yzhang@suda.edu.cn}{yzhang@suda.edu.cn}\\
+        ~ & ~ & 莫仲鹏 & 代数数论，自守表示论，Langlands 纲领，算术几何 & \href{mailto:zpmo@suda.edu.cn}{zpmo@suda.edu.cn}\\
+        12 & 南京师范大学 & 陈二才 & 动力系统，遍历论和分形几何 & \href{mailto:ecchen @njnu.edu.cn }{ecchen @njnu.edu.cn }\\ 
+        13 & 同济大学 & 陈小杨 & 非负截面曲率流形的几何与拓扑，群作用相关问题 & \href{mailto:16528@tongji.edu.cn}{16528@tongji.edu.cn}\\ 
+        && 潘生亮 & 微分几何与几何分析。研究兴趣主要集中于曲率流问题、曲线的几何与拓扑、几何不等式、凸几何分析、几何极值问题和非线性发展方程等。& \href{mailto:slpan@tongji.edu.cn}{slpan@tongji.edu.cn}\\ 
+        && 王常亮 & 微分几何与几何分析 & \href{mailto:wangchl@tongji.edu.cn}{wangchl@tongji.edu.cn}\\ 
+        && 颜启明 & 多复变函数轮 & \href{mailto:09118@tongji.edu.cn}{09118@tongji.edu.cn}\\
+        14 & 湖南大学 & 罗率兵 & 多复变与复几何 & \href{mailto:sluo@hnu.edu.cn}{sluo@hnu.edu.cn}\\
+        15 & 西北师范大学 & 刘建成 & 整体微分几何 & \\
+        16 & 广州大学 & 王友德 & 几何分析与偏微分方程。王友德在调和映射、几何流及其相关问题上进行了长期的研究。& \href{mailto:wyd@math.ac.cn}{wyd@math.ac.cn}\\
+        17 & 湖北大学 & 吴传喜 & 微分几何 & \\ 
+        18 & 重庆师范大学 & 郑方阳 & 复几何& \href{mailto:20190045@cqnu.edu.cn}{20190045@cqnu.edu.cn}\\
+        19 & 杭州电子科技大学 & 夏巧玲&微分几何、黎曼-芬斯勒几何和几何分析 & \href{mailto:xiaqiaolinghdu.edu.cn}{xiaqiaolinghdu.edu.cn}\\ 
+        20 & \href{run:./pdf/湖南师范大学2024年博士研究生招生简章.pdf}{湖南师范大学} & 董新汉 & 分形几何与复分析 & \href{mailto:xhdong@hunnu.edu.cn}{xhdong@hunnu.edu.cn}\\ 
+        && 黄曼子 & 拟共形映射和几何函数论，主要针对复分析中的拟共形映射领域内被大家所关注的一些公开问题进行研究，已解决拟共形映射创始人Vaisala等的相关公开问题和猜测5个 & \href{mailto:mzhuang@hunnu.edu.cn}{mzhuang@hunnu.edu.cn}\\ 
+      21 & 汕头大学 & 余成杰 & 复几何 & \href{mailto:cjyu@stu.edu.cn}{cjyu@stu.edu.cn}\\ 
+      22&\href{run:./pdf/武汉大学2024博士招生目录.pdf}{武汉大学}& \href{https://maths.whu.edu.cn/info/1293/9949.htm}{涂玉平} & 复代数几何 & \href{mailto:yuping_tu@126.com}{yuping\_tu@126.com}\\ 
+      && 朱朗峰 & 多复变与复几何 & \href{mailto:zhulangfeng@amss.ac.cn}{zhulangfeng@amss.ac.cn}\\
+      && 涂振汉&多复变函数论与复几何 &\href{mailto:zhhtu.math@whu.edu.cn}{zhhtu.math@whu.edu.cn}\\
+      && \href{http://jszy.whu.edu.cn/raosheng/zh_CN/index/427579/list/index.htm}{饶胜} & 复几何，多复变，代数几何 &\href{mailto:likeanyone@whu.edu.cn}{likeanyone@whu.edu.cn}\\
+      23 & 厦门大学 & 邱春晖 & Several Complex Variables, Complex Finsler Geometry & \href{mailto:chqiu@xmu.edu.cn}{chqiu@xmu.edu.cn}\\
+      && 钟春平 & Several Complex Variables, Complex Finsler Geometry & \href{mailto:zcp@xmu.edu.cn}{zcp@xmu.edu.cn}\\
+      && 杨波 & 多复变函数论，复几何。
+
+      具体说，本人关心凯勒几何和Hermitian几何里面的双截曲率和全纯截面曲率。例如
+      
+      (1) 非负全纯截面曲率的紧致或者完备非紧凯勒流形的构造，以及全纯函数论。参见论文列表中的JGA2023,Ann.Fourier2019.
+      
+      (2) 特殊Hermitian流形的分类及应用，特别是给定黎曼流形的正交复结构的刻画。参见论文列表中的TAMS2020,CAG2018,Adv.Math2017.
+      
+      (3) 负曲率凯勒流形，work in progress.
+      
+      (4) 几何流在复几何中的应用，参见IMRN2022. & \href{mailto:boyang@xmu.edu.cn}{boyang@xmu.edu.cn}\\
+      \textit{序号} & \textit{学校} & \textit{老师} & \textit{方向} & \textit{邮件}\\
+\end{tblr}
+\end{center}
+
+
+
+
+
+
+% {\normalem
+% \printbibliography[
+% heading=bibintoc,
+% title={参考文献}
+% ]
+% \printindex
+% \thispagestyle{empty}}
+%-------------------封底 ---------------%
+\bottomimage{hummingbird-8013214}
+\ISBNcode{\EANisbn[ISBN=978-7-301-05151-1]} %
+\summary{联系导师申博，注意，必须要有已发表论文，很遗憾！}
+\makebottomcover
+\end{document} 

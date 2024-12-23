@@ -1,0 +1,113 @@
+\documentclass[lang=en,12pt]{beautybook}
+\definecolor{coverbgcolor}{HTML}{e0e0e0}
+\definecolor{coverfgcolor}{HTML}{203744} % The color of the background
+\definecolor{coverbar}{HTML}{7c9092} % The color of the left bar
+\definecolor{bottomcolor}{HTML}{2c4f54}
+\definecolor{nuanbai}{HTML}{f5f5f5}
+\pagecolor{nuanbai}
+\beautybookstyle={
+  cover-choose=en, % en/cn/enfig/birkar
+  math-font=fourier, % plain/mtpro2/fourier
+  sidebar=off, % on/off
+}
+\usepackage{stys/beautybook-ensettings}
+\newcommand{\Wedge}[1][]{\tikz\path [draw,line width=1pt] (0,0)--++(4pt,12pt) node[right,font=\scriptsize] {#1} --++(4pt,-12pt);}
+\newtheorem{note}{Note}
+\begin{document}
+\thispagestyle{empty}
+\title{An Introduction to Complex Geometry}
+\subtitle{}
+\edition{First Edition}
+\bookseries{Notes Series}
+\author{Ethan Lu (Original author: Daniel Huybrechts)}
+\pressname{beautybook}
+\presslogo{beautybook-logo}
+\coverimage{hummingbird-8013214}
+\makecover
+
+\makeatletter
+% ---------------------------------------------------------------------------- %
+%                           The Sidebar Theme Chosen                           %
+% ---------------------------------------------------------------------------- %
+\definecolor{bg}{HTML}{e0e0e0}
+\definecolor{fg}{HTML}{2c4f54}
+\colorlet{outermarginbgcolor}{bg} % The foreground color of the sidebar
+\colorlet{outermarginfgcolor}{fg} % The background color of the sidebar
+% set the contents of the outer margin on even and odd pages for scrheadings, plain and scth
+% \oddoutermargin{\sffamily \leftmark} % Odd 奇数页
+% \evenoutermargin{\sffamily\@title} % Even 偶数页
+% ---------------------------------------------------------------------------- %
+%                           The Sidebar Theme Chosen                           %
+% ---------------------------------------------------------------------------- %
+
+% ---------------------------------------------------------------------------- %
+%                         The images used in the title                         %
+% ---------------------------------------------------------------------------- %
+\titleimage{
+  chapteroddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  partoddimage={odd1,odd2,odd3,odd4,odd5,odd6,odd7,odd8,odd9,odd10,odd11,odd12,odd13,odd14,odd15,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  chapterevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+%
+  partevenimage={songeven,even1,even2,even3,even4,mid1,mid2,mid3,mid4,mid5,mid6,mid7,mid8,mid9,mid10,mid11},
+}
+\chapimage{\beautybook@chapterimagename} % 会自动改变
+\partimage{\beautybook@partimagename}    % 会自动改变
+\makeatother
+% ---------------------------------------------------------------------------- %
+%                         The images used in the title                         %
+% ---------------------------------------------------------------------------- %
+
+% ---------------------------------------------------------------------------- %
+%                      The Color Chosen for The Magic Box                      %
+% ---------------------------------------------------------------------------- %
+\colorlet{framegolden}{fg} % The line color of the magic box
+\colorlet{framegray}{bg!50} % The background color of the magic box
+% ---------------------------------------------------------------------------- %
+%                      The Color Chosen for The Magic Box                      %
+% ---------------------------------------------------------------------------- %
+
+\frontmatter
+\pagenumbering{Roman}
+
+{% Preface
+\thispagestyle{empty}
+% \addcontentsline{toc}{chapter}{Preface}
+\chapter*{Preface}
+Here is a comprehensive list of the academic papers that I have perused.
+
+
+\hfill
+\begin{tabular}{lr}
+    &-- Ethan Lu\\ 
+    &2024-07-02
+\end{tabular}
+\clearpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+\tableofcontents\let\cleardoublepage\clearpage
+
+
+\mainmatter
+\pagenumbering{arabic}
+
+\partabstract{A small introduction A small introduction A small introduction A small introduction A small introduction A small introduction}
+\part{Complex Geometry by Huybrechts}
+\newcommand{\R}{\mathbb{R}}
+\input{maincontents/chap1}
+
+\input{maincontents/chapter2-complex-manifolds}
+
+\partabstract{}\part{Hodge Structure}
+
+
+
+
+\printbibliography[heading=bibintoc,title={Bibliography}]\printindex\thispagestyle{empty}
+\bottomimage{hummingbird-8013214}
+\ISBNcode{\EANisbn[ISBN=978-80-7340-097-2]} %
+\summary{A Research Notes Series For papers.}
+\makebottomcover
+\end{document} 
